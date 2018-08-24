@@ -60,6 +60,20 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <title>Asso</title>
     </head>
     <body>
+        <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
+            <h3 class="center-text menu-title">MENU</h3>
+            <ul data-role="listview">
+                <li data-role="list-divider">Documenti</li>
+                <li><a href="index.html">Anagrafica</a></li>
+                <li><a href="index.html">Contratti</a></li>
+                <li><a href="index.html">Fatture</a></li>
+                <li><a href="index.html">Rapporti di intervento</a></li>
+                <li><a href="index.html">Attrezzature</a></li>
+                <li data-role="list-divider">Utente</li>
+                <li><a href="index.html">Modifica password</a></li>
+                <li><a href="#" id="logout">Log out</a></li>
+            </ul>
+        </div>
         <div data-role="page">
             <div data-role="panel" id="menu" data-position="left" data-display="overlay">
                 <h3 class="center-text login-separator">MENU</h3>
@@ -84,9 +98,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
         </div>
 
-        <script src="js/login.js"></script>
         <script src="js/logout.js"></script>
-        <script src="js/register.js"></script>
+        <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
     </body>
 </html>

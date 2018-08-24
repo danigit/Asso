@@ -1,5 +1,4 @@
 $(document).on("pagecreate", function() {
-    $("body > [data-role='panel']").panel();
-    $("body > [data-role='panel'] [data-role='listview']").listview();
-    $("body > [data-role='panel'] [data-role='listdiveder']").listview();
+    $("body > [data-role='panel']").panel().enhanceWithin();
+    $("body > [data-role='panel'] [data-role='listview']").listview().enhanceWithin();
 });

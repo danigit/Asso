@@ -19,13 +19,13 @@
 //     )
 // };
 
-var loginForm = document.querySelector('#registerForm');
-loginForm.onsubmit = function (event) {
+var registerForm = document.querySelector('#registerForm');
+registerForm.onsubmit = function (event) {
     console.log('submited');
 
     event.preventDefault();
-    var logingFormInput = new FormData(loginForm);
-    var promise = httpPost('php/ajax/register.php', logingFormInput);
+    var registerFormInput = new FormData(loginForm);
+    var promise = httpPost('php/ajax/register.php', registerFormInput);
 
     promise.then(
         function (data) {
