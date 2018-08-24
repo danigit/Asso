@@ -12,11 +12,11 @@ class register extends is_not_logged {
     private $username, $password;
 
     protected function input_elaboration(){
-        $this->username = $this->validate_string('username');
+        $this->username = $this->validate_string('registerUsername');
         if(!$this->username)
-            $this->json_error("Inserire un nome utente");
+            $this->json_error("Inserire partita iva");
 
-        $this->password = $this->validate_string('password');
+        $this->password = $this->validate_string('registerPassword');
         if(!$this->password)
             $this->json_error('Inserire una password');
     }

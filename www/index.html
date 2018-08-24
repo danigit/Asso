@@ -46,7 +46,7 @@
     </head>
     <body>
         <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
-            <h3 class="center-text login-separator">MENU</h3>
+            <h3 class="center-text menu-title">MENU</h3>
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
                 <li><a href="index.html">Anagrafica</a></li>
@@ -61,7 +61,6 @@
         </div>
         <div data-role="page">
             <div data-theme="" data-role="header">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
             </div>
             <div data-role="content">
@@ -70,18 +69,17 @@
                     <fieldset id="login-fielset">
                         <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci nome utente">
                         <input type="text" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
-                        <input type="submit" id="login-submit" data-inline="true" value="Submit">
+                        <input type="submit" id="login-submit" data-inline="true" value="Login">
                     </fieldset>
                 </form>
-                <h5 class="center-text login-separator">- or - </h5>
+                <h5 class="center-text login-separator">- oppure - </h5>
 
-                <a href="#register" class="ui-btn ui-corner-all">RREGISTER</a>
+                <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
             </div>
         </div>
 
         <div data-role="page" id="register">
             <div data-theme="" data-role="header">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
             </div>
             <div data-role="content">
@@ -90,7 +88,7 @@
                     <fieldset id="register-fielset">
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
                         <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">
-                        <input type="submit" id="register-submit" data-inline="true" value="Submit">
+                        <input type="submit" id="register-submit" data-inline="true" value="Registrati">
                     </fieldset>
                 </form>
             </div>

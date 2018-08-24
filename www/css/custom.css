@@ -13,6 +13,8 @@
     margin: auto!important;
     padding: 7px!important;
     font-size: medium!important;
+    background: #0099FF!important;
+    text-shadow: none!important;
 }
 
 .center-text{
@@ -37,10 +39,35 @@
 }
 
 .ui-li-divider{
-    background: green!important;
+    background: #00b17f !important;
     text-shadow: none!important;
     color: white!important;
-    padding: 10px!important;
+    padding: 8px!important;
     font-size: large!important;
+    text-align: center!important;
+}
+
+.menu-title{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.ui-header{
+    background: #00b17f!important;
+}
+
+.ui-header h1{
+    color: #ffffff;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+.register-button{
+    background: #3dc235fc!important;
+    text-shadow: none!important;
+    padding: 9px!important;
+}
+
+input{
     text-align: center!important;
 }
