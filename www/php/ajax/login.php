@@ -34,14 +34,16 @@ class login extends is_not_logged {
                     if($data[0] == $this->username) {
                         if($data[1] == password_verify($this->password, $data[1])) {
                             set_session_variables($this->username, true);
+                            return;
                         }else
                             $this->json_error("Username o password sbagliato/a");
-                    }
+                    }else
+                        $this->json_error("Utente non registrato");
                 }
             }
             fclose($handle);
         }else
-            $this->json_error("Utente non registrato");
+            $this->json_error("Impossibile reccuperare credenziali");
     }
 
     protected function get_returned_data(){

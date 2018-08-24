@@ -42,23 +42,24 @@
         <script type="text/javascript" src="js/index.js"></script>
 
         <title>Asso</title>
+
     </head>
     <body>
+        <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
+            <h3 class="center-text login-separator">MENU</h3>
+            <ul data-role="listview">
+                <li data-role="list-divider">Documenti</li>
+                <li><a href="index.html">Anagrafica</a></li>
+                <li><a href="index.html">Contratti</a></li>
+                <li><a href="index.html">Fatture</a></li>
+                <li><a href="index.html">Rapporti di intervento</a></li>
+                <li><a href="index.html">Attrezzature</a></li>
+                <li data-role="list-divider">Utente</li>
+                <li><a href="index.html">Modifica password</a></li>
+                <li><a href="#" id="logout">Log out</a></li>
+            </ul>
+        </div>
         <div data-role="page">
-            <div data-role="panel" id="menu" data-position="left" data-display="overlay">
-                <h3 class="center-text login-separator">MENU</h3>
-                <ul data-role="listview">
-                    <li data-role="list-divider">Documenti</li>
-                    <li><a href="index.html">Anagrafica</a></li>
-                    <li><a href="index.html">Contratti</a></li>
-                    <li><a href="index.html">Fatture</a></li>
-                    <li><a href="index.html">Rapporti di intervento</a></li>
-                    <li><a href="index.html">Attrezzature</a></li>
-                    <li data-role="list-divider">Utente</li>
-                    <li><a href="index.html">Modifica password</a></li>
-                    <li><a href="#" id="logout">Log out</a></li>
-                </ul>
-            </div>
             <div data-theme="" data-role="header">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
@@ -74,13 +75,31 @@
                 </form>
                 <h5 class="center-text login-separator">- or - </h5>
 
-                <a href="#" class="ui-btn ui-corner-all">RREGISTER</a>
+                <a href="#register" class="ui-btn ui-corner-all">RREGISTER</a>
+            </div>
+        </div>
+
+        <div data-role="page" id="register">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+            </div>
+            <div data-role="content">
+                <h1 class="login-header">Registrati</h1>
+                <form data-ajax="false" id="registerForm">
+                    <fieldset id="register-fielset">
+                        <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
+                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">
+                        <input type="submit" id="register-submit" data-inline="true" value="Submit">
+                    </fieldset>
+                </form>
             </div>
         </div>
 
         <script src="js/login.js"></script>
         <script src="js/logout.js"></script>
         <script src="js/register.js"></script>
+        <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
     </body>
 </html>
