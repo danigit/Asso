@@ -64,43 +64,100 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <h3 class="center-text menu-title">MENU</h3>
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
-                <li><a href="index.html">Anagrafica</a></li>
-                <li><a href="index.html">Contratti</a></li>
-                <li><a href="index.html">Fatture</a></li>
-                <li><a href="index.html">Rapporti di intervento</a></li>
-                <li><a href="index.html">Attrezzature</a></li>
+                <li><a href="#anagrafica">Anagrafica</a></li>
+                <li><a href="#contratti">Contratti</a></li>
+                <li><a href="#fatture">Fatture</a></li>
+                <li><a href="#rapporti">Rapporti di intervento</a></li>
+                <li><a href="#attrezzature">Attrezzature</a></li>
                 <li data-role="list-divider">Utente</li>
-                <li><a href="index.html">Modifica password</a></li>
+                <li><a href="#modificaPassword">Modifica password</a></li>
                 <li><a href="#" id="logout">Log out</a></li>
             </ul>
         </div>
-        <div data-role="page">
-            <div data-role="panel" id="menu" data-position="left" data-display="overlay">
-                <h3 class="center-text login-separator">MENU</h3>
-                <ul data-role="listview">
-                    <li data-role="list-divider">Documenti</li>
-                    <li><a href="index.html">Anagrafica</a></li>
-                    <li><a href="index.html">Contratti</a></li>
-                    <li><a href="index.html">Fatture</a></li>
-                    <li><a href="index.html">Rapporti di intervento</a></li>
-                    <li><a href="index.html">Attrezzature</a></li>
-                    <li data-role="list-divider">Utente</li>
-                    <li><a href="index.html">Modifica password</a></li>
-                    <li><a href="#" id="logout">Log out</a></li>
-                </ul>
-            </div>
+        <div data-role="page" id="home">
             <div data-theme="" data-role="header">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
             </div>
             <div data-role="content">
-                Content Page
+                <h1 class="login-header">BENVENUTO</h1>
+                <img src="img/benvenuto.jpg" id="benvenuto-image">
+                <p class="center-text">Benvenuto nel nuovo sito Asso Antincendio</p>
+                <p class="benvenuto-text">Altri contenuti....</p>
             </div>
         </div>
 
+        <div data-role="page" id="anagrafica">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                Anagrafica
+            </div>
+        </div>
+
+        <div data-role="page" id="contratti">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                Contratti
+            </div>
+        </div>
+
+        <div data-role="page" id="fatture">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                <h1 class="blue-text philosopher-font login-separator">Fatture</h1>
+                <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="fatture-list">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="rapporti">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                Rapporti
+            </div>
+        </div>
+
+        <div data-role="page" id="attrezzature">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                Attrezzature
+            </div>
+        </div>
+
+        <div data-role="page" id="modificaPassword">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content">
+                Cambia password
+            </div>
+        </div>
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
+        <script src="js/get-fatture.js"></script>
     </body>
 </html>
 

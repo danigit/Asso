@@ -1,6 +1,9 @@
 .login-header{
      margin-top: 30px;
      margin-bottom: 50px;
+    font-weight: bold;
+    font-size: xx-large;
+    font-family: Philosopher;
  }
 
 .ui-input-text{
@@ -70,4 +73,30 @@
 
 input{
     text-align: center!important;
+}
+
+#benvenuto-image{
+    width: 100%;
+}
+
+.benvenuto-text{
+    text-align: justify;
+    text-transform: none;
+}
+
+.text-justify{
+    text-align: justify;
+}
+
+.philosopher-font{
+    font-family: Philosopher, serif;
+}
+
+.blue-text{
+    color: #0099FF;
+}
+
+.fatture-header{
+    width: 100%;
+    margin-left: -15px!important;
 }
