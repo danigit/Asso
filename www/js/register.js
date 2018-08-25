@@ -24,7 +24,7 @@ registerForm.onsubmit = function (event) {
     console.log('submited');
 
     event.preventDefault();
-    var registerFormInput = new FormData(loginForm);
+    var registerFormInput = new FormData(registerForm);
     var promise = httpPost('php/ajax/register.php', registerFormInput);
 
     promise.then(

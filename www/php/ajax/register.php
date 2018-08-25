@@ -7,6 +7,7 @@
  */
 require_once 'helper.php';
 require_once 'is_not_logged.php';
+
 class register extends is_not_logged {
 
     private $username, $password;
