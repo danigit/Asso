@@ -11,7 +11,7 @@ if (!isset($_SESSION))
 
 if (!isset($_SESSION['secure'], $_SESSION['username']))
     //TODO redirect nella pagina giusto
-    header('Location: index.html');
+    header('Location: index.php');
 ?>
 
 <!DOCTYPE html>

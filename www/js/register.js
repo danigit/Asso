@@ -32,7 +32,7 @@ registerForm.onsubmit = function (event) {
             if(data.result){
                 console.log('result = true');
                 //TODO redirect sulla pagina giusta
-                window.location.replace('../www/index.html');
+                window.location.replace('../www/index.php');
             }else {
                 //TODO mostrare il messaggio di errore ritornato;
                 var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');

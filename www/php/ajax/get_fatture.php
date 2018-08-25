@@ -17,7 +17,7 @@ class get_fatture extends cs_interaction {
 
     protected function get_informations(){
         // TODO: Implement get_informations() method.
-        if (($handle = fopen("users.csv", "r")) !== FALSE) {
+        if (($handle = fopen("fatture.csv", "r")) !== FALSE) {
             while (($data = fgetcsv($handle, ",")) !== FALSE) {
                 if ($data[0] !== 'anno') {
                     $this->result[$data[1]][] = array('numero' => $data[0], 'anno' => $data[1], 'data' => $data[2], 'importo' => $data[3], 'contratto' => $data[4], 'pagata' => $data[5]);

@@ -20,3 +20,7 @@ function set_session_variables($username, $is_secure){
     $_SESSION['secure'] = $is_secure;
     session_write_close();
 }
+
+function getFolderName($chiave){
+    return(strtoupper(md5($chiave . 'Vegeta')));
+}

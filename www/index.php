@@ -1,3 +1,19 @@
+<?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: surpa
+ * Date: 8/24/2018
+ * Time: 4:53 AM
+ */
+
+if (!isset($_SESSION))
+    session_start();
+
+if (isset($_SESSION['secure'], $_SESSION['username']))
+    //TODO redirect nella pagina giusto
+    header('Location: content.php');
+?>
+
 <!DOCTYPE html>
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
@@ -74,7 +90,7 @@
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
-                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">
+<!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
                         <input type="submit" id="register-submit" data-inline="true" value="Registrati">
                     </fieldset>
                 </form>

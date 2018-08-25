@@ -5,7 +5,7 @@ $('#logout').on('click', function () {
     promise.then(
         function (data) {
             if(data.result){
-                window.location.replace('../www/index.html');
+                window.location.replace('../www/index.php');
             }else {
                 //TODO mostrare il messaggio di errore ritornato;
             }
