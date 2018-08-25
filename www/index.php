@@ -62,7 +62,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
 
     </head>
     <body>
-        <div data-role="page">
+        <div data-role="page" id="login">
             <div data-theme="" data-role="header">
                 <h1>ASSO</h1>
             </div>
@@ -71,7 +71,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
                         <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci nome utente">
-                        <input type="text" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
+                        <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
                         <input type="submit" id="login-submit" data-inline="true" value="Login">
                     </fieldset>
                 </form>
@@ -83,6 +83,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="register">
             <div data-theme="" data-role="header">
+                <a href="#login" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all">Login</a>
                 <h1>ASSO</h1>
             </div>
             <div data-role="content">
@@ -92,6 +93,17 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
 <!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
                         <input type="submit" id="register-submit" data-inline="true" value="Registrati">
+                        <label class="checkbox-register">
+                            <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>
+                        </label>
+                        <div data-role="collapsible">
+                            <h4>Informativa sulla privacy</h4>
+                            <p class="text-transfor-none">Asso Antincendio S.r.l. non vuole in alcun modo contribuire al dilagante fenomeno dello spamming su Internet<br><br>
+                                A tal fine La informiamo che i Suoi dati non verranno in nessun caso diffusi in rete o ceduti a terzi, fatti salvi eventuali obblighi di legge e necessitá tecniche legate all’erogazione del servizio.<br><br>
+                                Il titolare del trattamento é il legale rappresentante di Asso Antincendio, sig. Christian Gorla. Il trattamento sará realizzato con l'ausilio di strumenti informatici da parte del Titolare e degli operatori da questo incaricati. Il trattamento é finalizzato all’erogazione dei servizi richiesti e all’elaborazione di statistiche sull’uso dei servizi stessi.<br><br>
+                                In qualsiasi momento sará possibile richiedere gratuitamente la verifica, la cancellazione, la modifica dei propri dati, o ricevere l’elenco degli incaricati del trattamento, scrivendo una mail a privacy@[NOME AZIENDA].it, oppure indirizzando una comunicazione scritta a: [NOME AZIENDA e INDIRIZZO POSTALE].<br><br>
+                                Oltre a uniformarci a tutti gli obblighi previsti dal D.lgs. 196/2003, garantiamo inoltre la massima attenzione alla protezione dei dati da accessi fraudolenti ed alla cancellazione immediata dalle nostre liste a seguito di una Sua richiesta in tal senso.</p>
+                        </div>
                     </fieldset>
                 </form>
             </div>

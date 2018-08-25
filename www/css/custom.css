@@ -100,3 +100,13 @@ input{
     width: 100%;
     margin-left: -15px!important;
 }
+
+.text-transfor-none{
+    text-transform: none;
+}
+
+.checkbox-register{
+    margin-top: 40px!important;
+    background: #3dc235fc!important;
+    text-shadow: none!important;
+}

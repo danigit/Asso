@@ -17,9 +17,9 @@ class register extends is_not_logged {
         if(!$this->username)
             $this->json_error("Inserire partita iva");
 
-        $this->password = $this->validate_string('registerPassword');
-        if(!$this->password)
-            $this->json_error('Inserire una password');
+//        $this->password = $this->validate_string('registerPassword');
+//        if(!$this->password)
+//            $this->json_error('Inserire una password');
     }
 
     protected function get_informations(){
