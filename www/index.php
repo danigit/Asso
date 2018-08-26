@@ -90,7 +90,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="login-header">Registrati</h1>
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">
-                        <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
+                        <input type="number" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
 <!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
                         <input type="submit" id="register-submit" data-inline="true" value="Registrati">
                         <label class="checkbox-register">
