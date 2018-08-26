@@ -1,5 +1,6 @@
 function getFatture(){
 
+    var form = new FormData();
     var promise = httpPost('php/ajax/get_fatture.php');
 
     promise.then(
@@ -12,12 +13,13 @@ function getFatture(){
                     $('#fatture-list').append(label);
 
                     $.each(value, function (innerKey, innerValue) {
+                        var pagato = (innerValue.pagata == 0) ? "No" : "Si";
                         var content = "<div data-role='collapsible' id='" + innerValue.numero + "'><h3>Fattura nr. " + innerValue.numero + "</h3>" +
                             '<p><b class="blue-text">Anno:</b> ' + innerValue.anno + '</p>' +
                             '<p><b class="blue-text">Data:</b> ' + innerValue.data + '</p>' +
                             '<p><b class="blue-text">Importo:</b> ' + innerValue.importo + '</p>' +
                             '<p><b class="blue-text">Contratto:</b> ' + innerValue.contratto + '</p>' +
-                            '<p><b class="blue-text">Pagato:</b> ' + innerValue.pagata + '</p>' +
+                            '<p><b class="blue-text">Pagato:</b> ' + pagato + '</p>' +
                             '</div>';
                         $("#fatture-list").append( content ).collapsibleset('refresh');
                     });

@@ -35,3 +35,29 @@ function createRandomPassword($length){
     }
     return $pass;
 }
+
+function getUserInformations($username){
+    $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
+    if($fileClientsList) {
+        while (($line = fgets($fileClientsList)) !== false) {
+            $lineArray = preg_split('/[\t]/', trim($line));
+            if ($lineArray[0] == $username) {
+                return $lineArray;
+            }
+        }
+    }
+    return null;
+}
+
+function sendMail($xml_file, $password){
+    $xml_string = simplexml_load_file($xml_file);
+    $json = json_encode($xml_string);
+    $array = json_decode($json,TRUE);
+    $email = $array['Anagrafica']['EMAIL'];
+    $headers = array('From' => "asso@gmail.com");
+    if($email != ''){
+        if(mail('ds.acconto@gmail.com', "Registrazione sito Asso Antincendi", "Adesso e' possibile fare il login con la seguente password: " . $password, $headers))
+            return true;
+    }
+    return false;
+}

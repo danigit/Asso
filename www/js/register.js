@@ -30,7 +30,7 @@ registerForm.onsubmit = function (event) {
     promise.then(
         function (data) {
             if(data.result){
-                console.log('result = true');
+                // console.log('result = true');
                 //TODO redirect sulla pagina giusta
                 window.location.replace('../www/index.php');
             }else {
