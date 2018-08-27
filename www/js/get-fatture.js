@@ -22,7 +22,7 @@ function getFatture(){
                             '<p><b class="blue-text">Pagato:</b><span class="text-transfor-none"> ' + pagato + '</span></p>' +
                             '<div class="ui-grid-a ui-responsive">' +
                             '<div class="ui-block-a"><a href="#" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all">Visualizza</a></div>' +
-                            '<div class="ui-block-b"><a href="#" id="scarica" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all">Scarica</a></div>' +
+                            '<div class="ui-block-b"><a href="#" id="scarica" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all">Prepara file</a></div>' +
                             '</div></div>';
                         $("#fatture-list").append( content ).collapsibleset('refresh');
                     });
