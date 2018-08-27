@@ -7,7 +7,7 @@ function getContratti() {
 
                 $.each(data[0], function (key, value) {
                     if(key === "0"){
-                        var contrattiAttivi = "<div data-role='collapsible' data-collapsed='false'><h3>Contratti attivi</h3>";
+                        var contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='false'><h3>Contratti attivi</h3>";
                         var contrattiAttiviList = '';
                         $.each(value, function (innerKey, innerValue) {
                             contrattiAttiviList += '<a href="../www/PhoenixData/' + innerValue.path + '" class="ui-btn">' + innerValue.nome + '</a>';
@@ -15,7 +15,7 @@ function getContratti() {
                         contrattiAttivi += contrattiAttiviList + '</div>';
                         $("#contratti-list").append( contrattiAttivi ).collapsibleset('refresh');
                     }else{
-                        var contrattiCessati = "<div data-role='collapsible'><h3>Contratti cessati</h3>";
+                        var contrattiCessati = "<div data-role='collapsible' class='contratti-collapsible'><h3>Contratti cessati</h3>";
                         var contrattiCessatiList = '';
                         $.each(value, function (innerKey, innerValue) {
                             console.log('path: ' + innerValue.path + "=====" + 'id: ' + innerValue.id);

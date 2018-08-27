@@ -53,6 +53,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
+        <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -75,7 +78,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </ul>
         </div>
         <div data-role="page" id="home">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
             </div>
@@ -88,7 +91,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="anagrafica">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -99,7 +102,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="contratti">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -112,7 +115,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="fatture">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -125,7 +128,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="rapporti">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -136,7 +139,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="attrezzature">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -147,7 +150,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="modificaPassword">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
@@ -158,7 +161,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="viewList">
-            <div data-theme="" data-role="header">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>

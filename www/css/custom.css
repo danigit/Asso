@@ -154,3 +154,9 @@ input{
     text-shadow: none!important;
     color: #ffffff!important;
 }
+
+.contratti-collapsible > h3 > a{
+    background-color: #0099FF!important;
+    text-shadow: none!important;
+    color: #ffffff!important;
+}

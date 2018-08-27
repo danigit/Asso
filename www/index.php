@@ -53,6 +53,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
         <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
