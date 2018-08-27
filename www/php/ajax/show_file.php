@@ -8,7 +8,6 @@
 
 require_once 'cs_interaction.php';
 require_once 'helper.php';
-error_reporting(0);
 
 class show_file extends cs_interaction {
 

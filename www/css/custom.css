@@ -42,7 +42,7 @@
 }
 
 .ui-li-divider{
-    background: #00b17f !important;
+    background: #0099FF !important;
     text-shadow: none!important;
     color: white!important;
     padding: 8px!important;
@@ -98,6 +98,8 @@ input{
 
 .fatture-header{
     width: 100%;
+    background: #0099FF!important;
+    color: #ffffff!important;
     margin-left: -15px!important;
     text-shadow: none!important;
     font-weight: bold!important;
@@ -119,4 +121,36 @@ input{
 
 .margin-zero{
     margin: 0!important;
+}
+
+.margin-bottom-50{
+    margin-bottom: 50px!important;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.fatture-item{
+    padding: 0 10px!important;
+}
+
+.ui-collapsible-content{
+    padding: 0!important;
+}
+
+.visualizza-button{
+    background: #3dc235!important;
+    text-shadow: none!important;
+    color: #ffffff!important;
+}
+
+.carica-button{
+    background: #EC942C!important;
+    text-shadow: none!important;
+    color: #ffffff!important;
 }

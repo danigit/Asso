@@ -28,6 +28,38 @@ var app = {
         $('#fatture').on('pageinit', function () {
             getFatture();
         });
+
+        $('#anagrafica').on('pageinit', function () {
+            getAnagrafica();
+        });
+
+        $('#contratti').on('pageinit', function () {
+            getContratti();
+        });
+
+        $('#attrezzature').on('pageinit', function () {
+            getAttrezzature();
+        });
+
+        $(document).on('tap', function (event) {
+            console.log('button tapped: ' + event.target.href.substr(event.target.href.indexOf("#") + 1));
+            switch (event.target.href.substr(event.target.href.indexOf('#') + 1)) {
+                case 'estintori':
+                    console.log('clicked estintori');
+                    $(document).on('pageinit', '#viewList', function () {
+                        viewList('LISTA_ESTINTORI');
+                    });
+                    $.mobile.changePage('#viewList');
+                    break;
+                case 'porte':
+                    console.log('clicked porte');
+                    break;
+                default :
+                    console.log('non lo so');
+            }
+            if(event.target.href.substr(event.target.href.indexOf("#") + 1) === 'estintori')
+                console.log('clickato estintori');
+        });
     },
 
     alert: function () {
