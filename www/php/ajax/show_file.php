@@ -34,6 +34,7 @@ class show_file extends cs_interaction {
                         $this->file_path = PHOENIX_FOLDER . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
                         if(file_exists($this->file_path)){
                             $this->result = $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                            return;
                         }else
                             $this->json_error("file non esiste");
                     }

@@ -4,7 +4,9 @@ $(document).on('click', function (event) {
         event.preventDefault();
 
         var fatturaForm = new FormData();
-        var numero = $('#' + event.target.id).attr('data-value');
+        console.log(event.target);
+        var numero = $(event.target).attr('data-value');
+        console.log('numero: ' + numero);
         fatturaForm.append('numero', '' + numero);
 
         console.log("form: " + fatturaForm.get('numero'));
@@ -12,16 +14,10 @@ $(document).on('click', function (event) {
 
         promise.then(
             function (data) {
-                if(false){
+                if(data.result){
                     window.open('../www/PhoenixData/' + data.path);
                 }else {
-                    app.alert();
-                    // $('body').append('<div data-role="popup" id="popupBasic">' +
-                    //     '<p>This is a completely basic popup, no options set.</p>' +
-                    //     '</div>');
-                    // $('#popupBasic').trigger('create');
-                    // $('#popupBasic').popup();
-                    // $('#popupBasic').popup('open');
+                    $('#' + numero).children().eq(0).append('<div class="center-text text-shadow-none text-transfor-none error-message margin-zero">Impossibile visualizzare il file</div>');
                 }
             }
         );

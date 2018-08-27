@@ -116,3 +116,7 @@ input{
 .text-shadow-none{
     text-shadow: none!important;
 }
+
+.margin-zero{
+    margin: 0!important;
+}
