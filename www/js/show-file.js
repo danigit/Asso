@@ -1,7 +1,7 @@
 $(document).on('click', function (event) {
 
-    var target = event.target;
 
+    //TODO trovare un altro modo per fare questo che non sia programmare per coppia incolla
     if(event.target.id === 'visualizza'){
         // window.location.replace('../www/php/ajax/show_file.php');
         event.preventDefault();
@@ -39,11 +39,34 @@ $(document).on('click', function (event) {
                         $(event.target).attr('download', 'fattura_nr_' + saveNumero);
                         $(event.target).attr('target', '_blank');
                         $(event.target).text('Scarica');
+                        $('#scarica').removeClass('carica-button').addClass('visualizza-button');
                     } else {
                         $('#' + saveNumero).children().eq(0).append('<div class="center-text text-shadow-none text-transfor-none error-message margin-zero">Impossibile visualizzare il file</div>');
                     }
                 }
             );
         }
+    }else if(event.target.id === 'rapporto'){
+        //TODO non tutte le fatture hanno un rapporto quindi bisogna veder ecome fare
+        //cosi non posso meterlo nella pagina fatture ma devo fare una pagina separata
+        event.preventDefault();
+
+        var rapportoNumero = $(event.target).attr('data-value');
+        var rapportoForm = new FormData();
+        rapportoForm.append('numero', '' + rapportoNumero);
+
+        var rapportoPromise = httpPost('php/ajax/show_file.php', rapportoForm);
+
+        rapportoPromise.then(
+            function (data) {
+                if(data.result){
+                    var rapporto = data.path.split('.').slice(0, -1).join('.') + '-Registro.pdf';
+                    console.log(rapporto);
+                    window.open('../www/PhoenixData/' + rapporto);
+                }else {
+                    $('#' + rapportoNumero).children().eq(0).append('<div class="center-text text-shadow-none text-transfor-none error-message margin-zero">Impossibile visualizzare il file</div>');
+                }
+            }
+        );
     }
 });

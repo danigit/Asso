@@ -93,8 +93,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
             </div>
-            <div data-role="content">
-                Anagrafica
+            <div data-role="content" id="anagrafica">
+                <h1 class="blue-text philosopher-font login-separator">Anagrafica</h1>
             </div>
         </div>
 
@@ -105,7 +105,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
             </div>
             <div data-role="content">
-                Contratti
+                <h1 class="blue-text philosopher-font login-separator">Contratti</h1>
+                <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="contratti-list">
+                </div>
             </div>
         </div>
 
@@ -139,8 +141,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1>ASSO</h1>
                 <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
             </div>
-            <div data-role="content">
-                Attrezzature
+            <div data-role="content" id="attrezzature-container">
+                <h1 class="blue-text philosopher-font login-separator">Attrezzature</h1>
             </div>
         </div>
 
@@ -154,11 +156,28 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 Cambia password
             </div>
         </div>
+
+        <div data-role="page" id="viewList">
+            <div data-theme="" data-role="header">
+                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
+                <h1>ASSO</h1>
+                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+            </div>
+            <div data-role="content" id="viewListContent">
+                <h1 class="blue-text philosopher-font login-separator">Lista Attrezzature</h1>
+                <div data-role="collapsible-set" id="viewListCollapsible" data-inset="false" data-content-theme="d" id="fatture-list">
+                </div>
+            </div>
+        </div>
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
         <script src="js/show-file.js"></script>
         <script src="js/get-fatture.js"></script>
+        <script src="js/get-anagrafica.js"></script>
+        <script src="js/get-contratti.js"></script>
+        <script src="js/get-attrezzature.js"></script>
+        <script src="js/view-list.js"></script>
     </body>
 </html>
 

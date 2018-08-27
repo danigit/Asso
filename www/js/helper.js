@@ -14,3 +14,11 @@ function httpPost(url, input) {
         httpReq.send(input);
     });
 }
+
+function getValue(value){
+    console.log('value: ' + value + 'end');
+    if(!value || value.length === 0)
+        return 'Nessun dato disponibile';
+    else
+        return value;
+}
