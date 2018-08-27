@@ -27,7 +27,15 @@ var app = {
 
         $('#fatture').on('pageinit', function () {
             getFatture();
-        })   
+        });
+    },
+
+    alert: function () {
+        navigator.notification.alert(
+            'You are the winner!', // callback
+            'Game Over',            // title
+            'Done'                  // buttonName
+        );
     }
 };
 

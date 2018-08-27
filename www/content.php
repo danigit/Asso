@@ -157,6 +157,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
+        <script src="js/show-file.js"></script>
         <script src="js/get-fatture.js"></script>
     </body>
 </html>

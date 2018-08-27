@@ -22,7 +22,6 @@ class get_fatture extends cs_interaction {
         $anno = 0;
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
-//            $this->json_error($info);
             $folderName = getFolderName($info[1]);
             $fatturePath = PHOENIX_FOLDER . $folderName . '/PhoenixFatture.phx';
             if(file_exists($fatturePath)) {

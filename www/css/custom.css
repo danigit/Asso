@@ -99,6 +99,8 @@ input{
 .fatture-header{
     width: 100%;
     margin-left: -15px!important;
+    text-shadow: none!important;
+    font-weight: bold!important;
 }
 
 .text-transfor-none{
@@ -108,5 +110,9 @@ input{
 .checkbox-register{
     margin-top: 40px!important;
     background: #3dc235fc!important;
+    text-shadow: none!important;
+}
+
+.text-shadow-none{
     text-shadow: none!important;
 }

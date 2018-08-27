@@ -54,9 +54,8 @@ function sendMail($xml_file, $password){
     $json = json_encode($xml_string);
     $array = json_decode($json,TRUE);
     $email = $array['Anagrafica']['EMAIL'];
-    $headers = array('From' => "asso@gmail.com");
     if($email != ''){
-        if(mail('ds.acconto@gmail.com', "Registrazione sito Asso Antincendi", "Adesso e' possibile fare il login con la seguente password: " . $password, $headers))
+        if(mail('ds.acconto@gmail.com', "Registrazione sito Asso Antincendi", "Adesso e' possibile fare il login con la seguente password: " . $password))
             return true;
     }
     return false;
