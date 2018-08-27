@@ -16,10 +16,11 @@ $(document).on('click', function (event) {
                     window.open('../www/PhoenixData/' + data.path);
                 }else {
                     app.alert();
-                    // var elem = $('.ui-content').children().eq(0);
-                    // $(elem).after('<div data-role="popup" id="popupBasic">\n' +
-                    //     '<p>This is a completely basic popup, no options set.</p>\n' +
-                    //     '</div>').trigger('create');
+                    // $('body').append('<div data-role="popup" id="popupBasic">' +
+                    //     '<p>This is a completely basic popup, no options set.</p>' +
+                    //     '</div>');
+                    // $('#popupBasic').trigger('create');
+                    // $('#popupBasic').popup();
                     // $('#popupBasic').popup('open');
                 }
             }

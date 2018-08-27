@@ -11,6 +11,9 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-navigation href="http://danielfotografo.altervista.org/index.php" />
+    <allow-navigation href="http://danielfotografo.altervista.org/*" />
+    <allow-navigation href="http://danielfotografo.altervista.org/*/*" />
+    <allow-navigation href="http://danielfotografo.altervista.org/*/*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
