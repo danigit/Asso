@@ -70,7 +70,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <li><a href="#anagrafica">Anagrafica</a></li>
                 <li><a href="#contratti">Contratti</a></li>
                 <li><a href="#fatture">Fatture</a></li>
-                <li><a href="#rapporti">Rapporti di intervento</a></li>
+<!--                <li><a href="#rapporti">Rapporti di intervento</a></li>-->
                 <li><a href="#attrezzature">Attrezzature</a></li>
                 <li data-role="list-divider">Utente</li>
                 <li><a href="#modificaPassword">Modifica password</a></li>
@@ -88,14 +88,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
-                    <a href="#" class="ui-btn fatture-item"><p>Via Carnia 127R</p></a>
-                    <a href="#" class="ui-btn fatture-item"><p>16161 Teglia Genova</p></a>
+                    <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="carat-r" data-iconpos="right" class="blue-text">Via Carnia 127R</a>
+                    <a href="#" data-role="button">16161 Teglia Genova</a>
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>
                     <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
-                    <a href="#" class="ui-btn fatture-item"><p>E-mail: <p class="text-transfor-none">info@assoantincedion.com</p></p></a>
+                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="carat-r" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedion.com</p></a>
+
                 </div>
             </div>
         </div>
@@ -166,7 +167,14 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
-                Cambia password
+                <h1 class="login-header">Cambia password</h1>
+                <form data-ajax="false" id="changePassForm">
+                    <fieldset id="change-pass-fielset">
+                        <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
+                        <input type="password" name="verifyPassword" id="vefifyPassword" value="" data-clear-btn="true" placeholder="Reinserisci password">
+                        <input type="submit" id="reset-submit" data-inline="true" value="Invia">
+                    </fieldset>
+                </form>
             </div>
         </div>
 
@@ -191,6 +199,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/get-contratti.js"></script>
         <script src="js/get-attrezzature.js"></script>
         <script src="js/view-list.js"></script>
+        <script src="js/change-password.js"></script>
     </body>
 </html>
 

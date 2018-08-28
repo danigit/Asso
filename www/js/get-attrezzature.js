@@ -11,7 +11,7 @@ function getAttrezzature() {
                 //TODO da scrivere meglio cosi fa schifo
                 var lista = '<ul data-role="listview" data-inset="false">';
                 for(var i = 0; i < data[0]['lista'].length; i++){
-                    var name = data[0]['lista'][i].replace(/LISTA_/g, '');
+                    var name = data[0]['lista'][i].replace(/LISTA_/g, '').replace('_', ' ');
                     lista += '<a href="#' + name.toLowerCase() + '" class="ui-btn">' + name + '</li>';
                 }
                 lista += '</ul>';

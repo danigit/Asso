@@ -53,7 +53,8 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
         <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
+
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
@@ -65,7 +66,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     <body>
         <div data-role="page" id="login">
             <div data-theme="" data-role="header">
-                <h1>ASSO</h1>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
                 <h1 class="login-header">Login</h1>
@@ -77,15 +78,14 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                     </fieldset>
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>
-
                 <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
             </div>
         </div>
 
         <div data-role="page" id="register">
             <div data-theme="" data-role="header">
-                <a href="#login" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all">Login</a>
-                <h1>ASSO</h1>
+                <a href="#login" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Login</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
                 <h1 class="login-header">Registrati</h1>
@@ -97,7 +97,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                         <label class="checkbox-register">
                             <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>
                         </label>
-                        <div data-role="collapsible" class="contratti-collapsible">
+                        <div data-role="collapsible" class="contratti-collapsible privacy-div">
                             <h3>Informativa sulla privacy</h3>
                             <p class="text-transfor-none text-justify">Asso Antincendio S.r.l. non vuole in alcun modo contribuire al dilagante fenomeno dello spamming su Internet<br><br>
                                 A tal fine La informiamo che i Suoi dati non verranno in nessun caso diffusi in rete o ceduti a terzi, fatti salvi eventuali obblighi di legge e necessitá tecniche legate all’erogazione del servizio.<br><br>

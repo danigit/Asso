@@ -94,7 +94,7 @@ input{
 }
 
 .blue-text{
-    color: #0099FF;
+    color: #0099FF!important;
 }
 
 .fatture-header{
@@ -193,4 +193,20 @@ input{
 .home-phrase{
     border-bottom: 3px solid #E52612;
     color: #007E47;
+}
+
+.ui-input-text{
+    background-color: #F9F9F9!important;
+    border: none!important;
+    box-shadow: none!important;
+    border-bottom: 2px solid #0099FF!important;
+    border-radius: 0!important;
+}
+
+.privacy-div > div{
+    border: 1px solid #0099FF!important;
+}
+
+.privacy-div > div p{
+    padding: 0 15px;
 }
