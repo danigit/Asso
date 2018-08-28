@@ -64,7 +64,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
     </head>
     <body>
         <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
-            <h3 class="center-text menu-title">MENU</h3>
+            <img src="img/droppedImage.png" class="menu-title">
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
                 <li><a href="#anagrafica">Anagrafica</a></li>
@@ -74,41 +74,51 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <li><a href="#attrezzature">Attrezzature</a></li>
                 <li data-role="list-divider">Utente</li>
                 <li><a href="#modificaPassword">Modifica password</a></li>
-                <li><a href="#" id="logout">Log out</a></li>
+                <li><a href="#" id="logout" class="red-text">Log out</a></li>
             </ul>
         </div>
         <div data-role="page" id="home">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
-                <h1 class="login-header">BENVENUTO</h1>
-                <img src="img/benvenuto.jpg" id="benvenuto-image">
-                <p class="center-text">Benvenuto nel nuovo sito Asso Antincendio</p>
-                <p class="benvenuto-text">Altri contenuti....</p>
+                <img src="img/droppedImage.png" id="benvenuto-image">
+                <h1 class="login-header home-phrase">ASSO ANTINCENDIO TI DA IL BENVENUTO</h1>
+                <p class="center-text"></p>
+                <div data-role="collapsible" class="contratti-collapsible">
+                    <h3>Dove trovarci</h3>
+                    <a href="#" class="ui-btn fatture-item"><p>Via Carnia 127R</p></a>
+                    <a href="#" class="ui-btn fatture-item"><p>16161 Teglia Genova</p></a>
+                </div>
+                <div data-role="collapsible" class="contratti-collapsible">
+                    <h3>Come contattarci</h3>
+                    <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
+                    <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
+                    <a href="#" class="ui-btn fatture-item"><p>E-mail: <p class="text-transfor-none">info@assoantincedion.com</p></p></a>
+                </div>
             </div>
         </div>
 
         <div data-role="page" id="anagrafica">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content" id="anagrafica">
-                <h1 class="blue-text philosopher-font login-separator">Anagrafica</h1>
+                <h1 class="red-text philosopher-font login-separator">Anagrafica</h1>
             </div>
         </div>
 
         <div data-role="page" id="contratti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
-                <h1 class="blue-text philosopher-font login-separator">Contratti</h1>
+                <h1 class="red-text philosopher-font login-separator">Contratti</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="contratti-list">
                 </div>
             </div>
@@ -116,12 +126,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="fatture">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1  class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
-                <h1 class="blue-text philosopher-font login-separator">Fatture</h1>
+                <h1 class="red-text philosopher-font login-separator">Fatture</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
             </div>
@@ -129,9 +139,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="rapporti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
                 Rapporti
@@ -140,20 +150,20 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="attrezzature">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content" id="attrezzature-container">
-                <h1 class="blue-text philosopher-font login-separator">Attrezzature</h1>
+                <h1 class="red-text philosopher-font login-separator">Attrezzature</h1>
             </div>
         </div>
 
         <div data-role="page" id="modificaPassword">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
                 Cambia password
@@ -162,12 +172,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="viewList">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">Menu</a>
-                <h1>ASSO</h1>
-                <a href="#home" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content" id="viewListContent">
-                <h1 class="blue-text philosopher-font login-separator">Lista Attrezzature</h1>
+                <h1 class="red-text philosopher-font login-separator">Lista Attrezzature</h1>
                 <div data-role="collapsible-set" id="viewListCollapsible" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
             </div>

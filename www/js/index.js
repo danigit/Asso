@@ -46,13 +46,23 @@ var app = {
             switch (event.target.href.substr(event.target.href.indexOf('#') + 1)) {
                 case 'estintori':
                     console.log('clicked estintori');
-                    $(document).on('pageinit', '#viewList', function () {
-                        viewList('LISTA_ESTINTORI');
-                    });
+                    viewList('LISTA_ESTINTORI');
                     $.mobile.changePage('#viewList');
                     break;
                 case 'porte':
                     console.log('clicked porte');
+                    viewList('LISTA_PORTE');
+                    $.mobile.changePage('#viewList');
+                    break;
+                case 'rilevatori_fumi':
+                    console.log('clicked porte');
+                    viewList('LISTA_RILEVATORI_FUMI');
+                    $.mobile.changePage('#viewList');
+                    break;
+                case 'idranti':
+                    console.log('clicked porte');
+                    viewList('LISTA_IDRANTI');
+                    $.mobile.changePage('#viewList');
                     break;
                 default :
                     console.log('non lo so');

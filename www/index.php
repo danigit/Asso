@@ -97,8 +97,8 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                         <label class="checkbox-register">
                             <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>
                         </label>
-                        <div data-role="collapsible">
-                            <h4>Informativa sulla privacy</h4>
+                        <div data-role="collapsible" class="contratti-collapsible">
+                            <h3>Informativa sulla privacy</h3>
                             <p class="text-transfor-none text-justify">Asso Antincendio S.r.l. non vuole in alcun modo contribuire al dilagante fenomeno dello spamming su Internet<br><br>
                                 A tal fine La informiamo che i Suoi dati non verranno in nessun caso diffusi in rete o ceduti a terzi, fatti salvi eventuali obblighi di legge e necessitá tecniche legate all’erogazione del servizio.<br><br>
                                 Il titolare del trattamento é il legale rappresentante di Asso Antincendio, sig. Christian Gorla. Il trattamento sará realizzato con l'ausilio di strumenti informatici da parte del Titolare e degli operatori da questo incaricati. Il trattamento é finalizzato all’erogazione dei servizi richiesti e all’elaborazione di statistiche sull’uso dei servizi stessi.<br><br>
