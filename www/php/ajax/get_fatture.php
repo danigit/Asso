@@ -32,14 +32,6 @@ class get_fatture extends cs_interaction {
                 }
             }
         }
-//        if (($handle = fopen("fatture.csv", "r")) !== FALSE) {
-//            while (($data = fgetcsv($handle, ",")) !== FALSE) {
-//                if ($data[0] !== 'anno') {
-//                    $this->result[$data[1]][] = array('numero' => $data[0], 'anno' => $data[1], 'data' => $data[2], 'importo' => $data[3], 'contratto' => $data[4], 'pagata' => $data[5]);
-//                }
-//            }
-//        }
-//        fclose($handle);
     }
 
     protected function get_returned_data(){

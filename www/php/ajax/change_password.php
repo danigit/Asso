@@ -10,9 +10,13 @@ require_once 'is_logged.php';
 
 class change_password extends is_logged {
 
-    private $password, $vefiyPassword;
+    private $oldPassword, $password, $vefiyPassword;
 
     protected function input_elaboration(){
+        $this->oldPassword = $this->validate_string('oldPassword');
+        if(!$this->oldPassword)
+            $this->json_error("Inserire password");
+
         $this->password = $this->validate_string('password');
         if(!$this->password)
             $this->json_error("Inserire password");
@@ -31,9 +35,16 @@ class change_password extends is_logged {
             $folderName = getFolderName($info[1]);
             $passwordPath = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
             if(file_exists($passwordPath)) {
-                $passwordFile = fopen($passwordPath, 'w');
-                fputs($passwordFile, md5($this->password));
+                $passwordFile = fopen($passwordPath, 'r');
+                $oldPassword = fgets($passwordFile);
                 fclose($passwordFile);
+                $emptyFile = fopen($passwordPath, 'w');
+                if(md5($this->oldPassword) != $oldPassword)
+                    $this->json_error('Password sbagliata');
+                else {
+                    fputs($emptyFile, md5($this->password));
+                    fclose($passwordFile);
+                }
             }else
                 $this->json_error("Impossibile impostare la password");
         }

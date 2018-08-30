@@ -37,6 +37,10 @@ var app = {
             getContratti();
         });
 
+        $('#rapporti').on('pageinit', function () {
+            getRapporti();
+        });
+
         $('#attrezzature').on('pageinit', function () {
             getAttrezzature();
         });

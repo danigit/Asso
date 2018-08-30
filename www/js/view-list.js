@@ -13,8 +13,14 @@ function viewList(elem) {
                 $('#viewListCollapsible').prepend(label);
                 $.each(data[0].lista, function (key, value) {
                     var i = 1;
+                    var oldFiliale = '';
+                    console.log(key + '/' + value);
                     $.each(value, function (innerkey, innerValue) {
-
+                        console.log('inner: ' + innerkey + '/' + innerValue);
+                        if(innerValue.FILIALE != oldFiliale) {
+                            var filiale = $('<a href="#" data-inset="true" class="ui-btn blue-text attrezzature-label-padding">' + innerValue.FILIALE + '</a>');
+                            $('#viewListCollapsible').append(filiale);
+                        }
                         var titoloLabel = '';
                         (innerValue.MATRICOLA === undefined) ? titoloLabel = 'Articolo ' + i++ : titoloLabel = "Matricola " + innerValue.MATRICOLA;
                         var content = "<div data-role='collapsible' id='" + innerValue.MATRICOLA + "'><h3>" + titoloLabel + "</h3>";
@@ -24,6 +30,7 @@ function viewList(elem) {
                         });
                         content += '</div>';
                         $("#viewListCollapsible").append( content ).collapsibleset('refresh');
+                        oldFiliale = innerValue.FILIALE;
                     })
                     // console.log('value: ' + value[0].ANNO_COSTRUZIONE);
                 });

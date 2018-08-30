@@ -21,9 +21,9 @@ function getFatture(){
                                 if(lastKey === 'numero'){
                                     numero = lastValue;
                                 }else if(lastKey === 'anno')
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">NUMERO:</b> </p><p class="float-right">' + numero + '/' + parseString(lastKey, lastValue) + '</p></a>';
+                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">NUMERO:</b> </p><p class="float-right line-wrap">' + numero + '/' + parseString(lastKey, lastValue) + '</p></a>';
                                 else
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey + ':</b> </p><p class="float-right">' + parseString(lastKey,lastValue) + '</p></a>';
+                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey + ':</b> </p><p class="float-right line-wrap">' + parseString(lastKey,lastValue) + '</p></a>';
                             }
                         });
                         content += '<div class="ui-grid-a ui-responsive">' +

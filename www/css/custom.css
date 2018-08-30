@@ -210,3 +210,15 @@ input{
 .privacy-div > div p{
     padding: 0 15px;
 }
+
+.line-wrap{
+    white-space: normal!important;
+}
+
+.attrezzature-label-padding{
+    padding: 7px 0 3px 0!important;
+}
+
+.gray-text{
+    color: #808080!important;
+}

@@ -70,7 +70,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <li><a href="#anagrafica">Anagrafica</a></li>
                 <li><a href="#contratti">Contratti</a></li>
                 <li><a href="#fatture">Fatture</a></li>
-<!--                <li><a href="#rapporti">Rapporti di intervento</a></li>-->
+                <li><a href="#rapporti">Rapporti di intervento</a></li>
                 <li><a href="#attrezzature">Attrezzature</a></li>
                 <li data-role="list-divider">Utente</li>
                 <li><a href="#modificaPassword">Modifica password</a></li>
@@ -145,7 +145,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
             </div>
             <div data-role="content">
-                Rapporti
+                <h1 class="red-text philosopher-font login-separator">Rapporti</h1>
+                <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="rapporti-list">
+                </div>
             </div>
         </div>
 
@@ -170,6 +172,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="login-header">Cambia password</h1>
                 <form data-ajax="false" id="changePassForm">
                     <fieldset id="change-pass-fielset">
+                        <input type="password" name="oldPassword" id="oldPassword" value="" data-clear-btn="true" placeholder="Inserisci vecchia password">
                         <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
                         <input type="password" name="verifyPassword" id="vefifyPassword" value="" data-clear-btn="true" placeholder="Reinserisci password">
                         <input type="submit" id="reset-submit" data-inline="true" value="Invia">
@@ -200,6 +203,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/get-attrezzature.js"></script>
         <script src="js/view-list.js"></script>
         <script src="js/change-password.js"></script>
+        <script src="js/get-rapporti.js"></script>
     </body>
 </html>
 
