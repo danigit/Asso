@@ -10,7 +10,7 @@ function getContratti() {
                         var contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='false'><h3>Contratti attivi</h3>";
                         var contrattiAttiviList = '';
                         $.each(value, function (innerKey, innerValue) {
-                            contrattiAttiviList += '<a href="../www/PhoenixData/' + innerValue.path + '" class="ui-btn">' + innerValue.nome + '</a>';
+                            contrattiAttiviList += '<a href="../www/PhoenixData/' + innerValue.path + '" class="ui-btn">' + innerValue.nome + ' / ' + innerValue.data.split('/').pop() + '</a>';
                         });
                         contrattiAttivi += contrattiAttiviList + '</div>';
                         $("#contratti-list").append( contrattiAttivi ).collapsibleset('refresh');
@@ -19,7 +19,7 @@ function getContratti() {
                         var contrattiCessatiList = '';
                         $.each(value, function (innerKey, innerValue) {
                             console.log('path: ' + innerValue.path + "=====" + 'id: ' + innerValue.id);
-                            contrattiCessatiList += '<a href="../www/PhoenixData/' + innerValue.path + '" class="ui-btn">' + innerValue.nome + '</a>';
+                            contrattiCessatiList += '<a href="../www/PhoenixData/' + innerValue.path + '" class="ui-btn">' + innerValue.nome + ' / ' + innerValue.data.split('/').pop() + '</a>';
                         });
                         contrattiCessati += contrattiCessatiList + '</div>';
                         $("#contratti-list").append( contrattiCessati ).collapsibleset('refresh');

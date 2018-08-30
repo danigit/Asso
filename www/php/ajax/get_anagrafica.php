@@ -11,7 +11,7 @@ require_once 'helper.php';
 
 class get_anagrafica extends cs_interaction {
 
-    private $result;
+    private $result = array();
 
     protected function input_elaboration(){
         // TODO: Implement input_elaboration() method.
@@ -24,8 +24,13 @@ class get_anagrafica extends cs_interaction {
             $anagraficaPath = PHOENIX_FOLDER . $folderName . '/PhoenixAnagrafica.xml';
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
-            $this->result = json_decode($json_file, true);
-            //var_dump($this->result);
+            $array_file = json_decode($json_file, true);
+            $anagrafica = $array_file['Anagrafica'];
+
+            foreach ($anagrafica as $elem => $value){
+                if(!is_array($value))
+                    $this->result[$elem] = $anagrafica[$elem];
+            }
         }
     }
 

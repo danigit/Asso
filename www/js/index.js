@@ -64,8 +64,6 @@ var app = {
                         viewList('LISTA_IDRANTI');
                         $.mobile.changePage('#viewList');
                         break;
-                    default :
-                        console.log('non lo so');
                 }
             }
         });

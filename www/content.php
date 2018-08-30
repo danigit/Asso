@@ -64,7 +64,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
     </head>
     <body>
         <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
-            <img src="img/droppedImage.png" class="menu-title">
+            <img src="img/logo.png" class="menu-title">
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
                 <li><a href="#anagrafica">Anagrafica</a></li>
@@ -83,8 +83,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
-                <img src="img/droppedImage.png" id="benvenuto-image">
-                <h1 class="login-header home-phrase">ASSO ANTINCENDIO TI DA IL BENVENUTO</h1>
+                <img src="img/logo.png" id="benvenuto-image">
+                <h1 class="login-header home-phrase">ASSO ANTINCENDIO TI DA' IL BENVENUTO</h1>
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <h3>Come contattarci</h3>
                     <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
-                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="carat-r" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedion.com</p></a>
+                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="carat-r" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedio.com</p></a>
 
                 </div>
             </div>
