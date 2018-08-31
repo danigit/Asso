@@ -89,7 +89,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
                     <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="carat-r" data-iconpos="right" class="blue-text">Via Carnia 127R</a>
-                    <a href="#" data-role="button">16161 Teglia Genova</a>
+                    <a href="#" data-role="button" id="antani">16161 Teglia Genova</a>
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>

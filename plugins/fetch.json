@@ -6,5 +6,21 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-document-viewer": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/sitewaerts/cordova-plugin-document-viewer.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@^3.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

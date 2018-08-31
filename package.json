@@ -12,11 +12,15 @@
   "dependencies": {
     "cordova-android": "^7.1.1",
     "cordova-browser": "^5.0.4",
+    "cordova-plugin-document-viewer": "git+https://github.com/sitewaerts/cordova-plugin-document-viewer.git",
+    "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-whitelist": "^1.3.3"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-document-viewer": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "browser",

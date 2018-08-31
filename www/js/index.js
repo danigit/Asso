@@ -73,12 +73,8 @@ var app = {
         });
     },
 
-    alert: function () {
-        navigator.notification.alert(
-            'You are the winner!', // callback
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
+    open: function(url){
+        window.open(url, '_blank', 'location=yes');
     }
 };
 

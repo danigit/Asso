@@ -31,7 +31,6 @@ function parseString(key, stringValue) {
         return false;
     else if(key === 'importo' && stringValue.length > 2)
         return stringValue.substr(0, stringValue.length - 2) + '.' + stringValue.substr(stringValue.length - 2);
-    else if(key === 'estintori' &&  stringValue === 'descrizione')
     else
         return stringValue;
 }

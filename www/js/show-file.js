@@ -15,7 +15,7 @@ $(document).on('click', function (event) {
         viewPromise.then(
             function (data) {
                 if(data.result){
-                    window.open('../www/PhoenixData/' + data.path);
+                    window.open('../PhoenixData/' + data.path);
                 }else {
                     $('#' + viewNumero).children().eq(0).append('<div class="center-text text-shadow-none text-transfor-none error-message margin-zero">Impossibile visualizzare il file</div>');
                 }

@@ -69,6 +69,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
+                <img src="img/logo.png" class="login-image">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
@@ -78,7 +79,8 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                     </fieldset>
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>
-                <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
+                <a href="#register" data-role="button" class="register-button">Registrati</a>
+<!--                <button id="butt" onclick="app.open();">Press me</button>-->
             </div>
         </div>
 
