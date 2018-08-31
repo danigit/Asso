@@ -68,6 +68,16 @@ var app = {
                         viewList('LISTA_IDRANTI');
                         $.mobile.changePage('#viewList');
                         break;
+                    case 'sprinkler':
+                        console.log('clicked sprinkler');
+                        viewList('LISTA_SPRINKLER');
+                        $.mobile.changePage('#viewList');
+                        break;
+                    case 'luci':
+                        console.log('clicked luci');
+                        viewList('LISTA_LUCI');
+                        $.mobile.changePage('#viewList');
+                        break;
                 }
             }
         });

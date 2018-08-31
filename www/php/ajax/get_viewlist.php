@@ -26,8 +26,23 @@ class get_viewlist extends cs_interaction {
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
-            $contratto = $array_file['Contratto'];
-            $this->result = array('contratto' => $contratto['DESCRIZIONE_SCHEDA'], 'lista' => $contratto[$this->lista] );
+            foreach ($array_file as $file){
+//                $this->result[] = $file[$this->lista];
+                foreach ($file[$this->lista] as $elem) {
+//                    $this->result[$file['DESCRIZIONE_SCHEDA']][] = count($elem);
+                    if(is_array($elem[0])) {
+//                            $this->result[$file['DESCRIZIONE_SCHEDA']][] = $elem;
+                        foreach ($elem as $a) {
+                          $this->result[$file['DESCRIZIONE_SCHEDA']][$a['FILIALE']][] =  $a;
+                        }
+                    }else{
+                        var_dump('minore');
+                        $this->result[$file['DESCRIZIONE_SCHEDA']][$elem['FILIALE']][] = $elem;
+                    }
+                }
+            }
+//            $contratto = $array_file['Contratto'];
+//            $this->result = array('contratto' => $contratto['DESCRIZIONE_SCHEDA'], 'lista' => $contratto[$this->lista] );
         }
     }
 

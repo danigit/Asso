@@ -69,6 +69,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
+                <img src="img/logo.png" class="benvenuto-immage">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
