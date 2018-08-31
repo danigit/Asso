@@ -28,7 +28,8 @@ class get_fatture extends cs_interaction {
                 $fattureFile = fopen($fatturePath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
-                    $this->result[$lineArray[2]][] = array('numero' => $lineArray[1], 'anno' => $lineArray[2], 'data' => $lineArray[3], 'importo' => $lineArray[4], 'contratto' => $lineArray[6], 'pagata' => $lineArray[7]);
+                    $path = 'http://www.danielfotografo.altervista.org/PhoenixData/' . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                    $this->result[$lineArray[2]][] = array('path' => $path, 'numero' => $lineArray[1], 'anno' => $lineArray[2], 'data' => $lineArray[3], 'importo' => $lineArray[4], 'contratto' => $lineArray[6], 'pagata' => $lineArray[7]);
                 }
             }
         }

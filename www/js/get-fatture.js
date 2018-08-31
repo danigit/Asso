@@ -18,18 +18,19 @@ function getFatture(){
                         var numero = '';
                         $.each(innerValue, function (lastKey, lastValue) {
                             if(lastValue !== "") {
-                                if(lastKey === 'numero'){
-                                    numero = lastValue;
-                                }else if(lastKey === 'anno')
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">NUMERO:</b> </p><p class="float-right line-wrap">' + numero + '/' + parseString(lastKey, lastValue) + '</p></a>';
-                                else
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey + ':</b> </p><p class="float-right line-wrap">' + parseString(lastKey,lastValue) + '</p></a>';
+                                if(lastKey !== "path") {
+                                    if(lastKey === 'numero'){
+                                        numero = lastValue;
+                                    }else if(lastKey === 'anno')
+                                        content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">NUMERO:</b> </p><p class="float-right line-wrap">' + numero + '/' + parseString(lastKey, lastValue) + '</p></a>';
+                                    else
+                                        content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey + ':</b> </p><p class="float-right line-wrap">' + parseString(lastKey,lastValue) + '</p></a>';
+                                }
                             }
                         });
                         content += '<div class="ui-grid-a ui-responsive">' +
-                            '<div class="ui-block-a"><a href="#" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button">Visualizza</a></div>' +
-                            '<div class="ui-block-b"><a href="#" id="scarica" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all carica-button">Prepara file</a></div>' +
-                            '<div class="ui-block-b"><a href="#" id="rapporto" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button">Visualizza rapporto</a></div>' +
+                            '<div class="ui-block-a"><a href="#" onclick="app.open(\'' + innerValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button">Visualizza</a></div>' +
+                            // '<div class="ui-block-b"><a href="#" id="scarica" onclick="app.download(\'' + innerValue.path + '\');" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all carica-button">Prepara file</a></div>' +
                             '</div>'
                         content += '</div></div>';
                         $("#fatture-list").append( content ).collapsibleset('refresh');

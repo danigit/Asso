@@ -74,8 +74,9 @@ var app = {
     },
 
     open: function(url){
+        window.alert(url);
         window.open(url, '_blank', 'location=yes');
-    }
+    },
 };
 
 
