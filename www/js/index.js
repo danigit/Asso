@@ -21,9 +21,13 @@ var app = {
     initialize: function() {
        this.bind();
     },
-    
+
     bind: function(){
         document.addEventListener('deviceready', this.deviceready, false);
+
+        $('#register-button').on('click', function () {
+            window.location.replace('index.php#register');
+        });
 
         $('#fatture').on('pageinit', function () {
             getFatture();
@@ -49,23 +53,27 @@ var app = {
             if($(event.target).is('a')){
                 switch (event.target.href.substr(event.target.href.indexOf('#') + 1)) {
                     case 'estintori':
-                        console.log('clicked estintori');
                         viewList('LISTA_ESTINTORI');
                         $.mobile.changePage('#viewList');
                         break;
                     case 'porte':
-                        console.log('clicked porte');
                         viewList('LISTA_PORTE');
                         $.mobile.changePage('#viewList');
                         break;
                     case 'rilevatori%20fumi':
-                        console.log('clicked porte');
                         viewList('LISTA_RILEVATORI_FUMI');
                         $.mobile.changePage('#viewList');
                         break;
                     case 'idranti':
-                        console.log('clicked porte');
                         viewList('LISTA_IDRANTI');
+                        $.mobile.changePage('#viewList');
+                        break;
+                    case 'sprinkler':
+                        viewList('LISTA_SPRINKLER');
+                        $.mobile.changePage('#viewList');
+                        break;
+                    case 'luci':
+                        viewList('LISTA_LUCI');
                         $.mobile.changePage('#viewList');
                         break;
                 }
@@ -74,9 +82,8 @@ var app = {
     },
 
     open: function(url){
-        window.alert(url);
         window.open(url, '_blank', 'location=yes');
-    },
+    }
 };
 
 

@@ -65,42 +65,36 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     </head>
     <body>
         <div data-role="page" id="login">
-            <div data-theme="" data-role="header">
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-            </div>
-            <div data-role="content">
+            <div data-role="content" id="login-content">
                 <img src="img/logo.png" class="login-image">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
                         <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci nome utente">
                         <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
-                        <input type="submit" id="login-submit" data-inline="true" value="Login">
+                        <br><input type="submit" id="login-submit" data-inline="true" value="Login">
                     </fieldset>
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>
-                <a href="#register" data-role="button" class="register-button">Registrati</a>
-<!--                <button id="butt" onclick="app.open();">Press me</button>-->
+                <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
             </div>
         </div>
 
         <div data-role="page" id="register">
-            <div data-theme="" data-role="header">
-                <a href="#login" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Login</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-            </div>
             <div data-role="content">
+                <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon">Login</a>
+                <img src="img/logo.png" class="login-image">
                 <h1 class="login-header">Registrati</h1>
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
 <!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
-                        <input type="submit" id="register-submit" data-inline="true" value="Registrati">
-                        <label class="checkbox-register">
+                        <br><input type="submit" id="register-submit" data-inline="true" value="Registrati">
+                        <label class="checkbox-register" data-inset="false">
                             <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>
                         </label>
-                        <div data-role="collapsible" class="contratti-collapsible privacy-div">
-                            <h3>Informativa sulla privacy</h3>
+                        <div data-role="collapsible" data-inset="false" class="privacy-div">
+                            <h5>Leggi informativa sulla privacy</h5>
                             <p class="text-transfor-none text-justify">Asso Antincendio S.r.l. non vuole in alcun modo contribuire al dilagante fenomeno dello spamming su Internet<br><br>
                                 A tal fine La informiamo che i Suoi dati non verranno in nessun caso diffusi in rete o ceduti a terzi, fatti salvi eventuali obblighi di legge e necessitá tecniche legate all’erogazione del servizio.<br><br>
                                 Il titolare del trattamento é il legale rappresentante di Asso Antincendio, sig. Christian Gorla. Il trattamento sará realizzato con l'ausilio di strumenti informatici da parte del Titolare e degli operatori da questo incaricati. Il trattamento é finalizzato all’erogazione dei servizi richiesti e all’elaborazione di statistiche sull’uso dei servizi stessi.<br><br>

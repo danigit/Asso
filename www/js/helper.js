@@ -1,3 +1,9 @@
+/**
+ * Funzione che esegue una chiamata xmlhttp
+ * @param url - indirizzo url
+ * @param input - i valori da passare alla chiamata
+ * @returns {Promise} - la risposta della chiamata
+ */
 function httpPost(url, input) {
     return new Promise(function (resolve, reject) {
         var httpReq = new XMLHttpRequest();
@@ -15,14 +21,12 @@ function httpPost(url, input) {
     });
 }
 
-function getValue(value){
-    console.log('value: ' + value + 'end');
-    if(!value || value.length === 0)
-        return 'Nessun dato disponibile';
-    else
-        return value;
-}
-
+/**
+ * Funzione che modifica le stringe che non possono essere visualizzate cosi come sono
+ * @param key
+ * @param stringValue - la stringa da modificare
+ * @returns {*}
+ */
 function parseString(key, stringValue) {
 
     if(key === 'pagata' && stringValue === '0')

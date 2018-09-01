@@ -79,7 +79,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
         <div data-role="page" id="home">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
@@ -88,14 +88,14 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
-                    <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="carat-r" data-iconpos="right" class="blue-text">Via Carnia 127R</a>
+                    <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="maps-icon" data-iconpos="right" class="blue-text">Via Carnia 127R</a>
                     <a href="#" data-role="button" id="antani">16161 Teglia Genova</a>
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>
                     <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
-                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="carat-r" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedio.com</p></a>
+                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedio.com</p></a>
 
                 </div>
             </div>
@@ -103,23 +103,23 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="anagrafica">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="anagrafica">
-                <h1 class="red-text philosopher-font login-separator">Anagrafica</h1>
+                <h1 class="red-text philosopher-font header-page-title">Anagrafica</h1>
             </div>
         </div>
 
         <div data-role="page" id="contratti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font login-separator">Contratti</h1>
+                <h1 class="red-text philosopher-font header-page-title">Contratti</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="contratti-list">
                 </div>
             </div>
@@ -127,12 +127,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="fatture">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1  class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font login-separator">Fatture</h1>
+                <h1 class="red-text philosopher-font header-page-title">Fatture</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
             </div>
@@ -140,12 +140,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="rapporti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font login-separator">Rapporti</h1>
+                <h1 class="red-text philosopher-font header-page-title">Rapporti</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="rapporti-list">
                 </div>
             </div>
@@ -153,20 +153,20 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="attrezzature">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="attrezzature-container">
-                <h1 class="red-text philosopher-font login-separator">Attrezzature</h1>
+                <h1 class="red-text philosopher-font header-page-title">Attrezzature</h1>
             </div>
         </div>
 
         <div data-role="page" id="modificaPassword">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
                 <h1 class="login-header">Cambia password</h1>
@@ -183,12 +183,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="viewList">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
-                <a href="#menu" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext menu-icon">Menu</a>
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
-                <a href="#home" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext menu-icon">Home</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="viewListContent">
-                <h1 class="red-text philosopher-font login-separator">Lista Attrezzature</h1>
+                <h1 class="red-text philosopher-font header-page-title">Lista Attrezzature</h1>
                 <div data-role="collapsible-set" id="viewListCollapsible" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
             </div>
@@ -196,7 +196,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
-        <script src="js/show-file.js"></script>
         <script src="js/get-fatture.js"></script>
         <script src="js/get-anagrafica.js"></script>
         <script src="js/get-contratti.js"></script>

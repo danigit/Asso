@@ -1,27 +1,9 @@
-// //TODO deve essere eseguito onpageload
-// console.log('page loaded');
-// var form = document.querySelector('#registerForm');
-// console.log('form: ' + form);
-// form.onsubmit = function (event) {
-//     event.preventDefault();
-//     var formInput = new FormData(form);
-//     var promise = httpPost('php/ajax/register.php', formInput);
-//
-//     promise.then(
-//         function (data) {
-//             if(data.result){
-//                 console.log('result = true');
-//                 //TODO redirect sulla pagina giusta
-//             }else {
-//                 //TODO mostrare il messaggio di errore ritornato;
-//             }
-//         }
-//     )
-// };
+/**
+ * Funzione che fa la registrazione dell'utente
+ */
 
 var registerForm = document.querySelector('#registerForm');
 registerForm.onsubmit = function (event) {
-    console.log('submited');
 
     event.preventDefault();
     var registerFormInput = new FormData(registerForm);
@@ -29,14 +11,11 @@ registerForm.onsubmit = function (event) {
 
     promise.then(
         function (data) {
-            if(data.result){
-                // console.log('result = true');
-                //TODO redirect sulla pagina giusta
+            if (data.result) {
                 window.location.replace('../www/index.php');
-            }else {
-                //TODO mostrare il messaggio di errore ritornato;
+            } else {
                 var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
-                if($('.error-message').length !== 0)
+                if ($('.error-message').length !== 0)
                     $('#register-fielset').find('.error-message').remove();
                 $('#register-fielset').prepend(message);
             }

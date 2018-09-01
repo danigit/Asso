@@ -20,14 +20,23 @@ class get_viewlist extends cs_interaction {
 
     protected function get_informations(){
         $info = getUserInformations($_SESSION['username']);
-        if($info != null){
+        if($info != null) {
             $folderName = getFolderName($info[1]);
             $anagraficaPath = PHOENIX_FOLDER . $folderName . '/PhoenixAttrezzature.xml';
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
-            $contratto = $array_file['Contratto'];
-            $this->result = array('contratto' => $contratto['DESCRIZIONE_SCHEDA'], 'lista' => $contratto[$this->lista] );
+            foreach ($array_file as $file) {
+                foreach ($file[$this->lista] as $elem) {
+                    if (is_array($elem[0])) {
+                        foreach ($elem as $a) {
+                            $this->result[$file['DESCRIZIONE_SCHEDA']][$a['FILIALE']][] = $a;
+                        }
+                    } else {
+                        $this->result[$file['DESCRIZIONE_SCHEDA']][$elem['FILIALE']][] = $elem;
+                    }
+                }
+            }
         }
     }
 

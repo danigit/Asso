@@ -1,11 +1,3 @@
-.login-header{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-weight: bold;
-    font-size: x-large;
-    font-family: Philosopher;
- }
-
 .ui-input-text{
     margin-bottom: 40px!important;
 }
@@ -20,25 +12,8 @@
     text-shadow: none!important;
 }
 
-.center-text{
-    text-align: center;
-}
-
-.error-message{
-    background: rgba(240, 65, 36, 0.5);
-    padding: 5px;
-    border-radius: 7px;
-    margin-bottom: 50px;
-}
-
-.error-message span{
-    color: #000000;
-    font-size: smaller;
-    text-shadow: none;
-}
-
-.login-separator{
-    margin: 30px 0;
+.ui-header{
+    background: #7CA7FD!important;
 }
 
 .ui-li-divider{
@@ -50,39 +25,116 @@
     text-align: center!important;
 }
 
-.menu-title{
-    display: block;
-    margin: auto auto 40px auto;
-    width: 80%;
-}
-
-.ui-header{
-    background: #7CA7FD!important;
-}
-
 .ui-header h1{
     color: #ffffff;
     text-shadow: none;
     font-weight: bold;
 }
 
-.register-button{
-    background: #3dc235fc!important;
+.ui-collapsible-content{
+    padding: 0!important;
+    border: none!important;
+}
+
+.ui-input-text{
+    display: block!important;
+    width: 80%!important;
+    padding: 0!important;
+    margin: 15px auto!important;
+    background-color: #F9F9F9!important;
+    border: none!important;
+    box-shadow: none!important;
+    border-bottom: 1px solid #0099FF!important;
+    border-radius: 0!important;
+}
+
+.ui-checkbox > label{
+    margin-top: 30px!important;
+    background: #3dc235!important;
     text-shadow: none!important;
-    padding: 9px!important;
+    font-size: smaller!important;
+}
+
+/******************* CUSOTM CSS *********************/
+
+.login-header{
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: x-large;
+    color: #007E47;
+    font-family: Philosopher, sans-serif;
+}
+
+.error-message{
+    background: rgba(229, 38, 18, 1);
+    padding: 5px;
+    border-radius: 7px;
+    margin-bottom: 50px;
+}
+
+.error-message span{
+    color: #ffffff;
+    font-size: smaller;
+    text-shadow: none;
+}
+
+.login-separator{
+    margin: 10px 0;
+}
+
+.header-page-title{
+    margin: 20px 0;
+}
+
+.menu-title{
+    display: block;
+    margin: auto auto 40px auto;
+    width: 80%;
 }
 
 input{
     text-align: center!important;
+    font-size: small!important;
 }
 
-#benvenuto-image{
-    width: 100%;
+.login-image{
+    display: block;
+    width: 70%;
+    margin: auto auto 50px;
 }
 
-.benvenuto-text{
-    text-align: justify;
-    text-transform: none;
+#login-content > a{
+    margin-top: 0!important;
+    background: #3dc235!important;
+    text-shadow: none!important;
+}
+
+.login-icon{
+    position: absolute!important;
+    left: 8px!important;
+    top: 8px!important;
+    font-size: small!important;
+    font-family: Philosopher, sans-serif!important;
+    padding: 6px 8px 6px 8px!important;
+    background: #ffffff!important;
+    color: #000000!important;
+    border-radius: 12px!important;
+    border: 1px solid #0099FF!important;
+}
+
+.privacy-div > h5 > a{
+    background-color: #0099FF!important;
+    text-shadow: none!important;
+    color: #ffffff!important;
+}
+
+.privacy-div > div{
+    border: 1px solid #0099FF!important;
+}
+
+.privacy-div > div p{
+    padding: 0 15px;
 }
 
 .text-justify{
@@ -91,6 +143,48 @@ input{
 
 .philosopher-font{
     font-family: Philosopher, serif;
+}
+
+.fixed-header-text{
+    font-size: 35px!important;
+    padding: 10px 0 0 0!important;
+    line-height: 1!important;
+    color: #007E47!important;
+    font-family: 'Ruslan Display', sans-serif;
+}
+
+.menu-icon{
+    margin-top: 7px!important;
+    font-size: small!important;
+    font-family: Philosopher, sans-serif!important;
+    padding: 6px 8px 6px 8px!important;
+    background: #ffffff!important;
+    color: #000000!important;
+    border-radius: 12px!important;
+    border: 1px solid #0099FF!important;
+}
+
+#benvenuto-image{
+    width: 100%!important;
+    display: block!important;
+    margin: auto!important;
+}
+
+.home-phrase{
+    margin: 45px 0;
+    border-bottom: 2px solid #0099FF;
+    border-top: 2px solid #0099FF;
+    border-radius: 10px;
+    padding: 10px 0;
+    color: #007E47;
+}
+
+.ui-icon-maps-icon:after{
+    background-image: url('../img/maps.jpg');
+}
+
+.ui-icon-email-icon:after{
+    background-image: url('../img/email.jpg');
 }
 
 .blue-text{
@@ -108,12 +202,6 @@ input{
 
 .text-transfor-none{
     text-transform: none;
-}
-
-.checkbox-register{
-    margin-top: 40px!important;
-    background: #3dc235fc!important;
-    text-shadow: none!important;
 }
 
 .text-shadow-none{
@@ -140,18 +228,8 @@ input{
     padding: 0 10px!important;
 }
 
-.ui-collapsible-content{
-    padding: 0!important;
-}
-
 .visualizza-button{
     background: #3dc235!important;
-    text-shadow: none!important;
-    color: #ffffff!important;
-}
-
-.carica-button{
-    background: #EC942C!important;
     text-shadow: none!important;
     color: #ffffff!important;
 }
@@ -162,25 +240,6 @@ input{
     color: #ffffff!important;
 }
 
-.fixed-header-text{
-    font-size: 45px!important;
-    padding: 10px 0 0 0!important;
-    line-height: 1!important;
-    color: #007E47!important;
-    font-family: 'Ruslan Display', sans-serif;
-}
-
-.menu-icon{
-    height: 40px!important;
-    width: 40px!important;
-    margin-top: 5px!important;
-    border: none!important;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border-radius: 50% !important;
-}
-
 .title-A{
     color: #E52612;
 }
@@ -188,27 +247,6 @@ input{
 .red-text{
     color: #E52612!important;
     font-weight: bold;
-}
-
-.home-phrase{
-    border-bottom: 3px solid #E52612;
-    color: #007E47;
-}
-
-.ui-input-text{
-    background-color: #F9F9F9!important;
-    border: none!important;
-    box-shadow: none!important;
-    border-bottom: 2px solid #0099FF!important;
-    border-radius: 0!important;
-}
-
-.privacy-div > div{
-    border: 1px solid #0099FF!important;
-}
-
-.privacy-div > div p{
-    padding: 0 15px;
 }
 
 .line-wrap{
@@ -223,8 +261,6 @@ input{
     color: #808080!important;
 }
 
-.login-image{
-    display: block;
-    width: 70%;
-    margin: auto;
+.center-text{
+    text-align: center;
 }
