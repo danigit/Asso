@@ -8,6 +8,8 @@
 
 require_once 'cs_interaction.php';
 require_once 'helper.php';
+require_once 'variabili_server_configuration.php';
+
 
 class show_file extends cs_interaction {
 
@@ -24,15 +26,15 @@ class show_file extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $fatturePath = PHOENIX_FOLDER . $folderName . '/PhoenixFatture.phx';
+            $fatturePath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixFatture.phx';
             if(file_exists($fatturePath)) {
                 $fattureFile = fopen($fatturePath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
                     if($lineArray[1] == $this->numero_fattura){
-                        $this->file_path = PHOENIX_FOLDER . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                        $this->file_path = PHOENIX_FOLDER . $folderName . FORWARDSLASH . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
                         if(file_exists($this->file_path)){
-                            $this->result = $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                            $this->result = $folderName . FORWARDSLASH . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
                             return;
                         }else
                             $this->json_error("file non esiste");

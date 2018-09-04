@@ -6,8 +6,6 @@
  * Time: 10:16 AM
  */
 
-define('PHOENIX_FOLDER', '../../PhoenixData/');
-
 abstract class cs_interaction{
     private $connection;
 

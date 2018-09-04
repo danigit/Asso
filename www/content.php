@@ -169,13 +169,14 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
+                <img src="img/logo.png" class="menu-title">
                 <h1 class="login-header">Cambia password</h1>
                 <form data-ajax="false" id="changePassForm">
                     <fieldset id="change-pass-fielset">
                         <input type="password" name="oldPassword" id="oldPassword" value="" data-clear-btn="true" placeholder="Inserisci vecchia password">
                         <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
                         <input type="password" name="verifyPassword" id="vefifyPassword" value="" data-clear-btn="true" placeholder="Reinserisci password">
-                        <input type="submit" id="reset-submit" data-inline="true" value="Invia">
+                        <br><input type="submit" id="reset-submit" data-inline="true" value="Invia">
                     </fieldset>
                 </form>
             </div>

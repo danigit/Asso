@@ -8,6 +8,8 @@
 
 require_once 'cs_interaction.php';
 require_once 'helper.php';
+require_once 'variabili_server_configuration.php';
+
 
 class get_attrezzature extends cs_interaction {
     private $result;
@@ -20,7 +22,7 @@ class get_attrezzature extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $anagraficaPath = PHOENIX_FOLDER . $folderName . '/PhoenixAttrezzature.xml';
+            $anagraficaPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAttrezzature.xml';
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);

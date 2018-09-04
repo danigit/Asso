@@ -7,6 +7,8 @@
  */
 require_once 'helper.php';
 require_once 'cs_interaction.php';
+require_once 'variabili_server_configuration.php';
+
 
 class get_fatture extends cs_interaction {
 
@@ -23,7 +25,7 @@ class get_fatture extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $fatturePath = PHOENIX_FOLDER . $folderName . '/PhoenixFatture.phx';
+            $fatturePath = PHOENIX_FOLDER . $folderName . FORWARDSLASH. 'PhoenixFatture.phx';
             if(file_exists($fatturePath)) {
                 $fattureFile = fopen($fatturePath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {

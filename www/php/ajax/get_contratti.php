@@ -8,6 +8,8 @@
 
 require_once 'helper.php';
 require_once 'cs_interaction.php';
+require_once 'variabili_server_configuration.php';
+
 
 class get_contratti extends cs_interaction {
     private $result;
@@ -21,7 +23,7 @@ class get_contratti extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $contrattiPath = PHOENIX_FOLDER . $folderName . '/PhoenixContratti.phx';
+            $contrattiPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixContratti.phx';
             if(file_exists($contrattiPath)) {
                 $contrattiFile = fopen($contrattiPath, 'r');
                 while (($line = fgets($contrattiFile)) !== false) {

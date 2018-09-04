@@ -7,6 +7,8 @@
  */
 require_once 'helper.php';
 require_once 'is_not_logged.php';
+require_once 'variabili_server_configuration.php';
+
 
 class register extends is_not_logged {
 
@@ -27,12 +29,12 @@ class register extends is_not_logged {
         if($info != null){
             $pass = createRandomPassword(10);
             $folderName = getFolderName($info[1]);
-            $passwordPath = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
+            $passwordPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
             if(file_exists($passwordPath)) {
                 $passwordFile = fopen($passwordPath, 'w');
                 fputs($passwordFile, md5($pass));
                 fclose($passwordFile);
-                if(sendMail(PHOENIX_FOLDER . $folderName . '/PhoenixAnagrafica.xml', $pass))
+                if(sendMail(PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAnagrafica.xml', $pass))
                     return;
                 else
                     $this->json_error("Impossibile registrarsi adesso. Riprovare piu' tardi");
