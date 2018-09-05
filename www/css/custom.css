@@ -212,8 +212,8 @@ input{
     margin: 0!important;
 }
 
-.margin-bottom-50{
-    margin-bottom: 50px!important;
+.margin-bottom-30{
+    margin-bottom: 30px!important;
 }
 
 .float-left{
@@ -263,4 +263,8 @@ input{
 
 .center-text{
     text-align: center;
+}
+
+.margin-top-50{
+    margin-top: 50px!important;
 }

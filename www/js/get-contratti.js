@@ -22,7 +22,7 @@ function getContratti() {
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            var pathAttivi = 'http://www.danielfotografo.altervista.org/PhoenixData/' + innerValue.path;
+                            var pathAttivi = LINK_SERVER_PDF + innerValue.path;
                             contrattiAttiviList += '<a href="#" onclick="app.open(\'' + pathAttivi + '\');" class="ui-btn">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });
@@ -37,7 +37,7 @@ function getContratti() {
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            var pathCessati = 'http://www.danielfotografo.altervista.org/PhoenixData/' + innerValue.path;
+                            var pathCessati = LINK_SERVER_PDF + innerValue.path;
                             contrattiCessatiList += '<a href="#" onclick="app.open(\'' + pathCessati + '\');" class="ui-btn">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });

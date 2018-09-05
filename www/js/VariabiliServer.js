@@ -1,0 +1,1 @@
+const LINK_SERVER_PDF = 'http://www.assoantincendio.com/areaclienti/PhoenixData/';

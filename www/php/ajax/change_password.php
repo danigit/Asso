@@ -5,6 +5,8 @@
  * Date: 8/22/2018
  * Time: 11:54 AM
  */
+ 
+require_once 'variabili_server_configuration.php';
 require_once 'helper.php';
 require_once 'is_logged.php';
 
@@ -33,7 +35,7 @@ class change_password extends is_logged {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $passwordPath = PHOENIX_FOLDER . $folderName . '/Pwd.phx';
+            $passwordPath = PHOENIX_FOLDER . $folderName . FORWARD_SLASH . 'Pwd.phx';
             if(file_exists($passwordPath)) {
                 $passwordFile = fopen($passwordPath, 'r');
                 $oldPassword = fgets($passwordFile);

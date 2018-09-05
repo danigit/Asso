@@ -6,10 +6,9 @@
  * Time: 10:49 AM
  */
 
+require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
-require_once 'variabili_server_configuration.php';
-
 
 class get_attrezzature extends cs_interaction {
     private $result;
@@ -24,19 +23,21 @@ class get_attrezzature extends cs_interaction {
             $folderName = getFolderName($info[1]);
             $anagraficaPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAttrezzature.xml';
             $xml_file = simplexml_load_file($anagraficaPath);
-            $json_file = json_encode($xml_file);
-            $array_file = json_decode($json_file, true);
-            $contratto = $array_file['Contratto'];
-            $keys = array_keys($contratto);
-            $lista = array();
-            $i = 0;
-            foreach ($contratto as $elem){
-                if(is_array($elem))
-                    array_push($lista, $keys[$i]);
-                $i++;
-            }
+            foreach ($xml_file as $xmlElement){
+                $json_file = json_encode($xmlElement);
+                $array_file = json_decode($json_file, true);
+                $keys = array_keys($array_file);
+                $lista = array();
+                $i = 0;
+                foreach ($array_file as $elem){
+                    if(is_array($elem)) {
+                        array_push($lista, $keys[$i]);
+                    }
+                    $i++;
+                }
 
-            $this->result = array('contratto' => $contratto['DESCRIZIONE_SCHEDA'], 'lista' => $lista );
+                $this->result[] = array('contratto' => $array_file['DESCRIZIONE_SCHEDA'], 'lista' => $lista );
+            }
         }
     }
 

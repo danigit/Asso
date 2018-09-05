@@ -7,7 +7,7 @@ $('#logout').on('click', function () {
     promise.then(
         function (data) {
             if (data.result) {
-                window.location.replace('../index.php');
+                window.location.replace('Main.php');
             }
         }
     );

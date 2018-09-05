@@ -5,10 +5,9 @@
  * Date: 8/24/2018
  * Time: 9:43 AM
  */
+require_once 'variabili_server_configuration.php';
 require_once 'helper.php';
 require_once 'cs_interaction.php';
-require_once 'variabili_server_configuration.php';
-
 
 class get_fatture extends cs_interaction {
 
@@ -30,7 +29,7 @@ class get_fatture extends cs_interaction {
                 $fattureFile = fopen($fatturePath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
-                    $path = 'http://www.danielfotografo.altervista.org/PhoenixData/' . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                    $path =  LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
                     $this->result[$lineArray[2]][] = array('path' => $path, 'numero' => $lineArray[1], 'anno' => $lineArray[2], 'data' => $lineArray[3], 'importo' => $lineArray[4], 'contratto' => $lineArray[6], 'pagata' => $lineArray[7]);
                 }
             }

@@ -95,7 +95,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <h3>Come contattarci</h3>
                     <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
-                    <a href="mailto:info@assoantincedio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">E-mail: <p class="text-transfor-none blue-text">info@assoantincedio.com</p></a>
+                    <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">E-mail: <span class="text-transfor-none blue-text">info@assoantincendio.com</span></a>
 
                 </div>
             </div>
@@ -194,6 +194,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
             </div>
         </div>
+        <script src="js/VariabiliServer.js"></script>
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>

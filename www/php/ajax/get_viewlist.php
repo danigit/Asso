@@ -6,18 +6,21 @@
  * Time: 10:49 AM
  */
 
+require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
-require_once 'variabili_server_configuration.php';
-
 
 class get_viewlist extends cs_interaction {
-    private $result,  $lista = 'LISTA_ESTINTORI';
+    private $result,  $lista, $contratto;
 
     protected function input_elaboration(){
-//        $this->lista = $this->validate_string('lista');
-//        if(!$this->lista)
-//            $this->json_error('Impossibile reccuperare la lista');
+        $this->lista = $this->validate_string('lista');
+        if(!$this->lista)
+            $this->json_error('Impossibile reccuperare la lista');
+
+        $this->contratto = $this->validate_string('contratto');
+        if(!$this->contratto)
+            $this->json_error('Impossibile reccuperare la lista');
     }
 
     protected function get_informations(){
@@ -28,14 +31,17 @@ class get_viewlist extends cs_interaction {
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
-            foreach ($array_file as $file) {
-                foreach ($file[$this->lista] as $elem) {
-                    if (is_array($elem[0])) {
-                        foreach ($elem as $a) {
-                            $this->result[$file['DESCRIZIONE_SCHEDA']][$a['FILIALE']][] = $a;
+            foreach ($array_file as $item) {
+                foreach ($item as $it){
+                    if(trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
+                        foreach ($it[$this->lista] as $i) {
+                            if(is_array($i[0])) {
+                                foreach ($i as $val) {
+                                    $this->result[$val['FILIALE']][] = $val;
+                                }
+                            }else
+                                $this->result[$i['FILIALE']][] = $i;
                         }
-                    } else {
-                        $this->result[$file['DESCRIZIONE_SCHEDA']][$elem['FILIALE']][] = $elem;
                     }
                 }
             }
@@ -44,7 +50,7 @@ class get_viewlist extends cs_interaction {
 
     protected function get_returned_data(){
         // TODO: Implement get_returned_data() method.
-        //return array($this->result);
+        return array($this->result);
     }
 }
 $get_viewlist = new get_viewlist();

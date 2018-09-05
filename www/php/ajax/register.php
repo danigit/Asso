@@ -6,9 +6,8 @@
  * Time: 11:54 AM
  */
 require_once 'helper.php';
-require_once 'is_not_logged.php';
 require_once 'variabili_server_configuration.php';
-
+require_once 'is_not_logged.php';
 
 class register extends is_not_logged {
 

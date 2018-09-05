@@ -8,3 +8,4 @@
 
 define('FORWARDSLASH', '/');
 define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . 'PhoenixData' . FORWARDSLASH);
+define('LINK_FOR_PDF_FILES', 'http://www.assoantincendio.com/areaclienti/PhoenixData/');

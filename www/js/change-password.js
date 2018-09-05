@@ -9,7 +9,7 @@ changePassForm.onsubmit = function (event) {
     chagePassPromise.then(
         function (data) {
             if(data.result){
-                window.location.replace('../index.php');
+                window.location.replace('../www/index.php');
             }else {
                 //TODO mostrare il messaggio di errore ritornato;
                 var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');

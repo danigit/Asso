@@ -49,31 +49,42 @@ var app = {
             getAttrezzature();
         });
 
+        // $('#viewList').on('pageinit', function () {
+        //     viewList();
+        // });
+
         $(document).on('tap', function (event) {
             if($(event.target).is('a')){
-                switch (event.target.href.substr(event.target.href.indexOf('#') + 1)) {
+                var link = event.target.href.substr(event.target.href.indexOf('#') + 1);
+                if(link === 'estintori' || link === 'porte' || link === 'rilevatori%20fumi' || link === 'idranti'
+                    || link === 'sprinkler' || link === 'luci')
+                    event.preventDefault();
+
+                var target = event.target;
+                switch (link) {
                     case 'estintori':
-                        viewList('LISTA_ESTINTORI');
+                        console.log("dani: " + $(target).attr('data-name'));
+                        viewList('LISTA_ESTINTORI', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                     case 'porte':
-                        viewList('LISTA_PORTE');
+                        viewList('LISTA_PORTE', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                     case 'rilevatori%20fumi':
-                        viewList('LISTA_RILEVATORI_FUMI');
+                        viewList('LISTA_RILEVATORI_FUMI', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                     case 'idranti':
-                        viewList('LISTA_IDRANTI');
+                        viewList('LISTA_IDRANTI', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                     case 'sprinkler':
-                        viewList('LISTA_SPRINKLER');
+                        viewList('LISTA_SPRINKLER', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                     case 'luci':
-                        viewList('LISTA_LUCI');
+                        viewList('LISTA_LUCI', $(target).attr('data-name'));
                         $.mobile.changePage('#viewList');
                         break;
                 }
@@ -82,6 +93,8 @@ var app = {
     },
 
     open: function(url){
+        // console.log('pressed');
+        // window.open('http://www.danielfotografo.altervista.org/PhoenixData/5EDE93B0D9FC141257AF248D6545DE46/D1C9AF683835522588C776665626202A.pdf', '_blank', 'location=yes');
         window.open(url, '_blank', 'location=yes');
     }
 };

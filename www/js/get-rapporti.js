@@ -21,7 +21,7 @@ function getRapporti() {
                         $.each(innerValue, function (lastKey, lastValue) {
 
                             //TODO da mettere il link al sito giusto
-                            var path = 'http://www.danielfotografo.altervista.org/PhoenixData/' + lastValue.path;
+                            var path = LINK_SERVER_PDF + lastValue.path;
                             content += '<a href="#" onclick="app.open(\'' + path + '.pdf\');" class="ui-btn">Intervento del ' + lastValue.anno + '</a>';
                             if(lastValue.registro === 'si')
                                 content += '<a href="#" onclick="app.open(\'' + path + '-Registro.pdf\');" class="ui-btn gray-text">Registro</span> del ' + lastValue.anno + '</a>';

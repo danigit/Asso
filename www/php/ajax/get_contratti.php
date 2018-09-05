@@ -6,10 +6,9 @@
  * Time: 8:01 AM
  */
 
+require_once 'variabili_server_configuration.php';
 require_once 'helper.php';
 require_once 'cs_interaction.php';
-require_once 'variabili_server_configuration.php';
-
 
 class get_contratti extends cs_interaction {
     private $result;

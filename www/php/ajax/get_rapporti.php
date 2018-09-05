@@ -6,10 +6,9 @@
  * Time: 10:49 AM
  */
 
+require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
-require_once 'variabili_server_configuration.php';
-
 
 class get_rapporti extends cs_interaction {
     private $result;
@@ -22,7 +21,7 @@ class get_rapporti extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $statiniPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixStatini.phx';
+            $statiniPath = PHOENIX_FOLDER . $folderName . '/PhoenixStatini.phx';
             if(file_exists($statiniPath)) {
                 $fattureFile = fopen($statiniPath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {

@@ -8,8 +8,6 @@
 
 require_once 'cs_interaction.php';
 require_once 'helper.php';
-require_once 'variabili_server_configuration.php';
-
 
 class show_file extends cs_interaction {
 
