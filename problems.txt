@@ -1,1 +1,0 @@
--il campo partita iva di anagrafica e' un array (non so perche)

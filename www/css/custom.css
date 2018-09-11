@@ -55,7 +55,24 @@
     font-size: smaller!important;
 }
 
+.ui-icon-maps-icon:after{
+    background-image: url('../img/maps.jpg');
+}
+
+.ui-icon-email-icon:after{
+    background-image: url('../img/email.jpg');
+}
+
 /******************* CUSOTM CSS *********************/
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
 
 .login-header{
     margin-top: 25px;
@@ -179,14 +196,6 @@ input{
     color: #007E47;
 }
 
-.ui-icon-maps-icon:after{
-    background-image: url('../img/maps.jpg');
-}
-
-.ui-icon-email-icon:after{
-    background-image: url('../img/email.jpg');
-}
-
 .blue-text{
     color: #0099FF!important;
 }
@@ -229,6 +238,7 @@ input{
 }
 
 .visualizza-button{
+    width: 100%!important;
     background: #3dc235!important;
     text-shadow: none!important;
     color: #ffffff!important;

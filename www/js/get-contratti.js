@@ -9,36 +9,36 @@ function getContratti() {
 
     contrattiPromise.then(
         function (data) {
+            //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
 
                 $.each(data[0], function (key, value) {
 
                     //TODO capire che tipo di valore ha key, con alcuni utenti ritorna un numero con altri una stringa
+                    //controllo se l'elemento corrente e' un contratto attivo o meno
                     if(key === 0 || key === '0'){
-                        console.log('inside key 0');
                         var contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='false'><h3>Contratti attivi</h3>";
                         var contrattiAttiviList = '';
 
+                        //inserisco i contratti attivi
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            var pathAttivi = LINK_SERVER_PDF + innerValue.path;
-                            contrattiAttiviList += '<a href="#" onclick="app.open(\'' + pathAttivi + '\');" class="ui-btn">' + innerValue.nome + ' / '
+                            contrattiAttiviList += '<a href="#" onclick="app.openPdf(\''+ innerValue.path + '\');" class="ui-btn">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });
 
                         contrattiAttivi += contrattiAttiviList + '</div>';
                         $("#contratti-list").append( contrattiAttivi ).collapsibleset('refresh');
                     }else{
-                        console.log('inside key 1');
                         var contrattiCessati = "<div data-role='collapsible' class='contratti-collapsible'><h3>Contratti cessati</h3>";
                         var contrattiCessatiList = '';
 
+                        //inserisco i contratti non attivi
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            var pathCessati = LINK_SERVER_PDF + innerValue.path;
-                            contrattiCessatiList += '<a href="#" onclick="app.open(\'' + pathCessati + '\');" class="ui-btn">' + innerValue.nome + ' / '
+                            contrattiCessatiList += '<a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" class="ui-btn">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });
 
@@ -47,7 +47,7 @@ function getContratti() {
                     }
                 })
             } else {
-                $('#contratti').append('<div class="center-text error-message"><span>Impossibile reccuperare i contratti</span></div>');
+                $('#contratti').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
             }
         }
     );

@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/27/2018
  * Time: 10:49 AM
  */
 
-require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
@@ -26,18 +25,21 @@ class get_rapporti extends cs_interaction {
                 $fattureFile = fopen($statiniPath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
-                    $path = $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta'));
-                    if(file_exists('../../PhoenixData/' . $path . '-Registro.pdf' ))
+                    $path = LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta'));
+                    if(file_exists($path . '-Registro.pdf' ))
                         $this->result[$lineArray[2]][$lineArray[4]][] = array('path' => $path, 'registro' => 'si', 'anno' => $lineArray[1], 'contratto' => $lineArray[2], 'filiale' => $lineArray[4]);
                     else
                         $this->result[$lineArray[2]][$lineArray[4]][] = array('path' => $path, 'registro' => 'no', 'anno' => $lineArray[1], 'contratto' => $lineArray[2], 'filiale' => $lineArray[4]);
                 }
+            }else{
+                $this->json_error("Impossibile recuperare i rapporti oppure rapporti inesistenti. Riprovare più tardi");
             }
+        }else{
+            $this->json_error("Impossibile recuperare i rapporti oppure rapporti inesistenti. Riprovare più tardi");
         }
     }
 
     protected function get_returned_data(){
-        // TODO: Implement get_returned_data() method.
         return array($this->result);
     }
 }

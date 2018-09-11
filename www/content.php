@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/24/2018
  * Time: 4:53 AM
  */
@@ -10,7 +10,6 @@ if (!isset($_SESSION))
     session_start();
 
 if (!isset($_SESSION['secure'], $_SESSION['username']))
-    //TODO redirect nella pagina giusto
     header('Location: index.php');
 ?>
 
@@ -194,7 +193,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
             </div>
         </div>
-        <script src="js/VariabiliServer.js"></script>
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>

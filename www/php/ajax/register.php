@@ -6,7 +6,6 @@
  * Time: 11:54 AM
  */
 require_once 'helper.php';
-require_once 'variabili_server_configuration.php';
 require_once 'is_not_logged.php';
 
 class register extends is_not_logged {
@@ -26,19 +25,22 @@ class register extends is_not_logged {
     protected function get_informations(){
         $info = getUserInformations($this->username);
         if($info != null){
-            $pass = createRandomPassword(10);
+            $pass = createRandomPassword(6);
             $folderName = getFolderName($info[1]);
             $passwordPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
             if(file_exists($passwordPath)) {
+                $this->json_error("Utente gia' registrato");
+            }else{
                 $passwordFile = fopen($passwordPath, 'w');
+                var_dump($pass);
+                var_dump(md5($pass));
                 fputs($passwordFile, md5($pass));
                 fclose($passwordFile);
                 if(sendMail(PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAnagrafica.xml', $pass))
                     return;
                 else
-                    $this->json_error("Impossibile registrarsi adesso. Riprovare piu' tardi");
-            }else
-                $this->json_error("Impossibile impostare la password");
+                    $this->json_error("Registrazione avvenuta! Impossibile inviare email, contattare l'assistenza per avere la pssword!");
+            }
         }
         $this->json_error("Partita iva non trovata");
     }

@@ -11,8 +11,10 @@ registerForm.onsubmit = function (event) {
 
     promise.then(
         function (data) {
+            //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
-                window.location.replace('../www/index.php');
+                //reindirizzamento sulla pagina di login
+                window.location.replace('index.php');
             } else {
                 var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                 if ($('.error-message').length !== 0)

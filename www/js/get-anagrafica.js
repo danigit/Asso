@@ -7,10 +7,14 @@ function getAnagrafica() {
 
     anagraficaPromise.then(
         function (data) {
+            //controllo se ci sono stati errori nella chiamato
             if (data.result) {
+                //creo una lista per visualizzare i dati
                 var anagrafica = '<ul data-role="listview" data-inset="true">';
 
+                //inserisco i dati nella lista
                 $.each(data[0], function (key, value) {
+                    //prendo solo i dati che mi interessano
                     if(key === 'RAGIONE_SOCIALE' || key === 'INDIRIZZO_FATTURAZIONE' || key === 'INDIRIZZO_SPEDIZIONE'
                         || key === 'PARTITA_IVA' || key === 'CODICE_FISCALE' || key === 'EMAIL' || key === 'TELEFONO'
                         || key === 'CELLULARE') {
@@ -22,7 +26,7 @@ function getAnagrafica() {
                 anagrafica += '</ul>';
                 $('#anagrafica').append(anagrafica).trigger('create');
             } else {
-                $('#anagrafica').append('<div class="center-text error-message"><span>Impossibile reccuperare l\'anagrafica</span></div>');
+                $('#anagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
             }
         }
     );

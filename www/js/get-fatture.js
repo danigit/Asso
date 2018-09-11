@@ -10,22 +10,26 @@ function getFatture(){
 
     promise.then(
         function (data) {
+            //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
+                //ordino le fatture in ordine decrescente per anno
                 var fatture = Object.values(data.fatture).reverse();
                 var i = 0;
 
                 $.each(fatture, function (key, value) {
 
+                    //divido le fatture per anni
                     var label = $('<a href="#" data-inset="false" class="fatture-header ui-shadow ui-btn ui-corner-all ui-header">' + fatture[i++][0]['anno'] + '</a>');
                     $('#fatture-list').append(label);
 
+                    //inserisco le fatture relative all'anno attuale
                     $.each(value, function (innerKey, innerValue) {
 
                         var content = "<div data-role='collapsible' id='" + innerValue.numero + "' data-inset='false'><h3>Fattura nr. " + innerValue.numero + "</h3>";
                         content += insertContent(innerKey, innerValue);
 
                         content += '<div class="ui-grid-a ui-responsive">' +
-                            '<div class="ui-block-a"><a href="#" onclick="app.open(\'' + innerValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" ' +
+                            '<div class="ui-block-a"><a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" ' +
                             'class="ui-btn ui-shadow ui-corner-all visualizza-button">Visualizza</a></div></div>';
                         content += '</div></div>';
 
@@ -33,7 +37,7 @@ function getFatture(){
                     });
                 })
             } else {
-                $('#fatture').append('<div class="center-text error-message"><span>Impossibile reccuperare le fatture</span></div>');
+                $('#fatture').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
             }
         }
     );

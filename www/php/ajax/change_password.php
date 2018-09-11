@@ -6,7 +6,6 @@
  * Time: 11:54 AM
  */
  
-require_once 'variabili_server_configuration.php';
 require_once 'helper.php';
 require_once 'is_logged.php';
 
@@ -35,7 +34,7 @@ class change_password extends is_logged {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            $passwordPath = PHOENIX_FOLDER . $folderName . FORWARD_SLASH . 'Pwd.phx';
+            $passwordPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
             if(file_exists($passwordPath)) {
                 $passwordFile = fopen($passwordPath, 'r');
                 $oldPassword = fgets($passwordFile);
@@ -49,6 +48,8 @@ class change_password extends is_logged {
                 }
             }else
                 $this->json_error("Impossibile impostare la password");
+        }else{
+            $this->json_error("Momentaneamente il servizio non è disponibile");
         }
     }
 

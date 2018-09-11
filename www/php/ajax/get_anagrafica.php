@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/27/2018
  * Time: 6:33 AM
  */
 
-require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
@@ -32,11 +31,12 @@ class get_anagrafica extends cs_interaction {
                 if(!is_array($value))
                     $this->result[$elem] = $anagrafica[$elem];
             }
+        }else{
+            $this->json_error("Impossibile recuperare la l'anagrafica oppure anagrafica inesistente. Riprovare più tardi");
         }
     }
 
     protected function get_returned_data(){
-        // TODO: Implement get_returned_data() method.
         return array($this->result);
     }
 }

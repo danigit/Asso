@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/27/2018
  * Time: 10:49 AM
  */
 
-require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
@@ -38,11 +37,12 @@ class get_attrezzature extends cs_interaction {
 
                 $this->result[] = array('contratto' => $array_file['DESCRIZIONE_SCHEDA'], 'lista' => $lista );
             }
+        }else{
+            $this->json_error("Impossibile recuperare le attrezzature oppure attrezzature inesistenti. Riprovare più tardi!");
         }
     }
 
     protected function get_returned_data(){
-        // TODO: Implement get_returned_data() method.
         return array($this->result);
     }
 }

@@ -8,10 +8,12 @@ changePassForm.onsubmit = function (event) {
 
     chagePassPromise.then(
         function (data) {
+            //controllo se ci sono stati errori nella chiamata
             if(data.result){
-                window.location.replace('../www/index.php');
+                //ritorno alla pagina iniziale
+                window.location.replace('../Asso/index.php');
             }else {
-                //TODO mostrare il messaggio di errore ritornato;
+                //mostro messaggio di errore
                 var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                 if($('.error-message').length !== 0)
                     $('#change-pass-fielset').find('.error-message').remove();

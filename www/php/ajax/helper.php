@@ -6,12 +6,16 @@
  * Time: 11:39 AM
  */
 
+
+define('FORWARDSLASH', '\\');
+define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . '..' . FORWARDSLASH . 'PhoenixData' . FORWARDSLASH);
+define('LINK_FOR_PDF_FILES', 'http://www.assoantincendio.com/areaclienti/PhoenixData/');
+
 /**
  * Funzione che imposta le variabili di sessione
  * @param $username - campo username contenente il nome utente
  * @param $is_secure -
  */
-//TODO is_secure probabilmente non serve
 function set_session_variables($username, $is_secure){
     session_start();
     session_regenerate_id();
@@ -55,7 +59,7 @@ function sendMail($xml_file, $password){
     $array = json_decode($json,TRUE);
     $email = $array['Anagrafica']['EMAIL'];
     if($email != ''){
-        if(mail('ds.acconto@gmail.com', "Registrazione sito Asso Antincendi", "Adesso e' possibile fare il login con la seguente password: " . $password))
+        if(mail($email, "Registrazione sito Asso Antincendi", "Benvenuto in Asso Antincendio, con la presente ti informiamo che ti sei registrato al nostro sito. Per fare il login utilizza la seguente password:  " . $password))
             return true;
     }
     return false;

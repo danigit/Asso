@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/27/2018
  * Time: 8:01 AM
  */
 
-require_once 'variabili_server_configuration.php';
 require_once 'helper.php';
 require_once 'cs_interaction.php';
 
@@ -18,7 +17,6 @@ class get_contratti extends cs_interaction {
     }
 
     protected function get_informations(){
-        // TODO: Implement get_informations() method.
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
@@ -27,15 +25,18 @@ class get_contratti extends cs_interaction {
                 $contrattiFile = fopen($contrattiPath, 'r');
                 while (($line = fgets($contrattiFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
-                    $path = $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
+                    $path = LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
                     $this->result[$lineArray[3]][] = array('path' => $path, 'nome' => $lineArray[1], 'data' => $lineArray[2], 'id' => $lineArray[0]);
                 }
+            }else{
+                $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti. Riprovare più tardi!");
             }
+        }else{
+            $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti. Riprovare più tardi!");
         }
     }
 
     protected function get_returned_data(){
-        // TODO: Implement get_returned_data() method.
         return array($this->result);
     }
 }

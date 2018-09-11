@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: surpa
+ * User: Daniel Surpanu
  * Date: 8/27/2018
  * Time: 10:49 AM
  */
 
-require_once 'variabili_server_configuration.php';
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
@@ -16,11 +15,11 @@ class get_viewlist extends cs_interaction {
     protected function input_elaboration(){
         $this->lista = $this->validate_string('lista');
         if(!$this->lista)
-            $this->json_error('Impossibile reccuperare la lista');
+            $this->json_error('Impossibile recuperare la lista');
 
         $this->contratto = $this->validate_string('contratto');
         if(!$this->contratto)
-            $this->json_error('Impossibile reccuperare la lista');
+            $this->json_error('Impossibile recuperare la lista');
     }
 
     protected function get_informations(){
@@ -45,11 +44,13 @@ class get_viewlist extends cs_interaction {
                     }
                 }
             }
+        }else{
+            $this->json_error("Impossibile visualizzare la lista oppure lista inesistenti. Riprovare più tardi!");
+
         }
     }
 
     protected function get_returned_data(){
-        // TODO: Implement get_returned_data() method.
         return array($this->result);
     }
 }
