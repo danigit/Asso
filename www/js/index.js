@@ -35,6 +35,7 @@ var app = {
                     || link === 'sprinkler' || link === 'luci')
                     event.preventDefault();
 
+                console.log("button clicked");
                 var target = event.target;
                 switch (link) {
                     case 'estintori':

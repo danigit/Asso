@@ -18,8 +18,7 @@ function getAnagrafica() {
                     if(key === 'RAGIONE_SOCIALE' || key === 'INDIRIZZO_FATTURAZIONE' || key === 'INDIRIZZO_SPEDIZIONE'
                         || key === 'PARTITA_IVA' || key === 'CODICE_FISCALE' || key === 'EMAIL' || key === 'TELEFONO'
                         || key === 'CELLULARE') {
-                        anagrafica += '<li data-role="list-divider">' + key.replace('_', ' ') + '</li>' +
-                            '<h4 class="center-text text-transfor-none">' + value + '</h4>';
+                        anagrafica += '<li><p class="float-left font-large"><b class="blue-text">' + key.replace("_", " ") + ':</b></p><br><br><p class="line-wrap font-medium">' + value + '</p></li>';
                     }
                 });
 

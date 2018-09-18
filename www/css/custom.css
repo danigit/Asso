@@ -68,7 +68,6 @@
 }
 
 /******************* CUSOTM CSS *********************/
-
 body{
     touch-action: manipulation;
     margin: auto!important;
@@ -210,6 +209,12 @@ input{
     color: #0099FF!important;
 }
 
+.social{
+    width: 50px;
+    float: right;
+    margin: 10px;
+}
+
 .fatture-header{
     width: 100%;
     background: #0099FF!important;
@@ -287,4 +292,12 @@ input{
 
 .margin-top-50{
     margin-top: 50px!important;
+}
+
+.font-large{
+    font-size: large!important;
+}
+
+.font-medium{
+    font-size: medium!important;
 }

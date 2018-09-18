@@ -69,6 +69,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <li><a href="#rapporti">Rapporti di intervento</a></li>
                 <li><a href="#attrezzature">Attrezzature</a></li>
                 <li data-role="list-divider">Utente</li>
+                <li><a href="#richiestaAssistenza">Richiesta assistenza</a></li>
+                <li><a href="#sorveglianza">Sorveglianza</a></li>
                 <li><a href="#modificaPassword">Modifica password</a></li>
                 <li><a href="#" id="logout" class="red-text">Log out</a></li>
             </ul>
@@ -90,8 +92,13 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <h3>Come contattarci</h3>
                     <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
-                    <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">E-mail: <span class="text-transfor-none blue-text">info@assoantincendio.com</span></a>
-
+                    <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">
+                        E-mail: <span class="text-transfor-none blue-text">info@assoantincendio.com</span>
+                    </a>
+                </div>
+                <div id="facebook">
+                    <a href="https://www.linkedin.com/in/gorla-christian-04265b78/"><img src="img/icona_linkedin.png" class="social" style="float: right"></a>
+                    <a href="https://www.facebook.com/assoantincendio/" ><img src="img/icona_fb.png" class="social"></a>
                 </div>
             </div>
         </div>
