@@ -15,14 +15,14 @@ function getRapporti() {
                     //divido i rapporti per contratti
                     var label = $('<a href="#" data-inset="false" class="fatture-header ui-shadow ui-btn ui-corner-all ui-header">' + key + '</a>');
                     $('#rapporti-list').append(label);
-
                     $.each(value, function (innerKey, innerValue) {
 
                         var content = "<div data-role='collapsible'><h3>" + innerKey + "</h3>";
                         //inserisco i rapporti del contratto attuale
-                        $.each(innerValue, function (lastKey, lastValue) {
+                        var rapporti = Object.values(innerValue).reverse();
 
-                            //TODO da mettere il link al sito giusto
+                        $.each(rapporti, function (lastKey, lastValue) {
+
                             content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '.pdf\');" class="ui-btn">Intervento del ' + lastValue.anno + '</a>';
                             //controllo se si tratta di un registro o meno
                             if(lastValue.registro === 'si')
