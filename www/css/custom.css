@@ -16,6 +16,10 @@
     background: #7CA7FD!important;
 }
 
+.ui-header-fixed{
+    height: 45px;
+}
+
 .ui-li-divider{
     background: #0099FF !important;
     text-shadow: none!important;
@@ -64,6 +68,12 @@
 }
 
 /******************* CUSOTM CSS *********************/
+
+body{
+    touch-action: manipulation;
+    margin: auto!important;
+    font-family: Arial, sans-serif;
+}
 
 h1 {
     font-size:24px;

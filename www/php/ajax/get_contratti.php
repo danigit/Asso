@@ -21,6 +21,7 @@ class get_contratti extends cs_interaction {
         if($info != null){
             $folderName = getFolderName($info[1]);
             $contrattiPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixContratti.phx';
+            var_dump($contrattiPath);
             if(file_exists($contrattiPath)) {
                 $contrattiFile = fopen($contrattiPath, 'r');
                 while (($line = fgets($contrattiFile)) !== false) {
@@ -29,10 +30,10 @@ class get_contratti extends cs_interaction {
                     $this->result[$lineArray[3]][] = array('path' => $path, 'nome' => $lineArray[1], 'data' => $lineArray[2], 'id' => $lineArray[0]);
                 }
             }else{
-                $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti. Riprovare più tardi!");
+                $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti.");
             }
         }else{
-            $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti. Riprovare più tardi!");
+            $this->json_error("Impossibile recuperare i contratti oppure contratti inesistenti. Riprovare più tardi");
         }
     }
 

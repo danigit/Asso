@@ -47,13 +47,10 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
-        <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
@@ -79,7 +76,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="home">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
             </div>
             <div data-role="content">
                 <img src="img/logo.png" id="benvenuto-image">
@@ -103,7 +99,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="anagrafica">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="anagrafica">
@@ -114,7 +109,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="contratti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
@@ -127,7 +121,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="fatture">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1  class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
@@ -140,7 +133,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="rapporti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
@@ -153,7 +145,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="attrezzature">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="attrezzature-container">
@@ -164,7 +155,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="modificaPassword">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content">
@@ -184,7 +174,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="viewList">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
-                <h1 class="fixed-header-text"><span class="title-A">A</span>SSO</h1>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="viewListContent">
