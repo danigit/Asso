@@ -1,5 +1,6 @@
-.ui-input-text{
-    margin-bottom: 40px!important;
+
+.ui-field-contain{
+    border: none!important;
 }
 
 .ui-input-btn{
@@ -38,6 +39,11 @@
 .ui-collapsible-content{
     padding: 0!important;
     border: none!important;
+}
+
+#valoreAnagrafica form div{
+    margin: 0!important;
+    width: 100% !important;
 }
 
 .ui-input-text{
@@ -325,4 +331,44 @@ input{
 
 .anagrafica-list-margin{
     margin: auto auto 0 auto!important;
+}
+
+.cambio-anagrafica-form-label{
+    color: #0099FF;
+    padding: 10px;
+    text-align: center;
+    font-size: larger;
+}
+
+.cambio-anagrafica-buttons{
+    margin-top: 30px;
+}
+
+.white-text{
+    color: #ffffff;
+}
+
+#aggiungiModifica{
+    width: 40%;
+    margin: 0;
+    background-color: #FF956B;
+    color: #ffffff;
+}
+
+#cancellaModifica{
+    width: 39%;
+    margin: 0;
+    background-color: #CF2E15;
+    color: #ffffff;
+}
+
+#inviaCambioAnagraficaDati{
+    width: 90%;
+    margin: 5px 0 0 0;
+    background-color: #3dc235;
+    color: #ffffff;
+}
+
+#cambiaAnagraficaList{
+    box-shadow: none;
 }
