@@ -26,7 +26,7 @@ class get_fatture extends cs_interaction {
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
                     $path =  LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta')) . '.pdf';
-                    $this->result[$lineArray[2]][] = array('path' => $path, 'numero' => $lineArray[1], 'anno' => $lineArray[2], 'data' => $lineArray[3], 'importo' => $lineArray[4], 'contratto' => $lineArray[6], 'pagata' => $lineArray[7]);
+                    $this->result[$lineArray[2]][$lineArray[6]][] = array('path' => $path, 'numero' => $lineArray[1], 'anno' => $lineArray[2], 'data' => $lineArray[3], 'importo' => $lineArray[4], 'contratto' => $lineArray[6], 'pagata' => $lineArray[7]);
                 }
             }else{
                 $this->json_error("Impossibile recuperare le fatture oppure fatture inesistenti. Riprovare più tardi!");

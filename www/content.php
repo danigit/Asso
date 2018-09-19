@@ -185,7 +185,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
             <div data-role="content" id="attrezzature-container">
-                <h1 class="red-text philosopher-font header-page-title">Attrezzature</h1>
+                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Attrezzature</h1>
             </div>
         </div>
 

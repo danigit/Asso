@@ -30,9 +30,9 @@ function viewList(elem, contratto) {
                     $.each(value, function (innerKey, innerValue) {
                         //controllo se l'articolo contiene una matricola e lo inserisco
                         if(innerValue.MATRICOLA)
-                            content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + "</h3>";
+                            content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr:" + innerValue.PROGRESSIVO + "</h3>";
                         else
-                            content += "<div data-role='collapsible'><h3>Articolo: " + i++ + "</h3>";
+                            content += "<div data-role='collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
 
                         $.each(innerValue, function (lastKey, lastValue) {
                             //controllo se l'articolo e' un array in modo da visualizzare anche i suoi elementi
