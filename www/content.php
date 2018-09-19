@@ -51,7 +51,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
-
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -108,8 +107,35 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
-            <div data-role="content" id="anagrafica">
-                <h1 class="red-text philosopher-font header-page-title">Anagrafica</h1>
+            <div data-role="content" class="anagrafica-padding">
+                <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">Anagrafica</h1>
+                <div id="anagraficaContainer"></div>
+                <div><a href="#cambioAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>
+            </div>
+        </div>
+
+        <div data-role="page" id="cambioAnagrafica">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
+            </div>
+            <div data-role="content" class="anagrafica-padding">
+                <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
+                <div class="ui-field-contain">
+                    <label for="exampleFormControlSelect1">Seleziona campo da modificare</label>
+                    <div id="cambioAnagraficaForm">
+                        <select id="changeAnagraficaSelection">
+                            <option>Seleziona una voce...</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="valoreAnagrafica"></div>
+                <div>
+                    <ul id="cambiaAnagraficaList" data-role="listview" data-inset="true" class="anagrafica-list-margin">
+                    </ul>
+                </div>
+                <a href="#" id="aggiungiModifica" data-role="button" data-inline="true">Aggiungi Modifica</a>
+                <a href="#" id="inviaCambioAnagraficaDati" data-role="button" data-inline="true">Invia</a>
             </div>
         </div>
 
@@ -199,6 +225,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/view-list.js"></script>
         <script src="js/change-password.js"></script>
         <script src="js/get-rapporti.js"></script>
+        <script src="js/change-anagrafica.js"></script>
     </body>
 </html>
 

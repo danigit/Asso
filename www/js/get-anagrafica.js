@@ -10,7 +10,8 @@ function getAnagrafica() {
             //controllo se ci sono stati errori nella chiamato
             if (data.result) {
                 //creo una lista per visualizzare i dati
-                var anagrafica = '<ul data-role="listview" data-inset="true">';
+                var anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
+                var select = '';
 
                 //inserisco i dati nella lista
                 $.each(data[0], function (key, value) {
@@ -18,12 +19,15 @@ function getAnagrafica() {
                     if(key === 'RAGIONE_SOCIALE' || key === 'INDIRIZZO_FATTURAZIONE' || key === 'INDIRIZZO_SPEDIZIONE'
                         || key === 'PARTITA_IVA' || key === 'CODICE_FISCALE' || key === 'EMAIL' || key === 'TELEFONO'
                         || key === 'CELLULARE') {
-                        anagrafica += '<li><p class="float-left font-large"><b class="blue-text">' + key.replace("_", " ") + ':</b></p><br><br><p class="line-wrap font-medium">' + value + '</p></li>';
+                        var parsedKey = key.replace("_", " ");
+                        anagrafica += '<li><p class="float-left font-large"><b class="blue-text">' + parsedKey + ':</b></p><br><br><p class="line-wrap font-medium">' + value + '</p></li>';
+                        select += '<option>' + parsedKey + '</option>';
                     }
                 });
 
-                anagrafica += '</ul><div><a href="#cambiaAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>';
-                $('#anagrafica').append(anagrafica).trigger('create');
+                anagrafica += '</ul>';
+                $('#anagraficaContainer').append(anagrafica).trigger('create');
+                $('#changeAnagraficaSelection').append(select);
 
             } else {
                 $('#anagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');

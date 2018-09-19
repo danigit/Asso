@@ -32,10 +32,10 @@ var app = {
             if($(event.target).is('a')){
                 var link = event.target.href.substr(event.target.href.indexOf('#') + 1);
                 if(link === 'estintori' || link === 'porte' || link === 'rilevatori%20fumi' || link === 'idranti'
-                    || link === 'sprinkler' || link === 'luci')
+                    || link === 'sprinkler' || link === 'luci') {
                     event.preventDefault();
-
-                console.log("button clicked");
+                    console.log("button clicked");
+                }
                 var target = event.target;
                 switch (link) {
                     case 'estintori':
