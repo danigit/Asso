@@ -22,8 +22,9 @@ function getAnagrafica() {
                     }
                 });
 
-                anagrafica += '</ul>';
+                anagrafica += '</ul><div><a href="#cambiaAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>';
                 $('#anagrafica').append(anagrafica).trigger('create');
+
             } else {
                 $('#anagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
             }

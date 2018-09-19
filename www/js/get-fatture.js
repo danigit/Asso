@@ -30,7 +30,7 @@ function getFatture(){
 
                         content += '<div class="ui-grid-a ui-responsive">' +
                             '<div class="ui-block-a"><a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" ' +
-                            'class="ui-btn ui-shadow ui-corner-all visualizza-button">Visualizza</a></div></div>';
+                            'class="ui-btn ui-shadow ui-corner-all visualizza-button margin-auto">Visualizza</a></div></div>';
                         content += '</div></div>';
 
                         $("#fatture-list").append( content ).collapsibleset('refresh');
