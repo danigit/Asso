@@ -35,6 +35,9 @@ $('#richiestaAssistenzaContrattoSelect').on('change', function (e) {
 
     var richiestaAssistenzaContrattiPromise = httpPost('php/ajax/get_attrezzature.php');
     $('#resultForCheck').empty();
+    $('#noteAggiuntive').empty();
+    $('#inviaRichiestaAssistenzaDati').addClass('ui-disabled');
+
 
     richiestaAssistenzaContrattiPromise.then(
         function (data) {
@@ -75,6 +78,7 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
     var filialeForm = new FormData();
 
     $('#resultForCheck').empty();
+    $('#noteAggiuntive').empty();
     $('#inviaRichiestaAssistenzaDati').removeClass('ui-disabled');
 
     filialeForm.append('contratto', contratto);
@@ -117,4 +121,37 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
             }
         }
     );
+});
+
+$('#inviaRichiestaAssistenzaDati').on('click', function () {
+    var i = 1;
+    var motivo = $('#richiestaAssistenzaMotivoSelect').val();
+    var contratto = $('#richiestaAssistenzaContrattoSelect').val();
+    var filiale = $('#richiestaAssistenzaFilialeSelect').val();
+    var checked = {"motivo": motivo, "contratto": contratto,"filiale":filiale, 'attrezzature': {}};
+    var assistenzaFormData = new FormData();
+
+    $.each($('#resultForCheck').children(), function (key, value) {
+
+        if(value.tagName === 'DIV'){
+            var tipoAttrezzatura = $(value).attr('id');
+            checked.attrezzature[tipoAttrezzatura] = {};
+
+                $.each($(value).children(), function (innerKey, innerValue) {
+                if(innerValue.tagName === 'DIV') {
+
+                    $.each($(innerValue).children(), function (lastKey, lastValue) {
+                        var input = $(lastValue).find('input');
+                        if($(input).is(':checked')) {
+                            checked.attrezzature[tipoAttrezzatura]['Matricola' + i++] = $(input).attr('id');
+                        }
+                    })
+                }
+            })
+        }
+    });
+
+    console.log(checked);
+    assistenzaFormData.append('assistenza', JSON.stringify(checked));
+    var richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
 });
