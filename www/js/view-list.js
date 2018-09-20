@@ -30,7 +30,7 @@ function viewList(elem, contratto) {
                     $.each(value, function (innerKey, innerValue) {
                         //controllo se l'articolo contiene una matricola e lo inserisco
                         if(innerValue.MATRICOLA)
-                            content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr:" + innerValue.PROGRESSIVO + "</h3>";
+                            content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
                         else
                             content += "<div data-role='collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
 
@@ -44,14 +44,16 @@ function viewList(elem, contratto) {
                                     $.each(lastValue, function (mk, mv) {
                                         content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichetta nuero: " + mv.ID_BOCCHELLO + "</h3>";
                                         $.each(mv, function (label, value) {
-                                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
+                                            if(!(label === 'FILIALE'))
+                                                content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
                                         });
                                         content += '</div>';
                                     });
                                     content += '</div>';
                                 }
                             }else {
-                                content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
+                                if(!(lastKey === 'FILIALE'))
+                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
                             }
                         });
                         content += '</div>';

@@ -35,7 +35,7 @@ class get_attrezzature extends cs_interaction {
                     $i++;
                 }
 
-                $this->result[] = array('contratto' => $array_file['DESCRIZIONE_SCHEDA'], 'lista' => $lista );
+                $this->result[] = array('contratto' => trim($array_file['DESCRIZIONE_SCHEDA']), 'lista' => $lista );
             }
         }else{
             $this->json_error("Impossibile recuperare le attrezzature oppure attrezzature inesistenti. Riprovare più tardi!");

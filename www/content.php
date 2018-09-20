@@ -189,6 +189,41 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
         </div>
 
+        <div data-role="page" id="richiestaAssistenza">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+                <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
+                <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
+            </div>
+            <div data-role="content" class="anagrafica-padding">
+                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Richiedi assistenza</h1>
+                <form>
+                    <fieldset class="ui-field-contain" id="richiediAssistenzaForm" data-role="controlgoup" data-inset="true">
+                        <label for="richiediAssistenzaForm" class="cambio-anagrafica-form-label">Seleziona le informazioni richieste</label>
+                        <select id="richiestaAssistenzaMotivoSelect" data-inset="true">
+                            <option>Seleziona un motivo...</option>
+                            <option>Altro...</option>
+                            <option>Motivo 1</option>
+                            <option>Motivo 2</option>
+                        </select>
+                        <div id="altro-selection"></div>
+                        <br>
+                        <select id="richiestaAssistenzaContrattoSelect" class="ui-disabled thismenu" data-inset="true">>
+                            <option>Seleziona un contratto...</option>
+                        </select>
+                        <br>
+                        <select id="richiestaAssistenzaFilialeSelect" class="ui-disabled" data-inset="true">>
+                            <option>Seleziona una filiale...</option>
+                        </select>
+                        <br>
+                    </fieldset>
+                </form>
+                <div id="noteAggiuntive"></div>
+                <div id="resultForCheck">
+                </div>
+                <a href="#" id="inviaRichiestaAssistenzaDati" class="ui-disabled" data-role="button" data-inline="true">Richiedi Assistenza</a>
+            </div>
+        </div>
+
         <div data-role="page" id="modificaPassword">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
@@ -230,6 +265,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/change-password.js"></script>
         <script src="js/get-rapporti.js"></script>
         <script src="js/change-anagrafica.js"></script>
+        <script src="js/richiesta-assistenza.js"></script>
     </body>
 </html>
 

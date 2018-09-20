@@ -58,7 +58,7 @@
     border-radius: 0!important;
 }
 
-.ui-checkbox > label{
+#registerForm .ui-checkbox > label{
     margin-top: 30px!important;
     background: #3dc235!important;
     text-shadow: none!important;
@@ -337,7 +337,7 @@ input{
     color: #0099FF;
     padding: 10px;
     text-align: center;
-    font-size: larger;
+    font-size: larger!important;
 }
 
 .cambio-anagrafica-buttons{
@@ -383,4 +383,40 @@ input{
 
 #attrezzature-container{
     padding: 1em 0 0 0!important;
+}
+
+#attrezzature-container div h3 a{
+    background-color: #F0F7EE;
+    color: #000000;
+}
+
+#valoreAltroForm div{
+    margin: 15px 0 0 0!important;
+    width: 100% !important;
+}
+
+.elementi-da-selezionare{
+    margin: 20px 0 0 0;
+    color: #0099FF;
+    padding: 10px;
+    text-align: center;
+    font-size: larger;
+}
+
+#noteAggiuntive textarea{
+    margin: 0!important;
+    padding: 5px!important;
+    width: 100% !important;
+}
+
+.note-aggiuntive-label{
+    margin: 0 0 10px 10px!important;
+    font-size: large!important;
+}
+
+#inviaRichiestaAssistenzaDati{
+    width: 90%;
+    margin: 5px 0 0 0;
+    background-color: #3dc235;
+    color: #ffffff;
 }
