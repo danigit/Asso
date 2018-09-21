@@ -10,6 +10,7 @@ class db_error{
     //TODO definire le variabili di errore
 
     private $error;
+    public static $ERROR_ON_EXECUTE                 = 1;
 
     public function __construct($error){
         $this->error = $error;
@@ -21,7 +22,7 @@ class db_error{
 
     public function getErrorName(){
         switch ($this->error){
-            //TODO ritornare per ogni errore il suo nome
+            case 1: return "ERROR_ON_EXECUTE";
         }
     }
 }

@@ -2,6 +2,7 @@
  * Funzione che esegue una chiamata xmlhttp
  * @param url - indirizzo url
  * @param input - i valori da passare alla chiamata
+ * @param async
  * @returns {Promise} - la risposta della chiamata
  */
 function httpPost(url, input) {

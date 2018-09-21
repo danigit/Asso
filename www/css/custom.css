@@ -348,25 +348,35 @@ input{
     color: #ffffff;
 }
 
-#aggiungiModifica{
-    width: 40%;
-    margin: 0;
-    background-color: #FF956B;
-    color: #ffffff;
+.aggiungiModifica{
+    width: 40% !important;
+    margin: 0!important;
+    /*background-color: #FF956B!important;*/
+    color: #FF956B!important;
+    border: 1px solid #FF956B!important;
 }
 
-#cancellaModifica{
-    width: 39%;
-    margin: 0;
-    background-color: #CF2E15;
-    color: #ffffff;
+.ricaricaDati{
+    width: 39% !important;
+    margin: 0!important;
+    /*background-color: #49D49D!important;*/
+    color: #49D49D!important;
+    border: 1px solid #49D49D!important;
 }
 
-#inviaCambioAnagraficaDati{
-    width: 90%;
-    margin: 5px 0 0 0;
-    background-color: #3dc235;
-    color: #ffffff;
+.cancellaModifica{
+    width: 39% !important;
+    margin: 3px 0 0 0!important;
+    /*background-color: #CF2E15!important;*/
+    color: #CF2E15!important;
+    border: 1px solid #CF2E15!important;
+}
+
+.inviaDati{
+    width: 90% !important;
+    margin: 5px 0 0 0!important;
+    background-color: #3dc235!important;
+    color: #ffffff!important;
 }
 
 #cambiaAnagraficaList{
@@ -419,4 +429,46 @@ input{
     margin: 5px 0 0 0;
     background-color: #3dc235;
     color: #ffffff;
+}
+
+/*radio buttons*/
+#frequenza .ui-controlgroup-label{
+    float: none;
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+#frequenza .ui-controlgroup-label legend{
+    font-weight: bold;
+    font-size: 130%;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+#frequenza .ui-controlgroup-controls {
+    float: none;
+    display: block;
+    width: 100%;
+}
+
+#frequenza .ui-radio{
+    width: 33.33%;
+}
+
+#frequenza .ui-radio label{
+    text-align: center;
+    white-space: nowrap;
+}
+
+.margin-top-20{
+    margin-top: 20px!important;
+}
+
+.sorveglianzaInviaDati{
+    width: 40% !important;
+    margin: 3px 0 0 0!important;
+    background-color: #3dc235!important;
+    color: #ffffff!important;
 }
