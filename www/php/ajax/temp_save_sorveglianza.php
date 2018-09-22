@@ -13,26 +13,21 @@ require_once 'helper.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class send_email_assistenza extends cs_interaction{
-    private $temp_sorveglianza;
+class temp_save_sorveglianza extends cs_interaction{
+    private $temp_sorveglianza, $temp_sorveglianza_info;
 
     protected function input_elaboration(){
         $this->temp_sorveglianza = $this->validate_string("valori");
-        $json_array = json_decode($this->temp_sorveglianza, true);
-        file_put_contents('../../test.csv', "");
-        $file = file_get_contents('../../test.csv');
-        while ($elem = current($json_array)){
-            if(is_array($elem)){
-                $file .= key($json_array) . "\n";
-                while ($el = current($elem)){
-                    $file .= $el . "\n";
-                    next($elem);
-                }
-            }
-            next($json_array);
-        }
-
-        file_put_contents('../../test.csv', $file);
+        $domande = json_decode($this->temp_sorveglianza, true);
+        $file_estintori = fopen('../../resources/temp_save_estintori.csv', 'w');
+        $file_luci = fopen('../../resources/temp_save_luci.csv', 'w');
+        $file_porte = fopen('../../resources/temp_save_porte.csv', 'w');
+        $file_info = fopen('../../resources/sorveglianza_info.csv', 'w');
+        fputcsv($file_estintori, $domande['ESTINTORI']);
+        fputcsv($file_luci, $domande['LUCI']);
+        fputcsv($file_porte, $domande['PORTE']);
+        var_dump($domande['info']);
+        fputcsv($file_info, $domande['info']);
     }
 
     protected function get_informations(){
@@ -42,5 +37,5 @@ class send_email_assistenza extends cs_interaction{
     }
 }
 
-$send_email_assistenza = new send_email_assistenza();
-$send_email_assistenza->execute();
+$temp_save_sorveglianza = new temp_save_sorveglianza();
+$temp_save_sorveglianza->execute();
