@@ -19,19 +19,12 @@ $(document).ready(function () {
     );
 });
 
-function selectContract(contratto) {
-    if(contratto !== '' && contratto !== undefined){
-        $('#sorveglianzaContrattoSelect').val(contratto);
-        $('#sorveglianzaContrattoSelect').selectmenu('refresh');
-        $('#sorveglianzaContrattoSelect').trigger('change');
-        console.log('contratto not null');
-    }
+function selectContract() {
+
     console.log('inside contratto');
     $('#sorveglianzaContrattoSelect').off('change').on('change', function (e) {
         var sorveglianzaContratto = this.value;
-        console.log('sorveglianza inside: ' + contratto);
 
-        var valoreFrequenza = $('#sorveglianzaRadioFieldset :radio:checked').val();
         $('#questionarioSorveglianza').empty();
 
 
@@ -73,14 +66,6 @@ console.log('selecting contract');
 selectContract();
 
 function selectFiliale(filiale) {
-    console.log('FILIALE: ' + filiale);
-    // if(filiale !== '' && filiale !== undefined){
-    //     waitForFiliale($('#sorveglianzaFilialeSelect'), filiale);
-    //     $('#sorveglianzaFilialeSelect').val(filiale);
-    //     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
-    //     $('#sorveglianzaFilialeSelect').trigger('change');
-    //     console.log('filiale not null');
-    // }
 
     $('#sorveglianzaFilialeSelect').off('change').on('change', function (e) {
         // e.stopImmediatePropagation();
@@ -128,42 +113,6 @@ function selectFiliale(filiale) {
 }
 selectFiliale();
 
-function waitForFiliale(selector, filiale){
-    if(selector.has('option:contains(' + filiale + ')').length){
-        $('#sorveglianzaFilialeSelect').val(filiale);
-        $('#sorveglianzaFilialeSelect').selectmenu('refresh');
-    }else {
-        setTimeout(function () {
-            waitForFiliale(selector, filiale);
-        }, 100);
-    }
-}
-
-function waitForQuestionario(selector, data){
-    var i = 0;
-    if(selector.children().length !== 0){
-        $.each(selector.children(), function (key, value) {
-            console.log('children: ' + $(value).attr('id'));
-            var attrezzatura = data;
-            console.log('attre: ' + attrezzatura);
-            $.each($(value).find('div').children(), function (innerKey, innerValue) {
-                // console.log('class: ' + $(innerValue).attr('class'));
-                var input = $(innerValue).find('input');
-                var label = $(innerValue).find('label');
-                $(input).attr('checked', 'checked');
-                $(label).removeClass('ui-checkbox-off');
-                $(label).addClass('ui-checkbox-on');
-                console.log('id: ' + input.attr('id'));
-            });
-        })
-    }else {
-        setTimeout(function () {
-            console.log('looping');
-            waitForQuestionario(selector);
-        }, 100);
-    }
-}
-
 $('#sorveglianzaCancellaDati').on('click', function () {
     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
     $('#sorveglianzaContrattoSelect').removeClass('ui-disabled');
@@ -209,7 +158,7 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
     var sorveglianzaTempSaveForm = new FormData();
     var sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     var sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
-    snapShot['info'] = {'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale};
+    snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale};
 
 
     sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
@@ -239,13 +188,27 @@ $('#sorveglianzaCaricaModifica').on('click', function () {
         function (risposte) {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
+                console.log($('#sorveglianzaRadioFieldset').attr('class'));
+                var checked = $("#sorveglianzaRadioFieldset input[type='radio']:checked").val();
+                $("#sorveglianzaRadioFieldset input:radio").attr('checked', false);
+                $("#sorveglianzaRadioFieldset input:radio").parent().find('label').removeClass('ui-radio-on ui-btn-active');
+
+
+                $("#sorveglianzaRadioFieldset").trigger('create');
+                $('input:radio[name="frequenza"]').filter('[value="'+ risposte.domande.info[0] + '"]').attr('checked', 'checked');
+                $('input:radio[name="frequenza"]').filter('[value="'+ risposte.domande.info[0] + '"]').parent().find('label').removeClass('ui-radio-off');
+                $('input:radio[name="frequenza"]').filter('[value="'+ risposte.domande.info[0] + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
+
+
                 $('#sorveglianzaContrattoSelect').addClass('ui-disabled');
-                $('#sorveglianzaContrattoSelect').val(risposte.domande.info[0]);
+                $('#sorveglianzaContrattoSelect').val(risposte.domande.info[1]);
                 $('#sorveglianzaContrattoSelect').selectmenu('refresh');
                 $('#sorveglianzaFilialeSelect').addClass('ui-disabled');
-                $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande.info[1] + '</option>');
-                $('#sorveglianzaFilialeSelect').val(risposte.domande.info[1]);
+                $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande.info[2] + '</option>');
+                $('#sorveglianzaFilialeSelect').val(risposte.domande.info[2]);
                 $('#sorveglianzaFilialeSelect').selectmenu('refresh');
+
+
                 var caricaattrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
                 var caricaDomandePromise = httpPost('php/ajax/get_domande.php');
                 var i = 0;
