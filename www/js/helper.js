@@ -39,3 +39,13 @@ function parseString(key, stringValue) {
     else
         return stringValue;
 }
+
+function resetSelection(elementName) {
+    $('#' + elementName).children('option:not(:first)').remove();
+    selectDefaultForSelection(elementName);
+}
+
+function selectDefaultForSelection(elementName) {
+    $('#' + elementName + ' option:eq(0)').prop('selected', true);
+    $('#' + elementName).selectmenu('refresh');
+}

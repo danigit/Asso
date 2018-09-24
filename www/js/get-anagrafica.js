@@ -21,6 +21,7 @@ function getAnagrafica() {
                         || key === 'CELLULARE') {
                         var parsedKey = key.replace("_", " ");
                         anagrafica += '<li><p class="float-left font-large"><b class="blue-text">' + parsedKey + ':</b></p><br><br><p class="line-wrap font-medium">' + value + '</p></li>';
+                        console.log('anagrafica: ' + key + '/' + value);
                         select += '<option>' + parsedKey + '</option>';
                     }
                 });

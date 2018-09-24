@@ -43,7 +43,19 @@
 
 #valoreAnagrafica form div{
     margin: 0!important;
-    width: 100% !important;
+    width: 99% !important;
+}
+
+#valoreAnagrafica.ui-input-text{
+    display: block!important;
+    width: 80%!important;
+    padding: 0!important;
+    margin: 15px auto!important;
+    background-color: #F9F9F9!important;
+    border: none!important;
+    box-shadow: none!important;
+    border-bottom: 1px solid #0099FF!important;
+    border-radius: 0!important;
 }
 
 .ui-input-text{
@@ -54,8 +66,8 @@
     background-color: #F9F9F9!important;
     border: none!important;
     box-shadow: none!important;
-    border-bottom: 1px solid #0099FF!important;
-    border-radius: 0!important;
+    border: 1px solid #0099FF!important;
+    border-radius: 5!important;
 }
 
 #registerForm .ui-checkbox > label{
@@ -94,12 +106,10 @@ h1 {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: x-large;
-    color: #007E47;
-    font-family: Philosopher, sans-serif;
 }
 
 .error-message{
-    background: rgba(229, 38, 18, 1);
+    background: rgb(229, 38, 18);
     padding: 5px;
     border-radius: 7px;
     margin-bottom: 50px;
@@ -107,6 +117,20 @@ h1 {
 
 .error-message span{
     color: #ffffff;
+    font-size: smaller;
+    text-shadow: none;
+}
+
+.success-message{
+    border: 1px solid #3CC14A;
+    color: #3CC14A!important;
+    padding: 5px;
+    border-radius: 7px;
+    margin-bottom: 50px;
+}
+
+.success-message span{
+    color: #3CC14A!important;
     font-size: smaller;
     text-shadow: none;
 }
@@ -147,7 +171,6 @@ input{
     left: 8px!important;
     top: 8px!important;
     font-size: small!important;
-    font-family: Philosopher, sans-serif!important;
     padding: 6px 8px 6px 8px!important;
     background: #ffffff!important;
     color: #000000!important;
@@ -173,10 +196,6 @@ input{
     text-align: justify;
 }
 
-.philosopher-font{
-    font-family: Philosopher, serif;
-}
-
 .fixed-header-text{
     font-size: 35px!important;
     padding: 10px 0 0 0!important;
@@ -188,7 +207,6 @@ input{
 .menu-icon{
     margin-top: 7px!important;
     font-size: small!important;
-    font-family: Philosopher, sans-serif!important;
     padding: 6px 8px 6px 8px!important;
     background: #ffffff!important;
     color: #000000!important;
@@ -366,7 +384,7 @@ input{
 
 .cancellaModifica{
     width: 39% !important;
-    margin: 3px 0 0 0!important;
+    margin: 0!important;
     /*background-color: #CF2E15!important;*/
     color: #CF2E15!important;
     border: 1px solid #CF2E15!important;
