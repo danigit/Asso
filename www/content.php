@@ -48,6 +48,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <link rel="stylesheet" type="text/css" href="css/helper.css">
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
@@ -103,14 +104,18 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="anagrafica">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="true">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
+
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">Anagrafica</h1>
                 <div id="anagraficaContainer"></div>
-                <div><a href="#cambioAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>
+            </div>
+
+            <div data-role="footer" data-position="fixed" data-fullscreen="true">
+                <div><a href="#cambioAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large width-95">Cambia anagrafica</a></div>
             </div>
         </div>
 
