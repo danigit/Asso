@@ -132,6 +132,7 @@ function richiestaAssistenza() {
         let motivo = $('#richiestaAssistenzaMotivoSelect').val();
         let contratto = $('#richiestaAssistenzaContrattoSelect').val();
         let filiale = $('#richiestaAssistenzaFilialeSelect').val();
+        let noteAggiuntive = $('#areaNoteAggiuntive').val();
 
         if(motivo === 'Altro...') {
             if ($('#motivoAltroValue').val() === "") {
@@ -143,7 +144,8 @@ function richiestaAssistenza() {
 
         if(motivo !== "Seleziona un motivo..." && contratto !== "Seleziona un contratto..." && filiale !== "Seleziona una filiale...") {
 
-            let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, 'attrezzature': {}};
+            console.log(noteAggiuntive);
+            let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, 'attrezzature': {}, "<br><br>Note aggiuntive:": noteAggiuntive};
             let assistenzaFormData = new FormData();
 
             $.each($('#resultForCheck').children(), function (key, value) {
