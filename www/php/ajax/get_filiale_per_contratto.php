@@ -13,7 +13,8 @@ class get_filiale_per_contratto extends cs_interaction {
     private $contratto, $result;
 
     protected function input_elaboration(){
-        $this->contratto = $this->validate_string('contratto');
+//        $this->contratto = $this->validate_string('contratto');
+        $this->contratto = 'AUTORIMESSA CEPOLLINA 10 R';
     }
 
     protected function get_informations(){
@@ -34,12 +35,16 @@ class get_filiale_per_contratto extends cs_interaction {
                                 foreach ($i as $el) {
                                     if(is_array($el[0])){
                                         foreach ($el as $ant) {
-                                          $this->result[] = $ant['FILIALE'];
+                                          $this->result['filiale'] = $ant['FILIALE'];
                                         }
                                     }else{
-                                        $this->result[] = $el['FILIALE'];
+                                        $this->result['filiale'] = $el['FILIALE'];
                                     }
                                 }
+                            }else{
+                                $this->result['tecnico'] = $it['TECNICO'];
+                                $this->result['telefono_tecnico'] = $it['TELEFONO_TECNICO'];
+                                $this->result['email_tecnico'] = $it['EMAIL_TECNICO'];
                             }
                         }
                     }

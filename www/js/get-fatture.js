@@ -6,7 +6,7 @@
  */
 function getFatture(){
 
-    var promise = httpPost('php/ajax/get_fatture.php');
+    let promise = httpPost('php/ajax/get_fatture.php');
 
     promise.then(
         function (data) {

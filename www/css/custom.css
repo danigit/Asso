@@ -46,6 +46,11 @@
     width: 99% !important;
 }
 
+#altro-selection form div{
+    margin: 15px 0 0 0!important;
+    width: 99% !important;
+}
+
 #valoreAnagrafica.ui-input-text{
     display: block!important;
     width: 80%!important;
@@ -67,7 +72,7 @@
     border: none!important;
     box-shadow: none!important;
     border: 1px solid #0099FF!important;
-    border-radius: 5!important;
+    border-radius: 5px!important;
 }
 
 #registerForm .ui-checkbox > label{
@@ -443,8 +448,9 @@ input{
 }
 
 #inviaRichiestaAssistenzaDati{
-    width: 90%;
-    margin: 5px 0 0 0;
+    width: 93%;
+    margin: 0;
+    font-size: large;!important;
     background-color: #3dc235;
     color: #ffffff;
 }

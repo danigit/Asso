@@ -5,7 +5,7 @@
  * Divide i contratti in attivi e cessati
  */
 function getContratti() {
-    var contrattiPromise = httpPost('php/ajax/get_contratti.php');
+    let contrattiPromise = httpPost('php/ajax/get_contratti.php');
 
     contrattiPromise.then(
         function (data) {

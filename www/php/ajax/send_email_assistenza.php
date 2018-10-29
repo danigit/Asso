@@ -23,7 +23,7 @@ class send_email_assistenza extends cs_interaction{
         while ($elem = current($array_val)){
             if(is_array($elem)){
                 while ($el = current($elem)){
-                    $this->email_string .= "" . key($elem) . ": " . "<br>";
+                    $this->email_string .= "<br><b>" . key($elem) . ":</b> " . "<br>";
                     if(is_array($el)){
                         while ($e = current($el)){
                             $this->email_string .= "" . key($el) . ": " . $e . "<br>";
@@ -33,7 +33,7 @@ class send_email_assistenza extends cs_interaction{
                     next($elem);
                 }
             }else{
-                $this->email_string .= "" . key($array_val) . ": " . $elem . "<br>";
+                $this->email_string .= "<b>" . key($array_val) . ":</b> &thinsp;" . $elem . "<br>";
             }
             next($array_val);
         }
@@ -50,8 +50,8 @@ class send_email_assistenza extends cs_interaction{
         $mail->Password = "!ds.acconto!88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress("ds.acconto@gmail.com");
-        $mail->Subject = "Cambio Anagrafica";
-        $mail->msgHTML("Sei stata contattato da: <br><br> Nome: " . $_SESSION['username'] . "<br><br><br><br>Contenuto email: <br>"
+        $mail->Subject = "Richiesta assistenza";
+        $mail->msgHTML("Sei stata contattato da: <br><br> Nome:<b style='color: #0099FF;'> " . $_SESSION['username'] . "</b><br><br><br><br><b>Richiesta assistenza per: </b><br><br>"
             . $this->email_string);
         if(!$mail->send()) //telnet smtp.aruba.it 587
             $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo );

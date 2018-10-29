@@ -215,11 +215,17 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                             <option>Seleziona una filiale...</option>
                         </select>
                         <br>
+
+                        <div class="info-tecnico">
+                        </div>
                     </fieldset>
                 </form>
                 <div id="noteAggiuntive"></div>
-                <div id="resultForCheck">
-                </div>
+                <div id="resultForCheck"></div>
+                <div id="assistenzaMessaggioErrore"></div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
                 <a href="#" id="inviaRichiestaAssistenzaDati" class="ui-disabled" data-role="button" data-inline="true">Richiedi Assistenza</a>
             </div>
         </div>

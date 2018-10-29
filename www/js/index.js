@@ -27,8 +27,13 @@ var app = {
         $('#attrezzature').on('pageinit', function () {
             getAttrezzature();
         });
+
         $('#cambioAnagrafica').on('pageinit', function () {
             setCambioAnagrafica();
+        });
+
+        $('#richiestaAssistenza').on('pageinit', function () {
+            richiestaAssistenza();
         });
 
         $(document).on('tap', function (event) {
