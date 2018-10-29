@@ -128,9 +128,18 @@ function richiestaAssistenza() {
     $('#inviaRichiestaAssistenzaDati').on('click', function () {
         let i = 1;
         let isEmpty = true;
+        let isMotiv = true;
         let motivo = $('#richiestaAssistenzaMotivoSelect').val();
         let contratto = $('#richiestaAssistenzaContrattoSelect').val();
         let filiale = $('#richiestaAssistenzaFilialeSelect').val();
+
+        if(motivo === 'Altro...') {
+            if ($('#motivoAltroValue').val() === "") {
+                isMotiv = false;
+            }else {
+                motivo = $('#motivoAltroValue').val();
+            }
+        }
 
         if(motivo !== "Seleziona un motivo..." && contratto !== "Seleziona un contratto..." && filiale !== "Seleziona una filiale...") {
 
@@ -168,12 +177,16 @@ function richiestaAssistenza() {
                     isEmpty = false;
             });
 
-            if(!isEmpty) {
-                assistenzaFormData.append('assistenza', JSON.stringify(checked));
-                let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
-                // assistenzaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Selezionare tutti i valori richiesti</p>');
-            }else{
-                showError($('#error-content-popup'), "Selezionare attrezzatura", "Selezionare almeno una attrezzatura", "error");
+            if(!isMotiv){
+                showError($('#error-content-popup'), 'Seleziona motivo', 'Inserire il motivo della richiesta di assistenza', 'error');
+            }else {
+                if (!isEmpty) {
+                    assistenzaFormData.append('assistenza', JSON.stringify(checked));
+                    let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
+                    // assistenzaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Selezionare tutti i valori richiesti</p>');
+                } else {
+                    showError($('#error-content-popup'), "Selezionare attrezzatura", "Selezionare almeno una attrezzatura", "error");
+                }
             }
         }
     });
