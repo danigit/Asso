@@ -127,6 +127,7 @@ function richiestaAssistenza() {
 
     $('#inviaRichiestaAssistenzaDati').on('click', function () {
         let i = 1;
+        let isEmpty = true;
         let motivo = $('#richiestaAssistenzaMotivoSelect').val();
         let contratto = $('#richiestaAssistenzaContrattoSelect').val();
         let filiale = $('#richiestaAssistenzaFilialeSelect').val();
@@ -140,7 +141,9 @@ function richiestaAssistenza() {
 
                 if (value.tagName === 'DIV') {
                     let tipoAttrezzatura = $(value).attr('id');
+
                     checked.attrezzature[tipoAttrezzatura] = {};
+                    i = 1;
 
                     $.each($(value).children(), function (innerKey, innerValue) {
                         if (innerValue.tagName === 'DIV') {
@@ -148,7 +151,11 @@ function richiestaAssistenza() {
                             $.each($(innerValue).children(), function (lastKey, lastValue) {
                                 let input = $(lastValue).find('input');
                                 if ($(input).is(':checked')) {
-                                    checked.attrezzature[tipoAttrezzatura]['Matricola' + i++] = $(input).attr('id');
+                                    //TODO Controllare tutti i tipi esistenti
+                                    if(tipoAttrezzatura === 'ESTINTORE' || tipoAttrezzatura === 'PORTA')
+                                        checked.attrezzature[tipoAttrezzatura][tipoAttrezzatura.substring(0, 1) + tipoAttrezzatura.substring(1, tipoAttrezzatura.length).toLowerCase() + i++] = 'Matricola = ' + $(input).attr('id');
+                                    else if (tipoAttrezzatura === 'LUCE' || tipoAttrezzatura === 'IDRANTI')
+                                        checked.attrezzature[tipoAttrezzatura][tipoAttrezzatura.substring(0, 1) + tipoAttrezzatura.substring(1, tipoAttrezzatura.length).toLowerCase() + i++] = 'Progressivo = ' + $(input).attr('id');
                                 }
                             })
                         }
@@ -156,13 +163,17 @@ function richiestaAssistenza() {
                 }
             });
 
-            console.log(checked);
-            if(!$.isEmptyObject(checked.attrezzature)) {
+            $.each(checked.attrezzature, function (key, value) {
+                if(!$.isEmptyObject(value))
+                    isEmpty = false;
+            });
+
+            if(!isEmpty) {
                 assistenzaFormData.append('assistenza', JSON.stringify(checked));
                 let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
                 // assistenzaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Selezionare tutti i valori richiesti</p>');
             }else{
-                console.log('object not empty');
+                showError($('#error-content-popup'), "Selezionare attrezzatura", "Selezionare almeno una attrezzatura", "error");
             }
         }
     });

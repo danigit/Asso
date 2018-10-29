@@ -222,6 +222,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </form>
                 <div id="noteAggiuntive"></div>
                 <div id="resultForCheck"></div>
+
+                <div id="error-content-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+                    <p class="error-title"></p>
+                    <p class="error-content"></p>
+                </div>
+
                 <div id="assistenzaMessaggioErrore"></div>
             </div>
 

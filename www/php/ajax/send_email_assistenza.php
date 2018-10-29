@@ -50,6 +50,7 @@ class send_email_assistenza extends cs_interaction{
         $mail->Password = "!ds.acconto!88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress("ds.acconto@gmail.com");
+        $mail->addCC('surpanudaniel@gmail.com');
         $mail->Subject = "Richiesta assistenza";
         $mail->msgHTML("Sei stata contattato da: <br><br> Nome:<b style='color: #0099FF;'> " . $_SESSION['username'] . "</b><br><br><br><br><b>Richiesta assistenza per: </b><br><br>"
             . $this->email_string);

@@ -49,3 +49,27 @@ function selectDefaultForSelection(elementName) {
     $('#' + elementName + ' option:eq(0)').prop('selected', true);
     $('#' + elementName).selectmenu('refresh');
 }
+
+function showError(errorPopup, title, content, type) {
+    let elem = errorPopup;
+    if(type === 'success') {
+        elem.removeClass('error-popup');
+        elem.addClass('success-popup');
+        $('.error-title').text(title);
+        $('.error-content').text(content);
+        elem.popup();
+        elem.popup("open");
+
+    }else if(type === 'error'){
+        elem.removeClass('success-popup');
+        elem.addClass('error-popup');
+        $('.error-title').text(title);
+        $('.error-content').text(content);
+        elem.popup();
+        elem.popup("open");
+    }
+
+    setTimeout(function () {
+        elem.popup("close");
+    }, 2000);
+}

@@ -496,3 +496,26 @@ input{
     background-color: #3dc235!important;
     color: #ffffff!important;
 }
+
+.error-popup{
+    border: 1px solid #FFFFFF!important;
+    background: #E52612!important;
+    color: white!important;
+    box-shadow: 0 0 10px 7px #E52612!important;
+}
+
+.success-popup{
+    border: 3px solid #5DB553!important;
+    background: #5DB553!important;
+    color: white!important;
+    box-shadow: 0 0 16px 7px #5DB553!important;
+}
+
+.error-title{
+    padding: 10px!important;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.error-content{
+    padding: 10px;
+}
