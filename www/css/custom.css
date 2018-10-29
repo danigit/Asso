@@ -349,7 +349,7 @@ input{
 }
 
 .anagrafica-padding{
-    padding: 1em 0 0 0!important;
+    padding: 0 0 0 0!important;
 }
 
 .anagrafica-list-margin{
@@ -372,8 +372,10 @@ input{
 }
 
 .aggiungiModifica{
-    width: 40% !important;
-    margin: 0 0 0 3px!important;
+    width: 99% !important;
+    margin: 0 0 0 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
     font-size: medium!important;
     /*background-color: #FF956B!important;*/
     color: #FF956B!important;
@@ -384,13 +386,23 @@ input{
     width: 39% !important;
     margin: 0!important;
     /*background-color: #49D49D!important;*/
-    color: #49D49D!important;
-    border: 1px solid #49D49D!important;
+    color: #FF956B!important;
+    border: 1px solid #FF956B!important;
+}
+
+.salvaPerDopo{
+    width: 91% !important;
+    margin: 5px 0 0 0!important;
+    font-size: medium!important;
+    color: #FF956B!important;
+    border: 1px solid #FF956B!important;
 }
 
 .cancellaModifica{
-    width: 39% !important;
-    margin: 0!important;
+    width: 99% !important;
+    margin: 5px 0 0 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
     font-size: medium!important;
     /*background-color: #CF2E15!important;*/
     color: #CF2E15!important;
@@ -398,9 +410,12 @@ input{
 }
 
 .inviaDati{
-    width: 90% !important;
+    width: 99% !important;
     margin: 5px 0 0 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
     font-size: large!important;
+    border: 1px solid #3dc235!important;
     background-color: #3dc235!important;
     color: #ffffff!important;
 }
@@ -494,8 +509,10 @@ input{
 }
 
 .sorveglianzaInviaDati{
-    width: 40% !important;
-    margin: 3px 0 0 0!important;
+    width: 91% !important;
+    margin: 5px 0 0 0!important;
+    padding: 13px 15px!important;
+    border: 1px solid #3dc235;!important;
     background-color: #3dc235!important;
     color: #ffffff!important;
 }

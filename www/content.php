@@ -281,13 +281,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </form>
 
                 <div id="questionarioSorveglianza"></div>
+            </div>
 
-                <div class="sorveglianza-buttons margin-top-20">
-                    <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica" data-role="button" data-inline="true">Salva per dopo</a>
-                    <a href="#" id="sorveglianzaCaricaModifica" class="ricaricaDati" data-role="button" data-inline="true">Ricarica dati</a>
-                    <a href="#" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati" data-role="button" data-inline="true">Salva nel database</a>
-                    <a href="#" id="sorveglianzaCancellaDati" class="cancellaModifica" data-role="button" data-inline="true">Cancella</a>
-                </div>
+            <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="true">
+                <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Salva per dopo</a>
+                <a href="#" id="sorveglianzaCancellaDati" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>
+                <a href="#" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">Salva nel database</a>
             </div>
         </div>
 
