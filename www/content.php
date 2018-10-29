@@ -104,12 +104,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="anagrafica">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="true">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
 
-            <div data-role="content" class="anagrafica-padding">
+            <div data-role="content" class="anagrafica-padding margin-bottom-30">
                 <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">Anagrafica</h1>
                 <div id="anagraficaContainer"></div>
             </div>
@@ -143,10 +143,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="cambioAnagraficaMessaggioErrore"></div>
 
                 <div data-role="footer" data-position="fixed" class="background-white">
-                        <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange" data-role="button" data-inline="true">Aggiungi Modifica</a>
-                        <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red" data-role="button" data-inline="true">Cancella</a>
-                        <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
+                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>
+                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>
+                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati ui-disabled" data-role="button" data-inline="true">Invia</a>
                 </div>
+                <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+                    <p class="error-title"></p>
+                    <p class="error-content"></p>
+                </div>
+
             </div>
         </div>
 

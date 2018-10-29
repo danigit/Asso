@@ -26,7 +26,6 @@ function setCambioAnagrafica() {
                         select += '<option>' + key.replace("_", " "); + '</option>';
                     }
                 });
-
                 changeAnagraficaSelection.append(select);
             } else {
                 $('#cambioAnagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
@@ -39,7 +38,7 @@ function setCambioAnagrafica() {
         selectionAnagrafica = this.value;
 
         changeAnagraficaMessaggioErrore.find('p').remove();
-        $('#inviaCambioAnagraficaDati').removeClass('ui-disabled');
+        $('#aggiungiModifica').removeClass('ui-disabled');
         //controllo se il form c'e' e se c'e' lo rimuovo
         if ($('#valoreAnagraficaForm').length) {
             $('#valoreAnagraficaForm').remove();
@@ -75,27 +74,34 @@ function setCambioAnagrafica() {
             });
 
             //campo non esiste quindi inserisco, altrimenti mostro messaggio di errore
-            if (!isInserted)
+            if (!isInserted) {
+                selectDefaultForSelection('changeAnagraficaSelection');
+                $('#valoreAnagraficaForm').remove();
+                $('#cancellaModifica').removeClass('ui-disabled');
+                $('#inviaCambioAnagraficaDati').removeClass('ui-disabled');
                 changeAnagraficaList.append('<li class="ui-disabled"><p data-name="nameOfField" class="float-left font-large"><b class="blue-text">' + selectionAnagrafica + ':</b></p><br><br><p id="newValueOfField" class="line-wrap font-medium">' + itemToInsert + '</p></li>')
-            else {
-                changeAnagraficaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Valore gia\' inserito</p>');
+            }else {
+                showError($('#error-change-anagrafica-popup'), 'Cambio anagrafica', 'Campo già presente', 'error')
             }
         }else{
-            changeAnagraficaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Selezionare prima un valore da aggiungere</p>');
+            showError($('#error-change-anagrafica-popup'), 'Cambio anagrafica', 'Selezionare almeno un campo da modificare', 'error')
         }
 
         //controllo se il form c'e' e se c'e' lo rimuovo
-        if ($('#valoreAnagraficaForm').length) {
-            $('#valoreAnagraficaForm').remove();
-        }
+        // if ($('#valoreAnagraficaForm').length) {
+        //     selectDefaultForSelection('changeAnagraficaSelection');
+        //     $('#valoreAnagraficaForm').remove();
+        // }
     });
 
     //elimino tutti i dati inseriti e ripristino la pagina allo stato iniziale
     $('#cancellaModifica').on('click', function () {
         changeAnagraficaList.empty();
         $('#valoreAnagraficaForm').empty();
-        changeAnagraficaMessaggioErrore.empty();
         selectDefaultForSelection('changeAnagraficaSelection');
+        $('#aggiungiModifica').addClass('ui-disabled');
+        $('#cancellaModifica').addClass('ui-disabled');
+        $('#inviaCambioAnagraficaDati').addClass('ui-disabled');
     });
 
     //invio l'email di notifica per il cambiamento dell'anagrafica
@@ -108,8 +114,6 @@ function setCambioAnagrafica() {
         $('#cambiaAnagraficaList li').each(function (key, value) {
             let label = '<b>' + value.firstChild.textContent + '</b> ' + value.lastChild.textContent;
 
-            console.log(value.firstChild.textContent);
-            console.log(value.lastChild.textContent);
             emailForm.append(key, label);
             count++;
         });
@@ -128,15 +132,17 @@ function setCambioAnagrafica() {
                         changeAnagraficaList.empty();
                         changeAnagraficaMessaggioErrore.empty();
                         selectDefaultForSelection('changeAnagraficaSelection');
-                        changeAnagraficaMessaggioErrore.append('<p class="center-text success-message text-shadow-none white-text">Email inviata con successo</p>');
+                        showError($('#error-change-anagrafica-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata innoltrata con successo', 'success')
+                        setTimeout(function () {
+                            window.location.href = 'content.php';
+                        }, 1500);
                     }else{
-                        changeAnagraficaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Impossibile inviare l\'email in questo momento. Riprovare più tardi</p>');
+                        showError($('#error-change-anagrafica-popup'), 'Email non spedita', 'Impossibile innoltrare la richiesta di cambio anagrafica. Riprovare più tardi', 'error')
                     }
                 }
             );
         } else {
-            changeAnagraficaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Nessun data da inviare</p>');
-
+            showError($('#error-change-anagrafica-popup'), 'Cambio anagrafica', 'Selezionare almeno un campo da modificare', 'error')
         }
     });
 }

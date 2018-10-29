@@ -28,8 +28,6 @@ function getAnagrafica() {
 
                 anagrafica += '</ul>';
                 $('#anagraficaContainer').append(anagrafica).trigger('create');
-                $('#changeAnagraficaSelection').append(select);
-
             } else {
                 $('#anagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
             }
