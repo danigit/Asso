@@ -12,23 +12,27 @@ function viewList(elem, contratto) {
     viewForm.append('contratto', contratto);
     $('#viewListCollapsible').html('');
 
-    var attrezzaturePromise = httpPost('php/ajax/get_viewlist.php', viewForm);
+    let attrezzaturePromise = httpPost('php/ajax/get_viewlist.php', viewForm);
 
     attrezzaturePromise.then(
         function (data) {
             //controllo se non ci sono stati errori nella risposta
             if (data.result) {
 
-                var content = "";
                 $.each(data[0], function (key, value) {
+                    let content = "";
+
                     //divido le atrezzature per contratto
                     var label = $('<a href="#" data-inset="false" class="fatture-header ui-shadow ui-btn ui-corner-all ui-header">' + key + '</a>');
                     $('#viewListCollapsible').append(label);
 
-                    var i = 1;
-
+                    let i = 1;
+                    console.log('value');
+                    console.log(value);
                     $.each(value, function (innerKey, innerValue) {
                         //controllo se l'articolo contiene una matricola e lo inserisco
+                        console.log('innerValue');
+                        console.log(innerValue.MATRICOLA);
                         if(innerValue.MATRICOLA)
                             content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
                         else

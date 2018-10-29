@@ -49,12 +49,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
         <link rel="stylesheet" type="text/css" href="css/helper.css">
+        <link rel="stylesheet" type="text/css" href="css/pdf-page.css">
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/default/html2canvas.min.js"></script>
+        <script type="text/javascript" src="js/default/jspdf.min.js"></script>
 
         <title>Asso</title>
     </head>
@@ -81,7 +84,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
             <div data-role="content">
                 <img src="img/logo.png" id="benvenuto-image">
-                <h1 class="login-header home-phrase">ASSO ANTINCENDIO TI DA' IL BENVENUTO</h1>
+                <h1 class="login-header home-phrase">BENVENUTO NELLA TUA AREA PERSONALE</h1>
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
@@ -249,7 +252,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="sorveglianza">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
@@ -283,10 +286,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="questionarioSorveglianza"></div>
             </div>
 
-            <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="true">
+            <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
                 <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Salva per dopo</a>
-                <a href="#" id="sorveglianzaCancellaDati" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>
+<!--                <a href="#" id="sorveglianzaCancellaDati" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
                 <a href="#" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">Salva nel database</a>
+            </div>
+
+            <div id="error-sorveglianza-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+                <p class="error-title"></p>
+                <p class="error-content"></p>
             </div>
         </div>
 
@@ -320,6 +328,54 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
             </div>
         </div>
+
+        <div data-role="page" id="pdf-page">
+            <div data-role="content" id="pdf-content">
+                <div>
+                    <p class="float-left margin-right-50px font-large">Check-list Sorveglianza</p>
+                    <div class="float-left">
+                        <form>
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+                                <input type="radio" name="frequency-pdf" id="mensile-pdf" value="on" checked="checked">
+                                <label for="mensile-pdf" class="font-small">Mensile</label>
+                                <input type="radio" name="frequency-pdf" id="bimestrale-pdf" value="off">
+                                <label for="bimestrale-pdf" class="font-small">Bimestrale</label>
+                                <input type="radio" name="frequency-pdf" id="trimestrale-pdf" value="other">
+                                <label for="trimestrale-pdf" class="font-small">Trimestrale</label>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                <br><br><br><br>
+
+                <div class="clear-float-left">
+                    <p class="font-large">Incaricato Sig: </p>
+                    <p class="font-large">Data: </p>
+                </div>
+                <div>
+                    <table data-role="table" id="estintori-table" data-mode="reflow" class="ui-responsive">
+                        <thead>
+                        <tr>
+                            <th colspan="4" data-priority="1">Estintori portatili / carrellati: </th>
+                        </tr>
+                        </thead>
+                        <tbody id="estintori-body">
+                        <tr>
+                            <th class="border-1-black width-3 center-text padding-9px">1</th>
+                            <td class="border-1-black padding-9px">presenza del sigilio di controllo</td>
+                            <td class="border-1-black width-5 padding-0"><label><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                            <td class="border-1-black width-5 padding-0"><label><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="javascript: generatePdf();" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium" data-role="button" data-inline="true">Salva nel database</a>
+            </div>
+
+        </div>
+
         <script src="js/logout.js"></script>
         <script src="js/onload.js"></script>
         <script src="js/helper.js"></script>
@@ -333,6 +389,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/change-anagrafica.js"></script>
         <script src="js/richiesta-assistenza.js"></script>
         <script src="js/sorveglianza.js"></script>
+        <script src="js/generate_pdf.js"></script>
     </body>
 </html>
 

@@ -36,6 +36,10 @@ var app = {
             richiestaAssistenza();
         });
 
+        $('#sorveglianza').on('pagebeforeshow', function () {
+            caricaModifiche();
+        });
+
         $(document).on('tap', function (event) {
             if($(event.target).is('a')){
                 var link = event.target.href.substr(event.target.href.indexOf('#') + 1);
