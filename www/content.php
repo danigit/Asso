@@ -120,10 +120,11 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="cambioAnagrafica">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
+
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
                 <div class="ui-field-contain">
@@ -140,10 +141,11 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     </ul>
                 </div>
                 <div id="cambioAnagraficaMessaggioErrore"></div>
-                <div class="cambio-anagrafica-buttons">
-                    <a href="#" id="aggiungiModifica" class="aggiungiModifica" data-role="button" data-inline="true">Aggiungi Modifica</a>
-                    <a href="#" id="cancellaModifica" class="cancellaModifica" data-role="button" data-inline="true">Cancella</a>
-                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
+
+                <div data-role="footer" data-position="fixed" class="background-white">
+                        <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange" data-role="button" data-inline="true">Aggiungi Modifica</a>
+                        <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red" data-role="button" data-inline="true">Cancella</a>
+                        <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
                 </div>
             </div>
         </div>

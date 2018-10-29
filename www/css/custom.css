@@ -373,7 +373,8 @@ input{
 
 .aggiungiModifica{
     width: 40% !important;
-    margin: 0!important;
+    margin: 0 0 0 3px!important;
+    font-size: medium!important;
     /*background-color: #FF956B!important;*/
     color: #FF956B!important;
     border: 1px solid #FF956B!important;
@@ -390,6 +391,7 @@ input{
 .cancellaModifica{
     width: 39% !important;
     margin: 0!important;
+    font-size: medium!important;
     /*background-color: #CF2E15!important;*/
     color: #CF2E15!important;
     border: 1px solid #CF2E15!important;
@@ -398,6 +400,7 @@ input{
 .inviaDati{
     width: 90% !important;
     margin: 5px 0 0 0!important;
+    font-size: large!important;
     background-color: #3dc235!important;
     color: #ffffff!important;
 }
