@@ -14,7 +14,8 @@ function generatePdf() {
             let img = canvas.toDataURL('image/png');
             let doc = new jsPDF();
             console.log(doc);
-            doc.addImage(img, 'JPEG', 20, 20);
+            doc.addImage(img, 'JPEG', 10, 10);
+            console.log(doc);
             doc.save('sorveglianza.pdf')
         }
     });

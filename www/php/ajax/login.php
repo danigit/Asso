@@ -15,11 +15,11 @@ class login extends is_not_logged {
     protected function input_elaboration(){
         $this->username = $this->validate_string('username');
         if(!$this->username)
-            $this->json_error('Inserire un nome utente');
+            $this->json_error('Inserire nome utente');
 
         $this->password = $this->validate_string('password');
         if(!$this->password)
-            $this->json_error('Inserire una password');
+            $this->json_error('Inserire password');
     }
 
     protected function get_informations(){

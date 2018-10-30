@@ -93,7 +93,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>
-                    <a href="#" class="ui-btn fatture-item"><p>Telefono: 010 6018258</p></a>
+                    <a href="tel://232293685" class="ui-btn fatture-item"><p>Telefono: <b class="blue-text">010 6018258</b></p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
                     <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">
                         E-mail: <span class="text-transfor-none blue-text">info@assoantincendio.com</span>
@@ -332,42 +332,93 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <div data-role="page" id="pdf-page">
             <div data-role="content" id="pdf-content">
                 <div>
-                    <p class="float-left margin-right-50px font-large">Check-list Sorveglianza</p>
+                    <p class="float-left margin-right-50px font-medium">Check-list Sorveglianza</p>
                     <div class="float-left">
-                        <form>
-                            <fieldset data-role="controlgroup" data-type="horizontal">
-                                <input type="radio" name="frequency-pdf" id="mensile-pdf" value="on" checked="checked">
-                                <label for="mensile-pdf" class="font-small">Mensile</label>
-                                <input type="radio" name="frequency-pdf" id="bimestrale-pdf" value="off">
-                                <label for="bimestrale-pdf" class="font-small">Bimestrale</label>
-                                <input type="radio" name="frequency-pdf" id="trimestrale-pdf" value="other">
-                                <label for="trimestrale-pdf" class="font-small">Trimestrale</label>
-                            </fieldset>
-                        </form>
+                                <div class="float-left margin-right-10px">
+                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="Mensile-pdf" value="on" checked="checked">Mensile</label>
+                                </div>
+                                <div class="float-left margin-right-10px">
+                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="bimestrale-pdf" value="off">Bimestrale</label>
+                                </div>
+                                <div class="float-left margin-right-10px">
+                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="trimestrale-pdf" value="other">Trimestrale</label>
+                                </div>
                     </div>
                 </div>
 
                 <br><br><br><br>
 
-                <div class="clear-float-left">
-                    <p class="font-large">Incaricato Sig: </p>
-                    <p class="font-large">Data: </p>
+                <div class="clear-float-left position-absolute">
+                    <p class="font-medium"><b>Incaricato Sig:</b> Antani Scapelli</p>
+                    <p class="font-medium"><b>Data:</b> 30/10/2018</p>
+                </div>
+                <div class="float-right">
+                    <img src="img/logo_small.jpg">
                 </div>
                 <div>
                     <table data-role="table" id="estintori-table" data-mode="reflow" class="ui-responsive">
                         <thead>
                         <tr>
-                            <th colspan="4" data-priority="1">Estintori portatili / carrellati: </th>
+                            <th colspan="4" data-priority="1" class="border-1-black background-gray">Estintori portatili / carrellati: </th>
                         </tr>
                         </thead>
                         <tbody id="estintori-body">
-                        <tr>
-                            <th class="border-1-black width-3 center-text padding-9px">1</th>
-                            <td class="border-1-black padding-9px">presenza del sigilio di controllo</td>
-                            <td class="border-1-black width-5 padding-0"><label><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                            <td class="border-1-black width-5 padding-0"><label><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                        </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">presenza del sigilio di controllo</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">collocazione adeguata: visibile, accessibile, libera da ostacoli</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">presenza del cartello segnalatore</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                            </tr>
                         </tbody>
+
+
+                        <thead>
+                        <tr>
+                            <th colspan="4" data-priority="1" class="border-1-black background-gray">Idranti a muro / naspi: </th>
+                        </tr>
+                        </thead>
+                        <tbody id="estintori-body">
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">presenza della manichetta / lancia/ sella</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">collocazione adeguata: visibile, accessibile, libera da ostacoli</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">presenza cartello indicatore</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+                            <tr>
+                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
+                                <td class="border-1-black padding-9px font-small">esame visivo dello stato della saracinesca</td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
+                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
+                            </tr>
+
+                            </tbody>
                     </table>
                 </div>
 

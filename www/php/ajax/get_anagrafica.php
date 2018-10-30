@@ -15,6 +15,7 @@ class get_anagrafica extends cs_interaction {
 
     protected function input_elaboration(){
         // TODO: Implement input_elaboration() method.
+        $this->json_error('antani');
     }
 
     protected function get_informations(){

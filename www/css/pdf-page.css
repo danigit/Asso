@@ -1,3 +1,9 @@
 #estintori-body .ui-checkbox{
     margin: 0!important;
 }
+
+#pdf-content{
+    margin: auto!important;
+    width: 680px!important;
+    height: 842px!important;
+}

@@ -49,3 +49,31 @@
 .padding-9px{
     padding: 9px!important;
 }
+
+.font-x-small{
+    font-size: x-small!important;
+}
+
+.background-gray{
+    background: #D3D3D3!important;
+}
+
+.margin-right-10px{
+    margin-right: 10px!important;
+}
+
+.margin-left-5px{
+    margin-left: 5px!important;
+}
+
+.padding-left-30px{
+    padding-left: 30px!important;
+}
+
+.width-60{
+    width: 60% !important;
+}
+
+.position-absolute{
+    position: absolute!important;
+}

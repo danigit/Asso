@@ -117,12 +117,12 @@ h1 {
     background: rgb(229, 38, 18);
     padding: 5px;
     border-radius: 7px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .error-message span{
     color: #ffffff;
-    font-size: smaller;
+    font-size: medium;
     text-shadow: none;
 }
 

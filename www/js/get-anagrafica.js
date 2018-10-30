@@ -3,15 +3,15 @@
  * Funzione che reccupera l'anagrafica relativa all'utente attualmente connesso
  */
 function getAnagrafica() {
-    var anagraficaPromise = httpPost('php/ajax/get_anagrafica.php');
+    let anagraficaPromise = httpPost('php/ajax/get_anagrafica.php');
 
     anagraficaPromise.then(
         function (data) {
             //controllo se ci sono stati errori nella chiamato
             if (data.result) {
                 //creo una lista per visualizzare i dati
-                var anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
-                var select = '';
+                let anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
+                let select = '';
 
                 //inserisco i dati nella lista
                 $.each(data[0], function (key, value) {
@@ -29,7 +29,7 @@ function getAnagrafica() {
                 anagrafica += '</ul>';
                 $('#anagraficaContainer').append(anagrafica).trigger('create');
             } else {
-                $('#anagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                $('#anagrafica').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );
