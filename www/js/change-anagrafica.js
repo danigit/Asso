@@ -28,7 +28,7 @@ function setCambioAnagrafica() {
                 });
                 changeAnagraficaSelection.append(select);
             } else {
-                $('#cambioAnagrafica').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                $('#cambioAnagrafica').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );
@@ -46,8 +46,9 @@ function setCambioAnagrafica() {
 
         //controllo se la voce selezionata e' diversa da quella di default e faccio comparire la textfield
         if (selectionAnagrafica !== 'Seleziona una voce...') {
-            let inputForm = '<form id="valoreAnagraficaForm"><input type="text" name="selectionValue" id="selectionValue" placeholder="Inserisci valore ' + selectionAnagrafica + '"></form>';
-           valoreAnagrafica.append(inputForm).trigger('create');
+            let inputForm = '<form id="valoreAnagraficaForm"><input type="text" name="selectionValue" id="selectionValue" class="font-medium" placeholder="Inserisci valore ' + selectionAnagrafica + '"></form>';
+            valoreAnagrafica.append(inputForm).trigger('create');
+            $('#selectionValue').focus();
         } else {
             //se e selezionata la vode di default rimuovo la textfield
             if (valoreAnagraficaForm.length) {
@@ -106,7 +107,6 @@ function setCambioAnagrafica() {
 
     //invio l'email di notifica per il cambiamento dell'anagrafica
     $('#inviaCambioAnagraficaDati').on('click', function () {
-        $('#inviaCambioAnagraficaDati').addClass('ui-disabled');
         let emailForm = new FormData();
         let count = 0;
 
@@ -136,6 +136,7 @@ function setCambioAnagrafica() {
                         setTimeout(function () {
                             window.location.href = 'content.php';
                         }, 1500);
+                        $('#inviaCambioAnagraficaDati').addClass('ui-disabled');
                     }else{
                         showError($('#error-change-anagrafica-popup'), 'Email non spedita', 'Impossibile innoltrare la richiesta di cambio anagrafica. Riprovare più tardi', 'error')
                     }

@@ -30,6 +30,7 @@ function getAnagrafica() {
                 $('#anagraficaContainer').append(anagrafica).trigger('create');
             } else {
                 $('#anagrafica').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
+                $('#cambia-anagrafica-button').addClass('ui-disabled');
             }
         }
     );

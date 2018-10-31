@@ -14,6 +14,8 @@ $(document).ready(function () {
                         $('#sorveglianzaContrattoSelect').append('<option>' + innerValue.nome + '</option>');
                     });
                 })
+            }else {
+                $('#sorveglianzaMessaggioErrore').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );
@@ -55,6 +57,8 @@ function selectContract() {
                             )
                         }
                     });
+                }else {
+                    $('#sorveglianzaMessaggioErrore').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
                 }
             }
         );
@@ -213,6 +217,7 @@ function caricaModifiche() {
         function (risposte) {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
+                $('#attrezzature').empty();
                 console.log(risposte.domande.info[0]);
                 if(!(risposte.domande.info[0] === "")) {
                     console.log($('#sorveglianzaRadioFieldset').attr('class'));
@@ -227,10 +232,9 @@ function caricaModifiche() {
                     $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande.info[0] + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
 
 
-                    $('#sorveglianzaContrattoSelect').addClass('ui-disabled');
                     $('#sorveglianzaContrattoSelect').val(risposte.domande.info[1]);
                     $('#sorveglianzaContrattoSelect').selectmenu('refresh');
-                    $('#sorveglianzaFilialeSelect').addClass('ui-disabled');
+                    $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
                     $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande.info[2] + '</option>');
                     $('#sorveglianzaFilialeSelect').val(risposte.domande.info[2]);
                     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
@@ -305,4 +309,4 @@ function caricaModifiche() {
             }
         }
     );
-};
+}

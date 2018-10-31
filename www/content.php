@@ -118,7 +118,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="footer" data-position="fixed" data-fullscreen="true">
-                <div><a href="#cambioAnagrafica" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large width-95">Cambia anagrafica</a></div>
+                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>
             </div>
         </div>
 
@@ -139,10 +139,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     </div>
                 </div>
                 <div id="valoreAnagrafica"></div>
-                <div id="cambioAnagraficaValoriInseriti">
+
+                <div id="cambioAnagraficaValoriInseriti" class="margin-left-20px">
                     <ul id="cambiaAnagraficaList" data-role="listview" data-inset="true" class="anagrafica-list-margin">
                     </ul>
                 </div>
+
                 <div id="cambioAnagraficaMessaggioErrore"></div>
 
                 <div data-role="footer" data-position="fixed" class="background-white">
@@ -150,7 +152,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>
                     <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati ui-disabled" data-role="button" data-inline="true">Invia</a>
                 </div>
-                <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+
+                <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup border-1-white" data-history="false">
                     <p class="error-title"></p>
                     <p class="error-content"></p>
                 </div>
@@ -195,7 +198,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="attrezzature">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="ui-btn ui-shadow ui-corner-all menu-icon">Menu</a>
                 <a href="#home" class="ui-btn ui-shadow ui-corner-all menu-icon">Home</a>
             </div>
@@ -269,6 +272,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                         <label for="trimestrale">Trimestrale</label>
                     </fieldset>
                 </div>
+
                 <form>
                     <fieldset class="ui-field-contain" id="sorveglianzaFieldSet" data-role="controlgoup" data-inset="true">
                         <label for="sorveglianzaLabelForm" class="cambio-anagrafica-form-label">Seleziona le informazioni richieste</label>
@@ -285,6 +289,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
                 <div id="questionarioSorveglianza"></div>
             </div>
+
+            <div id="sorveglianzaMessaggioErrore"></div>
 
             <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
                 <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Salva per dopo</a>

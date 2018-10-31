@@ -65,6 +65,8 @@ function richiestaAssistenza() {
                             $('.info-tecnico p').append('<br> <b class="blue-text font-large">Cellulare:</b> ' + value)
                         }
                     })
+                }else {
+                    $('#assistenzaMessaggioErrore').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
                 }
             }
         );
@@ -120,6 +122,8 @@ function richiestaAssistenza() {
                         '<textarea name="areaNoteAggiuntive" id="areaNoteAggiuntive" placeholder="Lasciare vuoto se non ci sono note aggiuntive"></textarea>').trigger('create');
 
                     inviaRichiestaAssistenzaDati.removeClass('ui-disabled');
+                }else {
+                    $('#assistenzaMessaggioErrore').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
                 }
             }
         );
@@ -207,6 +211,8 @@ function getContrattiAssistenza() {
                         richiestaAssistenzaContrattoSelect.append('<option>' + innerValue.nome + '</option>');
                     });
                 })
+            }else{
+                $('#assistenzaMessaggioErrore').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );

@@ -34,7 +34,7 @@ function getRapporti() {
                     })
                 })
             } else {
-                $('#rapporti').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                $('#rapporti').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );

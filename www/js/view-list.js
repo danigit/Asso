@@ -46,7 +46,7 @@ function viewList(elem, contratto) {
                                     content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichette</h3>";
 
                                     $.each(lastValue, function (mk, mv) {
-                                        content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichetta nuero: " + mv.ID_BOCCHELLO + "</h3>";
+                                        content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichetta numero: " + mv.ID_BOCCHELLO + "</h3>";
                                         $.each(mv, function (label, value) {
                                             if(!(label === 'FILIALE'))
                                                 content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
@@ -62,11 +62,13 @@ function viewList(elem, contratto) {
                         });
                         content += '</div>';
                     });
-                    $("#viewListCollapsible").append( content ).collapsibleset('refresh');
+                    $("#viewListCollapsible").append( content );
+                    $('#viewListCollapsible').collapsibleset();
+                    $('#viewListCollapsible').collapsibleset('refresh');
 
                 })
             } else {
-                $('#viewListCollapsible').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                $('#viewListCollapsible').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
             }
         }
     );

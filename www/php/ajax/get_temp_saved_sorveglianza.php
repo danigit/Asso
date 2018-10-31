@@ -25,7 +25,7 @@ class get_temp_saved_sorveglianza extends cs_interaction {
         file_put_contents("../../resources/temp_save_estintori.csv", "");
         file_put_contents("../../resources/temp_save_porte.csv", "");
         file_put_contents("../../resources/temp_save_luci.csv", "");
-        file_put_contents("../../resources/temp_save_info.csv", "");
+        file_put_contents("../../resources/sorveglianza_info.csv", "");
     }
 
     protected function get_returned_data(){

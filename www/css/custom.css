@@ -1,4 +1,8 @@
 
+.ui-select{
+    width: 100% !important;
+}
+
 .ui-field-contain{
     border: none!important;
 }
@@ -287,9 +291,15 @@ input{
     text-shadow: none!important;
     color: #ffffff!important;
 }
+
 .visualizza-button-anagrafica{
-    background: #3dc235!important;
-    text-shadow: none!important;
+    width: 100%!important;
+    margin: 5px 0 0 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+    font-size: large!important;
+    border: 1px solid #3dc235!important;
+    background-color: #3dc235!important;
     color: #ffffff!important;
 }
 
@@ -357,6 +367,7 @@ input{
 }
 
 .cambio-anagrafica-form-label{
+    width: 100% !important;
     color: #0099FF;
     padding: 10px;
     text-align: center;
@@ -372,7 +383,7 @@ input{
 }
 
 .aggiungiModifica{
-    width: 99% !important;
+    width: 100% !important;
     margin: 0 0 0 0!important;
     padding-left: 0!important;
     padding-right: 0!important;
@@ -399,7 +410,7 @@ input{
 }
 
 .cancellaModifica{
-    width: 99% !important;
+    width: 100% !important;
     margin: 5px 0 0 0!important;
     padding-left: 0!important;
     padding-right: 0!important;
@@ -410,7 +421,7 @@ input{
 }
 
 .inviaDati{
-    width: 99% !important;
+    width: 100% !important;
     margin: 5px 0 0 0!important;
     padding-left: 0!important;
     padding-right: 0!important;
@@ -466,11 +477,14 @@ input{
 }
 
 #inviaRichiestaAssistenzaDati{
-    width: 93%;
-    margin: 0;
-    font-size: large;!important;
-    background-color: #3dc235;
-    color: #ffffff;
+    width: 100% !important;
+    margin: 0 0 0 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+    font-size: large!important;
+    border: 1px solid #3dc235!important;
+    background-color: #3dc235!important;
+    color: #ffffff!important;
 }
 
 /*radio buttons*/
@@ -509,19 +523,21 @@ input{
 }
 
 .sorveglianzaInviaDati{
-    width: 91% !important;
+    width: 100% !important;
     margin: 5px 0 0 0!important;
-    padding: 13px 15px!important;
-    border: 1px solid #3dc235;!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+    font-size: large!important;
+    border: 1px solid #3dc235!important;
     background-color: #3dc235!important;
     color: #ffffff!important;
 }
 
 .error-popup{
     border: 1px solid #FFFFFF!important;
-    background: #E52612!important;
+    background: #AE1E28!important;
     color: white!important;
-    box-shadow: 0 0 10px 7px #E52612!important;
+    box-shadow: 0 0 10px 7px #AE1E28!important;
 }
 
 .success-popup{
@@ -539,3 +555,62 @@ input{
 .error-content{
     padding: 10px;
 }
+
+
+@media (min-width: 1921px) {
+    [data-role="page"]{
+        width: 50%!important;
+        margin: 0 25% !important;
+    }
+
+    [data-role='header']{
+        width: 50%!important;
+        margin: 0 25% !important;
+    }
+
+    [data-role='footer']{
+        width: 50%!important;
+        margin: 0 25% !important;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1920px) {
+    [data-role="page"]{
+        width: 60%!important;
+        margin: 0 20% !important;
+    }
+
+    [data-role='header']{
+        width: 60%!important;
+        margin: 0 20% !important;
+    }
+
+    [data-role='footer']{
+        width: 60%!important;
+        margin: 0 20% !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    [data-role="page"]{
+        width: 90%!important;
+        margin: 0 5% !important;
+    }
+
+    [data-role='header']{
+        width: 90%!important;
+        margin: 0 5% !important;
+    }
+
+    [data-role='footer']{
+        width: 90%!important;
+        margin: 0 5% !important;
+    }
+}
+
+@media (min-width: 701px){
+    .ui-select{
+        margin-bottom: 10px!important;
+    }
+}
+
