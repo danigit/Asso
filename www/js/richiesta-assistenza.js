@@ -189,6 +189,17 @@ function richiestaAssistenza() {
                 if (!isEmpty) {
                     assistenzaFormData.append('assistenza', JSON.stringify(checked));
                     let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
+                    richiediAssistenzaPromise.then(
+                        function (data) {
+                            if (data.result) {
+                                showError($('#error-content-popup'), "Mail inviata", "La richiesta di assistenza è stata inoltrata con successo", "success");
+                                setTimeout(function () {
+                                    window.location.href = 'content.php';
+                                }, 1500)
+                            }else
+                                showError($('#error-content-popup'), "Email non spedita", "C'è stato un problema con l'invio della mail. Ripromare più tardi.", "error");
+                        }
+                    )
                     // assistenzaMessaggioErrore.append('<p class="center-text error-message text-shadow-none white-text">Selezionare tutti i valori richiesti</p>');
                 } else {
                     showError($('#error-content-popup'), "Selezionare attrezzatura", "Selezionare almeno una attrezzatura", "error");

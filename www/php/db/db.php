@@ -10,7 +10,7 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class Connection{
-    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'test';
+    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
     private $connection;
 
     public function __construct(){
@@ -35,8 +35,8 @@ class Connection{
     function parse_error($errors){
         if ($errors['errno'] === 1062) {
             $column = $this->parse_string($errors['error']);
-            if ($column === "'email'")
-                return new db_error(db_error::$EMAIL_ALREADY_REGISTERED);
+//            if ($column === "'email'")
+//                return new db_error(db_error::$EMAIL_ALREADY_REGISTERED);
         } //else if ($errors['errno'] === 1452)
         //return new DbError(DbError::$FOREIGN_KEY_ERROR);
 
@@ -124,7 +124,7 @@ class Connection{
     }
 
     function test(){
-        $query = "SELECT * FROM user_info";
+        $query = "SELECT * FROM question";
 
         $result = $this->connection->query($query);
 
@@ -135,7 +135,7 @@ class Connection{
 
         //todo da mettere dove serve htmlspecialchars
         while ($row = mysqli_fetch_assoc($result)) {
-            $result_array[] = array('username' => $row['username'], 'contratto' => htmlspecialchars($row['contratto']), "filiale" => $row['filiale']);
+            $result_array[] = array('question' => $row['question']);
         }
 
         return $result_array;

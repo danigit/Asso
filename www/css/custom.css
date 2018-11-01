@@ -214,13 +214,20 @@ input{
 }
 
 .menu-icon{
-    margin-top: 7px!important;
+    width: 45px!important;
+    height: 37px!important;
     font-size: small!important;
-    padding: 6px 8px 6px 8px!important;
+    padding: 0!important;
+    margin: 0!important;
     background: #ffffff!important;
     color: #000000!important;
     border-radius: 12px!important;
     border: 1px solid #0099FF!important;
+}
+
+.menu-icon-image{
+    width: 45px!important;
+    height: 39px!important;
 }
 
 #benvenuto-image{
