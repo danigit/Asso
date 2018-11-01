@@ -17,9 +17,12 @@ class get_domande extends cs_interaction {
     }
 
     protected function get_informations(){
-        $this->result['ESTINTORI'] = str_getcsv(file_get_contents('../../resources/domande_estintori.csv'));
-        $this->result['PORTE'] = str_getcsv(file_get_contents('../../resources/domande_porte.csv'));
-        $this->result['LUCI'] = str_getcsv(file_get_contents('../../resources/domande_luci.csv'));
+        $connection = $this->get_connection();
+        $this->result = $connection->get_questions();
+
+//        $this->result['ESTINTORI'] = str_getcsv(file_get_contents('../../resources/domande_estintori.csv'));
+//        $this->result['PORTE'] = str_getcsv(file_get_contents('../../resources/domande_porte.csv'));
+//        $this->result['LUCI'] = str_getcsv(file_get_contents('../../resources/domande_luci.csv'));
     }
 
     protected function get_returned_data(){

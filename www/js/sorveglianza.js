@@ -75,12 +75,12 @@ function selectFiliale(filiale) {
     $('#sorveglianzaFilialeSelect').off('change').on('change', function (e) {
         // e.stopImmediatePropagation();
         console.log('filiale inside: ' + filiale);
-        var attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
-        var i = 0;
+        let attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
+        let i = 0;
 
-        var domandePromise = httpPost('php/ajax/get_domande.php');
+        let domandePromise = httpPost('php/ajax/get_domande.php');
 
-        var content = '';
+        let content;
         attrezzaturePromise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
@@ -91,18 +91,24 @@ function selectFiliale(filiale) {
                                 $.each(data[0], function (key, value) {
                                     if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
                                         $.each(value.lista, function (innerKey, innerValue) {
-                                            var label = innerValue.replace('LISTA_', '');
-                                            content += "<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3>";
+                                            let label = innerValue.replace('LISTA_', '');
+                                            console.log(label);
+                                            content = $("<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
-                                                if (label === lastKey) {
-                                                    $.each(lastValue, function (k, v) {
-                                                        content += '<input type="checkbox" checked id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                                                    })
+                                                console.log(lastValue['type']);
+                                                if (label.toLowerCase() === lastValue['type']) {
+                                                    let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
+                                                    let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
+                                                    let answer = $('<div><div class="si-checkbox"><label class="font-small"><input type="radio" name="radio-' + lastValue['number'] + '">SI</label></div>' +
+                                                        '<div class="no-checkbox"><label class="font-small"><input type="radio" name="radio-' + lastValue['number'] + '">NO</label></div></div>');
+                                                    div.append(question);
+                                                    div.append(answer);
+                                                    content.append(div);
                                                 }
+                                                $('#questionarioSorveglianza').append(content);
                                             });
-                                            content += '</div>';
+                                            $('#questionarioSorveglianza').trigger('create');
                                         });
-                                        $('#questionarioSorveglianza').append(content).trigger('create');
                                     }
                                 })
                             }

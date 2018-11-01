@@ -27,6 +27,24 @@ class Connection{
 
     //TODO funzioni per interagire con il db
 
+    function get_questions(){
+        $query = 'select * from question join type on question.type = type.id';
+
+        $result = $this->connection->query($query);
+
+        if ($result === false )
+            return new db_error(db_error::$ERROR_ON_GETTING_QUESTIONS);
+
+        $result_array = array();
+
+        //todo da mettere dove serve htmlspecialchars
+        while ($row = mysqli_fetch_assoc($result)) {
+            $result_array[] = array('number' => $row['number'], 'question' => $row['question'], 'type' => $row['description']);
+        }
+
+        return $result_array;
+    }
+
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
@@ -142,5 +160,5 @@ class Connection{
     }
 }
 
-$obj = new Connection();
-var_dump($obj->test());
+//$obj = new Connection();
+//var_dump($obj->test());

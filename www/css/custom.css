@@ -621,3 +621,19 @@ input{
     }
 }
 
+.si-checkbox{
+    float: left;
+    width: 45%;
+    margin-right: 6%;
+    margin-left: 2%;
+}
+
+.no-checkbox{
+    width: 45%;
+    float: left;
+    margin-right: 2%;
+}
+
+.border-top-2-blue{
+    border-top: 2px solid #0099FF!important;
+}

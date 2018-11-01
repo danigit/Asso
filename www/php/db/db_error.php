@@ -11,6 +11,7 @@ class db_error{
 
     private $error;
     public static $ERROR_ON_EXECUTE                 = 1;
+    public static $ERROR_ON_GETTING_QUESTIONS       = 2;
 
     public function __construct($error){
         $this->error = $error;
@@ -23,6 +24,7 @@ class db_error{
     public function getErrorName(){
         switch ($this->error){
             case 1: return "ERROR_ON_EXECUTE";
+            case 2: return "ERROR_ON_GETTING_QUESTIONS";
         }
     }
 }

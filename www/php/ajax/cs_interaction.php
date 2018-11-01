@@ -6,6 +6,8 @@
  * Time: 10:16 AM
  */
 
+require_once '../db/db.php';
+
 abstract class cs_interaction{
     private $connection;
 
@@ -21,6 +23,10 @@ abstract class cs_interaction{
      */
     protected function get_connection(){
         //codice da implementare se si prendono i dati da un database
+        if(!isset($this->connection))
+            $this->connection = new Connection();
+
+        return $this->connection;
     }
 
     abstract protected function input_elaboration();
