@@ -76,6 +76,29 @@ class Connection{
         return $result;
     }
 
+    function get_temp_saved_sorveglianza(){
+        $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.number, temp.answer, temp.type, question.question 
+                  FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto, temp_surveillance.filiale, 
+                  temp_surveillance.type, temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance 
+                  JOIN type ON temp_surveillance.type = type.description) as temp LEFT JOIN question ON temp.id = question.type 
+                  AND temp.number = question.number';
+
+        $result = $this->connection->query($query);
+
+        if ($result === false )
+            return new db_error(db_error::$ERROR_ON_GETTING_QUESTIONS);
+
+        $result_array = array();
+
+        //todo da mettere dove serve htmlspecialchars
+        while ($row = mysqli_fetch_assoc($result)) {
+            $result_array[] = array('frequency' => $row['frequency'], 'contratto' => $row['contratto'], 'filiale' => $row['filiale'],
+                'number' => $row['number'], 'type' => $row['type'], 'answer' => $row['answer'], 'question' => $row['question']);
+        }
+
+        return $result_array;
+    }
+
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati

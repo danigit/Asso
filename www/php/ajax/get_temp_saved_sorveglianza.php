@@ -17,15 +17,19 @@ class get_temp_saved_sorveglianza extends cs_interaction {
     }
 
     protected function get_informations(){
-        $this->result['ESTINTORI'] = str_getcsv(file_get_contents('../../resources/temp_save_estintori.csv'));
-        $this->result['PORTE'] = str_getcsv(file_get_contents('../../resources/temp_save_porte.csv'));
-        $this->result['LUCI'] = str_getcsv(file_get_contents('../../resources/temp_save_luci.csv'));
-        $this->result['info'] = str_getcsv(file_get_contents('../../resources/sorveglianza_info.csv'));
 
-        file_put_contents("../../resources/temp_save_estintori.csv", "");
-        file_put_contents("../../resources/temp_save_porte.csv", "");
-        file_put_contents("../../resources/temp_save_luci.csv", "");
-        file_put_contents("../../resources/sorveglianza_info.csv", "");
+        $connection = $this->get_connection();
+        $this->result = $connection->get_temp_saved_sorveglianza();
+
+//        $this->result['ESTINTORI'] = str_getcsv(file_get_contents('../../resources/temp_save_estintori.csv'));
+//        $this->result['PORTE'] = str_getcsv(file_get_contents('../../resources/temp_save_porte.csv'));
+//        $this->result['LUCI'] = str_getcsv(file_get_contents('../../resources/temp_save_luci.csv'));
+//        $this->result['info'] = str_getcsv(file_get_contents('../../resources/sorveglianza_info.csv'));
+//
+//        file_put_contents("../../resources/temp_save_estintori.csv", "");
+//        file_put_contents("../../resources/temp_save_porte.csv", "");
+//        file_put_contents("../../resources/temp_save_luci.csv", "");
+//        file_put_contents("../../resources/sorveglianza_info.csv", "");
     }
 
     protected function get_returned_data(){

@@ -225,8 +225,9 @@ function caricaModifiche() {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
                 $('#attrezzature').empty();
-                console.log(risposte.domande.info[0]);
-                if(!(risposte.domande.info[0] === "")) {
+                console.log(risposte.domande[0]);
+
+                // if(!(risposte.domande.info[0] === "")) {
                     console.log($('#sorveglianzaRadioFieldset').attr('class'));
                     var checked = $("#sorveglianzaRadioFieldset input[type='radio']:checked").val();
                     $("#sorveglianzaRadioFieldset input:radio").attr('checked', false);
@@ -234,85 +235,85 @@ function caricaModifiche() {
 
 
                     $("#sorveglianzaRadioFieldset").trigger('create');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande.info[0] + '"]').attr('checked', 'checked');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande.info[0] + '"]').parent().find('label').removeClass('ui-radio-off');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande.info[0] + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').attr('checked', 'checked');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').parent().find('label').removeClass('ui-radio-off');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
 
 
-                    $('#sorveglianzaContrattoSelect').val(risposte.domande.info[1]);
+                    $('#sorveglianzaContrattoSelect').val(risposte.domande[0].contratto);
                     $('#sorveglianzaContrattoSelect').selectmenu('refresh');
                     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
-                    $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande.info[2] + '</option>');
-                    $('#sorveglianzaFilialeSelect').val(risposte.domande.info[2]);
+                    $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande[0].filiale + '</option>');
+                    $('#sorveglianzaFilialeSelect').val(risposte.domande[0].filiale);
                     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
 
 
-                    let caricaattrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
-                    let caricaDomandePromise = httpPost('php/ajax/get_domande.php');
-                    let i = 0;
-                    let j = 0;
-
-                    let content = '';
-                    caricaattrezzaturePromise.then(
-                        function (data) {
-                            //controllo se ci sono stati degli errori nella chiamata
-                            if (data.result) {
-                                caricaDomandePromise.then(
-                                    function (dom) {
-                                        if (dom.result) {
-                                            $.each(data[0], function (key, value) {
-                                                if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
-                                                    $.each(value.lista, function (innerKey, innerValue) {
-                                                        var label = innerValue.replace('LISTA_', '');
-                                                        content += "<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3>";
-                                                        $.each(dom.domande, function (lastKey, lastValue) {
-                                                            if (label === lastKey) {
-                                                                j = 0;
-                                                                $.each(lastValue, function (k, v) {
-                                                                    if (label === 'ESTINTORI') {
-                                                                        console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                                                                        if (risposte.domande.ESTINTORI[j++] === 'ok') {
-                                                                            console.log('ESTINTORI SI');
-                                                                            content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                                                                        } else {
-                                                                            content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                                                                        }
-                                                                    } else if (label === 'PORTE') {
-                                                                        console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                                                                        if (risposte.domande.PORTE[j++] === 'ok') {
-                                                                            console.log('ESTINTORI SI');
-                                                                            content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                                                                        } else {
-                                                                            content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                                                                        }
-                                                                    } else if (label === 'LUCI') {
-                                                                        console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                                                                        if (risposte.domande.LUCI[j++] === 'ok') {
-                                                                            console.log('ESTINTORI SI');
-                                                                            content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                                                                        } else {
-                                                                            content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                                                                        }
-                                                                    }
-                                                                })
-                                                            }
-                                                        });
-                                                        content += '</div>';
-                                                    });
-                                                    $('#questionarioSorveglianza').append(content).trigger('create');
-                                                }
-                                            })
-                                        }
-                                    }
-                                );
-                                $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
-                                $('#sorveglianzaInviaDati').removeClass('ui-disabled');
-                            } else {
-                                $('#attrezzature').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
-                            }
-                        }
-                    );
-                }
+                    // let caricaattrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
+                    // let caricaDomandePromise = httpPost('php/ajax/get_domande.php');
+                    // let i = 0;
+                    // let j = 0;
+                    //
+                    // let content = '';
+                    // caricaattrezzaturePromise.then(
+                    //     function (data) {
+                    //         //controllo se ci sono stati degli errori nella chiamata
+                    //         if (data.result) {
+                    //             caricaDomandePromise.then(
+                    //                 function (dom) {
+                    //                     if (dom.result) {
+                    //                         $.each(data[0], function (key, value) {
+                    //                             if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
+                    //                                 $.each(value.lista, function (innerKey, innerValue) {
+                    //                                     var label = innerValue.replace('LISTA_', '');
+                    //                                     content += "<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3>";
+                    //                                     $.each(dom.domande, function (lastKey, lastValue) {
+                    //                                         if (label === lastKey) {
+                    //                                             j = 0;
+                    //                                             $.each(lastValue, function (k, v) {
+                    //                                                 if (label === 'ESTINTORI') {
+                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
+                    //                                                     if (risposte.domande.ESTINTORI[j++] === 'ok') {
+                    //                                                         console.log('ESTINTORI SI');
+                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     } else {
+                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     }
+                    //                                                 } else if (label === 'PORTE') {
+                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
+                    //                                                     if (risposte.domande.PORTE[j++] === 'ok') {
+                    //                                                         console.log('ESTINTORI SI');
+                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     } else {
+                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     }
+                    //                                                 } else if (label === 'LUCI') {
+                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
+                    //                                                     if (risposte.domande.LUCI[j++] === 'ok') {
+                    //                                                         console.log('ESTINTORI SI');
+                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     } else {
+                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
+                    //                                                     }
+                    //                                                 }
+                    //                                             })
+                    //                                         }
+                    //                                     });
+                    //                                     content += '</div>';
+                    //                                 });
+                    //                                 $('#questionarioSorveglianza').append(content).trigger('create');
+                    //                             }
+                    //                         })
+                    //                     }
+                    //                 }
+                    //             );
+                    //             $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
+                    //             $('#sorveglianzaInviaDati').removeClass('ui-disabled');
+                    //         } else {
+                    //             $('#attrezzature').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                    //         }
+                    //     }
+                    // );
+                // }
             }
         }
     );
