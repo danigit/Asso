@@ -99,8 +99,8 @@ function selectFiliale(filiale) {
                                                 if (label.toLowerCase() === lastValue['type']) {
                                                     let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
                                                     let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
-                                                    let answer = $('<div><div class="si-checkbox"><label class="font-small"><input type="radio" name="radio-' + lastValue['number'] + '">SI</label></div>' +
-                                                        '<div class="no-checkbox"><label class="font-small"><input type="radio" name="radio-' + lastValue['number'] + '">NO</label></div></div>');
+                                                    let answer = $('<div><div class="si-checkbox"><label class="font-small"><input type="radio" name="radio-' + label + '-' + lastValue['number'] + '" checked="checked">SI</label></div>' +
+                                                        '<div class="no-checkbox"><label class="font-small"><input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">NO</label></div></div>');
                                                     div.append(question);
                                                     div.append(answer);
                                                     content.append(div);
@@ -157,11 +157,11 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
                 if(innerValue.tagName === 'DIV') {
                     i = 1;
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
-                        var input = $(lastValue).find('input');
-                        if($(input).is(':checked')) {
-                            snapShot[tipoAttrezzatura][i++] = "ok";
+                        let input = $(lastValue).find('input');
+                        if($(input).prop('checked')) {
+                            snapShot[tipoAttrezzatura][i++] = "1";
                         }else {
-                            snapShot[tipoAttrezzatura][i++] = 'no'
+                            snapShot[tipoAttrezzatura][i++] = '0'
                         }
                     })
                 }
@@ -169,6 +169,7 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
         }
     });
 
+    console.log(snapShot);
     let sorveglianzaTempSaveForm = new FormData();
     let sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();

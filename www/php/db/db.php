@@ -45,6 +45,37 @@ class Connection{
         return $result_array;
     }
 
+    function save_temp_surveillance($domande){
+        $this->connection->autocommit(false);
+        $errors = array();
+
+        $result = array();
+        $query = "insert into temp_surveillance (frequency, contratto, filiale, number, type, answer) 
+                  values (?, ?, ?, ?, ?, ?)";
+
+        while ($type = current($domande)){
+            $question = 1;
+            foreach ($type as $item) {
+
+                $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
+                    $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
+
+                if ($result === false)
+                    array_push($errors, 'insert');
+            }
+            next($domande);
+        }
+
+        if(!empty($errors)){
+            $this->connection->rollback();
+            return new db_error(db_error::$ERROR_ON_SAVE_TEMP_SURV);
+        }
+
+        $this->connection->commit();
+
+        return $result;
+    }
+
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
