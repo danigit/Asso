@@ -1,13 +1,23 @@
 'use strict';
 
-
-$(document).ready(function () {
-    var sorveglianzaContrattoPromise = httpPost('php/ajax/get_contratti.php');
+function resetSorveglianza() {
+    let sorveglianzaContrattoPromise = httpPost('php/ajax/get_contratti.php');
 
     sorveglianzaContrattoPromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
+                $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
+                $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
+                $('#sorveglianzaFilialeSelect').selectmenu('refresh');
+
+                $('#sorveglianzaContrattoSelect').children('option:not(:first)').remove();
+                $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
+                $('#sorveglianzaContrattoSelect').selectmenu('refresh');
+
+                $('#sorveglianzaFilialeSelect').addClass('ui-disabled');
+
+                $('#questionarioSorveglianza').empty();
 
                 $.each(data[0], function (key, value) {
                     $.each(value, function (innerKey, innerValue) {
@@ -19,7 +29,7 @@ $(document).ready(function () {
             }
         }
     );
-});
+}
 
 function selectContract() {
 
@@ -99,8 +109,24 @@ function selectFiliale(filiale) {
                                                 if (label.toLowerCase() === lastValue['type']) {
                                                     let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
                                                     let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
-                                                    let answer = $('<div><div class="si-checkbox"><label class="font-small"><input type="radio" name="radio-' + label + '-' + lastValue['number'] + '" checked="checked">SI</label></div>' +
-                                                        '<div class="no-checkbox"><label class="font-small"><input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">NO</label></div></div>');
+                                                    let answer = $('<div></div>');
+                                                    let siDiv = $('<div class="si-checkbox"></div>');
+                                                    let siLabel = $('<label class="font-small">SI</label>');
+                                                    let si = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
+                                                        $('#sorveglianza-note-' + label + '-' + lastValue['number']).remove();
+                                                    });
+                                                    siLabel.append(si);
+                                                    siDiv.append(siLabel);
+                                                    let noDiv = $('<div class="no-checkbox"></div>');
+                                                    let noLabel = $('<label class="font-small">NO</label>');
+                                                    let no = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
+                                                        let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + label + '-' + lastValue['number'] + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                                        div.append(note).trigger('create');
+                                                    });
+                                                    noLabel.append(no);
+                                                    noDiv.append(noLabel);
+                                                    answer.append(siDiv);
+                                                    answer.append(noDiv);
                                                     div.append(question);
                                                     div.append(answer);
                                                     content.append(div);
@@ -126,17 +152,17 @@ function selectFiliale(filiale) {
 
 selectFiliale();
 
-$('#sorveglianzaCancellaDati').on('click', function () {
-    $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
-    $('#sorveglianzaContrattoSelect').removeClass('ui-disabled');
-    $('#questionarioSorveglianza').empty();
-
-    $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
-    $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
-    $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
-    $('#sorveglianzaFilialeSelect').selectmenu('refresh');
-    $('#sorveglianzaContrattoSelect').selectmenu('refresh');
-});
+// function resetSorveglianza() {
+//     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
+//     $('#sorveglianzaContrattoSelect').removeClass('ui-disabled');
+//     $('#questionarioSorveglianza').empty();
+//
+//     $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
+//     $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
+//     $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
+//     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
+//     $('#sorveglianzaContrattoSelect').selectmenu('refresh');
+// }
 
 
 $('#sorveglianzaAggiungiModifica').on('click', function () {
@@ -157,11 +183,28 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
                 if(innerValue.tagName === 'DIV') {
                     i = 1;
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
-                        let input = $(lastValue).find('input');
-                        if($(input).prop('checked')) {
-                            snapShot[tipoAttrezzatura][i++] = "1";
+                        let input = $(lastValue).find('input[type="radio"]');
+                        if($(input).is(':checked')) {
+                            console.log($(input));
+                            console.log($(input).first().is(':checked'));
+                            if($(input).first().is(':checked'))
+                                snapShot[tipoAttrezzatura][i++] = "1";
+                            else{
+                                if ($(lastValue).children().eq(2).length !== 0) {
+                                    let noteValue = $(lastValue).children().eq(2).find('input').val();
+                                    if( noteValue !== "") {
+                                        snapShot[tipoAttrezzatura][i++] = noteValue;
+                                    }else
+                                        snapShot[tipoAttrezzatura][i++] = '0';
+                                    // snapShot[tipoAttrezzatura][i] = {};
+                                    // snapShot[tipoAttrezzatura][i]['value'] = "0";
+                                    // snapShot[tipoAttrezzatura][i++]['note'] = $(lastValue).children().eq(2).find('input').val();
+                                }else
+                                    snapShot[tipoAttrezzatura][i++] = '0'
+                            }
                         }else {
-                            snapShot[tipoAttrezzatura][i++] = '0'
+                            isComplete = false;
+                            showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Mettere il ckeck su tutti i campi', 'error');
                         }
                     })
                 }
@@ -175,20 +218,6 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
     snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale};
 
-
-    console.log(snapShot);
-
-    $.each(snapShot, function (key, value) {
-        if (key !== 'info'){
-            $.each(value, function (innerKey, innerValue) {
-                if (innerValue === 'no') {
-                    isComplete = false;
-                    return false;
-                }
-            })
-        }
-    });
-
     if(isComplete) {
         sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
 
@@ -198,11 +227,13 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
+                    showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
+                    setTimeout(function () {
+                        window.location.href = 'content.php';
+                    }, 1500)
                 }
             }
         );
-    }else {
-        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Mettere il ckeck su tutti i campi', 'error');
     }
 
     // $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
@@ -224,30 +255,124 @@ function caricaModifiche() {
         function (risposte) {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
-                $('#attrezzature').empty();
-                console.log(risposte.domande[0]);
+                console.log('result ok');
+                console.log(risposte);
+                if (!$.isEmptyObject(risposte[0])) {
+                    $('#attrezzature').empty();
+                    $('#questionarioSorveglianza').empty();
 
-                // if(!(risposte.domande.info[0] === "")) {
-                    console.log($('#sorveglianzaRadioFieldset').attr('class'));
+                    $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
+                    $('#sorveglianzaInviaDati').removeClass('ui-disabled');
+
                     var checked = $("#sorveglianzaRadioFieldset input[type='radio']:checked").val();
+                    console.log(checked);
+
                     $("#sorveglianzaRadioFieldset input:radio").attr('checked', false);
                     $("#sorveglianzaRadioFieldset input:radio").parent().find('label').removeClass('ui-radio-on ui-btn-active');
 
-
                     $("#sorveglianzaRadioFieldset").trigger('create');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').attr('checked', 'checked');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').parent().find('label').removeClass('ui-radio-off');
-                    $('input:radio[name="frequenza"]').filter('[value="' + risposte.domande[0].frequency + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').attr('checked', 'checked');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').parent().find('label').removeClass('ui-radio-off');
+                    $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
 
 
-                    $('#sorveglianzaContrattoSelect').val(risposte.domande[0].contratto);
+                    $('#sorveglianzaContrattoSelect').val(risposte[0][0].contratto);
                     $('#sorveglianzaContrattoSelect').selectmenu('refresh');
                     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
-                    $('#sorveglianzaFilialeSelect').append('<option>' + risposte.domande[0].filiale + '</option>');
-                    $('#sorveglianzaFilialeSelect').val(risposte.domande[0].filiale);
+                    $('#sorveglianzaFilialeSelect').append('<option>' + risposte[0][0].filiale + '</option>');
+                    $('#sorveglianzaFilialeSelect').val(risposte[0][0].filiale);
                     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
 
+                    let lastValue;
+                    let content;
 
+                    $.each(risposte[0], function (key, value) {
+                        console.log(value.question);
+
+                        if (value.type !== lastValue)
+                            content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true'><h3>" + value.type + "</h3></div>");
+
+                        let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
+                        let question = $('<p class="center-text margin-top-20">' + value.number + ') ' + value.question + '</p>');
+                        let gotAnswer = $('<div></div>');
+
+                        if (value.answer !== "0" && value.answer !== "1") {
+                            let siDiv = $('<div class="si-checkbox"></div>');
+                            let siLabel = $('<label class="font-small">SI</label>');
+                            let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                            });
+                            siLabel.append(si);
+                            siDiv.append(siLabel);
+                            gotAnswer.append(siDiv);
+
+                            let noDiv = $('<div class="no-checkbox"></div>');
+                            let noLabel = $('<label class="font-small">NO</label>');
+                            let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
+                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                div.append(note).trigger('create');
+                            });
+
+                            let recoveredNote = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" value="' + value.answer + '"></div>')
+                            noLabel.append(no);
+                            noDiv.append(noLabel);
+                            gotAnswer.append(noDiv);
+                            div.append(question);
+                            div.append(gotAnswer);
+                            div.append(recoveredNote);
+                        } else if (value.answer === "0"){
+                            let siDiv = $('<div class="si-checkbox"></div>');
+                            let siLabel = $('<label class="font-small">SI</label>');
+                            let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                            });
+                            siLabel.append(si);
+                            siDiv.append(siLabel);
+                            gotAnswer.append(siDiv);
+
+                            let noDiv = $('<div class="no-checkbox"></div>');
+                            let noLabel = $('<label class="font-small">NO</label>');
+                            let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
+                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                div.append(note).trigger('create');
+                            });
+                            noLabel.append(no);
+                            noDiv.append(noLabel);
+                            gotAnswer.append(noDiv);
+                            div.append(question);
+                            div.append(gotAnswer);
+                        }else {
+                            let siDiv = $('<div class="si-checkbox"></div>');
+                            let siLabel = $('<label class="font-small">SI</label>');
+                            let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                            });
+                            siLabel.append(si);
+                            siDiv.append(siLabel);
+                            gotAnswer.append(siDiv);
+
+                            let noDiv = $('<div class="no-checkbox"></div>');
+                            let noLabel = $('<label class="font-small">NO</label>');
+                            let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                div.append(note).trigger('create');
+                            });
+                            noLabel.append(no);
+                            noDiv.append(noLabel);
+                            gotAnswer.append(noDiv);
+                            div.append(question);
+                            div.append(gotAnswer);
+                        }
+
+                        content.append(div);
+
+                        $('#questionarioSorveglianza').append(content);
+
+                        lastValue = value.type;
+
+
+                    });
+                    $('#questionarioSorveglianza').trigger('create')
                     // let caricaattrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
                     // let caricaDomandePromise = httpPost('php/ajax/get_domande.php');
                     // let i = 0;
@@ -313,7 +438,10 @@ function caricaModifiche() {
                     //         }
                     //     }
                     // );
-                // }
+                    // }
+                }else {
+                    resetSorveglianza();
+                }
             }
         }
     );

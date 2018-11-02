@@ -37,6 +37,7 @@ var app = {
         });
 
         $('#sorveglianza').on('pagebeforeshow', function () {
+            resetSorveglianza();
             caricaModifiche();
         });
 

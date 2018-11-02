@@ -33,7 +33,7 @@ class get_temp_saved_sorveglianza extends cs_interaction {
     }
 
     protected function get_returned_data(){
-        return array('domande' => $this->result);
+        return array($this->result);
     }
 }
 $get_temp_saved_sorveglianza = new get_temp_saved_sorveglianza();

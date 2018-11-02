@@ -49,19 +49,19 @@ class Connection{
         $this->connection->autocommit(false);
         $errors = array();
 
-        $result = array();
         $query = "insert into temp_surveillance (frequency, contratto, filiale, number, type, answer) 
                   values (?, ?, ?, ?, ?, ?)";
 
         while ($type = current($domande)){
-            $question = 1;
-            foreach ($type as $item) {
+            if (key($domande) !== "info") {
+                $question = 1;
+                foreach ($type as $item) {
+                    $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
+                        $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
 
-                $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
-                    $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
-
-                if ($result === false)
-                    array_push($errors, 'insert');
+                    if ($result === false)
+                        array_push($errors, 'insert');
+                }
             }
             next($domande);
         }
@@ -73,10 +73,13 @@ class Connection{
 
         $this->connection->commit();
 
-        return $result;
+        return $errors;
     }
 
     function get_temp_saved_sorveglianza(){
+        $this->connection->autocommit(false);
+        $errors = array();
+
         $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.number, temp.answer, temp.type, question.question 
                   FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto, temp_surveillance.filiale, 
                   temp_surveillance.type, temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance 
@@ -85,18 +88,31 @@ class Connection{
 
         $result = $this->connection->query($query);
 
-        if ($result === false )
+        if ($result === false)
+            array_push($errors, 'select');
+
+        $truncateQuery = "truncate temp_surveillance";
+
+        $truncateResult = $this->connection->query($truncateQuery);
+
+        if ($truncateResult === false)
+            array_push($errors, 'truncate');
+
+        if (!empty($errors)) {
+            $this->connection->rollback();
             return new db_error(db_error::$ERROR_ON_GETTING_QUESTIONS);
+        }else {
+            $this->connection->commit();
 
-        $result_array = array();
+            $result_array = array();
 
-        //todo da mettere dove serve htmlspecialchars
-        while ($row = mysqli_fetch_assoc($result)) {
-            $result_array[] = array('frequency' => $row['frequency'], 'contratto' => $row['contratto'], 'filiale' => $row['filiale'],
-                'number' => $row['number'], 'type' => $row['type'], 'answer' => $row['answer'], 'question' => $row['question']);
+            //todo da mettere dove serve htmlspecialchars
+            while ($row = mysqli_fetch_assoc($result)) {
+                $result_array[] = array('frequency' => $row['frequency'], 'contratto' => $row['contratto'], 'filiale' => $row['filiale'],
+                    'number' => $row['number'], 'type' => $row['type'], 'answer' => $row['answer'], 'question' => $row['question']);
+            }
+            return $result_array;
         }
-
-        return $result_array;
     }
 
     /**

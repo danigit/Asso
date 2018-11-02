@@ -637,3 +637,14 @@ input{
 .border-top-2-blue{
     border-top: 2px solid #0099FF!important;
 }
+
+.sorveglianza-note{
+    width: 96%;
+    display: block;
+    margin: auto;
+    box-shadow: none;
+    border: none;
+    background: lightgray;
+    height: 34px;
+    border-radius: 10px;
+}
