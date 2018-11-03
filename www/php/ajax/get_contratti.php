@@ -21,7 +21,6 @@ class get_contratti extends cs_interaction {
         if($info != null){
             $folderName = getFolderName($info[1]);
             $contrattiPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixContratti.phx';
-            var_dump($contrattiPath);
             if(file_exists($contrattiPath)) {
                 $contrattiFile = fopen($contrattiPath, 'r');
                 while (($line = fgets($contrattiFile)) !== false) {

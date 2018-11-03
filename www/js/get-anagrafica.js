@@ -20,7 +20,7 @@ function getAnagrafica() {
                         || key === 'PARTITA_IVA' || key === 'CODICE_FISCALE' || key === 'EMAIL' || key === 'TELEFONO'
                         || key === 'CELLULARE') {
                         var parsedKey = key.replace("_", " ");
-                        anagrafica += '<li><p class="float-left font-large"><b class="blue-text">' + parsedKey + ':</b></p><br><br><p class="line-wrap font-medium">' + value + '</p></li>';
+                        anagrafica += '<li class="border-none"><p class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none box-shadow-bottom paddint-bottom-5px"><b class="blue-text">' + parsedKey + '</b></p><p class="line-wrap font-medium center-text float-left width-95 margin-zero padding-9px background-lightgray border-radius-top-30">' + value + '</p></li>';
                         console.log('anagrafica: ' + key + '/' + value);
                         select += '<option>' + parsedKey + '</option>';
                     }

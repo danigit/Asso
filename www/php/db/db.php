@@ -55,12 +55,14 @@ class Connection{
         while ($type = current($domande)){
             if (key($domande) !== "info") {
                 $question = 1;
-                foreach ($type as $item) {
-                    $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
-                        $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
+                if(is_array($type)) {
+                    foreach ($type as $item) {
+                        $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
+                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
 
-                    if ($result === false)
-                        array_push($errors, 'insert');
+                        if ($result === false)
+                            array_push($errors, 'insert');
+                    }
                 }
             }
             next($domande);
