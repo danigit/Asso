@@ -46,8 +46,8 @@
 }
 
 #valoreAnagrafica form div{
-    margin: 0!important;
-    width: 99% !important;
+    margin: auto!important;
+    width: 95% !important;
 }
 
 #altro-selection form div{
@@ -374,9 +374,10 @@ input{
 }
 
 .cambio-anagrafica-form-label{
-    width: 100% !important;
+    width: 85% !important;
     color: #0099FF;
-    padding: 10px;
+    margin: auto auto 20px auto!important;
+    padding: 10px 0 0 0!important;
     text-align: center;
     font-size: larger!important;
 }
@@ -439,6 +440,7 @@ input{
 }
 
 #cambiaAnagraficaList{
+    margin-top: 20px!important;
     box-shadow: none;
 }
 

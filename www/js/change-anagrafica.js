@@ -46,7 +46,7 @@ function setCambioAnagrafica() {
 
         //controllo se la voce selezionata e' diversa da quella di default e faccio comparire la textfield
         if (selectionAnagrafica !== 'Seleziona una voce...') {
-            let inputForm = '<form id="valoreAnagraficaForm"><input type="text" name="selectionValue" id="selectionValue" class="font-medium" placeholder="Inserisci valore ' + selectionAnagrafica + '"></form>';
+            let inputForm = '<form id="valoreAnagraficaForm"><input type="text" name="selectionValue" id="selectionValue" class="font-medium inset-shadow-blue padding-9px" placeholder="Inserisci valore ' + selectionAnagrafica + '"></form>';
             valoreAnagrafica.append(inputForm).trigger('create');
             $('#selectionValue').focus();
         } else {
@@ -80,12 +80,12 @@ function setCambioAnagrafica() {
                 $('#valoreAnagraficaForm').remove();
                 $('#cancellaModifica').removeClass('ui-disabled');
                 $('#inviaCambioAnagraficaDati').removeClass('ui-disabled');
-                changeAnagraficaList.append('<li class="ui-disabled"><p data-name="nameOfField" class="float-left font-large"><b class="blue-text">' + selectionAnagrafica + ':</b></p><br><br><p id="newValueOfField" class="line-wrap font-medium">' + itemToInsert + '</p></li>')
+                changeAnagraficaList.append('<li class=""><p data-name="nameOfField" class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none box-shadow-bottom paddint-bottom-5px"><b class="blue-text">' + selectionAnagrafica + '</b></p><br><br><p id="newValueOfField" class="line-wrap font-medium center-text float-left width-95 margin-zero padding-9px background-lightgray border-radius-top-30">' + itemToInsert + '</p></li>')
             }else {
-                showError($('#error-change-anagrafica-popup'), 'Cambio anagrafica', 'Campo già presente', 'error')
+                showError($('#error-change-anagrafica-popup'), 'CAMBIO ANAGRAFICA', 'Campo già presente', 'error')
             }
         }else{
-            showError($('#error-change-anagrafica-popup'), 'Cambio anagrafica', 'Selezionare almeno un campo da modificare', 'error')
+            showError($('#error-change-anagrafica-popup'), 'CAMBIO ANAGRAFICA', 'Selezionare almeno un campo da modificare e inserisci un valore', 'error')
         }
 
         //controllo se il form c'e' e se c'e' lo rimuovo

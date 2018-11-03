@@ -10,6 +10,10 @@
     box-shadow: inset 0 0 10px #CF2E15!important;
 }
 
+.inset-shadow-blue{
+    box-shadow: inset 0 0 10px #0099FF!important;
+}
+
 .inset-shadow-orange{
     box-shadow: inset 0 0 10px #FF956B!important;
 }
@@ -115,6 +119,10 @@
     border-bottom: 1px solid gray!important;
 }
 
+.border-bottom-1-red{
+    border-bottom: 1px solid red!important;
+}
+
 .margin-bottom-none{
     margin-bottom: 0!important;
 }
@@ -134,4 +142,9 @@
 
 .paddint-bottom-5px{
     padding-bottom: 5px!important;
+}
+
+.padding-lr-zero{
+    padding-left: 0!important;
+    padding-right: 0!important;
 }

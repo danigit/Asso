@@ -118,7 +118,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="footer" data-position="fixed" data-fullscreen="true">
-                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambia anagrafica</a></div>
+                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambio anagrafica</a></div>
             </div>
         </div>
 
@@ -131,7 +131,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
                 <div class="ui-field-contain">
-                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label">Seleziona campo da modificare</label>
+                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona campo da modificare</label>
                     <div id="cambioAnagraficaForm">
                         <select id="changeAnagraficaSelection">
                             <option>Seleziona una voce...</option>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
                 <div id="valoreAnagrafica"></div>
 
-                <div id="cambioAnagraficaValoriInseriti" class="margin-left-20px">
+                <div id="cambioAnagraficaValoriInseriti">
                     <ul id="cambiaAnagraficaList" data-role="listview" data-inset="true" class="anagrafica-list-margin">
                     </ul>
                 </div>
