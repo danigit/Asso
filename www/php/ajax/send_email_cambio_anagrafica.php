@@ -26,6 +26,8 @@ class send_email_cambio_anagrafica extends cs_interaction{
         for($i = 0; $i < $this->count; $i++){
             $this->fields .= $this->validate_string($i) . "<br>";
         }
+
+        var_dump($this->fields);
     }
 
     protected function get_informations(){
@@ -40,7 +42,7 @@ class send_email_cambio_anagrafica extends cs_interaction{
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress("ds.acconto@gmail.com");
         $mail->Subject = "Richiesta cambio Anagrafica " . $_SESSION['username'];
-        $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF' '>" . $_SESSION['username'] . "</b> per una richiesta di cambio dati anagrafica.<br><br><br><br>I dati da cambiare sono: <br><br>"
+        $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF' '>" . $_SESSION['username'] . "</b> per una richiesta di cambio dati anagrafica.<br><br><br><br>I nuovi dati sono: <br><br>"
             . $this->fields);
         if(!$mail->send()) //telnet smtp.aruba.it 587
             $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo );

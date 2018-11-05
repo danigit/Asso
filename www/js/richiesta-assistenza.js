@@ -187,11 +187,14 @@ function richiestaAssistenza() {
                 showError($('#error-content-popup'), 'Seleziona motivo', 'Inserire il motivo della richiesta di assistenza', 'error');
             }else {
                 if (!isEmpty) {
+                    sendEmail($('#error-content-popup'), 'start');
+
                     assistenzaFormData.append('assistenza', JSON.stringify(checked));
                     let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
                     richiediAssistenzaPromise.then(
                         function (data) {
                             if (data.result) {
+                                sendEmail($('#error-content-popup'), 'stop');
                                 showError($('#error-content-popup'), "Mail inviata", "La richiesta di assistenza è stata inoltrata con successo", "success");
                                 setTimeout(function () {
                                     window.location.href = 'content.php';

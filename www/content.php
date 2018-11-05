@@ -131,11 +131,11 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
                 <div class="ui-field-contain">
-                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Seleziona campo da modificare</label>
+                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Modifica campi anagrafica</label>
                     <div id="cambioAnagraficaForm">
-                        <select id="changeAnagraficaSelection">
-                            <option>Seleziona una voce...</option>
-                        </select>
+<!--                        <select id="changeAnagraficaSelection">-->
+<!--                            <option>Seleziona una voce...</option>-->
+<!--                        </select>-->
                     </div>
                 </div>
                 <div id="valoreAnagrafica" class="clear-float-left"></div>
@@ -148,9 +148,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="cambioAnagraficaMessaggioErrore"></div>
 
                 <div data-role="footer" data-position="fixed" class="background-white">
-                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>
-                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>
-                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati ui-disabled" data-role="button" data-inline="true">Invia</a>
+<!--                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>-->
+<!--                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
+                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
                 </div>
 
                 <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content" data-history="false">
@@ -244,8 +244,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="resultForCheck"></div>
 
                 <div id="error-content-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
-                    <p class="error-title"></p>
-                    <p class="error-content"></p>
+                    <p class="box-shadow-bottom center-text title"></p>
+                    <p class="margin-top-20 content"></p>
                 </div>
 
                 <div id="assistenzaMessaggioErrore"></div>
@@ -301,8 +301,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div id="error-sorveglianza-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
-                <p class="error-title"></p>
-                <p class="error-content"></p>
+                <p class="box-shadow-bottom center-text title"></p>
+                <p class="margin-top-20 content"></p>
             </div>
         </div>
 

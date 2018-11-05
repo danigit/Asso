@@ -306,6 +306,7 @@ input{
     padding-right: 0!important;
     font-size: large!important;
     border: 1px solid #3dc235!important;
+    border-radius: 0!important;
     background-color: #3dc235!important;
     color: #ffffff!important;
 }
@@ -792,4 +793,12 @@ input{
     90% {left:74%;top: 100px;}
     95% {left:76%;top: 100px;}
     100% {left:78%;top: 100px;}
+}
+
+
+#cambioAnagraficaForm .ui-input-text{
+    width: 95% !important;
+    margin-top: 0!important;
+    margin-bottom: 30px!important;
+    border-top: none!important;
 }

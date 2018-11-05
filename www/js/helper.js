@@ -81,7 +81,7 @@ function showError(errorPopup, title, content, type) {
 
     setTimeout(function () {
         elem.popup("close");
-    }, 200000000);
+    }, 2000);
 }
 
 function sendEmail(errorPopup, state) {
@@ -98,12 +98,10 @@ function sendEmail(errorPopup, state) {
         elem.find('.content').addClass('email-content');
         $('.email-title').text('Sto inviando richiesta di cambio anagrafica...');
         $('.email-content').text('');
-        elem.append($('<img src="../www/img/email-5-64.ico" id="send-email-image">'));
+        elem.append($('<img src="../img/email-5-64.ico" id="send-email-image">'));
         elem.popup();
         elem.popup('open');
     }else if(state === 'stop'){
-        setTimeout(function () {
-            elem.popup("close");
-        }, 200000000);
+        elem.popup("close");
     }
 }
