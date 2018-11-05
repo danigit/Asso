@@ -53,15 +53,25 @@ function selectDefaultForSelection(elementName) {
 function showError(errorPopup, title, content, type) {
     let elem = errorPopup;
     if(type === 'success') {
-        elem.removeClass('error-popup');
+        elem.find('img').remove();
+        elem.removeClass('error-popup email-popup');
+        elem.find('.title').removeClass('error-title email-title');
+        elem.find('.content').removeClass('error-content email-content');
+        elem.find('.title').addClass('success-title');
+        elem.find('.content').addClass('success-content');
         elem.addClass('success-popup');
-        $('.error-title').text(title);
-        $('.error-content').text(content);
+        $('.success-title').text(title);
+        $('.success-content').text(content);
         elem.popup();
         elem.popup("open");
 
     }else if(type === 'error'){
-        elem.removeClass('success-popup');
+        elem.find('img').remove();
+        elem.removeClass('success-popup email-popup success-title success-content email-title email-content');
+        elem.find('.title').removeClass('success-title email-title');
+        elem.find('.content').removeClass('success-content email-content');
+        elem.find('.title').addClass('error-title');
+        elem.find('.content').addClass('error-content');
         elem.addClass('error-popup');
         $('.error-title').text(title);
         $('.error-content').text(content);
@@ -71,5 +81,29 @@ function showError(errorPopup, title, content, type) {
 
     setTimeout(function () {
         elem.popup("close");
-    }, 2000);
+    }, 200000000);
+}
+
+function sendEmail(errorPopup, state) {
+    let elem = errorPopup;
+
+    if(state === 'start') {
+        // elem.css('width', '500px');
+        elem.css('height', '150px');
+        elem.removeClass('error-popup success-popup error-title error-content success-title success-content');
+        elem.find('.title').removeClass('error-title success-title');
+        elem.find('.contet').removeClass('error-content success-content');
+        elem.addClass('email-popup');
+        elem.find('.title').addClass('email-title');
+        elem.find('.content').addClass('email-content');
+        $('.email-title').text('Sto inviando richiesta di cambio anagrafica...');
+        $('.email-content').text('');
+        elem.append($('<img src="../www/img/email-5-64.ico" id="send-email-image">'));
+        elem.popup();
+        elem.popup('open');
+    }else if(state === 'stop'){
+        setTimeout(function () {
+            elem.popup("close");
+        }, 200000000);
+    }
 }

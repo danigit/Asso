@@ -17,22 +17,22 @@ function getAttrezzature() {
                     $.each(value, function (innerKey, innerValue) {
                         //se la chiave e contratto mostro solo il label con il nome del contratto
                         if(innerKey === 'contratto') {
-                            content = $("<div data-role='collapsible' data-inset='true'><h3>" + innerValue + "</h3></div>");
+                            content = $("<div data-role='collapsible' data-inset='true' class='margin-bottom-10 attrezzature-collapsible'><h3>" + innerValue + "</h3></div>");
                             contratto = innerValue;
                         }else {
                             //creo una lista per ogni contratto e inserisco i dati del contratto
                             $.each(innerValue, function (lastKey, lastValue) {
                                 let name = lastValue.replace(/LISTA_/g, '').replace('_', ' ');
-                                let list = $('<a href="#' + name.toLowerCase() + '" class="ui-btn" data-name="' + contratto + '">' + name + '</li>').on('click', function () {
+                                let list = $('<a href="#' + name.toLowerCase() + '" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10" data-name="' + contratto + '">' + name + '</li>').on('click', function () {
                                     viewList(lastValue, $(this).attr('data-name'));
                                     $.mobile.changePage('#viewList');
 
                                 });
                                 content.append(list);
-                                $('#attrezzature-container').append(content);
+                                $('#attrezzature-list').append(content);
                             });
-                            $('#attrezzature-container').trigger('create');
                         }
+                        $('#attrezzature-list').trigger('create');
                     })
                 });
 

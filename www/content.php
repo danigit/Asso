@@ -131,14 +131,14 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
                 <div class="ui-field-contain">
-                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona campo da modificare</label>
+                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Seleziona campo da modificare</label>
                     <div id="cambioAnagraficaForm">
                         <select id="changeAnagraficaSelection">
                             <option>Seleziona una voce...</option>
                         </select>
                     </div>
                 </div>
-                <div id="valoreAnagrafica"></div>
+                <div id="valoreAnagrafica" class="clear-float-left"></div>
 
                 <div id="cambioAnagraficaValoriInseriti">
                     <ul id="cambiaAnagraficaList" data-role="listview" data-inset="true" class="anagrafica-list-margin">
@@ -153,9 +153,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati ui-disabled" data-role="button" data-inline="true">Invia</a>
                 </div>
 
-                <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup border-1-white" data-history="false">
-                    <p class="error-title"></p>
-                    <p class="error-content"></p>
+                <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content" data-history="false">
+                    <p class="box-shadow-bottom center-text title"></p>
+                    <p class="margin-top-20 content"></p>
                 </div>
 
             </div>
@@ -204,6 +204,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
             <div data-role="content" id="attrezzature-container">
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Attrezzature</h1>
+                <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="attrezzature-list">
+                </div>
             </div>
         </div>
 
@@ -216,7 +218,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Richiedi assistenza</h1>
                 <form>
                     <fieldset class="ui-field-contain" id="richiediAssistenzaForm" data-role="controlgoup" data-inset="true">
-                        <label for="richiediAssistenzaForm" class="cambio-anagrafica-form-label">Seleziona le informazioni richieste</label>
+                        <label for="richiediAssistenzaForm" class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona le informazioni richieste</label>
                         <select id="richiestaAssistenzaMotivoSelect" data-inset="true">
                             <option>Seleziona un motivo...</option>
                             <option>Altro...</option>
@@ -263,7 +265,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="red-text philosopher-font header-page-title">Sorveglianza</h1>
                 <div id="frequenza" data-role="fieldcontain">
                     <fieldset data-role="controlgroup" id="sorveglianzaRadioFieldset" data-type="horizontal">
-                        <legend class="cambio-anagrafica-form-label">Seleziona frequesnza</legend>
+                        <legend class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona frequesnza</legend>
                         <input type="radio" name="frequenza" id="mensile" value="mensile" checked="checked">
                         <label for="mensile">Mensile</label>
                         <input type="radio" name="frequenza" id="bimestrale" value="bimestrale">
@@ -275,7 +277,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
                 <form>
                     <fieldset class="ui-field-contain" id="sorveglianzaFieldSet" data-role="controlgoup" data-inset="true">
-                        <label for="sorveglianzaLabelForm" class="cambio-anagrafica-form-label">Seleziona le informazioni richieste</label>
+                        <label for="sorveglianzaLabelForm" class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona le informazioni richieste</label>
                         <select id="sorveglianzaContrattoSelect" data-inset="true">>
                             <option>Seleziona un contratto...</option>
                         </select>

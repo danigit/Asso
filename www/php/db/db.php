@@ -10,7 +10,8 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class Connection{
-    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
     public function __construct(){

@@ -27,7 +27,7 @@ function getFatture(){
                     // //inserisco le fatture relative all'anno attuale
                     $.each(value, function (innerKey, innerValue) {
 
-                        var content = "<div id='fattureCollapsable' data-role='collapsible' data-inset='false'><h3>" + innerKey + "</h3>";
+                        var content = "<div id='fattureCollapsable' data-role='collapsible' data-inset='false' class='margin-bottom-10'><h3>" + innerKey + "</h3>";
                         content += insertContent(innerKey, innerValue);
                     //
                     //     content += '<div class="ui-grid-a ui-responsive">' +
@@ -58,7 +58,7 @@ function insertContent( innerKey, innerValue) {
     $.each(innerValue, function (lastKey, lastValue) {
         console.log(lastKey + '/' + lastValue.numero);
 
-        content += "<div id='fattureCollapsableInner' data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Fattura nr. " + lastValue.numero + "</h3>";
+        content += "<div id='fattureCollapsableInner' data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3 class='box-shadow-bottom'>Fattura nr. " + lastValue.numero + "</h3>";
 
         $.each(lastValue, function (k, v) {
             if(k !== 'contratto') {

@@ -60,9 +60,9 @@ function richiestaAssistenza() {
                         if(key === 'filiale')
                             $('#richiestaAssistenzaFilialeSelect').append('<option>' + value + '</option>');
                         else if (key === 'tecnico') {
-                            $('.info-tecnico').append('<p class="center-text"><b class="blue-text font-large">Tecnico:</b> ' + value + '</p>');
+                            $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="blue-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
                         }else if (key === 'telefono_tecnico') {
-                            $('.info-tecnico p').append('<br> <b class="blue-text font-large">Cellulare:</b> ' + value)
+                            $('.info-tecnico p').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
                         }
                     })
                 }else {
@@ -92,11 +92,11 @@ function richiestaAssistenza() {
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
-                    content += '<p class="elementi-da-selezionare font-medium"> Seleziona gli elementi che richiedono assistenza</p>';
+                    content += '<p class="elementi-da-selezionare font-medium border-bottom-1-red width-85"> Seleziona gli elementi che richiedono assistenza</p>';
                     $.each(data[0], function (key, value) {
                         $.each(value, function (innerKey, innerValue) {
                             //aggiungo la categoria dell'attrezzatura
-                            content += "<div id='" + innerKey + "' data-role='collapsible' data-inset='true'><h3>" + innerKey + "</h3>";
+                            content += "<div id='" + innerKey + "' data-role='collapsible' data-inset='true' class='richiestaAssistenza-collapsible'><h3>" + innerKey + "</h3>";
                             //controllo se ci sono piu' di un elemento da visualizzare
                             if ($.isArray(innerValue)) {
                                 //inserisco tutti gli elemeni
@@ -118,8 +118,8 @@ function richiestaAssistenza() {
                     });
 
                     $('#resultForCheck').append(content).trigger('create');
-                    $('#noteAggiuntive').append('<label class="note-aggiuntive-label" for="areaNoteAggiuntive">Note aggiuntive: </label>' +
-                        '<textarea name="areaNoteAggiuntive" id="areaNoteAggiuntive" placeholder="Lasciare vuoto se non ci sono note aggiuntive"></textarea>').trigger('create');
+                    $('#noteAggiuntive').append('<label class="note-aggiuntive-label center-text blue-text border-bottom-1-red" for="areaNoteAggiuntive">Note aggiuntive </label>' +
+                        '<textarea name="areaNoteAggiuntive" class="box-shadow-bottom" id="areaNoteAggiuntive" placeholder="Lasciare vuoto se non ci sono note aggiuntive"></textarea>').trigger('create');
 
                     inviaRichiestaAssistenzaDati.removeClass('ui-disabled');
                 }else {

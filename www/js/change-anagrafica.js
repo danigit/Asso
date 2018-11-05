@@ -110,6 +110,8 @@ function setCambioAnagrafica() {
         let emailForm = new FormData();
         let count = 0;
 
+        sendEmail($('#error-change-anagrafica-popup'), 'start');
+
         //prendo tutti i valori da mandare
         $('#cambiaAnagraficaList li').each(function (key, value) {
             let label = '<b>' + value.firstChild.textContent + '</b> ' + value.lastChild.textContent;
@@ -128,11 +130,12 @@ function setCambioAnagrafica() {
                 function (data) {
                     //controllo se ci sono stati errori nella chiamato
                     if (data.result) {
+                        sendEmail($('#error-change-anagrafica-popup'), 'stop');
                         //rimuovo elementi inseriti e notifico l'invio della mail
                         changeAnagraficaList.empty();
                         changeAnagraficaMessaggioErrore.empty();
                         selectDefaultForSelection('changeAnagraficaSelection');
-                        showError($('#error-change-anagrafica-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata innoltrata con successo', 'success')
+                        showError($('#error-change-anagrafica-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata innoltrata con successo', 'success');
                         setTimeout(function () {
                             window.location.href = 'content.php';
                         }, 1500);

@@ -106,7 +106,7 @@ function selectFiliale(filiale) {
                                         $.each(value.lista, function (innerKey, innerValue) {
                                             let label = innerValue.replace('LISTA_', '');
                                             console.log(label);
-                                            content = $("<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3></div>");
+                                            content = $("<div id='" + label + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + label + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
                                                 console.log(lastValue['type']);
                                                 if (label.toLowerCase() === lastValue['type']) {
@@ -298,7 +298,7 @@ function caricaModifiche() {
                         console.log(value.question);
 
                         if (value.type !== lastValue)
-                            content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true'><h3>" + value.type + "</h3></div>");
+                            content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
 
                         let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
                         let question = $('<p class="center-text margin-top-20">' + value.number + ') ' + value.question + '</p>');

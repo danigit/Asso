@@ -311,9 +311,51 @@ input{
 }
 
 .contratti-collapsible > h3 > a{
-    background-color: #0099FF!important;
+    /*background-color: #0099FF!important;*/
     text-shadow: none!important;
-    color: #ffffff!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
+}
+
+.rapporti-collapsible > h3 > a{
+    /*background-color: #0099FF!important;*/
+    text-shadow: none!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
+}
+
+.attrezzature-collapsible > h3 > a{
+    /*background-color: #0099FF!important;*/
+    text-shadow: none!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
+}
+
+.viewlist-collapsible > h3 > a{
+    /*background-color: #0099FF!important;*/
+    text-shadow: none!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
+}
+
+.sorveglianza-collapsible > h3 > a{
+    /*background-color: #0099FF!important;*/
+    text-shadow: none!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
+}
+
+.richiestaAssistenza-collapsible > h3 > a{
+    /*background-color: #0099FF!important;*/
+    text-shadow: none!important;
+    padding-left: 50px!important;
+    border: none!important;
+    /*color: #ffffff!important;*/
 }
 
 .title-A{
@@ -376,7 +418,7 @@ input{
 .cambio-anagrafica-form-label{
     width: 85% !important;
     color: #0099FF;
-    margin: auto auto 20px auto!important;
+    margin: auto 7% 20px 7%!important;
     padding: 10px 0 0 0!important;
     text-align: center;
     font-size: larger!important;
@@ -445,7 +487,9 @@ input{
 }
 
 #fattureCollapsable h3 a{
-    background-color: #F0F7EE!important
+    /*background-color: #7ca7fc14!important*/
+    border: none!important;
+    padding-left: 50px!important;
 }
 
 #fattureCollapsableInner h3 a{
@@ -457,7 +501,7 @@ input{
 }
 
 #attrezzature-container div h3 a{
-    background-color: #F0F7EE;
+    /*background-color: #7ca7fc14;*/
     color: #000000;
 }
 
@@ -467,7 +511,7 @@ input{
 }
 
 .elementi-da-selezionare{
-    margin: 20px 0 0 0;
+    margin: 20px auto 20px auto!important;
     color: #0099FF;
     padding: 10px;
     text-align: center;
@@ -481,7 +525,8 @@ input{
 }
 
 .note-aggiuntive-label{
-    margin: 0 0 10px 10px!important;
+    width: 85% !important;
+    margin: 20px auto 20px auto!important;
     font-size: large!important;
 }
 
@@ -543,28 +588,58 @@ input{
 }
 
 .error-popup{
-    border: 1px solid #FFFFFF!important;
-    background: #AE1E28!important;
-    color: white!important;
-    box-shadow: 0 0 10px 7px #AE1E28!important;
+    border: 1px solid #AE1E28!important;
+    /*background: #AE1E28!important;*/
+    /*color: white!important;*/
+    box-shadow: inset 0 0 10px #AE1E28!important;
 }
 
 .success-popup{
     border: 3px solid #5DB553!important;
-    background: #5DB553!important;
-    color: white!important;
-    box-shadow: 0 0 16px 7px #5DB553!important;
+    /*background: #5DB553!important;*/
+    /*color: white!important;*/
+    box-shadow: inset 0 0 10px #5DB553!important;
+}
+
+.email-popup{
+    border: 3px solid #0099FF!important;
+    /*background: #5DB553!important;*/
+    /*color: white!important;*/
+    box-shadow: inset 0 0 10px #0099FF!important;
 }
 
 .error-title{
-    padding: 10px!important;
+    color: #AE1E28;
+    padding: 10px 10px 0 10px!important;
     border-bottom: 3px solid #FFFFFF;
 }
 
 .error-content{
+    color: #AE1E28;
     padding: 10px;
 }
 
+.success-title{
+    color: #5DB553;
+    padding: 10px 10px 0 10px!important;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.success-content{
+    color: #5DB553;
+    padding: 10px;
+}
+
+.email-title{
+    color: #0099FF;
+    padding: 10px 10px 0 10px!important;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.email-content{
+    color: #0099FF;
+    padding: 10px;
+}
 
 @media (min-width: 1921px) {
     [data-role="page"]{
@@ -649,4 +724,72 @@ input{
     background: lightgray;
     height: 34px;
     border-radius: 10px;
+}
+
+#sorveglianzaContrattoSelect-button{
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#sorveglianzaFilialeSelect-button{
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#richiestaAssistenzaMotivoSelect-button{
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#richiestaAssistenzaContrattoSelect-button{
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#richiestaAssistenzaFilialeSelect-button{
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#changeAnagraficaSelection-button{
+    float: left!important;
+    width: 100%!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+    margin: 20px 0 50px 0!important;
+    border: none!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+}
+
+#send-email-image{
+    position: absolute!important;
+    -webkit-animation-name: email!important; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s!important; /* Safari 4.0 - 8.0 */
+    animation-name: email!important;
+    animation-duration: 2s!important;
+    animation-iteration-count: infinite!important;
+}
+
+@-webkit-keyframes email {
+    0%   {left:2%;top: 100px;}
+    10%  {left:5%; top: 100px}
+    15%  {left:7%; top: 100px}
+    20%  {left:9%; top: 100px}
+    25%  {left:11%; top: 100px}
+    30%  {left:13%; top: 100px}
+    35%  {left:16%; top: 100px}
+    40% {left:20%;top: 100px;}
+    45% {left:24%;top: 100px;}
+    45% {left:28%;top: 100px;}
+    50% {left:34%;top: 100px;}
+    55% {left:40%;top: 100px;}
+    60% {left:50%;top: 100px;}
+    65% {left:60%;top: 100px;}
+    70% {left:66%;top: 100px;}
+    75% {left:68%;top: 100px;}
+    80% {left:70%;top: 100px;}
+    85% {left:72%;top: 100px;}
+    90% {left:74%;top: 100px;}
+    95% {left:76%;top: 100px;}
+    100% {left:78%;top: 100px;}
 }

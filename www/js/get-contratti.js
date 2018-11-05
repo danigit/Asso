@@ -24,7 +24,7 @@ function getContratti() {
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            contrattiAttiviList += '<a href="#" onclick="app.openPdf(\''+ innerValue.path + '\');" class="ui-btn">' + innerValue.nome + ' / '
+                            contrattiAttiviList += '<a href="#" onclick="app.openPdf(\''+ innerValue.path + '\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });
 
@@ -38,7 +38,7 @@ function getContratti() {
                         $.each(value, function (innerKey, innerValue) {
 
                             //TODO inserire l'url del host dove risiedera il sito
-                            contrattiCessatiList += '<a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" class="ui-btn">' + innerValue.nome + ' / '
+                            contrattiCessatiList += '<a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">' + innerValue.nome + ' / '
                                 + innerValue.data.split('/').pop() + '</a>';
                         });
 

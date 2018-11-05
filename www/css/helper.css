@@ -14,6 +14,10 @@
     box-shadow: inset 0 0 10px #0099FF!important;
 }
 
+.inset-shadow-darkblue{
+    box-shadow: inset 0 0 10px #72A7F8!important;
+}
+
 .inset-shadow-orange{
     box-shadow: inset 0 0 10px #FF956B!important;
 }
@@ -147,4 +151,59 @@
 .padding-lr-zero{
     padding-left: 0!important;
     padding-right: 0!important;
+}
+
+.ui-focus,
+.ui-btn:focus{
+    box-shadow: none!important;
+    outline: 0!important;
+}
+
+.border-radius-10{
+    border-radius: 10px!important;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px!important;
+}
+
+.ui-btn:after{
+    color: #0099FF;
+    background-color: #0099FF;
+}
+
+.ui-icon-plus:after{
+    background: url("../img/plus-5-32.ico")!important;
+    height: 32px!important;
+    width: 32px!important;
+    margin-top: -16px!important;
+}
+
+.ui-icon-minus:after{
+    background: url("../img/minus-5-32.ico")!important;
+    height: 32px!important;
+    width: 32px!important;
+    margin-top: -16px!important;
+}
+
+.ui-icon-carat-u:after{
+    background: url("../img/arrow-145-24.ico")!important;
+    height: 24px!important;
+    width: 24px!important;
+    margin-top: -10px!important;
+}
+
+.ui-icon-carat-d:after{
+    background: url("../img/arrow-207-24.ico")!important;
+    height: 24px!important;
+    width: 24px!important;
+    margin-top: -10px!important;
+}
+
+.margin-top-12{
+    margin-top: 12px!important;
+}
+
+.width-85{
+    width: 85% !important;
 }

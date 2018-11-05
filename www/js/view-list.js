@@ -34,9 +34,9 @@ function viewList(elem, contratto) {
                         console.log('innerValue');
                         console.log(innerValue.MATRICOLA);
                         if(innerValue.MATRICOLA)
-                            content += "<div data-role='collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
+                            content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
                         else
-                            content += "<div data-role='collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
+                            content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
 
                         $.each(innerValue, function (lastKey, lastValue) {
                             //controllo se l'articolo e' un array in modo da visualizzare anche i suoi elementi
