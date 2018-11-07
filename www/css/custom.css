@@ -802,3 +802,7 @@ input{
     margin-bottom: 30px!important;
     border-top: none!important;
 }
+
+#sorveglianza-body .ui-checkbox{
+    margin-top: 3px!important;
+}

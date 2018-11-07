@@ -79,7 +79,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </ul>
         </div>
         <div data-role="page" id="home">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content">
@@ -117,7 +117,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="anagraficaContainer"></div>
             </div>
 
-            <div data-role="footer" data-position="fixed" data-fullscreen="true">
+            <div data-role="footer" data-position="fixed" data-fullscreen="false">
                 <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambio anagrafica</a></div>
             </div>
         </div>
@@ -140,14 +140,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
                 <div id="valoreAnagrafica" class="clear-float-left"></div>
 
-                <div id="cambioAnagraficaValoriInseriti">
-                    <ul id="cambiaAnagraficaList" data-role="listview" data-inset="true" class="anagrafica-list-margin">
-                    </ul>
-                </div>
-
                 <div id="cambioAnagraficaMessaggioErrore"></div>
 
-                <div data-role="footer" data-position="fixed" class="background-white">
+                <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
 <!--                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>-->
 <!--                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
                     <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
@@ -162,7 +157,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="contratti">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -174,7 +169,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="fatture">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -186,7 +181,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="rapporti">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -210,7 +205,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="richiestaAssistenza">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -251,7 +246,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="assistenzaMessaggioErrore"></div>
             </div>
 
-            <div data-role="footer" data-position="fixed">
+            <div data-role="footer" data-position="fixed" data-fullscreen="false">
                 <a href="#" id="inviaRichiestaAssistenzaDati" class="ui-disabled" data-role="button" data-inline="true">Richiedi Assistenza</a>
             </div>
         </div>
@@ -307,7 +302,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="modificaPassword">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -326,7 +321,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="viewList">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader">
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false">
                 <a href="#menu" class="menu-icon"><img src="img/menu-icon.png" class="menu-icon-image"></a>
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
@@ -339,98 +334,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="pdf-page">
             <div data-role="content" id="pdf-content">
-                <div>
-                    <p class="float-left margin-right-50px font-medium">Check-list Sorveglianza</p>
-                    <div class="float-left">
-                                <div class="float-left margin-right-10px">
-                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="Mensile-pdf" value="on" checked="checked">Mensile</label>
-                                </div>
-                                <div class="float-left margin-right-10px">
-                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="bimestrale-pdf" value="off">Bimestrale</label>
-                                </div>
-                                <div class="float-left margin-right-10px">
-                                    <label class="font-x-small padding-left-30px"><input type="radio" name="frequency-pdf" id="trimestrale-pdf" value="other">Trimestrale</label>
-                                </div>
-                    </div>
-                </div>
 
-                <br><br><br><br>
-
-                <div class="clear-float-left position-absolute">
-                    <p class="font-medium"><b>Incaricato Sig:</b> Antani Scapelli</p>
-                    <p class="font-medium"><b>Data:</b> 30/10/2018</p>
-                </div>
-                <div class="float-right">
-                    <img src="img/logo_small.jpg">
-                </div>
-                <div>
-                    <table data-role="table" id="estintori-table" data-mode="reflow" class="ui-responsive">
-                        <thead>
-                        <tr>
-                            <th colspan="4" data-priority="1" class="border-1-black background-gray">Estintori portatili / carrellati: </th>
-                        </tr>
-                        </thead>
-                        <tbody id="estintori-body">
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">presenza del sigilio di controllo</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">collocazione adeguata: visibile, accessibile, libera da ostacoli</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">presenza del cartello segnalatore</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </tbody>
-
-
-                        <thead>
-                        <tr>
-                            <th colspan="4" data-priority="1" class="border-1-black background-gray">Idranti a muro / naspi: </th>
-                        </tr>
-                        </thead>
-                        <tbody id="estintori-body">
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">presenza della manichetta / lancia/ sella</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">collocazione adeguata: visibile, accessibile, libera da ostacoli</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">presenza cartello indicatore</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-                            <tr>
-                                <th class="border-1-black width-3 center-text padding-9px font-small">1</th>
-                                <td class="border-1-black padding-9px font-small">esame visivo dello stato della saracinesca</td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">SI</label></td>
-                                <td class="border-1-black width-5 padding-0"><label class="font-small"><input type="checkbox" name="checkbox-0 ">NO</label></td>
-                            </tr>
-
-                            </tbody>
-                    </table>
-                </div>
-
-                <a href="javascript: generatePdf();" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium" data-role="button" data-inline="true">Salva nel database</a>
+<!--                <a href="javascript: generatePdf();" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium" data-role="button" data-inline="true">Salva nel database</a>-->
             </div>
 
         </div>

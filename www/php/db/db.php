@@ -10,8 +10,8 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class Connection{
-//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
-    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
+    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+//    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
     public function __construct(){
@@ -58,8 +58,10 @@ class Connection{
                 $question = 1;
                 if(is_array($type)) {
                     foreach ($type as $item) {
+                        var_dump(key($domande));
+                        var_dump($item['checked']);
                         $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
-                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item);
+                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item['checked']);
 
                         if ($result === false)
                             array_push($errors, 'insert');

@@ -7,8 +7,8 @@ function resetSorveglianza() {
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
-                $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
-                $('#sorveglianzaInviaDati').removeClass('ui-disabled');
+                // $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
+                // $('#sorveglianzaInviaDati').removeClass('ui-disabled');
 
                 $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
                 $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
@@ -105,10 +105,8 @@ function selectFiliale(filiale) {
                                     if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
                                         $.each(value.lista, function (innerKey, innerValue) {
                                             let label = innerValue.replace('LISTA_', '');
-                                            console.log(label);
                                             content = $("<div id='" + label + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + label + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
-                                                console.log(lastValue['type']);
                                                 if (label.toLowerCase() === lastValue['type']) {
                                                     let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
                                                     let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
@@ -177,28 +175,32 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
     $('#sorveglianzaAggiungiModifica').addClass('ui-disabled');
     $('#sorveglianzaInviaDati').addClass('ui-disabled');
 
-    let snapShot = getData();
-    let sorveglianzaTempSaveForm = new FormData();
+    if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
+        let snapShot = getData();
 
-    console.log(snapShot);
-    if(snapShot.isComplete) {
-        sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
+        let sorveglianzaTempSaveForm = new FormData();
 
-        let sorveglianzaTempSavePromise = httpPost('php/ajax/temp_save_sorveglianza.php', sorveglianzaTempSaveForm);
+        console.log(snapShot);
+        if (snapShot.isComplete) {
+            sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
 
-        sorveglianzaTempSavePromise.then(
-            function (data) {
-                //controllo se ci sono stati degli errori nella chiamata
-                if (data.result) {
-                    showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
-                    setTimeout(function () {
-                        window.location.href = 'content.php';
-                    }, 1500)
+            let sorveglianzaTempSavePromise = httpPost('php/ajax/temp_save_sorveglianza.php', sorveglianzaTempSaveForm);
+
+            sorveglianzaTempSavePromise.then(
+                function (data) {
+                    //controllo se ci sono stati degli errori nella chiamata
+                    if (data.result) {
+                        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
+                        setTimeout(function () {
+                            // /window.location.href = 'content.php';
+                        }, 1500)
+                    }
                 }
-            }
-        );
+            );
+        }
+    }else {
+        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare un contratto e una filiale', 'error');
     }
-
     // $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
     // $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
     // $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
@@ -211,6 +213,11 @@ function getData() {
     let i = 1;
     let snapShot = {};
     snapShot['isComplete'] = true;
+    let nowDate = new Date($.now());
+    let month = nowDate.getMonth()+1;
+    let day = nowDate.getDate();
+
+    snapShot['time'] = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + nowDate.getFullYear();
 
     let sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
@@ -227,17 +234,18 @@ function getData() {
                 if(innerValue.tagName === 'DIV') {
                     i = 1;
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
-                        let input = $(lastValue).find('input[type="radio"]');
-                        if($(input).is(':checked')) {
-                            if($(input).first().is(':checked'))
-                                snapShot[tipoAttrezzatura][i++] = "1";
+                        let radio = $(lastValue).find('input[type="radio"]');
+                        let question = $(lastValue).find('p').text();
+                        if($(radio).is(':checked')) {
+                            if($(radio).first().is(':checked'))
+                                snapShot[tipoAttrezzatura][i++] = {question: question, checked: '1'};
                             else{
                                 if ($(lastValue).children().eq(2).length !== 0) {
                                     let noteValue = $(lastValue).children().eq(2).find('input').val();
                                     if( noteValue !== "") {
-                                        snapShot[tipoAttrezzatura][i++] = noteValue;
+                                        snapShot[tipoAttrezzatura][i++] = {question: question, checked: noteValue};
                                     }else
-                                        snapShot[tipoAttrezzatura][i++] = '0';
+                                        snapShot[tipoAttrezzatura][i++] = {question: question, checked: '0'};
                                     // snapShot[tipoAttrezzatura][i] = {};
                                     // snapShot[tipoAttrezzatura][i]['value'] = "0";
                                     // snapShot[tipoAttrezzatura][i++]['note'] = $(lastValue).children().eq(2).find('input').val();
@@ -264,9 +272,9 @@ function caricaModifiche() {
         function (risposte) {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
-                console.log('result ok');
                 console.log(risposte);
                 if (!$.isEmptyObject(risposte[0])) {
+                    console.log('risposte is empty');
                     $('#attrezzature').empty();
                     $('#questionarioSorveglianza').empty();
 
@@ -460,3 +468,10 @@ function caricaModifiche() {
         }
     );
 }
+
+$('#sorveglianzaInviaDati').on('click', function () {
+    let data = getData();
+
+    createPdf(data);
+
+});

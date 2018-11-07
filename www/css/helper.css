@@ -136,7 +136,7 @@
 }
 
 .background-lightgray{
-    background-color: #d3d3d338!important;
+    background-color: #d3d3d363!important;
 }
 
 .border-radius-top-30{
@@ -210,4 +210,16 @@
 
 .bold-text{
     font-weight: bold!important;
+}
+
+.padding-tb-2px-lr-7px{
+    padding: 2px 7px 2px 7px!important;
+}
+
+.border-top-1-black{
+    border-top: 1px solid #000000;
+}
+
+.padding-11px{
+    padding: 11px!important;
 }
