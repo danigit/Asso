@@ -64,3 +64,7 @@ function sendMail($xml_file, $password){
     }
     return false;
 }
+
+function is_error($value){
+    return is_a($value, "db_error");
+}

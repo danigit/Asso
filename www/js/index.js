@@ -28,18 +28,50 @@ var app = {
             getAttrezzature();
         });
 
-        $('#cambioAnagrafica').on('pageinit', function () {
+        $('#cambioAnagrafica').on('pagebeforeshow', function () {
             setCambioAnagrafica();
         });
 
-        $('#richiestaAssistenza').on('pageinit', function () {
+        $('#richiestaAssistenza').on('pagebeforeshow', function () {
             richiestaAssistenza();
         });
 
         $('#sorveglianza').on('pagebeforeshow', function () {
             resetSorveglianza();
-            caricaModifiche();
+            // caricaModifiche();
         });
+
+        // $(document).on('pagebeforehide', function () {
+        //     let url = window.location.href;
+        //     console.log('antani');
+        //     console.log(url);
+        //     let pop;
+        //
+        //     if(url.split('#').pop() === 'sorveglianza'){
+        //         console.log('sorveglianza...');
+        //         $(window).on('popstate', function (e) {
+        //             if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
+        //                 // e.preventDefault();
+        //                 console.log('popping...');
+        //                 pop = window.location.href;
+        //
+        //                 $('#back-sorveglianza-confirm .back-sorveglianza-confirm-header').text('Sorveglianza');
+        //                 $('#back-sorveglianza-confirm .back-sorveglianza-confirm-text').text('Salvare lo stato della pagina prima di uscire?');
+        //                 $('#back-sorveglianza-confirm .back-sorveglianza-confirm-button').text('Salva stato').on('click ', function (e) {
+        //                     console.log('salvataggio....');
+        //                     // saveTemp();
+        //                     console.log(pop);
+        //                     window.history.pushState(null, "", url);
+        //                 });
+        //
+        //                 setTimeout(function () {
+        //                     $('#back-sorveglianza-confirm').popup('open');
+        //                 }, 500)
+        //             }
+        //         })
+        //
+        //     }
+        // })
 
         // $(document).on('tap', function (event) {
         //     if($(event.target).is('a')){

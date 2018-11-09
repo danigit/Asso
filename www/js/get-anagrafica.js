@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * Funzione che reccupera l'anagrafica relativa all'utente attualmente connesso
  */
@@ -11,17 +12,28 @@ function getAnagrafica() {
             if (data.result) {
                 //creo una lista per visualizzare i dati
                 let anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
+
+                let anagraficaOrder = {
+                    RAGIONE_SOCIALE: data[0].RAGIONE_SOCIALE,
+                    INDIRIZZO_FATTURAZIONE: data[0].INDIRIZZO_FATTURAZIONE,
+                    INDIRIZZO_SPEDIZIONE: data[0].INDIRIZZO_SPEDIZIONE,
+                    PARTITA_IVA: data[0].PARTITA_IVA,
+                    CODICE_FISCALE: data[0].CODICE_FISCALE,
+                    EMAIL: data[0].EMAIL,
+                    TELEFONO: data[0].TELEFONO,
+                    CELLULARE: data[0].CELLULARE
+                };
+
                 let select = '';
 
-                //inserisco i dati nella lista
-                $.each(data[0], function (key, value) {
-                    //prendo solo i dati che mi interessano
-                    if(key === 'RAGIONE_SOCIALE' || key === 'INDIRIZZO_FATTURAZIONE' || key === 'INDIRIZZO_SPEDIZIONE'
-                        || key === 'PARTITA_IVA' || key === 'CODICE_FISCALE' || key === 'EMAIL' || key === 'TELEFONO'
-                        || key === 'CELLULARE') {
-                        var parsedKey = key.replace("_", " ");
-                        anagrafica += '<li class="border-none"><p class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none box-shadow-bottom paddint-bottom-5px"><b class="blue-text">' + parsedKey + '</b></p><p class="line-wrap font-medium center-text float-left width-95 margin-zero padding-9px background-lightgray border-radius-top-30">' + value + '</p></li>';
-                        console.log('anagrafica: ' + key + '/' + value);
+                $.each(anagraficaOrder, function (key, value) {
+                    if(value !== undefined && value !== ""){
+                        let parsedKey = key.replace("_", " ");
+                        anagrafica += '<li class="border-none">' +
+                            '<p class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none ' +
+                            'box-shadow-bottom paddint-bottom-5px"><b class="blue-text">' + parsedKey + '</b></p>' +
+                            '<p class="font-medium center-text float-left full-width margin-zero padding-lr-zero-tb-9px  background-lightgray ' +
+                            'border-radius-top-30">' + value + '</p></li>';
                         select += '<option>' + parsedKey + '</option>';
                     }
                 });

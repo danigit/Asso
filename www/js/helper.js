@@ -31,11 +31,11 @@ function httpPost(url, input) {
 function parseString(key, stringValue) {
 
     if(key === 'pagata' && stringValue === '0')
-        return 'si';
-    else if(key === 'pagata' && stringValue === '0')
-        return false;
+        return 'SI';
+    else if(key === 'pagata' && stringValue !== '0')
+        return 'NO';
     else if(key === 'importo' && stringValue.length > 2)
-        return stringValue.substr(0, stringValue.length - 2) + '.' + stringValue.substr(stringValue.length - 2);
+        return stringValue.substr(0, stringValue.length - 2) + '.' + stringValue.substr(stringValue.length - 2) + ' €';
     else
         return stringValue;
 }

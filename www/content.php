@@ -113,12 +113,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="content" class="anagrafica-padding margin-bottom-30">
-                <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">Anagrafica</h1>
+                <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">ANAGRAFICA</h1>
                 <div id="anagraficaContainer"></div>
             </div>
 
             <div data-role="footer" data-position="fixed" data-fullscreen="false">
-                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">Cambio anagrafica</a></div>
+                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">CAMBIO ANAGRAFICA</a></div>
             </div>
         </div>
 
@@ -129,7 +129,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="content" class="anagrafica-padding">
-                <h1 class="red-text philosopher-font header-page-title">Cambia Anagrafica</h1>
+                <h1 class="red-text philosopher-font header-page-title">CAMBIO ANAGRAFICA</h1>
                 <div class="ui-field-contain">
                     <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Modifica campi anagrafica</label>
                     <div id="cambioAnagraficaForm">
@@ -145,7 +145,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
 <!--                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>-->
 <!--                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
-                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati" data-role="button" data-inline="true">Invia</a>
+                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati border-radius-none" data-role="button" data-inline="true">INVIA RICHIESTA</a>
                 </div>
 
                 <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content" data-history="false">
@@ -162,7 +162,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font header-page-title">Contratti</h1>
+                <h1 class="red-text philosopher-font header-page-title">CONTRATTI</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="contratti-list">
                 </div>
             </div>
@@ -174,7 +174,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font header-page-title">Fatture</h1>
+                <h1 class="red-text philosopher-font header-page-title">FATTURE</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
             </div>
@@ -186,7 +186,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content">
-                <h1 class="red-text philosopher-font header-page-title">Rapporti</h1>
+                <h1 class="red-text philosopher-font header-page-title">RAPPORTI</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="rapporti-list">
                 </div>
             </div>
@@ -198,7 +198,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content" id="attrezzature-container">
-                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Attrezzature</h1>
+                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">ATTREZZATURE</h1>
                 <div data-role="collapsible-set" data-inset="false" data-content-theme="d" id="attrezzature-list">
                 </div>
             </div>
@@ -210,7 +210,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
-                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">Richiedi assistenza</h1>
+                <h1 class="red-text philosopher-font header-page-title margin-bottom-30">RICHIESTA ASSISTENZA</h1>
                 <form>
                     <fieldset class="ui-field-contain" id="richiediAssistenzaForm" data-role="controlgoup" data-inset="true">
                         <label for="richiediAssistenzaForm" class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona le informazioni richieste</label>
@@ -220,7 +220,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                             <option>Motivo 1</option>
                             <option>Motivo 2</option>
                         </select>
-                        <div id="altro-selection"></div>
+                        <div id="altro-selection" class="clear-float-left"></div>
                         <br>
                         <select id="richiestaAssistenzaContrattoSelect" class="ui-disabled" data-inset="true">>
                             <option>Seleziona un contratto...</option>
@@ -231,7 +231,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                         </select>
                         <br>
 
-                        <div class="info-tecnico">
+                        <div class="info-tecnico clear-float-left">
                         </div>
                     </fieldset>
                 </form>
@@ -247,7 +247,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="footer" data-position="fixed" data-fullscreen="false">
-                <a href="#" id="inviaRichiestaAssistenzaDati" class="ui-disabled" data-role="button" data-inline="true">Richiedi Assistenza</a>
+                <a href="#" id="inviaRichiestaAssistenzaDati" class="ui-disabled border-radius-none" data-role="button" data-inline="true">RICHIEDI ASSISTENZA</a>
             </div>
         </div>
 
@@ -298,6 +298,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div id="error-sorveglianza-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
                 <p class="box-shadow-bottom center-text title"></p>
                 <p class="margin-top-20 content"></p>
+            </div>
+
+            <div data-role="popup" id="back-sorveglianza-confirm" class="padding-20-40" data-history="false" data-overlay-theme="a">
+                <div data-role="content">
+                    <h3 class="back-sorveglianza-confirm-header center-text blue-color margin-bottom-30 font-x-large"></h3>
+                    <p class="back-sorveglianza-confirm-text center-text margin-bottom-30"></p>
+                    <a href="#" class="back-sorveglianza-confirm-button width-90 margin-lr-auto border-red-1 red-color inset-shadow-orange" data-role="button" data-rel="back">Elimina tipologia</a>
+                    <a href="#" class="width-90 margin-lr-auto border-green-1 green-color inset-shadow-green" data-role="button" data-rel="back">Anulla</a>
+                </div>
             </div>
         </div>
 

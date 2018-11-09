@@ -52,8 +52,8 @@ class send_email_assistenza extends cs_interaction{
         $mail->addAddress("ds.acconto@gmail.com");
         $mail->addCC('surpanudaniel@gmail.com');
         $mail->Subject = "Richiesta assistenza";
-        $mail->msgHTML("Sei stata contattato da: <br><br> Nome:<b style='color: #0099FF;'> " . $_SESSION['username'] . "</b><br><br><br><br><b>Richiesta assistenza per: </b><br><br>"
-            . $this->email_string);
+        $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF;'> " . $_SESSION['username'] . "</b> per una richiesta di assistenza.<br><br><br> 
+                L'assistenza riguarda:: <br><br><br>" . $this->email_string);
         if(!$mail->send()) //telnet smtp.aruba.it 587
             $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo );
     }

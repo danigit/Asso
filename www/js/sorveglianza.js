@@ -32,6 +32,7 @@ function resetSorveglianza() {
             }
         }
     );
+    caricaModifiche();
 }
 
 function selectContract() {
@@ -121,8 +122,7 @@ function selectFiliale(filiale) {
                                                     let noDiv = $('<div class="no-checkbox"></div>');
                                                     let noLabel = $('<label class="font-small">NO</label>');
                                                     let no = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
-                                                        let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + label + '-' + lastValue['number'] + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
-                                                        console.log($('#sorveglianza-note-' + label + '-' + lastValue['number']).length == 0);
+                                                        let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + label + '-' + lastValue['number'] + '" rows="2" placeholder="Inserire nota"></textarea></div>');
                                                         if($('#sorveglianza-note-' + label + '-' + lastValue['number']).length === 0)
                                                             div.append(note).trigger('create');
                                                         $('.sorveglianza-note').parent().addClass('margin-auto-lr width-95 margin-bottom-none border-radius-bottom-none');
@@ -175,32 +175,7 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
     $('#sorveglianzaAggiungiModifica').addClass('ui-disabled');
     $('#sorveglianzaInviaDati').addClass('ui-disabled');
 
-    if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
-        let snapShot = getData();
-
-        let sorveglianzaTempSaveForm = new FormData();
-
-        console.log(snapShot);
-        if (snapShot.isComplete) {
-            sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
-
-            let sorveglianzaTempSavePromise = httpPost('php/ajax/temp_save_sorveglianza.php', sorveglianzaTempSaveForm);
-
-            sorveglianzaTempSavePromise.then(
-                function (data) {
-                    //controllo se ci sono stati degli errori nella chiamata
-                    if (data.result) {
-                        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
-                        setTimeout(function () {
-                            // /window.location.href = 'content.php';
-                        }, 1500)
-                    }
-                }
-            );
-        }
-    }else {
-        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare un contratto e una filiale', 'error');
-    }
+    saveTemp();
     // $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
     // $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
     // $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
@@ -208,6 +183,33 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
     // $('#sorveglianzaContrattoSelect').selectmenu('refresh');
     // $('#questionarioSorveglianza').empty();
 });
+
+function saveTemp(){
+    if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
+        let snapShot = getData();
+
+        let sorveglianzaTempSaveForm = new FormData();
+
+        console.log(snapShot);
+        sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
+
+        let sorveglianzaTempSavePromise = httpPost('php/ajax/temp_save_sorveglianza.php', sorveglianzaTempSaveForm);
+
+        sorveglianzaTempSavePromise.then(
+            function (data) {
+                //controllo se ci sono stati degli errori nella chiamata
+                if (data.result) {
+                    showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
+                    setTimeout(function () {
+                        // /window.location.href = 'content.php';
+                    }, 1500)
+                }
+            }
+        );
+    }else {
+        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare un contratto e una filiale', 'error');
+    }
+}
 
 function getData() {
     let i = 1;
@@ -241,7 +243,7 @@ function getData() {
                                 snapShot[tipoAttrezzatura][i++] = {question: question, checked: '1'};
                             else{
                                 if ($(lastValue).children().eq(2).length !== 0) {
-                                    let noteValue = $(lastValue).children().eq(2).find('input').val();
+                                    let noteValue = $(lastValue).children().eq(2).find('textarea').val();
                                     if( noteValue !== "") {
                                         snapShot[tipoAttrezzatura][i++] = {question: question, checked: noteValue};
                                     }else
@@ -254,7 +256,7 @@ function getData() {
                             }
                         }else {
                             snapShot['isComplete'] = false;
-                            showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Mettere il ckeck su tutti i campi', 'error');
+                            snapShot[tipoAttrezzatura][i++] = {question: question, checked: '-1'}
                         }
                     })
                 }
@@ -312,7 +314,29 @@ function caricaModifiche() {
                         let question = $('<p class="center-text margin-top-20">' + value.number + ') ' + value.question + '</p>');
                         let gotAnswer = $('<div></div>');
 
-                        if (value.answer !== "0" && value.answer !== "1") {
+                        if (value.answer === '-1'){
+                            let siDiv = $('<div class="si-checkbox"></div>');
+                            let siLabel = $('<label class="font-small">SI</label>');
+                            let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                            });
+                            siLabel.append(si);
+                            siDiv.append(siLabel);
+                            gotAnswer.append(siDiv);
+
+                            let noDiv = $('<div class="no-checkbox"></div>');
+                            let noLabel = $('<label class="font-small">NO</label>');
+                            let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota"></textarea></div>');
+                                    div.ar('create');
+                            });
+
+                            noLabel.append(no);
+                            noDiv.append(noLabel);
+                            gotAnswer.append(noDiv);
+                            div.append(question);
+                            div.append(gotAnswer);
+                        }else if (value.answer !== "0" && value.answer !== "1") {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
@@ -325,12 +349,12 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                     div.append(note).trigger('create');
                             });
 
-                            let recoveredNote = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" value="' + value.answer + '"></div>');
+                            let recoveredNote = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '">' + value.answer + '</textarea></div>');
                             noLabel.append(no);
                             noDiv.append(noLabel);
                             gotAnswer.append(noDiv);
@@ -350,7 +374,7 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                     div.append(note).trigger('create');
                             });
@@ -372,7 +396,7 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><input type="text" name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota(max 50 caratteri)"></div>');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                         div.append(note).trigger('create');
                             });
@@ -460,7 +484,7 @@ function caricaModifiche() {
                     // );
                     // }
                 }else {
-                    resetSorveglianza();
+                    // resetSorveglianza();
                 }
                 console.log('radio value');
                 console.log($('#sorveglianzaRadioFieldset').val());
@@ -475,3 +499,4 @@ $('#sorveglianzaInviaDati').on('click', function () {
     createPdf(data);
 
 });
+

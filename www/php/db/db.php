@@ -53,22 +53,19 @@ class Connection{
         $query = "insert into temp_surveillance (frequency, contratto, filiale, number, type, answer) 
                   values (?, ?, ?, ?, ?, ?)";
 
-        while ($type = current($domande)){
-            if (key($domande) !== "info") {
+        foreach ($domande as $elemName => $elem) {
+            if ($elemName !== "info") {
                 $question = 1;
-                if(is_array($type)) {
-                    foreach ($type as $item) {
-                        var_dump(key($domande));
-                        var_dump($item['checked']);
+                if(is_array($elem)) {
+                    foreach ($elem as $item) {
                         $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
-                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, key($domande), $item['checked']);
+                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, $elemName, $item['checked']);
 
                         if ($result === false)
                             array_push($errors, 'insert');
                     }
                 }
             }
-            next($domande);
         }
 
         if(!empty($errors)){

@@ -19,6 +19,7 @@ class temp_save_sorveglianza extends cs_interaction{
     protected function input_elaboration(){
         $this->temp_sorveglianza = $this->validate_string("valori");
         $this->domande = json_decode($this->temp_sorveglianza, true);
+//        var_dump($this->domande);
 
 //        $file_estintori = fopen('../../resources/temp_save_estintori.csv', 'w');
 //        $file_luci = fopen('../../resources/temp_save_luci.csv', 'w');
@@ -34,6 +35,9 @@ class temp_save_sorveglianza extends cs_interaction{
     protected function get_informations(){
         $connection = $this->get_connection();
         $this->result = $connection->save_temp_surveillance($this->domande);
+
+        if (is_error($this->result))
+            $this->json_error('Errore nel inserire campi');
 
     }
 

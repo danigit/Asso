@@ -135,6 +135,10 @@
     box-shadow: 0 15px 10px -10px gray!important;
 }
 
+.box-shadow-bottom-11px{
+    box-shadow: 0 11px 10px -10px gray!important;
+}
+
 .background-lightgray{
     background-color: #d3d3d363!important;
 }
@@ -222,4 +226,16 @@
 
 .padding-11px{
     padding: 11px!important;
+}
+
+.padding-20-40{
+    padding: 20px 40px!important;
+}
+
+.border-radius-none{
+    border-radius: 0!important;
+}
+
+.padding-lr-zero-tb-9px{
+    padding: 9px 0 9px 0!important;
 }

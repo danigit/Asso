@@ -4,15 +4,15 @@
  * Funzione che ritorna la lista delle attrezzature dell'utente attualmente connesso
  */
 function getAttrezzature() {
-    var attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
+    let attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
 
     attrezzaturePromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
-                var contratto = '';
+                let contratto = '';
                 $.each(data[0], function (key, value) {
-                    var content = '';
+                    let content = '';
                     //prendo i valori degli elementi ritornati ragruppati per contratto
                     $.each(value, function (innerKey, innerValue) {
                         //se la chiave e contratto mostro solo il label con il nome del contratto

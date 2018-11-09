@@ -17,33 +17,9 @@ function getContratti() {
                     //TODO capire che tipo di valore ha key, con alcuni utenti ritorna un numero con altri una stringa
                     //controllo se l'elemento corrente e' un contratto attivo o meno
                     if(key === 0 || key === '0'){
-                        var contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='false'><h3>Contratti attivi</h3>";
-                        var contrattiAttiviList = '';
-
-                        //inserisco i contratti attivi
-                        $.each(value, function (innerKey, innerValue) {
-
-                            //TODO inserire l'url del host dove risiedera il sito
-                            contrattiAttiviList += '<a href="#" onclick="app.openPdf(\''+ innerValue.path + '\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">' + innerValue.nome + ' / '
-                                + innerValue.data.split('/').pop() + '</a>';
-                        });
-
-                        contrattiAttivi += contrattiAttiviList + '</div>';
-                        $("#contratti-list").append( contrattiAttivi ).collapsibleset('refresh');
+                        insertContract(value, 'CONTRATTI ATTIVI', 'false');
                     }else{
-                        var contrattiCessati = "<div data-role='collapsible' class='contratti-collapsible'><h3>Contratti cessati</h3>";
-                        var contrattiCessatiList = '';
-
-                        //inserisco i contratti non attivi
-                        $.each(value, function (innerKey, innerValue) {
-
-                            //TODO inserire l'url del host dove risiedera il sito
-                            contrattiCessatiList += '<a href="#" onclick="app.openPdf(\'' + innerValue.path + '\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">' + innerValue.nome + ' / '
-                                + innerValue.data.split('/').pop() + '</a>';
-                        });
-
-                        contrattiCessati += contrattiCessatiList + '</div>';
-                        $("#contratti-list").append( contrattiCessati ).collapsibleset('refresh');
+                        insertContract(value, 'CONTRATTI CESSATI', 'true');
                     }
                 })
             } else {
@@ -51,4 +27,20 @@ function getContratti() {
             }
         }
     );
+}
+
+function insertContract(value, title, collapse){
+    let contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='" + collapse + "'><h3>" + title + "</h3>";
+    let contrattiAttiviList = '';
+
+    //inserisco i contratti attivi
+    $.each(value, function (innerKey, innerValue) {
+
+        //TODO inserire l'url del host dove risiedera il sito
+        contrattiAttiviList += '<a href="#" onclick="app.openPdf(\''+ innerValue.path + '\');" class="ui-btn margin-top-12 ' +
+            'box-shadow-bottom border-radius-10">' + innerValue.nome + ' / ' + innerValue.data.split('/').pop() + '</a>';
+    });
+
+    contrattiAttivi += contrattiAttiviList + '</div>';
+    $("#contratti-list").append( contrattiAttivi ).collapsibleset('refresh');
 }

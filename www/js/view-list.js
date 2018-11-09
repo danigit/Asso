@@ -44,7 +44,6 @@ function viewList(elem, contratto) {
                                 //se l'aray e' vuoto non inserisco niente
                                 if(!$.isEmptyObject(lastValue)) {
                                     content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichette</h3>";
-
                                     $.each(lastValue, function (mk, mv) {
                                         content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichetta numero: " + mv.ID_BOCCHELLO + "</h3>";
                                         $.each(mv, function (label, value) {
@@ -53,11 +52,12 @@ function viewList(elem, contratto) {
                                         });
                                         content += '</div>';
                                     });
-                                    content += '</div>';
+
+                                    content += '</div></div>';
                                 }
                             }else {
                                 if(!(lastKey === 'FILIALE'))
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
+                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
                             }
                         });
                         content += '</div>';

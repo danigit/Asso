@@ -4,7 +4,7 @@
  * Funzione che ritorna gli interventi e i rapporti di intervento dell'utente attualmente collegato
  */
 function getRapporti() {
-    var contrattiPromise = httpPost('php/ajax/get_rapporti.php');
+    let contrattiPromise = httpPost('php/ajax/get_rapporti.php');
 
     contrattiPromise.then(
         function (data) {
@@ -13,13 +13,13 @@ function getRapporti() {
 
                 $.each(data[0], function (key, value) {
                     //divido i rapporti per contratti
-                    var label = $('<a href="#" data-inset="false" class="fatture-header ui-shadow ui-btn ui-corner-all ui-header">' + key + '</a>');
+                    let label = $('<a href="#" data-inset="false" class="fatture-header ui-shadow ui-btn ui-corner-all ui-header">' + key + '</a>');
                     $('#rapporti-list').append(label);
                     $.each(value, function (innerKey, innerValue) {
 
-                        var content = "<div data-role='collapsible' class='rapporti-collapsible'><h3>" + innerKey + "</h3>";
+                        let content = "<div data-role='collapsible' class='rapporti-collapsible'><h3>" + innerKey + "</h3>";
                         //inserisco i rapporti del contratto attuale
-                        var rapporti = Object.values(innerValue).reverse();
+                        let rapporti = Object.values(innerValue).reverse();
 
                         $.each(rapporti, function (lastKey, lastValue) {
 

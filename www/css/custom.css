@@ -419,7 +419,7 @@ input{
 .cambio-anagrafica-form-label{
     width: 85% !important;
     color: #0099FF;
-    margin: auto 7% 20px 7%!important;
+    margin: auto 7% 50px 7%!important;
     padding: 10px 0 0 0!important;
     text-align: center;
     font-size: larger!important;
@@ -473,7 +473,7 @@ input{
 
 .inviaDati{
     width: 100% !important;
-    margin: 5px 0 0 0!important;
+    margin: 0 0 0 0!important;
     padding-left: 0!important;
     padding-right: 0!important;
     font-size: large!important;
@@ -717,14 +717,10 @@ input{
 }
 
 .sorveglianza-note{
-    width: 96%;
-    display: block;
-    margin: auto;
-    box-shadow: none;
-    border: none;
-    background: lightgray;
-    height: 34px;
-    border-radius: 10px;
+    width: 96%!important;
+    margin: auto!important;
+    padding: 5px!important;
+    border-radius: 10px!important;
 }
 
 #sorveglianzaContrattoSelect-button{
@@ -805,4 +801,19 @@ input{
 
 #sorveglianza-body .ui-checkbox{
     margin-top: 3px!important;
+}
+
+.collapsible-year > a{
+    margin-bottom: 10px!important;
+    box-shadow: 0 15px 10px -10px gray!important;
+    border: 1px solid gray!important;
+    border-radius: 10px!important;
+    font-size: large!important;
+    text-align: center!important;
+    color: #0099FF!important;
+}
+
+.collapsible-year-div > div{
+    width: 95% !important;
+    margin: auto!important;
 }
