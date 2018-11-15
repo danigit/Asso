@@ -7,7 +7,9 @@
  */
 
 
+//define('FORWARDSLASH', '\\');
 define('FORWARDSLASH', '/');
+//define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . '..' . FORWARDSLASH .'PhoenixData' . FORWARDSLASH);
 define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . 'PhoenixData' . FORWARDSLASH);
 define('LINK_FOR_PDF_FILES', 'http://www.assoantincendio.com/areaclienti/PhoenixData/');
 
@@ -41,6 +43,7 @@ function createRandomPassword($length){
 }
 
 function getUserInformations($username){
+    var_dump(PHOENIX_FOLDER );
     $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
     if($fileClientsList) {
         while (($line = fgets($fileClientsList)) !== false) {

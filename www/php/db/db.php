@@ -11,6 +11,7 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 
 class Connection{
     const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+//    const PATH = 'localhost', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
@@ -231,6 +232,3 @@ class Connection{
         return $result_array;
     }
 }
-
-//$obj = new Connection();
-//var_dump($obj->test());

@@ -13,7 +13,8 @@ loginForm.onsubmit = function (event) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
                 //l'utente e' logato quindi entro nell'area protetta
-                window.location.replace('../content.php');
+                // window.location.replace('../content.php');
+                window.location.replace('../Asso/content.php');
             } else {
                 let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                 if ($('.error-message').length !== 0)

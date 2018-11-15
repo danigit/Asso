@@ -257,7 +257,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
-                <h1 class="red-text philosopher-font header-page-title">Sorveglianza</h1>
+                <h1 class="red-text philosopher-font header-page-title">SORVEGLIANZA</h1>
                 <div id="frequenza" data-role="fieldcontain">
                     <fieldset data-role="controlgroup" id="sorveglianzaRadioFieldset" data-type="horizontal">
                         <legend class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona frequesnza</legend>
