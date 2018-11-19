@@ -30,9 +30,39 @@ function viewList(elem, contratto) {
                     console.log('value');
                     console.log(value);
                     $.each(value, function (innerKey, innerValue) {
+                        console.log(elem);
+                        let elemOrder;
+
+                        if (elem === 'LISTA_ESTINTORI') {
+                            elemOrder = {
+                                PROGRESSIVO: innerValue.PROGRESSIVO,
+                                DESCRIZIONE: innerValue.DESCRIZIONE,
+                                MATRICOLA: innerValue.MATRICOLA,
+                                ANNO_COSTRUZIONE: innerValue.ANNO_COSTRUZIONE,
+                                CLASSE_FUOCO: innerValue.CLASSE_FUOCO,
+                                SCADENZA_REVISIONE: innerValue.SCADENZA_REVISIONE,
+                                SCADENZA_COLLAUDO: innerValue.SCADENZA_COLLAUDO,
+                                UBICAZIONE: innerValue.UBICAZIONE
+                            };
+                        }else if(elem === 'LISTA_PORTE'){
+                            elemOrder = {
+                                PROGRESSIVO: innerValue.PROGRESSIVO,
+                                MATRICOLA: innerValue.MATRICOLA,
+                                TIPO_PORTA: innerValue.TIPO_PORTA,
+                                ANNO_COSTRUZIONE: innerValue.ANNO_COSTRUZIONE,
+                                ANTE: innerValue.ANTE,
+                                MARCA: innerValue.MARCA,
+                            };
+                        }else if (elem === 'LISTA_LUCI'){
+                            elemOrder = {
+                                PROGRESSIVO: innerValue.PROGRESSIVO,
+                                TIPO_LUCE: innerValue.TIPO_LUCE,
+                                MARCA_LUCE: innerValue.MARCA_LUCE,
+                                UBICAZIONE: innerValue.UBICAZIONE
+                            };
+                        }
+
                         //controllo se l'articolo contiene una matricola e lo inserisco
-                        console.log('innerValue');
-                        console.log(innerValue.MATRICOLA);
                         if(innerValue.MATRICOLA)
                             content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
                         else
@@ -47,6 +77,8 @@ function viewList(elem, contratto) {
                                     $.each(lastValue, function (mk, mv) {
                                         content += "<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u' data-iconpos='right' data-inset='true'><h3>Manichetta numero: " + mv.ID_BOCCHELLO + "</h3>";
                                         $.each(mv, function (label, value) {
+                                            console.log(label);
+                                            console.log(value);
                                             if(!(label === 'FILIALE'))
                                                 content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
                                         });
@@ -56,10 +88,15 @@ function viewList(elem, contratto) {
                                     content += '</div></div>';
                                 }
                             }else {
-                                if(!(lastKey === 'FILIALE'))
-                                    content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
+                                // if(!(lastKey === 'FILIALE'))
+                                //     content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + lastKey.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + lastValue + '</p></a>';
                             }
                         });
+
+                        $.each(elemOrder, function (key, value) {
+                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + key.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
+                        });
+
                         content += '</div>';
                     });
                     $("#viewListCollapsible").append( content );
