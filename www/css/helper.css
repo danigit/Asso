@@ -239,3 +239,19 @@
 .padding-lr-zero-tb-9px{
     padding: 9px 0 9px 0!important;
 }
+
+.font-larger{
+    font-size: larger!important;
+}
+
+.background-green{
+    background: #007E4D!important;
+}
+
+.padding-5px{
+    padding: 5px!important;
+}
+
+.padding-tb-10px{
+    padding: 10px 0 10px 0!important;
+}

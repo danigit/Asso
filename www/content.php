@@ -112,7 +112,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#home" class="menu-icon"><img src="img/home-icon.png" class="menu-icon-image"></a>
             </div>
 
-            <div data-role="content" class="anagrafica-padding margin-bottom-30">
+            <div data-role="content" class="anagrafica-padding margin-bottom-30 background-white">
                 <h1 class="red-text philosopher-font header-page-title" id="anagraficaHeader">ANAGRAFICA</h1>
                 <div id="anagraficaContainer"></div>
             </div>
@@ -132,7 +132,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="red-text philosopher-font header-page-title">CAMBIO ANAGRAFICA</h1>
                 <div class="ui-field-contain">
                     <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Modifica campi anagrafica</label>
-                    <div id="cambioAnagraficaForm">
+                    <div id="cambioAnagraficaForm" class="padding-tb-2px-lr-7px">
 <!--                        <select id="changeAnagraficaSelection">-->
 <!--                            <option>Seleziona una voce...</option>-->
 <!--                        </select>-->

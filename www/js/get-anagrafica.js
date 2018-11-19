@@ -30,9 +30,9 @@ function getAnagrafica() {
                     if(value !== undefined && value !== ""){
                         let parsedKey = key.replace("_", " ");
                         anagrafica += '<li class="border-none">' +
-                            '<p class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none ' +
-                            'box-shadow-bottom paddint-bottom-5px"><b class="blue-text">' + parsedKey + '</b></p>' +
-                            '<p class="font-medium center-text float-left full-width margin-zero padding-lr-zero-tb-9px  background-lightgray ' +
+                            '<p class="float-left font-large border-bottom-1-gray full-width center-text margin-bottom-none border-radius-10 padding-tb-10px background-green ' +
+                            'box-shadow-bottom paddint-bottom-5px"><b class="white-text font-large">' + parsedKey + '</b></p>' +
+                            '<p class="font-medium center-text float-left full-width margin-zero padding-lr-zero-tb-9px ' +
                             'border-radius-top-30">' + value + '</p></li>';
                         select += '<option>' + parsedKey + '</option>';
                     }

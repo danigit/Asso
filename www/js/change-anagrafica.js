@@ -24,9 +24,9 @@ function setCambioAnagrafica() {
 
                 $.each(anagraficaOrder, function (key, value) {
                     if(value !== undefined && value !== "") {
-                        let field = $('<label for="' + key + '" class="center-text bold-text border-bottom-1-gray font-large ' +
+                        let field = $('<label for="' + key + '" class="center-text bold-text border-bottom-1-gray font-large background-green border-radius-10 padding-tb-10px white-text ' +
                                 'box-shadow-bottom">' + key.replace("_", " ") + '</label>' +
-                            '<input type="text" name="' + key + '" id="' + key + '" placeholder="' + value + '">');
+                            '<input type="text" class="font-small" name="' + key + '" id="' + key + '" placeholder="' + value + '">');
                         cambioAnagraficaForm.append(field).trigger('create');
                     }
                 });

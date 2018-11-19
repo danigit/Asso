@@ -85,6 +85,9 @@ function insertContent( innerKey, innerValue) {
                 }
             }
         });
+        content += '<div class="ui-grid-a ui-responsive">' +
+            '<div class="ui-block-a"><a href="#" onclick="app.openPdf(\'' + lastValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button padding-lr-zero margin-zero">VISUALIZZA FATTURA</a></div></div>';
+
         content += '</div>';
     });
 

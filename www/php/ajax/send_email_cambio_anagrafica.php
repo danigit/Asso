@@ -26,8 +26,6 @@ class send_email_cambio_anagrafica extends cs_interaction{
         for($i = 0; $i < $this->count; $i++){
             $this->fields .= $this->validate_string($i) . "<br>";
         }
-
-        var_dump($this->fields);
     }
 
     protected function get_informations(){
@@ -37,10 +35,10 @@ class send_email_cambio_anagrafica extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.acconto!88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+        $mail->addAddress("clienti.assoantincendio@gmail.com");
         $mail->Subject = "Richiesta cambio Anagrafica " . $_SESSION['username'];
         $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF' '>" . $_SESSION['username'] . "</b> per una richiesta di cambio dati anagrafica.<br><br><br><br>I nuovi dati sono: <br><br>"
             . $this->fields);
