@@ -118,6 +118,21 @@ class Connection{
         }
     }
 
+    function insertMotiv($motiv){
+        $query = "INSERT INTO Motiv (description) VALUES (?)";
+        $result = $this->parse_and_execute_insert($query, 's', $motiv);
+
+        if ($result instanceof db_error){
+            return $result;
+        }
+
+        if ($result === false){
+            return new db_error(db_error::$ERROR_ON_INSERTING_MOTIV);
+        }
+
+        return $this->connection->affected_rows;
+    }
+
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
