@@ -61,7 +61,9 @@ function getFilialePerContratto(selectedContratto){
                     else if (key === 'tecnico') {
                         $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="blue-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
                     }else if (key === 'telefono_tecnico') {
-                        $('.info-tecnico p').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
+                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
+                    }else if (key === 'email_tecnico'){
+                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Email:</b></span><span class="float-right margin-right-10px email"> ' + value + '</span></p>')
                     }
                 })
             }else {
@@ -133,6 +135,9 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
     let motivo = $('#richiestaAssistenzaMotivoSelect').val();
     let contratto = $('#richiestaAssistenzaContrattoSelect').val();
     let filiale = $('#richiestaAssistenzaFilialeSelect').val();
+    let tecnico = $('.info-tecnico .email').text();
+
+    console.log('tecnico value: ' + tecnico);
     let noteAggiuntive = $('#areaNoteAggiuntive').val();
 
     if(motivo === 'Altro...') {
@@ -145,7 +150,7 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
 
     if(motivo !== "Seleziona un motivo..." && contratto !== "Seleziona un contratto..." && filiale !== "Seleziona una filiale...") {
 
-        let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, 'attrezzature': {}, "<br><br>Note aggiuntive": noteAggiuntive};
+        let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, "Email": tecnico, 'attrezzature': {}, "<br><br>Note aggiuntive": noteAggiuntive};
         let assistenzaFormData = new FormData();
 
         $.each($('#resultForCheck').children(), function (key, value) {
@@ -193,7 +198,7 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
                             sendEmail($('#error-content-popup'), 'stop');
                             showError($('#error-content-popup'), "Mail inviata", "La richiesta di assistenza è stata inoltrata con successo", "success");
                             setTimeout(function () {
-                                window.location.href = 'content.php';
+                                // window.location.href = 'content.php';
                             }, 1500)
                         }else
                             showError($('#error-content-popup'), "Email non spedita", "C'è stato un problema con l'invio della mail. Ripromare più tardi.", "error");

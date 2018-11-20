@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 class send_email_assistenza extends cs_interaction{
-    private $assistenza, $email_string;
+    private $assistenza, $email_string, $tecnico_email;
 
     protected function input_elaboration(){
         $this->assistenza = $this->validate_string("assistenza");
@@ -33,10 +33,13 @@ class send_email_assistenza extends cs_interaction{
                     next($elem);
                 }
             }else{
-                $this->email_string .= "<b>" . key($array_val) . ":</b> &thinsp;" . $elem . "<br>";
+                if (key($array_val) !== 'Email') {
+                    $this->email_string .= "<b>" . key($array_val) . ":</b> &thinsp;" . $elem . "<br>";
+                }
             }
             next($array_val);
         }
+        $this->tecnico_email = $array_val['Email'];
     }
 
     protected function get_informations(){
@@ -46,11 +49,11 @@ class send_email_assistenza extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.acconto!88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
-        $mail->addCC('surpanudaniel@gmail.com');
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+        $mail->addAddress("clienti.assoantincendio@gmail.com");
+        $mail->addCC($this->tecnico_email);
         $mail->Subject = "Richiesta assistenza";
         $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF;'> " . $_SESSION['username'] . "</b> per una richiesta di assistenza.<br><br><br> 
                 L'assistenza riguarda:: <br><br><br>" . $this->email_string);
