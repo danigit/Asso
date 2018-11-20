@@ -12,23 +12,27 @@ require_once 'helper.php';
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
-class get_motivs extends cs_interaction{
-    private $result;
+class delete_motiv extends cs_interaction{
+    private $motiv, $result;
 
     protected function input_elaboration(){
         //TODO constrolare se funziona ancora con register
+        $this->motiv = $this->validate_string("motiv");
+
+        if ($this->motiv === false)
+            $this->json_error("Inserire un motivo");
     }
 
     protected function get_informations(){
         $connection = $this->get_connection();
 
-        $this->result = $connection->getMotivs();
+        $this->result = $connection->deleteMotiv($this->motiv);
     }
 
     protected function get_returned_data(){
-        return array('motivs' => $this->result);
+//        return array($this->result);
     }
 }
 
-$get_motivs = new get_motivs();
-$get_motivs->execute();
+$delete_motiv = new delete_motiv();
+$delete_motiv->execute();

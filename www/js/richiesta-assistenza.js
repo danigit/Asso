@@ -11,6 +11,19 @@ function richiestaAssistenza() {
     resetPageFields();
     $('#richiestaAssistenzaMotivoSelect option:eq(0)').prop('selected', true);
     $('#richiestaAssistenzaMotivoSelect').selectmenu('refresh');
+
+    let motivoPromise = httpPost('php/ajax/get_motiv.php');
+
+    motivoPromise.then(
+        function (data) {
+            if (data.result){
+                $.each(data.motivs, function (key, value) {
+                    console.log(value.descrizione);
+                    $('#richiestaAssistenzaMotivoSelect').append('<option>' + value.descrizione + '</option>');
+                })
+            }
+        }
+    )
 }
 
 //gestisco il cambio del motivo

@@ -130,7 +130,7 @@ class Connection{
             return new db_error(db_error::$ERROR_ON_INSERTING_MOTIV);
         }
 
-        return $this->connection->affected_rows;
+        return $this->connection->insert_id;
     }
 
 
@@ -153,6 +153,18 @@ class Connection{
 
         return $result_array;
     }
+
+    function deleteMotiv($motiv){
+        $query = 'DELETE FROM motivs WHERE descrizione = ?';
+
+        $statement = $this->parse_and_execute_select($query, "s", $motiv);
+
+        if ($statement instanceof db_error)
+            return $statement;
+
+        return $statement->affected_rows == 1 ? true : new db_error(db_error::$ERROR_ON_DELETE_MOTIV);
+    }
+
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
@@ -267,6 +279,3 @@ class Connection{
         return $result_array;
     }
 }
-
-$conn = new Connection();
-var_dump($conn->getMotivs());

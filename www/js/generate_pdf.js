@@ -132,91 +132,203 @@ function createPdf(data) {
     },2000)
 }
 
-function generatePdf() {
-    let pdfHtml = document.getElementById('pdf-content');
-    html2canvas(pdfHtml, {
-        onrendered: function(canvas) {
-            console.log('inside render');
-            let img = canvas.toDataURL('image/png');
-            console.log('canvas getted');
-            let doc = new jsPDF();
-            doc.addImage(img, 'JPEG', 10, 10);
-
-            let binary = doc.output('datauri');
-            console.log('binary');
-            console.log(binary);
-            let pdfForm = new FormData();
-            console.log('stringify');
-            pdfForm.append('pdf', binary);
-
-            console.log(pdfForm.get('pdf'));
-
-            let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
-
-            pdfPromise.then(
-                function (data) {
-                    if (data.result) {
-                        console.log('pdf sent');
-                        console.log(data)
-                    }
-                }
-            )
-
-            doc.save('sorveglianza.pdf')
-        }
-    });
-}
-//
-// function makePDF() {
-//
-//     var quotes = document.getElementById('container-fluid');
-//
-//     html2canvas(quotes, {
+// function generatePdf() {
+//     let pdfHtml = document.getElementById('pdf-content');
+//     html2canvas(pdfHtml, {
 //         onrendered: function(canvas) {
+//             console.log('inside render');
+//             let img = canvas.toDataURL('image/png');
+//             console.log('canvas getted');
+//             let doc = new jsPDF();
+//             doc.addImage(img, 'JPEG', 10, 10);
 //
-//             //! MAKE YOUR PDF
-//             var pdf = new jsPDF('p', 'pt', 'letter');
+//             let binary = doc.output('datauri');
+//             console.log('binary');
+//             console.log(binary);
+//             let pdfForm = new FormData();
+//             console.log('stringify');
+//             pdfForm.append('pdf', binary);
 //
-//             for (var i = 0; i <= quotes.clientHeight/980; i++) {
-//                 //! This is all just html2canvas stuff
-//                 var srcImg  = canvas;
-//                 var sX      = 0;
-//                 var sY      = 980*i; // start 980 pixels down for every new page
-//                 var sWidth  = 900;
-//                 var sHeight = 980;
-//                 var dX      = 0;
-//                 var dY      = 0;
-//                 var dWidth  = 900;
-//                 var dHeight = 980;
+//             console.log(pdfForm.get('pdf'));
 //
-//                 window.onePageCanvas = document.createElement("canvas");
-//                 onePageCanvas.setAttribute('width', 900);
-//                 onePageCanvas.setAttribute('height', 980);
-//                 var ctx = onePageCanvas.getContext('2d');
-//                 // details on this usage of this function:
-//                 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
-//                 ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+//             let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
 //
-//                 // document.body.appendChild(canvas);
-//                 var canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
-//
-//                 var width         = onePageCanvas.width;
-//                 var height        = onePageCanvas.clientHeight;
-//
-//                 //! If we're on anything other than the first page,
-//                 // add another page
-//                 if (i > 0) {
-//                     pdf.addPage(612, 791); //8.5" x 11" in pts (in*72)
+//             pdfPromise.then(
+//                 function (data) {
+//                     if (data.result) {
+//                         console.log('pdf sent');
+//                         console.log(data)
+//                     }
 //                 }
-//                 //! now we declare that we're working on that page
-//                 pdf.setPage(i+1);
-//                 //! now we add content to that page!
-//                 pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));
+//             )
 //
-//             }
-//             //! after the for loop is finished running, we save the pdf.
-//             pdf.save('Test.pdf');
+//             doc.save('sorveglianza.pdf')
 //         }
 //     });
 // }
+//
+function generatePdf() {
+
+    let quotes = document.getElementById('pdf-content');
+    let j = 1;
+    let i = 0;
+    let prevOffset = 0;
+    let prevObject;
+    let multiplePage = false;
+    // $.each($('#pdf-content').children(), function (key, value) {
+    //     if($(value).attr('id') === 'sorveglianza-table') {
+    //         $.each($(value).children(), function (innerKey, innerValue) {
+    //             if($(innerValue).attr('id') === 'sorveglianza-body'){
+    //                 let prevObject;
+    //                 $.each($(innerValue).children(), function (lastKey, lastValue) {
+    //                     let offset = $(lastValue).offset();
+    //                     console.log(offset.top);
+    //
+    //                     if( offset.top > 420 * i){
+    //                         offset = $(prevObject).offset().top;
+    //                         console.log('offset: ' + offset);
+    //                         i++;
+    //                     }
+    //                     prevObject = lastValue;
+    //                 })
+    //             }
+    //         })
+    //     }
+    // })
+
+    html2canvas(quotes, {
+        onrendered: function(canvas) {
+
+            //! MAKE YOUR PDF
+            let pdf = new jsPDF('p', 'pt', 'letter');
+
+            $.each($('#pdf-content').children(), function (key, value) {
+                if($(value).attr('id') === 'sorveglianza-table') {
+                    $.each($(value).children(), function (innerKey, innerValue) {
+                        if($(innerValue).attr('id') === 'sorveglianza-body'){
+                            $.each($(innerValue).children(), function (lastKey, lastValue) {
+                                let offset = $(lastValue).offset().top + $(lastValue).height();
+                                // console.log('offset outside: ' + offset);
+                                if( offset > 960 * j ){
+                                    multiplePage = true;
+                                    offset = $(prevObject).offset().top + $(prevObject).height();
+                                    console.log('offset inside: ' + offset);
+                                    console.log('prevOffset: ' + prevOffset);
+                                    let srcImg  = canvas;
+                                    let sX      = 0;
+                                    let sY      = prevOffset; // start 980 pixels down for every new page
+                                    let sWidth  = 900;
+                                    let sHeight = offset;
+                                    let dX      = 0;
+                                    let dY      = 0;
+                                    let dWidth  = 900;
+                                    let dHeight = offset;
+
+                                    window.onePageCanvas = document.createElement("canvas");
+                                    onePageCanvas.setAttribute('width', 900);
+                                    onePageCanvas.setAttribute('height', offset - prevOffset);
+                                    let ctx = onePageCanvas.getContext('2d');
+                                    // details on this usage of this function:
+                                    // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+                                    console.log('drawing immage: ' + sX + ', ' + sY + ', ' + sWidth + ', ' + sHeight + ', ' + dWidth + ', ' + dHeight);
+                                    ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+
+                                    // document.body.appendChild(canvas);
+                                    let canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+
+                                    let width         = onePageCanvas.width;
+                                    let height        = onePageCanvas.clientHeight;
+
+                                    //! If we're on anything other than the first page,
+                                    // add another page
+                                    if (j > 1) {
+                                        pdf.addPage(612, 791); //8.5" x 11" in pts (in*72)
+                                    }
+                                    //! now we declare that we're working on that page
+                                    pdf.setPage(j);
+                                    //! now we add content to that page!
+                                    pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));
+                                    j++;
+                                    i++;
+                                    prevOffset = offset;
+                                }
+
+                                console.log('offset after: ' + offset);
+                                console.log('prevOffset after: ' + prevOffset);
+                                prevObject = lastValue;
+                            })
+                        }
+                    })
+                }
+            });
+
+            if(multiplePage){
+                let heightImage = $('#pdf-content').offset().top + $('#pdf-content').height();
+                let srcImg  = canvas;
+                let sX      = 0;
+                let sY      = prevOffset; // start 980 pixels down for every new page
+                let sWidth  = 900;
+                let sHeight = heightImage;
+                let dX      = 0;
+                let dY      = 0;
+                let dWidth  = 900;
+                let dHeight = heightImage;
+
+                window.onePageCanvas = document.createElement("canvas");
+                onePageCanvas.setAttribute('width', 900);
+                onePageCanvas.setAttribute('height', heightImage - prevOffset);
+                let ctx = onePageCanvas.getContext('2d');
+                // details on this usage of this function:
+                // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+                ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+
+                // document.body.appendChild(canvas);
+                let canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+
+                let width         = onePageCanvas.width;
+                let height        = onePageCanvas.clientHeight;
+
+                //! If we're on anything other than the first page,
+                // add another page
+                if (j > 1) {
+                    pdf.addPage(612, 791); //8.5" x 11" in pts (in*72)
+                }
+                //! now we declare that we're working on that page
+                pdf.setPage(j);
+                //! now we add content to that page!
+                pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));
+            }
+            // if(!multiplePage){
+            //     console.log('not multiple pages');
+            //     let img = canvas.toDataURL('image/png');
+            //     console.log('canvas getted');
+            //     pdf.addImage(img, 'JPEG', 10, 10);
+            //
+            //     let binary = pdf.output('datauri');
+            //     console.log('binary');
+            //     console.log(binary);
+            //     let pdfForm = new FormData();
+            //     console.log('stringify');
+            //     // pdfForm.append('pdf', binary);
+            //     //
+            //     // console.log(pdfForm.get('pdf'));
+            //     //
+            //     // let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
+            //     //
+            //     // pdfPromise.then(
+            //     //     function (data) {
+            //     //         if (data.result) {
+            //     //             console.log('pdf sent');
+            //     //             console.log(data)
+            //     //         }
+            //     //     }
+            //     // )
+            //
+            //     // doc.save('sorveglianza.pdf')
+            // }
+            //! after the for loop is finished running, we save the pdf.
+            pdf.save('Test.pdf');
+        }
+    });
+}
 // https://stackoverflow.com/questions/19272933/jspdf-multi-page-pdf-with-html-renderer

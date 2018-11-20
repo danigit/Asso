@@ -47,16 +47,3 @@ function getAnagrafica() {
         }
     );
 }
-
-function getMotiv() {
-    // $.get('http://localhost/DanielSurpanu_Asso/www/php/ajax/get_motiv.php', function (data) {
-    $.ajax({
-        type: 'GET',
-        url: 'http://localhost/DanielSurpanu_Asso/www/php/ajax/get_motiv.php',
-    }).done(function (data) {
-      console.log(data)
-    }).fail(function () {
-        console.log('fail');
-    })
-}
-

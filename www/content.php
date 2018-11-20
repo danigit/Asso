@@ -217,8 +217,6 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                         <select id="richiestaAssistenzaMotivoSelect" data-inset="true">
                             <option>Seleziona un motivo...</option>
                             <option>Altro...</option>
-                            <option>Motivo 1</option>
-                            <option>Motivo 2</option>
                         </select>
                         <div id="altro-selection" class="clear-float-left"></div>
                         <br>
