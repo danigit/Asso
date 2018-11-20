@@ -13,7 +13,8 @@ class db_error{
     public static $ERROR_ON_EXECUTE                 = 1;
     public static $ERROR_ON_GETTING_QUESTIONS       = 2;
     public static $ERROR_ON_SAVE_TEMP_SURV          = 3;
-    public static $ERROR_ON_INSERTING_MOTIV          = 4;
+    public static $ERROR_ON_INSERTING_MOTIV         = 4;
+    public static $ERROR_ON_SELECTING_MOTIV         = 5;
 
     public function __construct($error){
         $this->error = $error;
@@ -29,6 +30,7 @@ class db_error{
             case 2: return "ERROR_ON_GETTING_QUESTIONS";
             case 3: return "ERROR_ON_SAVE_TEMP_SURV";
             case 4: return "ERROR_ON_INSERTING_MOTIV";
+            case 5: return "ERROR_ON_SELECTING_MOTIV";
         }
     }
 }

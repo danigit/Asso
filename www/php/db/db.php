@@ -119,7 +119,7 @@ class Connection{
     }
 
     function insertMotiv($motiv){
-        $query = "INSERT INTO Motiv (description) VALUES (?)";
+        $query = "INSERT INTO motivs (descrizione) VALUES (?)";
         $result = $this->parse_and_execute_insert($query, 's', $motiv);
 
         if ($result instanceof db_error){
@@ -133,6 +133,26 @@ class Connection{
         return $this->connection->affected_rows;
     }
 
+
+    function getMotivs(){
+        $query = 'SELECT * FROM motivs';
+
+        $result = $this->connection->query($query);
+
+        if ($result === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $result_array = array();
+
+        while ($row = mysqli_fetch_assoc($result)){
+            $result_array[] = array('descrizione' => $row['descrizione']);
+        }
+
+        $result->close();
+
+        return $result_array;
+    }
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
@@ -247,3 +267,6 @@ class Connection{
         return $result_array;
     }
 }
+
+$conn = new Connection();
+var_dump($conn->getMotivs());
