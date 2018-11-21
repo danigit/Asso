@@ -817,3 +817,8 @@ input{
     width: 95% !important;
     margin: auto!important;
 }
+
+#referente-name > div{
+    margin: 0!important;
+    width: 99% !important;
+}

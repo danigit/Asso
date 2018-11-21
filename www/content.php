@@ -282,7 +282,11 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     </fieldset>
                 </form>
 
-                <div id="questionarioSorveglianza"></div>
+                <div id="referente-name" class="display-none">
+                    <input type="text" class="padding-lr-zero" placeholder="Inserire nome incaricato">
+                </div>
+
+                <div id="questionarioSorveglianza" class="margin-top-20"></div>
             </div>
 
             <div id="sorveglianzaMessaggioErrore"></div>

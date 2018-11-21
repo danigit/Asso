@@ -99,6 +99,7 @@ function selectFiliale(filiale) {
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
+                    $('#referente-name').removeClass('display-none');
                     domandePromise.then(
                         function (dom) {
                             if (dom.result) {
@@ -224,7 +225,7 @@ function getData() {
     let sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
     console.log($('#sorveglianzaRadioFieldset :radio:checked').val());
-    snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale};
+    snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale, 'incaricato': $('#referente-name').find('input').val()};
 
     $.each($('#questionarioSorveglianza').children(), function (key, value) {
 
@@ -494,9 +495,13 @@ function caricaModifiche() {
 }
 
 $('#sorveglianzaInviaDati').on('click', function () {
-    let data = getData();
+    console.log('referente: ' + $('#referente-name').find('input').val());
+    if($('#referente-name').find('input').val() === ""){
+        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Inserire il nome del referente', 'error');
+    }else {
+        let data = getData();
 
-    createPdf(data);
-
+        createPdf(data);
+    }
 });
 
