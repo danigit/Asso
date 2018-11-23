@@ -21,6 +21,8 @@ function resetSorveglianza() {
                 $('#sorveglianzaFilialeSelect').addClass('ui-disabled');
 
                 $('#questionarioSorveglianza').empty();
+                $('#referente-name').addClass('display-none');
+                $('#sorveglianza-email').addClass('display-none');
 
                 $.each(data[0], function (key, value) {
                     $.each(value, function (innerKey, innerValue) {
@@ -32,6 +34,7 @@ function resetSorveglianza() {
             }
         }
     );
+
     caricaModifiche();
 }
 
@@ -100,6 +103,7 @@ function selectFiliale(filiale) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
                     $('#referente-name').removeClass('display-none');
+                    $('#sorveglianza-email').removeClass('display-none');
                     domandePromise.then(
                         function (dom) {
                             if (dom.result) {
@@ -110,7 +114,7 @@ function selectFiliale(filiale) {
                                             content = $("<div id='" + label + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + label + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
                                                 if (label.toLowerCase() === lastValue['type']) {
-                                                    let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
+                                                    let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
                                                     let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
                                                     let answer = $('<div></div>');
                                                     let siDiv = $('<div class="si-checkbox"></div>');
@@ -187,7 +191,7 @@ $('#sorveglianzaAggiungiModifica').on('click', function () {
 
 function saveTemp(){
     if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
-        let snapShot = getData();
+        let snapShot = getData(true);
 
         let sorveglianzaTempSaveForm = new FormData();
 
@@ -202,7 +206,7 @@ function saveTemp(){
                 if (data.result) {
                     showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
                     setTimeout(function () {
-                        // /window.location.href = 'content.php';
+                        window.location.href = 'content.php';
                     }, 1500)
                 }
             }
@@ -212,20 +216,21 @@ function saveTemp(){
     }
 }
 
-function getData() {
+function getData(temp) {
     let i = 1;
     let snapShot = {};
     snapShot['isComplete'] = true;
     let nowDate = new Date($.now());
     let month = nowDate.getMonth()+1;
     let day = nowDate.getDate();
+    let emptyFields = false;
 
     snapShot['time'] = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + nowDate.getFullYear();
 
     let sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
     console.log($('#sorveglianzaRadioFieldset :radio:checked').val());
-    snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale, 'incaricato': $('#referente-name').find('input').val()};
+    snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale, 'incaricato': $('#referente-name').find('input').val(), 'email': $('#sorveglianza-email').find('input').val()};
 
     $.each($('#questionarioSorveglianza').children(), function (key, value) {
 
@@ -240,6 +245,7 @@ function getData() {
                         let radio = $(lastValue).find('input[type="radio"]');
                         let question = $(lastValue).find('p').text();
                         if($(radio).is(':checked')) {
+                            console.log('radio is checked');
                             if($(radio).first().is(':checked'))
                                 snapShot[tipoAttrezzatura][i++] = {question: question, checked: '1'};
                             else{
@@ -256,8 +262,12 @@ function getData() {
                                     snapShot[tipoAttrezzatura][i++] = '0'
                             }
                         }else {
-                            snapShot['isComplete'] = false;
-                            snapShot[tipoAttrezzatura][i++] = {question: question, checked: '-1'}
+                            if(temp) {
+                                snapShot['isComplete'] = false;
+                                snapShot[tipoAttrezzatura][i++] = {question: question, checked: '-1'}
+                            }else{
+                                emptyFields = true;
+                            }
                         }
                     })
                 }
@@ -265,7 +275,11 @@ function getData() {
         }
     });
 
-    return snapShot;
+    if(emptyFields){
+        return null;
+    }else {
+        return snapShot;
+    }
 }
 
 function caricaModifiche() {
@@ -302,6 +316,13 @@ function caricaModifiche() {
                     $('#sorveglianzaFilialeSelect').val(risposte[0][0].filiale);
                     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
 
+                    $('#referente-name').removeClass('display-none');
+                    $('#referente-name').find('input').val(risposte[0][0].name);
+
+                    $('#sorveglianza-email').removeClass('display-none');
+                    $('#sorveglianza-email').find('input').val(risposte[0][0].email);
+
+
                     let lastValue;
                     let content;
 
@@ -311,7 +332,7 @@ function caricaModifiche() {
                         if (value.type !== lastValue)
                             content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
 
-                        let div = $('<div class="clear-float-left padding-top-5px border-top-2-blue"></div>');
+                        let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
                         let question = $('<p class="center-text margin-top-20">' + value.number + ') ' + value.question + '</p>');
                         let gotAnswer = $('<div></div>');
 
@@ -418,72 +439,6 @@ function caricaModifiche() {
 
                     });
                     $('#questionarioSorveglianza').trigger('create')
-                    // let caricaattrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
-                    // let caricaDomandePromise = httpPost('php/ajax/get_domande.php');
-                    // let i = 0;
-                    // let j = 0;
-                    //
-                    // let content = '';
-                    // caricaattrezzaturePromise.then(
-                    //     function (data) {
-                    //         //controllo se ci sono stati degli errori nella chiamata
-                    //         if (data.result) {
-                    //             caricaDomandePromise.then(
-                    //                 function (dom) {
-                    //                     if (dom.result) {
-                    //                         $.each(data[0], function (key, value) {
-                    //                             if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
-                    //                                 $.each(value.lista, function (innerKey, innerValue) {
-                    //                                     var label = innerValue.replace('LISTA_', '');
-                    //                                     content += "<div id='" + label + "' data-role='collapsible' data-inset='true'><h3>" + label + "</h3>";
-                    //                                     $.each(dom.domande, function (lastKey, lastValue) {
-                    //                                         if (label === lastKey) {
-                    //                                             j = 0;
-                    //                                             $.each(lastValue, function (k, v) {
-                    //                                                 if (label === 'ESTINTORI') {
-                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                    //                                                     if (risposte.domande.ESTINTORI[j++] === 'ok') {
-                    //                                                         console.log('ESTINTORI SI');
-                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     } else {
-                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     }
-                    //                                                 } else if (label === 'PORTE') {
-                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                    //                                                     if (risposte.domande.PORTE[j++] === 'ok') {
-                    //                                                         console.log('ESTINTORI SI');
-                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     } else {
-                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     }
-                    //                                                 } else if (label === 'LUCI') {
-                    //                                                     console.log('ESTINTORI: ' + risposte.domande.ESTINTORI[0]);
-                    //                                                     if (risposte.domande.LUCI[j++] === 'ok') {
-                    //                                                         console.log('ESTINTORI SI');
-                    //                                                         content += '<input type="checkbox" id="' + i + '" checked="checked"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     } else {
-                    //                                                         content += '<input type="checkbox" id="' + i + '"><label for="' + i++ + '">' + v + '</label>';
-                    //                                                     }
-                    //                                                 }
-                    //                                             })
-                    //                                         }
-                    //                                     });
-                    //                                     content += '</div>';
-                    //                                 });
-                    //                                 $('#questionarioSorveglianza').append(content).trigger('create');
-                    //                             }
-                    //                         })
-                    //                     }
-                    //                 }
-                    //             );
-                    //             $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
-                    //             $('#sorveglianzaInviaDati').removeClass('ui-disabled');
-                    //         } else {
-                    //             $('#attrezzature').append('<div class="center-text error-message"><span>' + data.message + '</span></div>');
-                    //         }
-                    //     }
-                    // );
-                    // }
                 }else {
                     // resetSorveglianza();
                 }
@@ -495,13 +450,20 @@ function caricaModifiche() {
 }
 
 $('#sorveglianzaInviaDati').on('click', function () {
-    console.log('referente: ' + $('#referente-name').find('input').val());
     if($('#referente-name').find('input').val() === ""){
         showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Inserire il nome del referente', 'error');
+    }else if($('#sorveglianza-email').find('input').val() === ""){
+        showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Inserire l\'email alla quale inviare la sorveglianza', 'error');
     }else {
-        let data = getData();
-
-        createPdf(data);
+        console.log('inside else');
+        let data = getData(false);
+        console.log('data: ' + data);
+        if(data === null){
+            console.log('data is undefined');
+            showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare almeno una risposta per tutte le domande', 'error');
+        }else{
+            createPdf(data);
+        }
     }
 });
 

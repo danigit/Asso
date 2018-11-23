@@ -30,12 +30,14 @@ function richiestaAssistenza() {
 $('#richiestaAssistenzaMotivoSelect').on('change', function () {
     let selectedMotivo = this.value;
 
-    resetPageFields();
+    // resetPageFields();
     getContrattiAssistenza();
 
     if (selectedMotivo === "Altro...") {
         let altroForm = '<form id="valoreAltroForm"><input type="text" name="motivoAltroValue" id="motivoAltroValue" placeholder="Inserire il motivo della richiesta di assistenza">';
         $('#altro-selection').append(altroForm).trigger('create');
+    }else{
+        $('#altro-selection').empty();
     }
 
     richiestaAssistenzaContrattoSelect.removeClass('ui-disabled');
@@ -130,8 +132,8 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                 });
 
                 $('#resultForCheck').append(content).trigger('create');
-                $('#noteAggiuntive').append('<label class="note-aggiuntive-label center-text blue-text border-bottom-1-red" for="areaNoteAggiuntive">Note aggiuntive </label>' +
-                    '<textarea name="areaNoteAggiuntive" class="box-shadow-bottom" id="areaNoteAggiuntive" placeholder="Lasciare vuoto se non ci sono note aggiuntive"></textarea>').trigger('create');
+                // $('#noteAggiuntive').append('<label class="note-aggiuntive-label center-text blue-text border-bottom-1-red" for="areaNoteAggiuntive">Note aggiuntive </label>' +
+                $('#noteAggiuntive').append('<textarea name="areaNoteAggiuntive" class="box-shadow-bottom" id="areaNoteAggiuntive" placeholder="Lasciare vuoto se non ci sono note aggiuntive"></textarea>').trigger('create');
 
                 inviaRichiestaAssistenzaDati.removeClass('ui-disabled');
             }else {
@@ -163,7 +165,7 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
 
     if(motivo !== "Seleziona un motivo..." && contratto !== "Seleziona un contratto..." && filiale !== "Seleziona una filiale...") {
 
-        let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, "Email": tecnico, 'attrezzature': {}, "<br><br>Note aggiuntive": noteAggiuntive};
+        let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, "Email": tecnico, 'attrezzature': {}, "Note aggiuntive": noteAggiuntive};
         let assistenzaFormData = new FormData();
 
         $.each($('#resultForCheck').children(), function (key, value) {
@@ -211,7 +213,7 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
                             sendEmail($('#error-content-popup'), 'stop');
                             showError($('#error-content-popup'), "Mail inviata", "La richiesta di assistenza è stata inoltrata con successo", "success");
                             setTimeout(function () {
-                                // window.location.href = 'content.php';
+                                window.location.href = 'content.php';
                             }, 1500)
                         }else
                             showError($('#error-content-popup'), "Email non spedita", "C'è stato un problema con l'invio della mail. Ripromare più tardi.", "error");

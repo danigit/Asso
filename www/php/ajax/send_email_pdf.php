@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 class send_email_pdf extends cs_interaction{
-    private $pdf, $decodedFile;
+    private $pdf, $email, $decodedFile;
 
     protected function input_elaboration(){
         //TODO constrolare se funziona ancora con register
@@ -21,6 +21,12 @@ class send_email_pdf extends cs_interaction{
 
         if ($this->pdf === false)
             $this->json_error("Nessun pdf ricevuto");
+
+        $this->email = $this->validate_string("email");
+
+        if ($this->email === false)
+            $this->json_error("Nessuna email ricevuta");
+
 
         $this->decodedFile = explode('data:application/pdf;base64,', $this->pdf);
         $this->decodedFile = base64_decode($this->decodedFile[1]);
@@ -36,7 +42,7 @@ class send_email_pdf extends cs_interaction{
         $mail->Username = "dsacconto@gmail.com";
         $mail->Password = "!ds.acconto!88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
+        $mail->addAddress($this->email);
         $mail->Subject = "Cambio Anagrafica";
         $mail->msgHTML("Sei stata contattata da: <br><br> Nome: " . $_SESSION['username'] . "<br>Email: ds.acconto@gmail.com<br><br><br><br>Contenuto email:");
         try {
@@ -49,7 +55,7 @@ class send_email_pdf extends cs_interaction{
     }
 
     protected function get_returned_data(){
-        return array();
+        return array('pdf' => $this->pdf, 'email' => $this->email);
     }
 }
 

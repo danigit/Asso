@@ -9,7 +9,7 @@
 require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
-class Connection{
+class DatabaseConnection{
     const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
 //    const PATH = 'localhost', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
@@ -51,16 +51,17 @@ class Connection{
         $this->connection->autocommit(false);
         $errors = array();
 
-        $query = "insert into temp_surveillance (frequency, contratto, filiale, number, type, answer) 
-                  values (?, ?, ?, ?, ?, ?)";
+        $query = "insert into temp_surveillance (frequency, contratto, filiale, name, email, number, type, answer) 
+                  values (?, ?, ?, ?, ?, ?, ?, ?)";
 
+        
         foreach ($domande as $elemName => $elem) {
             if ($elemName !== "info") {
                 $question = 1;
                 if(is_array($elem)) {
                     foreach ($elem as $item) {
-                        $result = $this->parse_and_execute_insert($query, 'ssssss', $domande['info']['frequenza'],
-                            $domande['info']['contratto'], $domande['info']['filiale'], $question++, $elemName, $item['checked']);
+                        $result = $this->parse_and_execute_insert($query, 'ssssssss', $domande['info']['frequenza'],
+                            $domande['info']['contratto'], $domande['info']['filiale'], $domande['info']['incaricato'], $domande['info']['email'], $question++, $elemName, $item['checked']);
 
                         if ($result === false)
                             array_push($errors, 'insert');
@@ -83,11 +84,12 @@ class Connection{
         $this->connection->autocommit(false);
         $errors = array();
 
-        $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.number, temp.answer, temp.type, question.question 
-                  FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto, temp_surveillance.filiale, 
-                  temp_surveillance.type, temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance 
-                  JOIN type ON temp_surveillance.type = type.description) as temp LEFT JOIN question ON temp.id = question.type 
-                  AND temp.number = question.number';
+        $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.name, temp.email, temp.number, temp.answer, 
+                  temp.type, question.question FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto, 
+                  temp_surveillance.filiale, temp_surveillance.name, temp_surveillance.email, temp_surveillance.type, 
+                  temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance JOIN type ON 
+                  temp_surveillance.type = type.description) as temp LEFT JOIN question ON temp.id = question.type AND 
+                  temp.number = question.number';
 
         $result = $this->connection->query($query);
 
@@ -112,7 +114,7 @@ class Connection{
             //todo da mettere dove serve htmlspecialchars
             while ($row = mysqli_fetch_assoc($result)) {
                 $result_array[] = array('frequency' => $row['frequency'], 'contratto' => $row['contratto'], 'filiale' => $row['filiale'],
-                    'number' => $row['number'], 'type' => $row['type'], 'answer' => $row['answer'], 'question' => $row['question']);
+                    'name' => $row['name'], 'email' => $row['email'], 'number' => $row['number'], 'type' => $row['type'], 'answer' => $row['answer'], 'question' => $row['question']);
             }
             return $result_array;
         }
@@ -163,6 +165,36 @@ class Connection{
             return $statement;
 
         return $statement->affected_rows == 1 ? true : new db_error(db_error::$ERROR_ON_DELETE_MOTIV);
+    }
+
+    function insertAnagrafica($db_json){
+        $query = "INSERT INTO cambio_anagrafica (json_string) VALUES (?)";
+        $result = $this->parse_and_execute_insert($query, 's', $db_json);
+
+        if ($result instanceof db_error){
+            return $result;
+        }
+
+        if ($result === false){
+            return new db_error(db_error::$ERROR_ON_INSERTING_MOTIV);
+        }
+
+        return $this->connection->insert_id;
+    }
+
+    function insertAssistenza($assistenza){
+        $query = "INSERT INTO assistenza (json_string) VALUES (?)";
+        $result = $this->parse_and_execute_insert($query, 's', $assistenza);
+
+        if ($result instanceof db_error){
+            return $result;
+        }
+
+        if ($result === false){
+            return new db_error(db_error::$ERROR_ON_INSERTING_MOTIV);
+        }
+
+        return $this->connection->insert_id;
     }
 
     /**

@@ -24,7 +24,7 @@ abstract class cs_interaction{
     protected function get_connection(){
         //codice da implementare se si prendono i dati da un database
         if(!isset($this->connection))
-            $this->connection = new Connection();
+            $this->connection = new DatabaseConnection();
 
         return $this->connection;
     }

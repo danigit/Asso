@@ -43,7 +43,7 @@ function createPdf(data) {
                     '</table>');
             }else if (k === 'PORTE'){
                 table = $(
-                    '<table data-role="table" id="sorveglianza-table" data-mode="reflow" class="ui-responsive">' +
+                    '<table data-role="table" id="sorveglianza-table" data-mode="reflow" class="ui-responsive border-1-black">' +
                     '<thead>' +
                     '<tr>' +
                     '<th colspan="2" data-priority="1" class="border-1-black background-gray">Porte tagliafuoco</th>' +
@@ -107,7 +107,7 @@ function createPdf(data) {
                         '<th class="width-5 padding-zero"><label class="font-small margin-right-10px"><input type="checkbox" name="no" checked="checked">NO</label></th> ' +
                         '</tr>' +
                         '<tr>' +
-                        '<th class="border-top-1-black padding-0" colspan="3"><textarea class="margin-zero padding-tb-2px-lr-7px full-width border-none">Nota: ' + checked + '</textarea></th>' +
+                        '<th class="border-1-black padding-0" colspan="3"><textarea class="margin-zero padding-tb-2px-lr-7px full-width border-none">Nota: ' + checked + '</textarea></th>' +
                         '</tr></tbody>' +
                         '</table>' +
                         '</th>' +
@@ -125,7 +125,7 @@ function createPdf(data) {
     let first = url.split('#');
     window.location.href = first[0] + '#pdf-page';
     setTimeout(function () {
-        generatePdf();
+        generatePdf(data);
     },2000)
 }
 
@@ -164,7 +164,7 @@ function createPdf(data) {
 //     });
 // }
 //
-function generatePdf() {
+function generatePdf(data) {
 
     let quotes = document.getElementById('pdf-content');
     let j = 1;
@@ -214,15 +214,15 @@ function generatePdf() {
                                     let srcImg  = canvas;
                                     let sX      = 0;
                                     let sY      = prevOffset; // start 980 pixels down for every new page
-                                    let sWidth  = 900;
+                                    let sWidth  = 720;
                                     let sHeight = offset;
                                     let dX      = 0;
                                     let dY      = 0;
-                                    let dWidth  = 900;
+                                    let dWidth  = 720;
                                     let dHeight = offset;
 
                                     window.onePageCanvas = document.createElement("canvas");
-                                    onePageCanvas.setAttribute('width', 900);
+                                    onePageCanvas.setAttribute('width', 720);
                                     onePageCanvas.setAttribute('height', offset - prevOffset);
                                     let ctx = onePageCanvas.getContext('2d');
                                     // details on this usage of this function:
@@ -231,7 +231,7 @@ function generatePdf() {
                                     ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
                                     // document.body.appendChild(canvas);
-                                    let canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+                                    let canvasDataURL = onePageCanvas.toDataURL("image/JPEG", 1.0);
 
                                     let width         = onePageCanvas.width;
                                     let height        = onePageCanvas.clientHeight;
@@ -264,15 +264,15 @@ function generatePdf() {
                 let srcImg  = canvas;
                 let sX      = 0;
                 let sY      = prevOffset; // start 980 pixels down for every new page
-                let sWidth  = 900;
+                let sWidth  = 720;
                 let sHeight = heightImage;
                 let dX      = 0;
                 let dY      = 0;
-                let dWidth  = 900;
+                let dWidth  = 720;
                 let dHeight = heightImage;
 
                 window.onePageCanvas = document.createElement("canvas");
-                onePageCanvas.setAttribute('width', 900);
+                onePageCanvas.setAttribute('width', 720);
                 onePageCanvas.setAttribute('height', heightImage);
                 let ctx = onePageCanvas.getContext('2d');
                 // details on this usage of this function:
@@ -281,7 +281,7 @@ function generatePdf() {
                 ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
                 // document.body.appendChild(canvas);
-                let canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+                let canvasDataURL = onePageCanvas.toDataURL("image/JPEG", 1.0);
 
                 let width         = onePageCanvas.width;
                 let height        = onePageCanvas.clientHeight;
@@ -297,20 +297,21 @@ function generatePdf() {
 
             if(!multiplePage){
                 console.log('not multiple page');
-                let heightImage = $('#pdf-content').offset().top + $('#pdf-content').height();
+                let heightImage = $('#pdf-content').offset().top + $('#pdf-content').height() + 15;
+                heightImage = heightImage - prevOffset;
                 let srcImg  = canvas;
                 let sX      = 0;
                 let sY      = 0; // start 980 pixels down for every new page
-                let sWidth  = 900;
+                let sWidth  = 720;
                 let sHeight = heightImage;
                 let dX      = 0;
                 let dY      = 0;
-                let dWidth  = 900;
+                let dWidth  = 720;
                 let dHeight = heightImage;
 
                 window.onePageCanvas = document.createElement("canvas");
-                onePageCanvas.setAttribute('width', 900);
-                onePageCanvas.setAttribute('height', heightImage - prevOffset);
+                onePageCanvas.setAttribute('width', 720);
+                onePageCanvas.setAttribute('height', heightImage);
                 let ctx = onePageCanvas.getContext('2d');
                 // details on this usage of this function:
                 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
@@ -318,7 +319,7 @@ function generatePdf() {
                 ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
                 // document.body.appendChild(canvas);
-                let canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+                let canvasDataURL = onePageCanvas.toDataURL("image/JPEG", 1.0);
 
                 let width         = onePageCanvas.width;
                 let height        = onePageCanvas.clientHeight;
@@ -332,8 +333,31 @@ function generatePdf() {
                 pdf.addImage(canvasDataURL, 'PNG', 25, 25);
             }
             //! after the for loop is finished running, we save the pdf.
+
+            let binary = pdf.output('datauri');
+            console.log('binary');
+            console.log(binary);
+            let pdfForm = new FormData();
+            console.log('stringify');
+            pdfForm.append('pdf', binary);
+            pdfForm.append('email', data.info.email);
+
+            console.log(pdfForm.get('pdf'));
+
+            let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
+
+            pdfPromise.then(
+                function (data) {
+                    if (data.result) {
+                        console.log('pdf sent');
+                        console.log(data)
+                        alert(data);
+                    }
+                }
+            );
+
             pdf.save('Test.pdf');
-        }
+        }, background: '#FFFFFF'
     });
 }
 // https://stackoverflow.com/questions/19272933/jspdf-multi-page-pdf-with-html-renderer

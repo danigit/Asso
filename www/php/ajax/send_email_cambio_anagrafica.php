@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 class send_email_cambio_anagrafica extends cs_interaction{
-    private $count, $fields = "";
+    private $count, $fields = "", $db_json;
 
     protected function input_elaboration(){
         //TODO constrolare se funziona ancora con register
@@ -26,9 +26,25 @@ class send_email_cambio_anagrafica extends cs_interaction{
         for($i = 0; $i < $this->count; $i++){
             $this->fields .= $this->validate_string($i) . "<br>";
         }
+
+        $this->count = $this->validate_string("dbJson");
+
+        $this->db_json = $this->validate_string('dbJson');
+
+        if($this->db_json === false){
+            $this->json_error('Nessun file json ricevuto');
+        }
     }
 
     protected function get_informations(){
+        $connection = $this->get_connection();
+
+        $result = $connection->insertAnagrafica($this->db_json);
+
+        if($result instanceof db_error){
+            $this->json_error('C\'e stato un errore nell\'inserimento dei data');
+        }
+
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com';

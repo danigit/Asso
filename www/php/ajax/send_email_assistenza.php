@@ -43,6 +43,9 @@ class send_email_assistenza extends cs_interaction{
     }
 
     protected function get_informations(){
+        $connection = $this->get_connection();
+        $result = $connection->insertAssistenza($this->assistenza);
+
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com';
@@ -68,3 +71,4 @@ class send_email_assistenza extends cs_interaction{
 
 $send_email_assistenza = new send_email_assistenza();
 $send_email_assistenza->execute();
+

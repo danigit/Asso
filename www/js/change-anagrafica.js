@@ -42,6 +42,9 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
     let emailForm = new FormData();
     let count = 0;
     let formValue = '';
+    let dbJson = {};
+    let jsonKey;
+    let jsonValue;
 
     sendEmail($('#error-change-anagrafica-popup'), 'start');
 
@@ -51,16 +54,20 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
 
         if (elem.prop('tagName') === 'LABEL'){
             formValue = '<b>' + elem.text() + '</b>'
+            jsonKey = elem.text();
         }
 
         if (elem.prop('tagName') === 'DIV') {
             if (elem.find('input').val() === "") {
                 formValue += ': ' + elem.find('input').attr('placeholder');
+                jsonValue = elem.find('input').attr('placeholder');
             }else{
                 formValue += ': ' + elem.find('input').val();
+                jsonValue = elem.find('input').val();
             }
 
             emailForm.append('' + count, formValue);
+            dbJson[jsonKey] = jsonValue;
             count++;
         }
     });
@@ -68,7 +75,7 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
     //controllo se c'e' almeno un valore da mandare
     if (count !== 0) {
         emailForm.append('count', "" + count);
-
+        emailForm.append('dbJson', JSON.stringify(dbJson));
         let changeAnagraficaPromise = httpPost('php/ajax/send_email_cambio_anagrafica.php', emailForm);
 
         changeAnagraficaPromise.then(

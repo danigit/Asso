@@ -26,7 +26,7 @@
 }
 
 .ui-li-divider{
-    background: #0099FF !important;
+    background: #007E4D !important;
     text-shadow: none!important;
     color: white!important;
     padding: 8px!important;
@@ -75,15 +75,16 @@
     background-color: #F9F9F9!important;
     border: none!important;
     box-shadow: none!important;
-    border: 1px solid #0099FF!important;
+    border: 1px solid #007E4D!important;
     border-radius: 5px!important;
 }
 
 #registerForm .ui-checkbox > label{
     margin-top: 30px!important;
-    background: #3dc235!important;
+    /*background: #3dc235!important;*/
+    color: #FD5562;
     text-shadow: none!important;
-    font-size: smaller!important;
+    font-size: medium!important;
 }
 
 .ui-icon-maps-icon:after{
@@ -171,8 +172,19 @@ input{
 
 #login-content > a{
     margin-top: 0!important;
-    background: #3dc235!important;
+    background: #FD5562!important;
     text-shadow: none!important;
+    color: #ffffff;
+}
+
+#login-fielset div:nth-child(4){
+    background-color: #007E4D!important;
+    color: #ffffff!important;
+}
+
+#register-fielset div:nth-child(3){
+    background: #007E4D!important;
+    color: #ffffff!important;
 }
 
 .login-icon{
@@ -184,17 +196,17 @@ input{
     background: #ffffff!important;
     color: #000000!important;
     border-radius: 12px!important;
-    border: 1px solid #0099FF!important;
+    border: 1px solid #007E4D!important;
 }
 
 .privacy-div > h5 > a{
-    background-color: #0099FF!important;
+    background-color: #FD5562!important;
     text-shadow: none!important;
     color: #ffffff!important;
 }
 
 .privacy-div > div{
-    border: 1px solid #0099FF!important;
+    border: 1px solid #FD5562!important;
 }
 
 .privacy-div > div p{
@@ -238,8 +250,8 @@ input{
 
 .home-phrase{
     margin: 45px 0;
-    border-bottom: 2px solid #0099FF;
-    border-top: 2px solid #0099FF;
+    border-bottom: 2px solid #FD5562;
+    border-top: 2px solid #FD5562;
     border-radius: 10px;
     padding: 10px 0;
     color: #007E47;
@@ -257,7 +269,7 @@ input{
 
 .fatture-header{
     width: 100%;
-    background: #0099FF!important;
+    background: #007E4D!important;
     color: #ffffff!important;
     margin-left: -15px!important;
     text-shadow: none!important;
@@ -716,6 +728,10 @@ input{
     border-top: 2px solid #0099FF!important;
 }
 
+.border-top-2-green{
+    border-top: 2px solid #007E4D!important;
+}
+
 .sorveglianza-note{
     width: 96%!important;
     margin: auto!important;
@@ -810,7 +826,7 @@ input{
     border-radius: 10px!important;
     font-size: large!important;
     text-align: center!important;
-    color: #0099FF!important;
+    color: #FD5562!important;
 }
 
 .collapsible-year-div > div{
@@ -821,4 +837,13 @@ input{
 #referente-name > div{
     margin: 0!important;
     width: 99% !important;
+}
+
+#sorveglianza-email > div{
+    margin: 10px 0 0 0!important;
+    width: 99% !important;
+}
+
+#menu .ui-icon-carat-r:after{
+    background-color: #FD5562!important;
 }
