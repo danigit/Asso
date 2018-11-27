@@ -10,8 +10,8 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class DatabaseConnection{
-    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
-//    const PATH = 'localhost', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
+//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+    const PATH = '89.46.111.27', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
@@ -51,10 +51,10 @@ class DatabaseConnection{
         $this->connection->autocommit(false);
         $errors = array();
 
-        $query = "insert into temp_surveillance (frequency, contratto, filiale, name, email, number, type, answer) 
+        $query = "insert into temp_surveillance (frequency, contratto, filiale, name, email, number, type, answer)
                   values (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        
+
         foreach ($domande as $elemName => $elem) {
             if ($elemName !== "info") {
                 $question = 1;
@@ -84,11 +84,11 @@ class DatabaseConnection{
         $this->connection->autocommit(false);
         $errors = array();
 
-        $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.name, temp.email, temp.number, temp.answer, 
-                  temp.type, question.question FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto, 
-                  temp_surveillance.filiale, temp_surveillance.name, temp_surveillance.email, temp_surveillance.type, 
-                  temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance JOIN type ON 
-                  temp_surveillance.type = type.description) as temp LEFT JOIN question ON temp.id = question.type AND 
+        $query = 'SELECT temp.frequency, temp.contratto, temp.filiale, temp.name, temp.email, temp.number, temp.answer,
+                  temp.type, question.question FROM (SELECT temp_surveillance.frequency, temp_surveillance.contratto,
+                  temp_surveillance.filiale, temp_surveillance.name, temp_surveillance.email, temp_surveillance.type,
+                  temp_surveillance.number, temp_surveillance.answer, type.id FROM temp_surveillance JOIN type ON
+                  temp_surveillance.type = type.description) as temp LEFT JOIN question ON temp.id = question.type AND
                   temp.number = question.number';
 
         $result = $this->connection->query($query);
@@ -311,3 +311,6 @@ class DatabaseConnection{
         return $result_array;
     }
 }
+//
+//$conn = new DatabaseConnection();
+//var_dump($conn->getMotivs());

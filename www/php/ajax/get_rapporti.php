@@ -25,11 +25,12 @@ class get_rapporti extends cs_interaction {
                 $fattureFile = fopen($statiniPath, 'r');
                 while (($line = fgets($fattureFile)) !== false) {
                     $lineArray = preg_split('/[\t]/', trim($line));
-                    $path = LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . 'Vegeta'));
-                    if(file_exists($path . '-Registro.pdf' ))
+                    $path = LINK_FOR_PDF_FILES . $folderName . "/" . strtoupper(md5($lineArray[0] . "Vegeta"));
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'] . parse_url($path . '-Registro.pdf', PHP_URL_PATH))) {
                         $this->result[$lineArray[2]][$lineArray[4]][] = array('path' => $path, 'registro' => 'si', 'anno' => $lineArray[1], 'contratto' => $lineArray[2], 'filiale' => $lineArray[4]);
-                    else
+                    }else {
                         $this->result[$lineArray[2]][$lineArray[4]][] = array('path' => $path, 'registro' => 'no', 'anno' => $lineArray[1], 'contratto' => $lineArray[2], 'filiale' => $lineArray[4]);
+                    }
                 }
             }else{
                 $this->json_error("Impossibile recuperare i rapporti oppure rapporti inesistenti. Riprovare più tardi");

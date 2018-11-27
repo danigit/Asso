@@ -6,6 +6,9 @@
  * @param contratto
  */
 function viewList(elem, contratto) {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#viewListFooter').hide();
+    }
     //preparo i dati da spedire
     var viewForm = new FormData();
     viewForm.append('lista', elem);
@@ -60,6 +63,12 @@ function viewList(elem, contratto) {
                                 MARCA_LUCE: innerValue.MARCA_LUCE,
                                 UBICAZIONE: innerValue.UBICAZIONE
                             };
+                        }else if(elem === 'LISTA_IDRANTI'){
+                            elemOrder = {
+                                PROGRESSIVO: innerValue.PROGRESSIVO,
+                                DESCRIZIONE: innerValue.DESCRIZIONE,
+                                TIPO: innerValue.TIPO
+                            }
                         }
 
                         //controllo se l'articolo contiene una matricola e lo inserisco
@@ -80,12 +89,12 @@ function viewList(elem, contratto) {
                                             console.log(label);
                                             console.log(value);
                                             if(!(label === 'FILIALE'))
-                                                content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
+                                                content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="red-text">' + label.replace('_', ' ') + ':</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
                                         });
                                         content += '</div>';
                                     });
 
-                                    content += '</div></div>';
+                                    content += '</div>';
                                 }
                             }else {
                                 // if(!(lastKey === 'FILIALE'))
@@ -94,7 +103,7 @@ function viewList(elem, contratto) {
                         });
 
                         $.each(elemOrder, function (key, value) {
-                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' + key.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
+                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="red-text">' + key.replace('_', ' ') + '</b> </p><p class="float-right line-wrap">' + value + '</p></a>';
                         });
 
                         content += '</div>';
@@ -103,6 +112,18 @@ function viewList(elem, contratto) {
                     $('#viewListCollapsible').collapsibleset();
                     $('#viewListCollapsible').collapsibleset('refresh');
 
+                });
+
+                $('#salvaCsv').removeClass('ui-disabled');
+                $('#salvaCsv').on('click', function () {
+                    console.log('saving csv');
+                    downloadCsv({filename: elem.split('_')[1] + '.csv'}, {data: data[0], columnDelimiter: "\t", lineDelimiter: '\n'});
+                })
+
+                $('#salvaPdf').removeClass('ui-disabled');
+                $('#salvaPdf').on('click', function () {
+                    console.log('saving pdf');
+                    createAttrezzaturePdf({data: data[0]});
                 })
             } else {
                 $('#viewListCollapsible').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
@@ -110,3 +131,4 @@ function viewList(elem, contratto) {
         }
     );
 }
+

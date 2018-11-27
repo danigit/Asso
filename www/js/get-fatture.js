@@ -76,17 +76,17 @@ function insertContent( innerKey, innerValue) {
                         if (k === 'numero') {
                             numero = v;
                         } else if (k === 'anno')
-                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">NUMERO</b> </p><p class="float-right line-wrap">'
+                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="red-text">NUMERO</b> </p><p class="float-right line-wrap">'
                                 + numero + ' / ' + parseString(k, v) + '</p></a>';
                         else
-                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="blue-text">' +
+                            content += '<a href="#" class="ui-btn fatture-item"><p class="float-left"><b class="red-text">' +
                                 k.toUpperCase() + '</b> </p><p class="float-right line-wrap">' + parseString(k, v) + '</p></a>';
                     }
                 }
             }
         });
         content += '<div class="ui-grid-a ui-responsive">' +
-            '<div class="ui-block-a"><a href="#" onclick="app.openPdf(\'' + lastValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button padding-lr-zero margin-zero">VISUALIZZA FATTURA</a></div></div>';
+            '<div id="visualizzaFattura" class="ui-block-a"><a href="#" onclick="app.openPdf(\'' + lastValue.path + '\');" id="visualizza" data-value="' + innerValue.numero + '" class="ui-btn ui-shadow ui-corner-all visualizza-button padding-lr-zero margin-zero">VISUALIZZA FATTURA</a></div></div>';
 
         content += '</div>';
     });

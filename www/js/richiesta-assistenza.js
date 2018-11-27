@@ -9,6 +9,8 @@ let inviaRichiestaAssistenzaDati = $('#inviaRichiestaAssistenzaDati');
 
 function richiestaAssistenza() {
     resetPageFields();
+
+    $('#richiestaAssistenzaMotivoSelect').children().slice(2).remove();
     $('#richiestaAssistenzaMotivoSelect option:eq(0)').prop('selected', true);
     $('#richiestaAssistenzaMotivoSelect').selectmenu('refresh');
 
@@ -74,11 +76,11 @@ function getFilialePerContratto(selectedContratto){
                     if(key === 'filiale')
                         $('#richiestaAssistenzaFilialeSelect').append('<option>' + value + '</option>');
                     else if (key === 'tecnico') {
-                        $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="blue-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
+                        $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="red-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
                     }else if (key === 'telefono_tecnico') {
-                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
+                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
                     }else if (key === 'email_tecnico'){
-                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="blue-text font-large">Email:</b></span><span class="float-right margin-right-10px email"> ' + value + '</span></p>')
+                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Email:</b></span><span class="float-right margin-right-10px email"> ' + value + '</span></p>')
                     }
                 })
             }else {

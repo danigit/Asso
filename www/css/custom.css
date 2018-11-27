@@ -166,7 +166,7 @@ input{
 
 .login-image{
     display: block;
-    width: 70%;
+    width: 100%;
     margin: auto auto 50px;
 }
 
@@ -306,9 +306,10 @@ input{
 
 .visualizza-button{
     width: 100%!important;
-    background: #3dc235!important;
+    border: 1px solid #007E4D!important;
+    /*background: #3dc235!important;*/
     text-shadow: none!important;
-    color: #ffffff!important;
+    color: #007E4D!important;
 }
 
 .visualizza-button-anagrafica{
@@ -317,10 +318,12 @@ input{
     padding-left: 0!important;
     padding-right: 0!important;
     font-size: large!important;
-    border: 1px solid #3dc235!important;
+    outline: 1px solid #FF4F63 !important;
+    /*border-right-width: 1px !important;*/
+    /*border-left-width: 1px !important;*/
     border-radius: 0!important;
-    background-color: #3dc235!important;
-    color: #ffffff!important;
+    /*background-color: #3dc235!important;*/
+    color: #FF4F63!important;
 }
 
 .contratti-collapsible > h3 > a{
@@ -392,8 +395,12 @@ input{
     color: #808080!important;
 }
 
+.green-text{
+    color: #007E4D!important;
+}
+
 .center-text{
-    text-align: center;
+    text-align: center!important;
 }
 
 .margin-top-50{
@@ -430,7 +437,7 @@ input{
 
 .cambio-anagrafica-form-label{
     width: 85% !important;
-    color: #0099FF;
+    color: #007E4D;
     margin: auto 7% 50px 7%!important;
     padding: 10px 0 0 0!important;
     text-align: center;
@@ -442,7 +449,7 @@ input{
 }
 
 .white-text{
-    color: #ffffff;
+    color: #ffffff!important;
 }
 
 .aggiungiModifica{
@@ -453,7 +460,7 @@ input{
     font-size: medium!important;
     /*background-color: #FF956B!important;*/
     color: #FF956B!important;
-    border: 1px solid #FF956B!important;
+    outline: 1px solid #FF956B!important;
 }
 
 .ricaricaDati{
@@ -489,9 +496,9 @@ input{
     padding-left: 0!important;
     padding-right: 0!important;
     font-size: large!important;
-    border: 1px solid #3dc235!important;
-    background-color: #3dc235!important;
-    color: #ffffff!important;
+    outline: 1px solid #FF4F63!important;
+    /*background-color: #3dc235!important;*/
+    color: #FF4F63!important;
 }
 
 #cambiaAnagraficaList{
@@ -525,7 +532,7 @@ input{
 
 .elementi-da-selezionare{
     margin: 20px auto 20px auto!important;
-    color: #0099FF;
+    color: #007E4D;
     padding: 10px;
     text-align: center;
     font-size: larger;
@@ -549,9 +556,9 @@ input{
     padding-left: 0!important;
     padding-right: 0!important;
     font-size: large!important;
-    border: 1px solid #3dc235!important;
-    background-color: #3dc235!important;
-    color: #ffffff!important;
+    outline: 1px solid #FF4F63!important;
+    /*background-color: #3dc235!important;*/
+    color: #FF4F63!important;
 }
 
 /*radio buttons*/
@@ -595,23 +602,23 @@ input{
     padding-left: 0!important;
     padding-right: 0!important;
     font-size: large!important;
-    border: 1px solid #3dc235!important;
-    background-color: #3dc235!important;
-    color: #ffffff!important;
+    outline: 1px solid #FD5562!important;
+    /*background-color: #3dc235!important;*/
+    color: #FD5562!important;
 }
 
 .error-popup{
-    border: 1px solid #AE1E28!important;
+    border: 1px solid #FD5562!important;
     /*background: #AE1E28!important;*/
     /*color: white!important;*/
-    box-shadow: inset 0 0 10px #AE1E28!important;
+    box-shadow: inset 0 0 10px #FD5562!important;
 }
 
 .success-popup{
-    border: 3px solid #5DB553!important;
+    border: 3px solid #007E4D!important;
     /*background: #5DB553!important;*/
     /*color: white!important;*/
-    box-shadow: inset 0 0 10px #5DB553!important;
+    box-shadow: inset 0 0 10px #007E4D!important;
 }
 
 .email-popup{
@@ -622,24 +629,24 @@ input{
 }
 
 .error-title{
-    color: #AE1E28;
+    color: #FD5562;
     padding: 10px 10px 0 10px!important;
     border-bottom: 3px solid #FFFFFF;
 }
 
 .error-content{
-    color: #AE1E28;
+    color: #FD5562;
     padding: 10px;
 }
 
 .success-title{
-    color: #5DB553;
+    color: #007E4D;
     padding: 10px 10px 0 10px!important;
     border-bottom: 3px solid #FFFFFF;
 }
 
 .success-content{
-    color: #5DB553;
+    color: #007E4D;
     padding: 10px;
 }
 
@@ -847,3 +854,17 @@ input{
 #menu .ui-icon-carat-r:after{
     background-color: #FD5562!important;
 }
+
+#visualizzaFattura{
+    width: 99% !important;
+    margin: 1px!important;
+    margin-bottom: 3px!important;
+}
+
+.ui-radio-on{
+    background: #007E4D!important;
+    border: none!important;
+    color: #ffffff!important;
+}
+
+.ui-rad

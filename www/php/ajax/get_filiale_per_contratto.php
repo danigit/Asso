@@ -13,8 +13,8 @@ class get_filiale_per_contratto extends cs_interaction {
     private $contratto, $result;
 
     protected function input_elaboration(){
-//        $this->contratto = $this->validate_string('contratto');
-        $this->contratto = 'AUTORIMESSA CEPOLLINA 10 R';
+        $this->contratto = $this->validate_string('contratto');
+//        $this->contratto = 'AUTORIMESSA CEPOLLINA 10 R';
     }
 
     protected function get_informations(){
@@ -29,6 +29,7 @@ class get_filiale_per_contratto extends cs_interaction {
             $filiali = array();
             foreach ($array_file as $item) {
                 foreach ($item as $it) {
+                    var_dump(trim($it['DESCRIZIONE_SCHEDA'] . "===" . $this->contratto));
                     if (trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
                         foreach ($it as $i) {
                             if(is_array($i)) {

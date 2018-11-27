@@ -62,7 +62,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     <body>
         <div data-role="page" id="login">
             <div data-role="content" id="login-content">
-                <img src="img/logo.png" class="login-image">
+                <img src="img/logo.jpg" class="login-image">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
@@ -78,8 +78,8 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="register">
             <div data-role="content">
-                <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon">Login</a>
-                <img src="img/logo.png" class="login-image">
+                <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
+                <img src="img/logo.jpg" class="login-image">
                 <h1 class="login-header">Registrati</h1>
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">

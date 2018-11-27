@@ -350,8 +350,7 @@ function generatePdf(data) {
                 function (data) {
                     if (data.result) {
                         console.log('pdf sent');
-                        console.log(data)
-                        alert(data);
+                        console.log(data);
                     }
                 }
             );

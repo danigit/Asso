@@ -55,7 +55,7 @@ class send_email_pdf extends cs_interaction{
     }
 
     protected function get_returned_data(){
-        return array('pdf' => $this->pdf, 'email' => $this->email);
+        return array();
     }
 }
 

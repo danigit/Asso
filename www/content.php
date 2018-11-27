@@ -83,20 +83,20 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
             </div>
             <div data-role="content">
-                <img src="img/logo.png" id="benvenuto-image">
+                <img src="img/logo.jpg" id="benvenuto-image">
                 <h1 class="login-header home-phrase">BENVENUTO NELLA TUA AREA PERSONALE</h1>
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Dove trovarci</h3>
-                    <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="maps-icon" data-iconpos="right" class="blue-text">Via Carnia 127R</a>
+                    <a href="https://goo.gl/maps/hukYqVjJyj72" data-role="button" data-icon="maps-icon" data-iconpos="right" class="red-text">Via Carnia 127R</a>
                     <a href="#" data-role="button" id="antani">16161 Teglia Genova</a>
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>
-                    <a href="tel://232293685" class="ui-btn fatture-item"><p>Telefono: <b class="blue-text">010 6018258</b></p></a>
+                    <a href="tel://0106018258" class="ui-btn fatture-item"><p>Telefono: <b class="red-text">010 6018258</b></p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
                     <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">
-                        E-mail: <span class="text-transfor-none blue-text">info@assoantincendio.com</span>
+                        E-mail: <span class="text-transfor-none red-text">info@assoantincendio.com</span>
                     </a>
                 </div>
                 <div id="facebook">
@@ -131,7 +131,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">CAMBIO ANAGRAFICA</h1>
                 <div class="ui-field-contain">
-                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto">Modifica campi anagrafica</label>
+                    <label for="changeAnagraficaSelection" class="cambio-anagrafica-form-label border-bottom-1-red margin-auto float-none">Modifica campi anagrafica</label>
                     <div id="cambioAnagraficaForm" class="padding-tb-2px-lr-7px">
 <!--                        <select id="changeAnagraficaSelection">-->
 <!--                            <option>Seleziona una voce...</option>-->
@@ -145,7 +145,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
 <!--                    <a href="#" id="aggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Aggiungi Modifica</a>-->
 <!--                    <a href="#" id="cancellaModifica" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
-                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati border-radius-none inset-shadow-green" data-role="button" data-inline="true">INVIA RICHIESTA</a>
+                    <a href="#" id="inviaCambioAnagraficaDati" class="inviaDati border-radius-none" data-role="button" data-inline="true">INVIA RICHIESTA</a>
                 </div>
 
                 <div id="error-change-anagrafica-popup" data-role="popup" data-overlay-theme="a" class="ui-content" data-history="false">
@@ -260,7 +260,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     <fieldset data-role="controlgroup" id="sorveglianzaRadioFieldset" data-type="horizontal">
                         <legend class="cambio-anagrafica-form-label border-bottom-1-red">Seleziona frequesnza</legend>
                         <input type="radio" name="frequenza" id="mensile" value="mensile" checked="checked">
-                        <label for="mensile">Mensile</label>
+                        <label for="mensile" class="radio-legend">Mensile</label>
                         <input type="radio" name="frequenza" id="bimestrale" value="bimestrale">
                         <label for="bimestrale">Bimestrale</label>
                         <input type="radio" name="frequenza" id="trimestrale" value="trimestrale">
@@ -296,9 +296,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div id="sorveglianzaMessaggioErrore"></div>
 
             <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
-                <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica inset-shadow-orange ui-disabled" data-role="button" data-inline="true">Salva per dopo</a>
+                <a href="#" id="sorveglianzaAggiungiModifica" class="aggiungiModifica ui-disabled" data-role="button" data-inline="true">SOSPENDI SORVEGLIANZA</a>
 <!--                <a href="#" id="sorveglianzaCancellaDati" class="cancellaModifica inset-shadow-red ui-disabled" data-role="button" data-inline="true">Cancella</a>-->
-                <a href="#" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">Salva nel database</a>
+                <a href="#" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">INVIA SORVEGLIANZA</a>
             </div>
 
             <div id="error-sorveglianza-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
@@ -344,6 +344,11 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="red-text philosopher-font header-page-title">Lista Attrezzature</h1>
                 <div data-role="collapsible-set" id="viewListCollapsible" data-inset="false" data-content-theme="d" id="fatture-list">
                 </div>
+
+                <div data-role="footer" id="viewListFooter" data-position="fixed" class="background-white" data-fullscreen="false">
+                    <a href="#" id="salvaCsv" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">Salva csv</a>
+                    <a href="#" id="salvaPdf" class="sorveglianzaInviaDati font-medium ui-disabled" data-role="button" data-inline="true">Salva pdf</a>
+                </div>
             </div>
         </div>
 
@@ -353,6 +358,12 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 <!--                <a href="javascript: generatePdf();" id="sorveglianzaInviaDati" class="sorveglianzaInviaDati font-medium" data-role="button" data-inline="true">Salva nel database</a>-->
             </div>
 
+        </div>
+
+        <div data-role="page" id="attrezzature-pdf" style="width: 100%!important;">
+            <div data-role="content" id="attrezzature-pdf-content">
+
+            </div>
         </div>
 
         <script src="js/logout.js"></script>

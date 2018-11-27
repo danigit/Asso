@@ -39,7 +39,11 @@
 }
 
 .border-1-black{
-    border: 1px solid #000000;
+    border: 1px solid #000000!important;
+}
+
+.border-1-gray{
+    border: 1px solid #808080!important;
 }
 
 .width-5{
@@ -274,4 +278,8 @@
 
 .border-1-red{
     border: 1px solid #FD5562!important;
+}
+
+.float-none{
+    float: none!important;
 }

@@ -26,7 +26,7 @@ function getRapporti() {
                             content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '.pdf\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">Intervento del ' + lastValue.anno + '</a>';
                             //controllo se si tratta di un registro o meno
                             if(lastValue.registro === 'si')
-                                content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '-Registro.pdf\');" class="ui-btn gray-text inset-shadow-orange border-radius-10">Registro del ' + lastValue.anno + '</a>';
+                                content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '-Registro.pdf\');" class="ui-btn gray-text margin-top-12 border-radius-10 width-85 margin-auto border-1-gray">Registro del ' + lastValue.anno + '</a>';
                         });
 
                         content += '</div>';
