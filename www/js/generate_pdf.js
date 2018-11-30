@@ -248,8 +248,8 @@ function generatePdf(data) {
                                     prevOffset = offset;
                                 }
 
-                                console.log('offset after: ' + offset);
-                                console.log('prevOffset after: ' + prevOffset);
+                                // console.log('offset after: ' + offset);
+                                // console.log('prevOffset after: ' + prevOffset);
                                 prevObject = lastValue;
                             })
                         }
@@ -258,7 +258,7 @@ function generatePdf(data) {
             });
 
             if(multiplePage){
-                console.log('prev offset true: ' + prevOffset);
+                // console.log('prev offset true: ' + prevOffset);
                 let heightImage = $('#pdf-content').offset().top + $('#pdf-content').height() + 15;
                 heightImage = heightImage - prevOffset;
                 let srcImg  = canvas;
@@ -277,7 +277,7 @@ function generatePdf(data) {
                 let ctx = onePageCanvas.getContext('2d');
                 // details on this usage of this function:
                 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
-                console.log('drawing immage true: ' + sX + ', ' + sY + ', ' + sWidth + ', ' + sHeight + ', ' + dWidth + ', ' + dHeight);
+                // console.log('drawing immage true: ' + sX + ', ' + sY + ', ' + sWidth + ', ' + sHeight + ', ' + dWidth + ', ' + dHeight);
                 ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
                 // document.body.appendChild(canvas);
@@ -296,7 +296,7 @@ function generatePdf(data) {
             }
 
             if(!multiplePage){
-                console.log('not multiple page');
+                // console.log('not multiple page');
                 let heightImage = $('#pdf-content').offset().top + $('#pdf-content').height() + 15;
                 heightImage = heightImage - prevOffset;
                 let srcImg  = canvas;
@@ -335,22 +335,24 @@ function generatePdf(data) {
             //! after the for loop is finished running, we save the pdf.
 
             let binary = pdf.output('datauri');
-            console.log('binary');
-            console.log(binary);
+            // console.log('binary');
+            // console.log(binary);
             let pdfForm = new FormData();
-            console.log('stringify');
+            // console.log('stringify');
             pdfForm.append('pdf', binary);
             pdfForm.append('email', data.info.email);
 
-            console.log(pdfForm.get('pdf'));
+            // console.log(pdfForm.get('pdf'));
 
             let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
 
             pdfPromise.then(
                 function (data) {
                     if (data.result) {
-                        console.log('pdf sent');
-                        console.log(data);
+                        // console.log('pdf sent');
+                        // console.log(data);
+                        alert('redirecting to content');
+                        window.location.href = 'content.php';
                     }
                 }
             );

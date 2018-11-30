@@ -20,6 +20,7 @@
     <allow-navigation href="http://www.danielfotografo.altervista.org/*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <!--<icon src="img/" density="ldpi" />-->
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

@@ -23,6 +23,7 @@ class get_viewlist extends cs_interaction {
     }
 
     protected function get_informations(){
+        $test = array();
         $info = getUserInformations($_SESSION['username']);
         if($info != null) {
             $folderName = getFolderName($info[1]);
@@ -31,19 +32,19 @@ class get_viewlist extends cs_interaction {
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
             foreach ($array_file as $item) {
-                foreach ($item as $it){
-                    if(trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
-                        foreach ($it[$this->lista] as $i) {
-                            if(is_array($i[0])) {
-                                foreach ($i as $val) {
-                                    $this->result[$val['FILIALE']][] = $val;
-                                }
-                            }else
-                                $this->result[$i['FILIALE']][] = $i;
+                if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto) {
+                    foreach ($item[$this->lista] as $it) {
+                        if (is_array($it[0])) {
+                            foreach ($it as $val) {
+                                $this->result[$val['FILIALE']][] = $val;
+                            }
+                        }else{
+                            $this->result[$it['FILIALE']][] = $it;
                         }
                     }
                 }
             }
+
         }else{
             $this->json_error("Impossibile visualizzare la lista oppure lista inesistenti. Riprovare più tardi!");
 

@@ -79,8 +79,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </ul>
         </div>
         <div data-role="page" id="home">
-            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content">
                 <img src="img/logo.jpg" id="benvenuto-image">
@@ -107,9 +107,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="anagrafica">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
 
             <div data-role="content" class="anagrafica-padding margin-bottom-30 background-white">
@@ -123,9 +123,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="cambioAnagrafica">
-            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-red border-radius-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
 
             <div data-role="content" class="anagrafica-padding">
@@ -157,9 +157,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="contratti">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">CONTRATTI</h1>
@@ -169,9 +169,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="fatture">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">FATTURE</h1>
@@ -181,9 +181,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="rapporti">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">RAPPORTI</h1>
@@ -193,9 +193,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="attrezzature">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content" id="attrezzature-container">
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">ATTREZZATURE</h1>
@@ -205,9 +205,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="richiestaAssistenza">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">RICHIESTA ASSISTENZA</h1>
@@ -250,9 +250,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="sorveglianza">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">SORVEGLIANZA</h1>
@@ -317,9 +317,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="modificaPassword">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content">
                 <img src="img/logo.png" class="menu-title">
@@ -336,9 +336,9 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
 
         <div data-role="page" id="viewList">
-            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-red">
-                <a href="#menu" class="menu-icon border-1-red border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-red"></a>
-                <a href="#home" class="menu-icon border-1-red border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-red"></a>
+            <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
+                <a href="#menu" class="menu-icon border-1-green border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#home" class="menu-icon border-1-green border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
             </div>
             <div data-role="content" id="viewListContent">
                 <h1 class="red-text philosopher-font header-page-title">Lista Attrezzature</h1>

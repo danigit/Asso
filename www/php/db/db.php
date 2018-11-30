@@ -10,8 +10,9 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class DatabaseConnection{
-//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
-    const PATH = '89.46.111.27', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
+    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
+//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'root', DATABASE = 'asso';
+//    const PATH = '89.46.111.27', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
@@ -137,7 +138,7 @@ class DatabaseConnection{
 
 
     function getMotivs(){
-        $query = 'SELECT * FROM motivs';
+        $query = 'SELECT * FROM motivs ORDER BY descrizione ASC ';
 
         $result = $this->connection->query($query);
 
@@ -165,6 +166,20 @@ class DatabaseConnection{
             return $statement;
 
         return $statement->affected_rows == 1 ? true : new db_error(db_error::$ERROR_ON_DELETE_MOTIV);
+    }
+
+    function updateMotiv($oldMotiv, $newMotiv){
+        $query = "UPDATE motivs SET descrizione=? WHERE descrizione=? ";
+        $statement = $this->parse_and_execute_select($query, "ss", $newMotiv, $oldMotiv);
+
+        if ($statement instanceof db_error)
+            return $statement;
+
+        if($statement === false){
+            return new db_error(db_error::$ERROR_ON_UPDATE_MOTIV);
+        }
+
+        return $this->connection->affected_rows;
     }
 
     function insertAnagrafica($db_json){
@@ -313,4 +328,6 @@ class DatabaseConnection{
 }
 //
 //$conn = new DatabaseConnection();
+//var_dump('inserimento motivo');
+//var_dump($conn->insertMotiv('scapelli'));
 //var_dump($conn->getMotivs());

@@ -65,17 +65,48 @@ function viewList(elem, contratto) {
                             };
                         }else if(elem === 'LISTA_IDRANTI'){
                             elemOrder = {
-                                PROGRESSIVO: innerValue.PROGRESSIVO,
                                 DESCRIZIONE: innerValue.DESCRIZIONE,
                                 TIPO: innerValue.TIPO
+                            }
+                        }else if(elem === 'LISTA_SPRINKLER'){
+                            console.log('lista sprinkler...' + elem);
+                            elemOrder = {
+                                CHIAVE: innerValue.CHIAVE,
+                                // FILIALE: innerValue.FILIALE,
+                                MARCA: innerValue.MARCA,
+                                TARATURA_VALVOLE: innerValue.TARATURA_VALVOLE,
+                                VALVOLE_RICAMBIO: innerValue.VALVOLE_RICAMBIO,
+                                UBICAZIONE: innerValue.UBICAZIONE,
+                                TIPO: innerValue.TIPO,
+                                STATO: innerValue.STATO,
+                                ANOMALIA_APROVATA: innerValue.ANOMALIA_APROVATA,
+                                ANOMALIA: innerValue.ANOMALIA,
+                                MODELLO: innerValue.MODELLO,
+                                COMPRESSORE: innerValue.COMPRESSORE,
+                                NOTE: innerValue.NOTE,
+                                QUANTITA_VALVOLE: innerValue.QUANTITA_VALVOLE,
+                                DESCRIZIONE: innerValue.DESCRIZIONE,
+                                FILIALE1: innerValue.FILIALE1,
+                                MARCA1: innerValue.MARCA1
+                                }
+                        }else if(elem === 'LISTA_RILEVATORI_FUMI'){
+                            console.log('fumi');
+                            console.log(innerValue.UBICAZIONE);
+                            elemOrder = {
+                                UBICAZIONE: innerValue.UBICAZIONE,
+                                MARCA_CENTRALE: innerValue.MARCA_CENTRALE,
+                                TIPO_CENTRALE: innerValue.TIPO_CENTRALE,
+                                // FILIALE: innerValue.FILIALE
                             }
                         }
 
                         //controllo se l'articolo contiene una matricola e lo inserisco
                         if(innerValue.MATRICOLA)
                             content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
-                        else
+                        else if(innerValue.PROGRESSIVO)
                             content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
+                        else
+                            content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Descrizione: " + innerValue.DESCRIZIONE + "</h3>";
 
                         $.each(innerValue, function (lastKey, lastValue) {
                             //controllo se l'articolo e' un array in modo da visualizzare anche i suoi elementi

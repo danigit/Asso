@@ -43,8 +43,8 @@ class send_email_pdf extends cs_interaction{
         $mail->Password = "!ds.acconto!88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress($this->email);
-        $mail->Subject = "Cambio Anagrafica";
-        $mail->msgHTML("Sei stata contattata da: <br><br> Nome: " . $_SESSION['username'] . "<br>Email: ds.acconto@gmail.com<br><br><br><br>Contenuto email:");
+        $mail->Subject = "Asso Antincendio Sorveglianza";
+        $mail->msgHTML("Come richiesto ti è stato inviato in allegato la sorveglianza relativa alle attrezzature di Asso Antincendio.");
         try {
             $mail->addStringAttachment($this->decodedFile, 'file.pdf');
         } catch (phpmailerException $e) {

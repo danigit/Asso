@@ -16,6 +16,7 @@ class db_error{
     public static $ERROR_ON_INSERTING_MOTIV         = 4;
     public static $ERROR_ON_SELECTING_MOTIV         = 5;
     public static $ERROR_ON_DELETE_MOTIV            = 6;
+    public static $ERROR_ON_UPDATE_MOTIV            = 7;
 
     public function __construct($error){
         $this->error = $error;
@@ -33,6 +34,7 @@ class db_error{
             case 4: return "ERROR_ON_INSERTING_MOTIV";
             case 5: return "ERROR_ON_SELECTING_MOTIV";
             case 6: return "ERROR_ON_DELETE_MOTIV";
+            case 7: return "ERROR_ON_UPDATE_MOTIV";
         }
     }
 }

@@ -18,7 +18,8 @@ class insert_motiv extends cs_interaction{
     protected function input_elaboration(){
         //TODO constrolare se funziona ancora con register
         $this->motiv = $this->validate_string("motiv");
-
+        $this->motiv = false;
+//
         if ($this->motiv === false)
             $this->json_error("Inserire un motivo");
     }
@@ -27,10 +28,14 @@ class insert_motiv extends cs_interaction{
        $connection = $this->get_connection();
 
        $this->result = $connection->insertMotiv($this->motiv);
+
+       if ($this->result instanceof db_error){
+           $this->json_error('Errone nell\'inserimento');
+       }
     }
 
     protected function get_returned_data(){
-        return array($this->result);
+        return array('id' => $this->result);
     }
 }
 
