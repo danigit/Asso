@@ -1,3 +1,4 @@
+'use strict';
 
 let nextRowPosH = 140;
 let nextRowPosL = 30;

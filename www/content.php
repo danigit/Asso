@@ -58,6 +58,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/default/html2canvas.min.js"></script>
         <script type="text/javascript" src="js/default/jspdf.min.js"></script>
+        <script type="text/javascript" src="js/default/jspdf.plugin.autotable.js"></script>
 
         <title>Asso</title>
     </head>
@@ -380,6 +381,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/richiesta-assistenza.js"></script>
         <script src="js/sorveglianza.js"></script>
         <script src="js/generate_pdf.js"></script>
+        <script src="js/generate_attrezzature_pdf.js"></script>
     </body>
 </html>
 

@@ -10,7 +10,7 @@ function viewList(elem, contratto) {
         $('#viewListFooter').hide();
     }
     //preparo i dati da spedire
-    var viewForm = new FormData();
+    let viewForm = new FormData();
     viewForm.append('lista', elem);
     viewForm.append('contratto', contratto);
     $('#viewListCollapsible').html('');
@@ -154,7 +154,11 @@ function viewList(elem, contratto) {
                 $('#salvaPdf').removeClass('ui-disabled');
                 $('#salvaPdf').on('click', function () {
                     console.log('saving pdf');
-                    createAttrezzaturePdf({data: data[0]});
+                    let nowDate = new Date($.now());
+                    let month = nowDate.getMonth()+1;
+                    let day = nowDate.getDate();
+                    let nowData = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + nowDate.getFullYear();
+                    createAttrezzaturePdf({data: data[0], contratto: contratto, nowData: nowData});
                 })
             } else {
                 $('#viewListCollapsible').append('<div class="center-text error-message"><span class="font-large">' + data.message + '</span></div>');
