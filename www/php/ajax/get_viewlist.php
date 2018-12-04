@@ -23,7 +23,6 @@ class get_viewlist extends cs_interaction {
     }
 
     protected function get_informations(){
-        $test = array();
         $info = getUserInformations($_SESSION['username']);
         if($info != null) {
             $folderName = getFolderName($info[1]);
@@ -31,15 +30,32 @@ class get_viewlist extends cs_interaction {
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
-            foreach ($array_file as $item) {
-                if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto) {
-                    foreach ($item[$this->lista] as $it) {
-                        if (is_array($it[0])) {
-                            foreach ($it as $val) {
-                                $this->result[$val['FILIALE']][] = $val;
+
+            if($array_file['Contratto'][0]) {
+                foreach ($array_file['Contratto'] as $item) {
+                    if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto){
+                        foreach ($item[$this->lista] as $it) {
+                            if (is_array($it[0])) {
+                                foreach ($it as $i) {
+                                    $this->result[$i['FILIALE']][] = $i;
+                                }
+                            }else{
+                                $this->result[$it['FILIALE']][] = $it;
                             }
-                        }else{
-                            $this->result[$it['FILIALE']][] = $it;
+                        }
+                    }
+                }
+            }else{
+                foreach ($array_file as $item) {
+                    if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto) {
+                        foreach ($item[$this->lista] as $it) {
+                            if (is_array($it[0])) {
+                                foreach ($it as $val) {
+                                    $this->result[$val['FILIALE']][] = $val;
+                                }
+                            } else {
+                                $this->result[$it['FILIALE']][] = $it;
+                            }
                         }
                     }
                 }

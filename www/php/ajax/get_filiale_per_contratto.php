@@ -27,25 +27,43 @@ class get_filiale_per_contratto extends cs_interaction {
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
             $filiali = array();
-            foreach ($array_file as $item) {
-                foreach ($item as $it) {
-                    var_dump(trim($it['DESCRIZIONE_SCHEDA'] . "===" . $this->contratto));
-                    if (trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
-                        foreach ($it as $i) {
-                            if(is_array($i)) {
+            if($array_file['Contratto'][0]){
+                foreach ($array_file['Contratto'] as $item) {
+                    if (trim($item['DESCRIZIONE_SCHEDA']) == $this->contratto) {
+                        foreach ($item as $i) {
+                            if (is_array($i)) {
                                 foreach ($i as $el) {
-                                    if(is_array($el[0])){
+                                    if (is_array($el[0])) {
                                         foreach ($el as $ant) {
-                                          $this->result['filiale'] = $ant['FILIALE'];
+                                            $this->result[] = $ant['FILIALE'];
                                         }
-                                    }else{
-                                        $this->result['filiale'] = $el['FILIALE'];
+                                    } else {
+                                        $this->result[] = $el['FILIALE'];
                                     }
                                 }
-                            }else{
-                                $this->result['tecnico'] = $it['TECNICO'];
-                                $this->result['telefono_tecnico'] = $it['TELEFONO_TECNICO'];
-                                $this->result['email_tecnico'] = $it['EMAIL_TECNICO'];
+                            } else {
+                                $this->result['tecnico'] = $item['TECNICO'];
+                                $this->result['telefono_tecnico'] = $item['TELEFONO_TECNICO'];
+                                $this->result['email_tecnico'] = $item['EMAIL_TECNICO'];
+                            }
+                        }
+                    }
+                }
+            }else{
+                if ($array_file['Contratto']['DESCRIZIONE_SCHEDA'] === $this->contratto) {
+                    foreach ($array_file['Contratto'] as $item) {
+                        if (is_array($item)) {
+                            foreach ($item as $el) {
+                                foreach ($el as $ant) {
+                                    if (is_array($el[1])) {
+                                        $this->result[] = $ant['FILIALE'];
+                                    } else {
+                                        $this->result[] = $el['FILIALE'];
+                                        $this->result['tecnico'] = $array_file['Contratto']['TECNICO'];
+                                        $this->result['telefono_tecnico'] = $array_file['Contratto']['TELEFONO_TECNICO'];
+                                        $this->result['email_tecnico'] = $array_file['Contratto']['EMAIL_TECNICO'];
+                                    }
+                                }
                             }
                         }
                     }

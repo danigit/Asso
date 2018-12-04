@@ -72,15 +72,16 @@ function getFilialePerContratto(selectedContratto){
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
+                console.log(data);
                 $.each(data.filiali, function (key, value) {
-                    if(key === 'filiale')
-                        $('#richiestaAssistenzaFilialeSelect').append('<option>' + value + '</option>');
-                    else if (key === 'tecnico') {
+                    if (key === 'tecnico') {
                         $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="red-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
                     }else if (key === 'telefono_tecnico') {
                         $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
                     }else if (key === 'email_tecnico'){
                         $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Email:</b></span><span class="float-right margin-right-10px email"> ' + value + '</span></p>')
+                    }else {
+                        $('#richiestaAssistenzaFilialeSelect').append('<option>' + value + '</option>');
                     }
                 })
             }else {
@@ -126,8 +127,10 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                         } else {
                             if (innerValue.MATRICOLA !== undefined)
                                 content += '<input type="checkbox" name="' + innerValue.MATRICOLA + '" id="' + innerValue.MATRICOLA + '"><label for="' + innerValue.MATRICOLA + '">Matricola: ' + innerValue.MATRICOLA + ' / Nr: ' + innerValue.PROGRESSIVO + '</label>';
-                            else
+                            else if( innerValue.PROGRESSIVO !== undefined)
                                 content += '<input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '"><label for="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue.PROGRESSIVO + '</label>';
+                            // else
+                            //     content += '<input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '"><label for="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue. + '</label>';
                         }
                         content += '</div>';
                     })

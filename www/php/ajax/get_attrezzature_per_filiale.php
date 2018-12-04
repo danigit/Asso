@@ -26,12 +26,23 @@ class get_attrezzature_per_filiale extends cs_interaction {
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);
             $array_file = json_decode($json_file, true);
-            foreach ($array_file as $item) {
-                foreach ($item as $it) {
-                    if (trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
-                        foreach ($it as $i) {
-                            if(is_array($i))
-                                $this->result[key($i)] = $i;
+
+            if($array_file['Contratto'][0]) {
+                foreach ($array_file as $item) {
+                    foreach ($item as $it) {
+                        if (trim($it['DESCRIZIONE_SCHEDA']) == $this->contratto) {
+                            foreach ($it as $i) {
+                                if (is_array($i))
+                                    $this->result[key($i)] = $i;
+                            }
+                        }
+                    }
+                }
+            }else{
+                if ($array_file['Contratto']['DESCRIZIONE_SCHEDA'] === $this->contratto) {
+                    foreach ($array_file['Contratto'] as $item) {
+                        if (is_array($item)) {
+                            $this->result[key($item)] = $item;
                         }
                     }
                 }
@@ -43,6 +54,7 @@ class get_attrezzature_per_filiale extends cs_interaction {
 
     protected function get_returned_data(){
         return array($this->result);
+//        return array($this->test);
     }
 }
 $get_attrezzature_per_filiale = new get_attrezzature_per_filiale();

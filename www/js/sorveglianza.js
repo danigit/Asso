@@ -66,7 +66,7 @@ function selectContract() {
                                 function (data) {
                                     if (data.result) {
                                         $.each(data.filiali, function (key, value) {
-                                            if(key === 'filiale')
+                                            if(key !== 'tecnico' && key !== 'telefono_tecnico' && key !== 'email_tecnico')
                                                 $('#sorveglianzaFilialeSelect').append('<option>' + value + '</option>');
                                         })
                                     }
@@ -111,6 +111,7 @@ function selectFiliale(filiale) {
                                     if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
                                         $.each(value.lista, function (innerKey, innerValue) {
                                             let label = innerValue.replace('LISTA_', '');
+                                            console.log(label);
                                             content = $("<div id='" + label + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + label + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
                                                 if (label.toLowerCase() === lastValue['type']) {
