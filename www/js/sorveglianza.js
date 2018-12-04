@@ -463,6 +463,7 @@ $('#sorveglianzaInviaDati').on('click', function () {
             console.log('data is undefined');
             showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare almeno una risposta per tutte le domande', 'error');
         }else{
+            console.log(data);
             createPdf(data);
         }
     }
