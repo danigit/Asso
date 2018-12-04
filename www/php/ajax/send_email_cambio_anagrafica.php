@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 class send_email_cambio_anagrafica extends cs_interaction{
-    private $count, $fields = "", $db_json;
+    private $count, $fields = "", $db_json, $test;
 
     protected function input_elaboration(){
         //TODO constrolare se funziona ancora con register
@@ -25,9 +25,8 @@ class send_email_cambio_anagrafica extends cs_interaction{
 
         for($i = 0; $i < $this->count; $i++){
             $this->fields .= $this->validate_string($i) . "<br>";
+            $this->test[] = $this->fields;
         }
-
-        $this->count = $this->validate_string("dbJson");
 
         $this->db_json = $this->validate_string('dbJson');
 

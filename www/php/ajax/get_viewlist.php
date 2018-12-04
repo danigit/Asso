@@ -33,7 +33,7 @@ class get_viewlist extends cs_interaction {
 
             if($array_file['Contratto'][0]) {
                 foreach ($array_file['Contratto'] as $item) {
-                    if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto){
+                    if (trim($item['DESCRIZIONE_SCHEDA']) === $this->contratto){
                         foreach ($item[$this->lista] as $it) {
                             if (is_array($it[0])) {
                                 foreach ($it as $i) {
@@ -47,7 +47,7 @@ class get_viewlist extends cs_interaction {
                 }
             }else{
                 foreach ($array_file as $item) {
-                    if ($item['DESCRIZIONE_SCHEDA'] === $this->contratto) {
+                    if (trim($item['DESCRIZIONE_SCHEDA']) === $this->contratto) {
                         foreach ($item[$this->lista] as $it) {
                             if (is_array($it[0])) {
                                 foreach ($it as $val) {
