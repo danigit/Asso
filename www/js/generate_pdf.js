@@ -34,12 +34,11 @@ function createPdf(data) {
     doc.text(data.time, 500, 60);
     doc.setFontSize(14);
     doc.setFontStyle('bold');
-    doc.text(data.info.contratto, 150, 90);
+    doc.text(data.info.contratto, insertHalfPageText(data.info.contratto), 90);
     doc.setFontSize(12);
     doc.setFontStyle('normal');
-    doc.text('Filiale: ', 260, 105);
-    doc.setFontStyle('normal');
-    doc.text(data.info.filiale, 300, 105);
+    let filiale = 'Filiale: ' + data.info.filiale;
+    doc.text(filiale, insertHalfPageText(filiale), 105);
 
     $.each(data, function (key, value) {
         if (key === 'ESTINTORI'){
@@ -77,8 +76,6 @@ function createPdf(data) {
     pdfForm.append('pdf', binary);
     pdfForm.append('email', data.info.email);
 
-    // console.log(pdfForm.get('pdf'));
-
     let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
 
     pdfPromise.then(
@@ -99,17 +96,17 @@ function createPdf(data) {
 }
 
 function insertHeader(header) {
-    if(currentH + 50 > 800){
+    if(currentH + 20 > 800){
         changePage();
     }
     doc.setFillColor(204, 205, 206);
-    doc.rect(30, currentH + 30, 535, 20, 'FD');
+    doc.rect(30, currentH, 535, 20, 'FD');
     doc.setFontSize(12);
     doc.setFontStyle('bold');
-    doc.text(header, 40, currentH + 44);
-    doc.text('SI', 500, currentH + 44);
-    doc.text('NO', 540, currentH + 44);
-    currentH += 50;
+    doc.text(header, 40, currentH + 14);
+    doc.text('SI', 500, currentH + 14);
+    doc.text('NO', 540, currentH + 14);
+    currentH += 20;
     nextRowPosH = currentH;
 }
 
@@ -120,11 +117,12 @@ function insertElementType(value) {
             if(currentH + 20 > 800){
                 changePage();
             }
+            console.log('Nextposrowh: ' + nextRowPosH);
             doc.setFillColor(255, 255, 255);
             doc.rect(nextRowPosL, nextRowPosH, 535, nextRowH, 'FD');
             doc.setFontSize(10);
             doc.setFontStyle('normal');
-            doc.text(innerValue.question + innerKey, nextRowPosL + 5, nextRowPosH + 14);
+            doc.text(innerValue.question, nextRowPosL + 5, nextRowPosH + 14);
             doc.addImage(checkImg, 'JPEG', 500, nextRowPosH + 2, 16, 16);
             currentH += 20;
         }else if(innerValue.checked === '0'){
@@ -145,6 +143,9 @@ function insertElementType(value) {
             else
                 splitedText = doc.splitTextToSize(text, 520);
 
+            let splitedTextH = splitedText.length * 12 * 1.5 * doc.internal.scaleFactor;
+            console.log('splited text: ' + splitedText.length);
+            console.log(splitedTextH);
             if (splitedText.length === 1) {
                 if (currentH + 40 > 800){
                     changePage();
@@ -157,12 +158,11 @@ function insertElementType(value) {
                 doc.addImage(checkImg, 'JPEG', 540, nextRowPosH + 2, 16, 16);
                 doc.setFillColor(255, 255, 255);
                 doc.rect(nextRowPosL, nextRowPosH + 20, 535, nextRowH, 'FD');
-                doc.text(nextRowPosL + 5, nextRowPosH + 34, splitedText);
+                doc.text(splitedText, nextRowPosL + 5, nextRowPosH + 34);
                 currentH += 40;
             }else {
-                if ((currentH +  splitedText.length * 14) > 800){
+                if ((currentH + splitedTextH) > 800){
                     changePage();
-                    currentH += splitedText.length * 14;
                 }
                 console.log('after change page: ' + currentH);
                 doc.setFillColor(255, 255, 255);
@@ -172,19 +172,21 @@ function insertElementType(value) {
                 doc.text(innerValue.question, nextRowPosL + 5, nextRowPosH + 14);
                 doc.addImage(checkImg, 'JPEG', 540, nextRowPosH + 2, 16, 16);
                 doc.setFillColor(255, 255, 255);
-                doc.rect(nextRowPosL, nextRowPosH + 20, 535, splitedText.length * 14, 'FD');
+                console.log('appliing splitedTextH: ' + splitedTextH);
+                doc.rect(nextRowPosL, nextRowPosH + 20, 535, splitedTextH, 'FD');
                 doc.text(nextRowPosL + 5, nextRowPosH + 34, splitedText);
-                currentH += splitedText.length * 14;
+                console.log('next row pos h: ' + nextRowPosH);
+                console.log('currenth: ' + currentH);
+                currentH += splitedTextH + 20;
             }
         }
 
         nextRowPosH = currentH;
     });
 }
+
 function changePage(breakPoint) {
-        console.log('adding page')
         doc.addPage('a4');
-        console.log('changing page');
         doc.setPage(++i);
 
         doc.setFillColor(255, 255, 255);
@@ -194,4 +196,9 @@ function changePage(breakPoint) {
         nextRowPosL = 30;
         nextRowH = 20;
         currentH = 40;
+}
+
+function insertHalfPageText(text) {
+    let textWidth = doc.getTextDimensions(text);
+    return (555 - textWidth.w) / 2;
 }

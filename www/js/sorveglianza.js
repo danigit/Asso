@@ -120,7 +120,7 @@ function selectFiliale(filiale) {
                                                     let answer = $('<div></div>');
                                                     let siDiv = $('<div class="si-checkbox"></div>');
                                                     let siLabel = $('<label class="font-small">SI</label>');
-                                                    let si = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '" checked="checked">').on('click', function () {
+                                                    let si = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
                                                         $('#sorveglianza-note-' + label + '-' + lastValue['number']).remove();
                                                     });
                                                     siLabel.append(si);
