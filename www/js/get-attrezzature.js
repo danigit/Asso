@@ -23,11 +23,20 @@ function getAttrezzature() {
                             //creo una lista per ogni contratto e inserisco i dati del contratto
                             $.each(innerValue, function (lastKey, lastValue) {
                                 let name = lastValue.replace(/LISTA_/g, '').replace('_', ' ');
-                                let list = $('<a href="#' + name.toLowerCase() + '" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10 red-text" data-name="' + contratto + '">' + name + '</li>').on('click', function () {
-                                    viewList(lastValue, $(this).attr('data-name'));
-                                    $.mobile.changePage('#viewList');
+                                let list;
+                                if (name === 'RILEVATORI FUMI'){
+                                    list = $('<a href="#' + name.toLowerCase() + '" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10 red-text" data-name="' + contratto + '">IMPIANTO RIVELAZIONE INCENDI</li>').on('click', function () {
+                                        viewList(lastValue, $(this).attr('data-name'));
+                                        $.mobile.changePage('#viewList');
 
-                                });
+                                    });
+                                }else {
+                                    list = $('<a href="#' + name.toLowerCase() + '" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10 red-text" data-name="' + contratto + '">' + name + '</li>').on('click', function () {
+                                        viewList(lastValue, $(this).attr('data-name'));
+                                        $.mobile.changePage('#viewList');
+
+                                    });
+                                }
                                 content.append(list);
                                 $('#attrezzature-list').append(content);
                             });

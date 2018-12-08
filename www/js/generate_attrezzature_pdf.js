@@ -1,20 +1,7 @@
 'use strict';
 
-let attrezzatureNextRowPosH = 140;
-let attrezzatureNextRowPosL = 30;
-let attrezzatureNextRowH = 20;
-let attrezzatureCurrentH = 140;
-let attrezzatureText = '';
-let attrezzatureSplitedText;
-let attrezzatureI = 1;
-
-let attrezzatureDoc = new jsPDF('l', 'pt', 'a4');
-
 function createAttrezzaturePdf(data) {
-
-    console.log(data.data);
-    console.log(data.contratto);
-    // sendEmail($('#error-sorveglianza-popup'), 'start');
+    let attrezzatureDoc = new jsPDF('l', 'pt', 'a4');
 
     attrezzatureDoc.setFillColor(255, 255, 255);
     attrezzatureDoc.rect(20, 20, 802, 555, 'FD');
@@ -30,12 +17,8 @@ function createAttrezzaturePdf(data) {
     attrezzatureDoc.setFontStyle('normal');
     attrezzatureDoc.text(data.nowData, 750, 40);
 
-    // attrezzatureDoc.setFillColor(204, 205, 206);
-    // attrezzatureDoc.rect(20, 60, 802, 20, 'FD');
-
     let columns = [];
     $.each(data.data[Object.keys(data.data)[0]][0], function (key, value) {
-        // console.log(value);
         columns.push(key.replace('_', ' '));
     });
 
@@ -51,7 +34,6 @@ function createAttrezzaturePdf(data) {
         })
     });
 
-    console.log(rows);
 
     attrezzatureDoc.autoTable(columns, rows, {
             theme: 'grid',

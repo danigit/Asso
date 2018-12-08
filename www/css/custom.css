@@ -866,4 +866,8 @@ input{
     color: #ffffff!important;
 }
 
-.ui-rad
+.ui-radio-off{
+    background: #FD5562!important;
+    border: none!important;
+    color: #ffffff!important;
+}

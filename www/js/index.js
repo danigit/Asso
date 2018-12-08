@@ -8,6 +8,10 @@ var app = {
     bind: function(){
         document.addEventListener('deviceready', this.deviceready, false);
 
+        $('#register').on('pagebeforeshow', function () {
+            register();
+        });
+
         $('#fatture').on('pageinit', function () {
             getFatture();
         });
