@@ -7,7 +7,7 @@
  */
 function viewList(elem, contratto) {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        $('#viewListFooter').hide();
+        $('#salvaCsv').hide();
     }
     //preparo i dati da spedire
     let viewForm = new FormData();
