@@ -113,7 +113,7 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                 $.each(data[0], function (key, value) {
                     $.each(value, function (innerKey, innerValue) {
                         //aggiungo la categoria dell'attrezzatura
-                        content += "<div id='" + innerKey + "' data-role='collapsible' data-inset='true' class='richiestaAssistenza-collapsible'><h3>" + innerKey + "</h3>";
+                        content += "<div id='" + innerKey + "' data-role='collapsible' data-inset='true' class='richiestaAssistenza-collapsible'><h3>" + innerKey.replace('_', ' ') + "</h3>";
                         //controllo se ci sono piu' di un elemento da visualizzare
                         if ($.isArray(innerValue)) {
                             //inserisco tutti gli elemeni
@@ -121,16 +121,18 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                                 //controllo se l'elemento ha una matricola
                                 if (lastValue.MATRICOLA !== undefined)
                                     content += '<input type="checkbox" name="' + lastValue.MATRICOLA + '" id="' + lastValue.MATRICOLA + '"><label for="' + lastValue.MATRICOLA + '">Matricola: ' + lastValue.MATRICOLA + ' / Nr: ' + lastValue.PROGRESSIVO + '</label>';
-                                else
+                                else if (lastValue.PROGRESSIVO !== undefined)
                                     content += '<input type="checkbox" name="' + lastValue.PROGRESSIVO + '" id="' + lastValue.PROGRESSIVO + '"><label for="' + lastValue.PROGRESSIVO + '">Progressivo: ' + lastValue.PROGRESSIVO + '</label>';
+                                else if (lastValue.CHIAVE !== undefined)
+                                    content += '<input type="checkbox" name="' + lastValue.DESCRIZIONE + '" id="' + lastValue.DESCRIZIONE + '"><label for="' + lastValue.DESCRIZIONE + '">Descrizione: ' + lastValue.DESCRIZIONE + '</label>';
                             });
                         } else {
                             if (innerValue.MATRICOLA !== undefined)
                                 content += '<input type="checkbox" name="' + innerValue.MATRICOLA + '" id="' + innerValue.MATRICOLA + '"><label for="' + innerValue.MATRICOLA + '">Matricola: ' + innerValue.MATRICOLA + ' / Nr: ' + innerValue.PROGRESSIVO + '</label>';
                             else if( innerValue.PROGRESSIVO !== undefined)
                                 content += '<input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '"><label for="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue.PROGRESSIVO + '</label>';
-                            // else
-                            //     content += '<input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '"><label for="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue. + '</label>';
+                            else if (innerValue.DESCRIZIONE !== undefined)
+                                content += '<input type="checkbox" name="' + innerValue.DESCRIZIONE + '" id="' + innerValue.DESCRIZIONE + '"><label for="' + innerValue.DESCRIZIONE + '">Descrizione: ' + innerValue.DESCRIZIONE + '</label>';
                         }
                         content += '</div>';
                     })
@@ -190,8 +192,10 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
                                 //TODO Controllare tutti i tipi esistenti
                                 if(tipoAttrezzatura === 'ESTINTORE' || tipoAttrezzatura === 'PORTA')
                                     checked.attrezzature[tipoAttrezzatura]['Matricola ' + tipoAttrezzatura.toLowerCase() + ' ' + i++] = ' ' + $(input).attr('id');
-                                else if (tipoAttrezzatura === 'LUCE' || tipoAttrezzatura === 'IDRANTI')
+                                else if (tipoAttrezzatura === 'LUCE')
                                     checked.attrezzature[tipoAttrezzatura]['Progressivo ' + tipoAttrezzatura.toLowerCase() + ' ' + i++] = ' ' + $(input).attr('id');
+                                else
+                                    checked.attrezzature[tipoAttrezzatura]['Descrizione ' + tipoAttrezzatura.toLowerCase() + ' ' + i++] = ' ' + $(input).attr('id');
                             }
                         })
                     }
