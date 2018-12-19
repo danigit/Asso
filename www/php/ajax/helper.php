@@ -27,10 +27,20 @@ function set_session_variables($username, $is_secure){
     session_write_close();
 }
 
+/**
+ * Funzione che recupera il nome dell folder
+ * @param $chiave - la chiave da usare per recuperare il folder
+ * @return string - il nome del folder
+ */
 function getFolderName($chiave){
     return(strtoupper(md5($chiave . 'Vegeta')));
 }
 
+/**
+ * Funzione che crea una password random
+ * @param $length - la lunghezza della password
+ * @return string - la password generata
+ */
 function createRandomPassword($length){
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $pass = '';
@@ -42,6 +52,11 @@ function createRandomPassword($length){
     return $pass;
 }
 
+/**
+ * Funzione che recupera le informazioni riguardanti l'utente passato come parametro
+ * @param $username - il nome dell'utente
+ * @return array[]|false|null|string[]
+ */
 function getUserInformations($username){
     //var_dump(PHOENIX_FOLDER );
     $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
@@ -56,6 +71,12 @@ function getUserInformations($username){
     return null;
 }
 
+/**
+ * Funzione che pedisce un'email
+ * @param $xml_file
+ * @param $password
+ * @return bool
+ */
 function sendMail($xml_file, $password){
     $xml_string = simplexml_load_file($xml_file);
     $json = json_encode($xml_string);
@@ -68,6 +89,11 @@ function sendMail($xml_file, $password){
     return false;
 }
 
+/**
+ * Funzione che controlla se il valore passato e' un errore
+ * @param $value - il valore da controllare
+ * @return bool - true se il valore e' un errore, false altrimenti
+ */
 function is_error($value){
     return is_a($value, "db_error");
 }

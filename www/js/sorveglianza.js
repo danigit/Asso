@@ -1,14 +1,17 @@
 'use strict';
 
+/**
+ * Funzione che resetta e inserisce i campi della sorveglianza
+ */
 function resetSorveglianza() {
+    //invio richiesta httpxml
     let sorveglianzaContrattoPromise = httpPost('php/ajax/get_contratti.php');
 
+    //interpreto risposta
     sorveglianzaContrattoPromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
-                // $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
-                // $('#sorveglianzaInviaDati').removeClass('ui-disabled');
 
                 $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
                 $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
@@ -35,20 +38,24 @@ function resetSorveglianza() {
         }
     );
 
+    //carico i dati salvati sul server se ci sono
     caricaModifiche();
 }
 
+/**
+ * Funzione che gestisce la selezione di un contratto
+ */
 function selectContract() {
 
-    console.log('inside contratto');
     $('#sorveglianzaContrattoSelect').off('change').on('change', function (e) {
-        var sorveglianzaContratto = this.value;
+        let sorveglianzaContratto = this.value;
 
         $('#questionarioSorveglianza').empty();
 
+        //invio richiesta httpxml
+        let sorveglianzaFilialePromise = httpPost('php/ajax/get_attrezzature.php');
 
-        var sorveglianzaFilialePromise = httpPost('php/ajax/get_attrezzature.php');
-
+        //interpreto risposta
         sorveglianzaFilialePromise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
@@ -59,11 +66,16 @@ function selectContract() {
 
                     $.each(data[0], function (key, value) {
                         if (value.contratto === sorveglianzaContratto) {
-                            var sorveglianzaPromiseForm = new FormData();
+                            let sorveglianzaPromiseForm = new FormData();
                             sorveglianzaPromiseForm.append('contratto', value.contratto);
-                            var sorveglianzaAttrezzaturePromise = httpPost("php/ajax/get_filiale_per_contratto.php", sorveglianzaPromiseForm);
+
+                            //invio richiesta httpxml
+                            let sorveglianzaAttrezzaturePromise = httpPost("php/ajax/get_filiale_per_contratto.php", sorveglianzaPromiseForm);
+
+                            //interpreto risposta
                             sorveglianzaAttrezzaturePromise.then(
                                 function (data) {
+                                    //controllo se ci sono stati degli errori nella chiamata
                                     if (data.result) {
                                         $.each(data.filiali, function (key, value) {
                                             if(key !== 'tecnico' && key !== 'telefono_tecnico' && key !== 'email_tecnico')
@@ -87,31 +99,38 @@ function selectContract() {
 
 selectContract();
 
+/**
+ * Funzione che gestisce la selezione di una filiale
+ * @param filiale
+ */
 function selectFiliale(filiale) {
 
     $('#sorveglianzaFilialeSelect').off('change').on('change', function (e) {
-        // e.stopImmediatePropagation();
-        console.log('filiale inside: ' + filiale);
+        //invio richiesta httpxml
         let attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
         let i = 0;
+        let content;
 
+        //invio richiesta httpxml
         let domandePromise = httpPost('php/ajax/get_domande.php');
 
-        let content;
+        //interpreto la risposta
         attrezzaturePromise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
                     $('#referente-name').removeClass('display-none');
                     $('#sorveglianza-email').removeClass('display-none');
+
+                    //interpreto la risposta
                     domandePromise.then(
                         function (dom) {
+                            //controllo se ci sono stati degli errori nella chiamata
                             if (dom.result) {
                                 $.each(data[0], function (key, value) {
                                     if (value.contratto === $('#sorveglianzaContrattoSelect').val()) {
                                         $.each(value.lista, function (innerKey, innerValue) {
                                             let label = innerValue.replace('LISTA_', '');
-                                            console.log(label);
                                             content = $("<div id='" + label + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + label.replace('_', ' ') + "</h3></div>");
                                             $.each(dom.domande, function (lastKey, lastValue) {
                                                 if (label.toLowerCase() === lastValue['type']) {
@@ -162,49 +181,38 @@ function selectFiliale(filiale) {
 
 selectFiliale();
 
-// function resetSorveglianza() {
-//     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
-//     $('#sorveglianzaContrattoSelect').removeClass('ui-disabled');
-//     $('#questionarioSorveglianza').empty();
-//
-//     $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
-//     $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
-//     $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
-//     $('#sorveglianzaFilialeSelect').selectmenu('refresh');
-//     $('#sorveglianzaContrattoSelect').selectmenu('refresh');
-// }
-
-
+//gestisco il click sul tasto
 $('#sorveglianzaAggiungiModifica').on('click', function () {
     $('#sorveglianzaFilialeSelect').removeClass('ui-disabled');
     $('#sorveglianzaContrattoSelect').removeClass('ui-disabled');
     $('#sorveglianzaAggiungiModifica').addClass('ui-disabled');
     $('#sorveglianzaInviaDati').addClass('ui-disabled');
 
+    //salvo i dati temporaneamente
     saveTemp();
-    // $('#sorveglianzaFilialeSelect').children('option:not(:first)').remove();
-    // $('#sorveglianzaFilialeSelect option:eq(0)').prop('selected', true);
-    // $('#sorveglianzaContrattoSelect option:eq(0)').prop('selected', true);
-    // $('#sorveglianzaFilialeSelect').selectmenu('refresh');
-    // $('#sorveglianzaContrattoSelect').selectmenu('refresh');
-    // $('#questionarioSorveglianza').empty();
 });
 
+/**
+ * Funzione che salva i dati della sorveglianza in maniera temporanea sul server
+ */
 function saveTemp(){
     if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
         let snapShot = getData(true);
 
         let sorveglianzaTempSaveForm = new FormData();
 
-        console.log(snapShot);
+        //recupero i dati da salvare
         sorveglianzaTempSaveForm.append('valori', JSON.stringify(snapShot));
 
+        //invio richiesta httpxml
         let sorveglianzaTempSavePromise = httpPost('php/ajax/temp_save_sorveglianza.php', sorveglianzaTempSaveForm);
 
+        //interpreto risposta
         sorveglianzaTempSavePromise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
                 if (data.result) {
+                    //notifico l'avvenuto salvatagio dei dati
                     showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
                     setTimeout(function () {
                         window.location.href = 'content.php';
@@ -217,20 +225,23 @@ function saveTemp(){
     }
 }
 
+/**
+ * Funzione che recupera che servono nella pagina sorveglianza
+ * @param temp -
+ * @returns {null}
+ */
 function getData(temp) {
     let i = 1;
     let snapShot = {};
-    snapShot['isComplete'] = true;
     let nowDate = new Date($.now());
     let month = nowDate.getMonth()+1;
     let day = nowDate.getDate();
     let emptyFields = false;
-
-    snapShot['time'] = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + nowDate.getFullYear();
-
     let sorveglianzaInfoContratto = $('#sorveglianzaContrattoSelect').val();
     let sorveglianzaInfoFiliale = $('#sorveglianzaFilialeSelect').val();
-    console.log($('#sorveglianzaRadioFieldset :radio:checked').val());
+
+    snapShot['isComplete'] = true;
+    snapShot['time'] = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + nowDate.getFullYear();
     snapShot['info'] = {'frequenza': $('#sorveglianzaRadioFieldset :radio:checked').val(), 'contratto': sorveglianzaInfoContratto, 'filiale': sorveglianzaInfoFiliale, 'incaricato': $('#referente-name').find('input').val(), 'email': $('#sorveglianza-email').find('input').val()};
 
     $.each($('#questionarioSorveglianza').children(), function (key, value) {
@@ -245,8 +256,10 @@ function getData(temp) {
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
                         let radio = $(lastValue).find('input[type="radio"]');
                         let question = $(lastValue).find('p').text();
+
+                        //controllo se ci sono delle caselle chekcbox attive
                         if($(radio).is(':checked')) {
-                            console.log('radio is checked');
+                            //controllo se la casella attiva e' SI
                             if($(radio).first().is(':checked'))
                                 snapShot[tipoAttrezzatura][i++] = {question: question, checked: '1'};
                             else{
@@ -256,9 +269,6 @@ function getData(temp) {
                                         snapShot[tipoAttrezzatura][i++] = {question: question, checked: noteValue};
                                     }else
                                         snapShot[tipoAttrezzatura][i++] = {question: question, checked: '0'};
-                                    // snapShot[tipoAttrezzatura][i] = {};
-                                    // snapShot[tipoAttrezzatura][i]['value'] = "0";
-                                    // snapShot[tipoAttrezzatura][i++]['note'] = $(lastValue).children().eq(2).find('input').val();
                                 }else
                                     snapShot[tipoAttrezzatura][i++] = '0'
                             }
@@ -276,6 +286,7 @@ function getData(temp) {
         }
     });
 
+    //controllo se ci sono dei camti vuoti
     if(emptyFields){
         return null;
     }else {
@@ -283,28 +294,28 @@ function getData(temp) {
     }
 }
 
+/**
+ * Funzine che recupera se ci sono i dati da inserire nella pagina sorveglianza
+ */
 function caricaModifiche() {
+    //invio richiesta httpxml
     let getTempSorveglianzaPromise = httpPost('php/ajax/get_temp_saved_sorveglianza.php');
 
+    //interpreto la risposta
     getTempSorveglianzaPromise.then(
         function (risposte) {
             //controllo se ci sono stati degli errori nella chiamata
             if (risposte.result) {
-                console.log(risposte);
                 if (!$.isEmptyObject(risposte[0])) {
-                    console.log('risposte is empty');
                     $('#attrezzature').empty();
                     $('#questionarioSorveglianza').empty();
 
                     $('#sorveglianzaAggiungiModifica').removeClass('ui-disabled');
                     $('#sorveglianzaInviaDati').removeClass('ui-disabled');
 
-                    // var checked = $("#sorveglianzaRadioFieldset input[type='radio']:checked").val();
-
                     $("#sorveglianzaRadioFieldset input:radio").attr('checked', false);
                     $("#sorveglianzaRadioFieldset input:radio").parent().find('label').removeClass('ui-radio-on ui-btn-active');
 
-                    // $("#sorveglianzaRadioFieldset").trigger('create');
                     $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').prop('checked', true);
                     $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').parent().find('label').removeClass('ui-radio-off');
                     $('input:radio[name="frequenza"]').filter('[value="' + risposte[0][0].frequency + '"]').parent().find('label').addClass('ui-radio-on ui-btn-active');
@@ -327,8 +338,8 @@ function caricaModifiche() {
                     let lastValue;
                     let content;
 
+                    //inserisco i dati nella pagina
                     $.each(risposte[0], function (key, value) {
-                        console.log(value.question);
 
                         if (value.type !== lastValue)
                             content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
@@ -440,30 +451,25 @@ function caricaModifiche() {
 
                     });
                     $('#questionarioSorveglianza').trigger('create')
-                }else {
-                    // resetSorveglianza();
                 }
-                console.log('radio value');
-                console.log($('#sorveglianzaRadioFieldset').val());
             }
         }
     );
 }
 
+//gestisco il click sul pulsante di invio sorveglianza
 $('#sorveglianzaInviaDati').on('click', function () {
+
     if($('#referente-name').find('input').val() === ""){
         showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Inserire il nome del referente', 'error');
     }else if($('#sorveglianza-email').find('input').val() === ""){
         showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Inserire l\'email alla quale inviare la sorveglianza', 'error');
     }else {
-        console.log('inside else');
         let data = getData(false);
-        console.log('data: ' + data);
         if(data === null){
-            console.log('data is undefined');
             showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'Selezionare almeno una risposta per tutte le domande', 'error');
         }else{
-            console.log(data);
+            //creo pdf con i dati della sorveglianza
             createPdf(data);
         }
     }

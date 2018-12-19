@@ -28,8 +28,11 @@ class DatabaseConnection{
         $this->connection->close();
     }
 
-    //TODO funzioni per interagire con il db
 
+    /**
+     * Funzione che recupera le domande della sorveglianza
+     * @return array|db_error
+     */
     function get_questions(){
         $query = 'select * from question join type on question.type = type.id';
 
@@ -48,6 +51,11 @@ class DatabaseConnection{
         return $result_array;
     }
 
+    /**
+     * Funzione che salva i dati della sorveglianza
+     * @param $domande - i dati da salvare
+     * @return array|db_error
+     */
     function save_temp_surveillance($domande){
         $this->connection->autocommit(false);
         $errors = array();
@@ -81,6 +89,10 @@ class DatabaseConnection{
         return $errors;
     }
 
+    /**
+     * Funzione che recupera i dati della sorveglianza salvati in precedenza
+     * @return array|db_error
+     */
     function get_temp_saved_sorveglianza(){
         $this->connection->autocommit(false);
         $errors = array();
@@ -121,6 +133,11 @@ class DatabaseConnection{
         }
     }
 
+    /**
+     * Funzione che inserisce un motivo
+     * @param $motiv - il motivo da insrire
+     * @return bool|db_error|mixed
+     */
     function insertMotiv($motiv){
         $query = "INSERT INTO motivs (descrizione) VALUES (?)";
         $result = $this->parse_and_execute_insert($query, 's', $motiv);
@@ -136,7 +153,10 @@ class DatabaseConnection{
         return $this->connection->insert_id;
     }
 
-
+    /**
+     * Funzione che recupera i motivi
+     * @return array|db_error
+     */
     function getMotivs(){
         $query = 'SELECT * FROM motivs ORDER BY descrizione ASC ';
 
@@ -157,6 +177,11 @@ class DatabaseConnection{
         return $result_array;
     }
 
+    /**
+     * Funzione che cancella un motivo
+     * @param $motiv - il motivo da cancellare
+     * @return bool|db_error|mysqli_stmt
+     */
     function deleteMotiv($motiv){
         $query = 'DELETE FROM motivs WHERE descrizione = ?';
 
@@ -168,6 +193,12 @@ class DatabaseConnection{
         return $statement->affected_rows == 1 ? true : new db_error(db_error::$ERROR_ON_DELETE_MOTIV);
     }
 
+    /**
+     * Funzione che aggiorna un motivo
+     * @param $oldMotiv - il vecchio valore
+     * @param $newMotiv - il nuovo valore
+     * @return db_error|int|mysqli_stmt
+     */
     function updateMotiv($oldMotiv, $newMotiv){
         $query = "UPDATE motivs SET descrizione=? WHERE descrizione=? ";
         $statement = $this->parse_and_execute_select($query, "ss", $newMotiv, $oldMotiv);
@@ -182,6 +213,11 @@ class DatabaseConnection{
         return $this->connection->affected_rows;
     }
 
+    /**
+     * Funzione che inserisce il cambio anagrafica
+     * @param $db_json - i dati da inserire
+     * @return bool|db_error|mixed
+     */
     function insertAnagrafica($db_json){
         $query = "INSERT INTO cambio_anagrafica (json_string) VALUES (?)";
         $result = $this->parse_and_execute_insert($query, 's', $db_json);
@@ -197,6 +233,11 @@ class DatabaseConnection{
         return $this->connection->insert_id;
     }
 
+    /**
+     * Funzione che inserisce la richiesta di assistenza
+     * @param $assistenza - i dati da inserire
+     * @return bool|db_error|mixed
+     */
     function insertAssistenza($assistenza){
         $query = "INSERT INTO assistenza (json_string) VALUES (?)";
         $result = $this->parse_and_execute_insert($query, 's', $assistenza);
@@ -307,27 +348,4 @@ class DatabaseConnection{
 
         return $statement;
     }
-
-    function test(){
-        $query = "SELECT * FROM question";
-
-        $result = $this->connection->query($query);
-
-        if ($result === false )
-            var_dump('result false');
-
-        $result_array = array();
-
-        //todo da mettere dove serve htmlspecialchars
-        while ($row = mysqli_fetch_assoc($result)) {
-            $result_array[] = array('question' => $row['question']);
-        }
-
-        return $result_array;
-    }
 }
-//
-//$conn = new DatabaseConnection();
-//var_dump('inserimento motivo');
-//var_dump($conn->insertMotiv('scapelli'));
-//var_dump($conn->getMotivs());

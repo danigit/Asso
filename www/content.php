@@ -53,7 +53,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="js/default/jquery-2.2.4.js"></script>
         <script src="js/default/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/default/html2canvas.min.js"></script>
@@ -94,15 +94,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 </div>
                 <div data-role="collapsible" class="contratti-collapsible">
                     <h3>Come contattarci</h3>
-                    <a href="tel://0106018258" class="ui-btn fatture-item"><p>Telefono: <b class="red-text">010 6018258</b></p></a>
+                    <a href="tel://0106018258" class="fatture-item" data-role="button" data-icon="phone-icon" data-iconpos="right"><p>Telefono: <b class="red-text">010 6018258</b></p></a>
                     <a href="#" class="ui-btn fatture-item"><p>Fax: 010 6012665</p></a>
                     <a href="mailto:info@assoantincendio.com?Subject=" target="_top" data-role="button" data-icon="email-icon" data-iconpos="right">
                         E-mail: <span class="text-transfor-none red-text">info@assoantincendio.com</span>
                     </a>
                 </div>
                 <div id="facebook">
-                    <a href="https://www.linkedin.com/in/gorla-christian-04265b78/"><img src="img/icona_linkedin.png" class="social" style="float: right"></a>
-                    <a href="https://www.facebook.com/assoantincendio/" ><img src="img/icona_fb.png" class="social"></a>
+                    <a href="https://www.linkedin.com/in/gorla-christian-04265b78/"><img src="img/linkedin-5-64.jpg" class="social" style="float: right"></a>
+                    <a href="https://www.facebook.com/assoantincendio/" ><img src="img/facebook-5-64.jpg" class="social"></a>
                 </div>
             </div>
         </div>
@@ -382,6 +382,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         <script src="js/sorveglianza.js"></script>
         <script src="js/generate_pdf.js"></script>
         <script src="js/generate_attrezzature_pdf.js"></script>
+        <script src="js/save-pdf.js"></script>
     </body>
 </html>
 

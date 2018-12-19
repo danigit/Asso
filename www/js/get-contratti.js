@@ -5,8 +5,10 @@
  * Divide i contratti in attivi e cessati
  */
 function getContratti() {
+    //invio richiesta httpxml
     let contrattiPromise = httpPost('php/ajax/get_contratti.php');
 
+    //interpreto risposta
     contrattiPromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
@@ -29,6 +31,12 @@ function getContratti() {
     );
 }
 
+/**
+ * Funzione che inserisce i valori passati come parametro nella pagina
+ * @param value - i valori da inserire
+ * @param title - il nome del collapsible
+ * @param collapse - il valore del collapsible da inserire nel data attribute
+ */
 function insertContract(value, title, collapse){
     let contrattiAttivi = "<div data-role='collapsible' class='contratti-collapsible' data-collapsed='" + collapse + "'><h3>" + title + "</h3>";
     let contrattiAttiviList = '';

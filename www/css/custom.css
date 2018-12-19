@@ -95,6 +95,10 @@
     background-image: url('../img/email.jpg');
 }
 
+.ui-icon-phone-icon:after{
+    background: #ffffff url('../img/phone-39-24.jpg');
+}
+
 /******************* CUSOTM CSS *********************/
 body{
     touch-action: manipulation;

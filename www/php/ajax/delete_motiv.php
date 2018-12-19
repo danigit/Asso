@@ -9,9 +9,6 @@
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-
 class delete_motiv extends cs_interaction{
     private $motiv, $result;
 
@@ -30,7 +27,6 @@ class delete_motiv extends cs_interaction{
     }
 
     protected function get_returned_data(){
-//        return array($this->result);
     }
 }
 

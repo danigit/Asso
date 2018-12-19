@@ -5,6 +5,7 @@
  * Date: 8/22/2018
  * Time: 11:48 AM
  */
+
 require_once 'cs_interaction.php';
 
 abstract class is_logged extends cs_interaction {

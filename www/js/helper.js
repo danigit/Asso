@@ -2,12 +2,11 @@
  * Funzione che esegue una chiamata xmlhttp
  * @param url - indirizzo url
  * @param input - i valori da passare alla chiamata
- * @param async
  * @returns {Promise} - la risposta della chiamata
  */
 function httpPost(url, input) {
     return new Promise(function (resolve, reject) {
-        var httpReq = new XMLHttpRequest();
+        let httpReq = new XMLHttpRequest();
         httpReq.open('POST', url, true);
         httpReq.onreadystatechange = function () {
             if(httpReq.readyState === 4){
@@ -40,16 +39,31 @@ function parseString(key, stringValue) {
         return stringValue;
 }
 
+/**
+ * Funzione che risetta un selettore
+ * @param elementName - il selettore da risettare
+ */
 function resetSelection(elementName) {
     $('#' + elementName).children('option:not(:first)').remove();
     selectDefaultForSelection(elementName);
 }
 
+/**
+ * Funzione che seleziona il valore di default di un selettore
+ * @param elementName - il seletore per cui selezionare il valore di default
+ */
 function selectDefaultForSelection(elementName) {
     $('#' + elementName + ' option:eq(0)').prop('selected', true);
     $('#' + elementName).selectmenu('refresh');
 }
 
+/**
+ * Funzione che mostra un messaggio popup
+ * @param errorPopup - il popup da mostrare
+ * @param title - il titolo della finestra
+ * @param content - il contenuto della finesta
+ * @param type - il tipo di popup
+ */
 function showError(errorPopup, title, content, type) {
     let elem = errorPopup;
     if(type === 'success') {
@@ -112,6 +126,11 @@ function sendEmail(errorPopup, state) {
     }
 }
 
+/**
+ * Funzione che crea un file csv a partire dai dati passati come parametro
+ * @param csvData - i dati da inserire nel csv
+ * @returns {*} - il file csv
+ */
 function createCsv(csvData) {
     let result, ctr, keys, columnDelimiter, lineDelimiter, innerData;
 
@@ -137,8 +156,14 @@ function createCsv(csvData) {
 
             keys.forEach(function (key) {
                 if (ctr > 0) result += columnDelimiter;
-
-                result += innerItem[key];
+                let arrayVal = '';
+                if ($.isArray(innerItem[key])){
+                    $.each(innerItem[key], function (key, value) {
+                        arrayVal += 'Bochello' + (key + 1) + ' ';
+                    });
+                    result += arrayVal;
+                }else
+                    result += innerItem[key];
                 ctr++;
             });
 
@@ -149,6 +174,11 @@ function createCsv(csvData) {
     return result;
 }
 
+/**
+ * Funzione che salva sul computer un file csv
+ * @param csvData - il nome del file
+ * @param data - i dati del file
+ */
 function downloadCsv(csvData, data) {
     let fileName, link;
 
@@ -156,8 +186,6 @@ function downloadCsv(csvData, data) {
 
     if (csv == null) return;
 
-    console.log('csv data: ');
-    console.log(csv);
     fileName = csvData.filename || 'Attrezzature.csv';
 
     // if (!csv.match(/^data:text\/csv/i)){
@@ -173,94 +201,3 @@ function downloadCsv(csvData, data) {
     link.setAttribute('download', fileName);
     link.click();
 }
-
-// function createAttrezzaturePdf(pdfData) {
-//     console.log('inside saving pdf')
-//     let content = $('#attrezzature-pdf-content');
-//     let header = Object.keys( pdfData.data[Object.keys(pdfData.data)[0]][0] );
-//     let table, thead, trow;
-//     let body;
-//
-//     // let info = $('<div class="clear-float-left">' +
-//     //     '<p class="font-large float-left margin-zero margin-right-10px"><b>Incaricato Sig: </b></p><p class="float-left font-medium margin-zero margin-top-2px">' + data.info.incaricato + '</p>' +
-//     //     '<p class="float-right font-medium margin-zero margin-top-2px">' + data.time + '</p><p class="font-large float-right margin-zero margin-right-10px"><b>Data: </b></p></div>');
-//     //
-//     // content.append(info);
-//
-//
-//     table = $(
-//         '<table data-role="table" id="attrezzature-table" data-mode="reflow" class="ui-responsive margin-top-80px"></table>');
-//     thead = $('<thead></thead>');
-//     trow = $('<tr></tr>');
-//
-//     $.each(header, function (k, v) {
-//         // console.log(v);
-//         // console.log($.isPlainObject(v));
-//
-//         let th = $('<th data-priority="1" class="border-1-black background-gra center-text">' + v.replace('_', ' ') + '</th>');
-//
-//         trow.append(th);
-//     });
-//
-//     thead.append(trow);
-//     table.append(thead);
-//
-//     body = $('<tbody id="attrezzature-body"></tbody>');
-//
-//     $.each(pdfData.data, function (key, value) {
-//         // console.log(value);
-//         $.each(value, function (innerKey, innerValue) {
-//             console.log(innerValue);
-//             let tr = $('<tr></tr>');
-//             header.forEach(function (key) {
-//                 console.log(innerValue[key]);
-//                 tr.append($('<th class="border-1-black center-text font-medium">' + innerValue[key] + '</th>'));
-//             });
-//             body.append(tr);
-//         })
-//     });
-//
-//     table.append(body).trigger('create');
-//     content.append(table);
-//     let url = window.location.href;
-//     let first = url.split('#');
-//     window.location.href = first[0] + '#attrezzature-pdf';
-//     setTimeout(function () {
-//         generateAttrezzaturePdf();
-//     },2000)
-// }
-//
-// function generateAttrezzaturePdf() {
-//     let pdfHtml = document.getElementById('attrezzature-pdf-content');
-//     html2canvas(pdfHtml, {
-//         onrendered: function(canvas) {
-//             console.log('inside render');
-//             let img = canvas.toDataURL('image/png');
-//             console.log('canvas getted');
-//             let doc = new jsPDF({orientation: 'l', unit: 'pt', format: 'a4'});
-//             doc.addImage(img, 'JPEG', 10, 10);
-//
-//             let binary = doc.output('datauri');
-//             console.log('binary');
-//             console.log(binary);
-//             let pdfForm = new FormData();
-//             console.log('stringify');
-//             pdfForm.append('pdf', binary);
-//
-//             console.log(pdfForm.get('pdf'));
-//
-//             // let pdfPromise = httpPost('php/ajax/send_email_pdf.php', pdfForm);
-//             //
-//             // pdfPromise.then(
-//             //     function (data) {
-//             //         if (data.result) {
-//             //             console.log('pdf sent');
-//             //             console.log(data)
-//             //         }
-//             //     }
-//             // );
-//
-//             doc.save('attrezzature.pdf')
-//         }
-//     });
-// }

@@ -1,15 +1,22 @@
 'use strinct';
 
+/**
+ * Funzione che imposta la pagina di cambio anagrafica
+ */
 function setCambioAnagrafica() {
     let cambioAnagraficaForm = $('#cambioAnagraficaForm');
 
     cambioAnagraficaForm.empty();
+
+    //invio richiesta httpxml
     let getChangeAnagraficaChangeValues = httpPost('php/ajax/get_anagrafica.php');
 
+    //interpreto il risultato della chiamata
     getChangeAnagraficaChangeValues.then(
         function (data) {
             //controllo se ci sono stati errori nella chiamato
             if (data.result) {
+                //cambio l'ordine di visualizzazione delle voci
                 let anagraficaOrder = {
                     RAGIONE_SOCIALE: data[0].RAGIONE_SOCIALE,
                     INDIRIZZO_FATTURAZIONE: data[0].INDIRIZZO_FATTURAZIONE,
@@ -20,7 +27,6 @@ function setCambioAnagrafica() {
                     TELEFONO: data[0].TELEFONO,
                     CELLULARE: data[0].CELLULARE
                 };
-
 
                 $.each(anagraficaOrder, function (key, value) {
                     if(value !== undefined && value !== "") {
@@ -77,8 +83,10 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
         emailForm.append('count', "" + count);
         emailForm.append('dbJson', JSON.stringify(dbJson));
 
+        //invio richiesta httpxml
         let changeAnagraficaPromise = httpPost('php/ajax/send_email_cambio_anagrafica.php', emailForm);
 
+        //interpreto il risulatato della chiamata
         changeAnagraficaPromise.then(
             function (data) {
                 //controllo se ci sono stati errori nella chiamato
@@ -87,6 +95,7 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
 
                     sendEmail($('#error-change-anagrafica-popup'), 'stop');
 
+                    //notifico la spedizione della mail
                     showError($('#error-change-anagrafica-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata ' +
                         'innoltrata con successo', 'success');
 

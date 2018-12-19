@@ -3,7 +3,11 @@
  */
 
 $('#logout').on('click', function () {
-    var promise = httpPost('php/ajax/logout.php');
+
+    //invio richiesta httpxml
+    let promise = httpPost('php/ajax/logout.php');
+
+    //interpreto risposta
     promise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata

@@ -13,7 +13,6 @@ class get_rapporti extends cs_interaction {
     private $result;
 
     protected function input_elaboration(){
-        // TODO: Implement input_elaboration() method.
     }
 
     protected function get_informations(){

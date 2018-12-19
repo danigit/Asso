@@ -7,20 +7,26 @@ let noteAggiuntive = $('#noteAggiuntive');
 let resultForCheck = $('#resultForCheck');
 let inviaRichiestaAssistenzaDati = $('#inviaRichiestaAssistenzaDati');
 
+/**
+ * Funzione che gestisce la richiesta di assistenza
+ */
 function richiestaAssistenza() {
+    //risetto i campi della pagina
     resetPageFields();
 
     $('#richiestaAssistenzaMotivoSelect').children().slice(2).remove();
     $('#richiestaAssistenzaMotivoSelect option:eq(0)').prop('selected', true);
     $('#richiestaAssistenzaMotivoSelect').selectmenu('refresh');
 
+    //invio richiesta httpxml
     let motivoPromise = httpPost('php/ajax/get_motiv.php');
 
+    //interpreto risposta
     motivoPromise.then(
         function (data) {
+            //controllo se ci sono stati degli errori nella chiamata
             if (data.result){
                 $.each(data.motivs, function (key, value) {
-                    console.log(value.descrizione);
                     $('#richiestaAssistenzaMotivoSelect').append('<option>' + value.descrizione + '</option>');
                 })
             }
@@ -32,7 +38,7 @@ function richiestaAssistenza() {
 $('#richiestaAssistenzaMotivoSelect').on('change', function () {
     let selectedMotivo = this.value;
 
-    // resetPageFields();
+    // recupero i contratti
     getContrattiAssistenza();
 
     if (selectedMotivo === "Altro...") {
@@ -55,24 +61,34 @@ $('#richiestaAssistenzaContrattoSelect').on('change', function (e) {
     $('#noteAggiuntive').empty();
     $('#resultForCheck').empty();
     $('#inviaRichiestaAssistenzaDati').addClass('ui-disabled');
+
+    //resetto  il campo di selezione della filiale
     resetSelection('richiestaAssistenzaFilialeSelect');
 
+    //recupero le filiale del contratto
     getFilialePerContratto(selectedContratto);
 
     richiestaAssistenzaFilialeSelect.removeClass('ui-disabled');
     richiestaAssistenzaFilialeSelect.selectmenu('refresh');
 });
 
+/**
+ * Funzione che recupera le filiale del contratto passato come parametro
+ * @param selectedContratto - il contratto per il quale bisogna recuperare le filiali
+ */
 function getFilialePerContratto(selectedContratto){
     let richiestaAssistenzaPromiseForm = new FormData();
+    //recupero i dati da inviare
     richiestaAssistenzaPromiseForm.append('contratto', selectedContratto);
 
+    //invio richiesta httpxml
     let richiestaAssistenzaAttrezzaturePromise = httpPost("php/ajax/get_filiale_per_contratto.php", richiestaAssistenzaPromiseForm);
+
+    //interpreto risposta
     richiestaAssistenzaAttrezzaturePromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
             if (data.result) {
-                console.log(data);
                 $.each(data.filiali, function (key, value) {
                     if (key === 'tecnico') {
                         $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="red-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
@@ -101,10 +117,14 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
     $('#noteAggiuntive').empty();
     $('#resultForCheck').empty();
 
+    //recupero i dati da inviare al server
     filialeForm.append('contratto', contratto);
     filialeForm.append('filiale', selectedFiliale);
 
+    //invio richiesta httpxml
     let richiestaAssistenzaFilialePromise = httpPost('php/ajax/get_attrezzature_per_filiale.php', filialeForm);
+
+    //interpreto risposta
     richiestaAssistenzaFilialePromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
@@ -114,6 +134,7 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                     $.each(value, function (innerKey, innerValue) {
                         //aggiungo la categoria dell'attrezzatura
                         content += "<div id='" + innerKey + "' data-role='collapsible' data-inset='true' class='richiestaAssistenza-collapsible'><h3>" + innerKey.replace('_', ' ') + "</h3>";
+
                         //controllo se ci sono piu' di un elemento da visualizzare
                         if ($.isArray(innerValue)) {
                             //inserisco tutti gli elemeni
@@ -150,6 +171,7 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
     );
 });
 
+//gestisco il click sul pulsante di invio richiesta assistenza
 $('#inviaRichiestaAssistenzaDati').on('click', function () {
     let i = 1;
     let isEmpty = true;
@@ -159,7 +181,6 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
     let filiale = $('#richiestaAssistenzaFilialeSelect').val();
     let tecnico = $('.info-tecnico .email').text();
 
-    console.log('tecnico value: ' + tecnico);
     let noteAggiuntive = $('#areaNoteAggiuntive').val();
 
     if(motivo === 'Altro...') {
@@ -170,6 +191,7 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
         }
     }
 
+    //controllo se sono stati inseriti tutti i campi
     if(motivo !== "Seleziona un motivo..." && contratto !== "Seleziona un contratto..." && filiale !== "Seleziona una filiale...") {
 
         let checked = {"Motivo": motivo, "Contratto": contratto, "Filiale": filiale, "Email": tecnico, 'attrezzature': {}, "Note aggiuntive": noteAggiuntive};
@@ -208,18 +230,30 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
                 isEmpty = false;
         });
 
+        //controllo se e' stato inserito un motivo
         if(!isMotiv){
             showError($('#error-content-popup'), 'Seleziona motivo', 'Inserire il motivo della richiesta di assistenza', 'error');
         }else {
+            //controllo se ci sono dati da inviare
             if (!isEmpty) {
+                //inizio animazione invio email
                 sendEmail($('#error-content-popup'), 'start');
 
+                //recupero i dati da inviare al server
                 assistenzaFormData.append('assistenza', JSON.stringify(checked));
+
+                //invio richiesta httpxml
                 let richiediAssistenzaPromise = httpPost('php/ajax/send_email_assistenza.php', assistenzaFormData);
+
+                //interpreto la risposta
                 richiediAssistenzaPromise.then(
                     function (data) {
+                        //controllo se ci sono stati degli errori nella chiamata
                         if (data.result) {
+                            //fermo animazione invio email
                             sendEmail($('#error-content-popup'), 'stop');
+
+                            //notifico l'avvenuto invio email
                             showError($('#error-content-popup'), "Mail inviata", "La richiesta di assistenza è stata inoltrata con successo", "success");
                             setTimeout(function () {
                                 window.location.href = 'content.php';
@@ -236,8 +270,14 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
     }
 });
 
+/**
+ * Funzione che recupera i contratti dell'assistenza
+ */
 function getContrattiAssistenza() {
+    //invio richiesta httpxml
     let contrattiPromise = httpPost('php/ajax/get_contratti.php');
+
+    //interpreto la risposta
     contrattiPromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
@@ -256,6 +296,9 @@ function getContrattiAssistenza() {
     );
 }
 
+/**
+ * Funzione che resetta i campi della pagina
+ */
 function resetPageFields() {
 
     richiestaAssistenzaContrattoSelect.children('option:not(:first)').remove();

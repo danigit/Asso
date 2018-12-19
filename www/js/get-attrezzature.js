@@ -4,8 +4,10 @@
  * Funzione che ritorna la lista delle attrezzature dell'utente attualmente connesso
  */
 function getAttrezzature() {
+    //invio richiesta httpxml
     let attrezzaturePromise = httpPost('php/ajax/get_attrezzature.php');
 
+    //interpreto risposta
     attrezzaturePromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata

@@ -5,12 +5,12 @@
  * Date: 8/22/2018
  * Time: 11:52 AM
  */
+
 require_once 'is_logged.php';
 
 class logout extends is_logged {
 
     protected function input_elaboration(){
-        // TODO: Implement input_elaboration() method.
     }
 
     protected function get_informations(){

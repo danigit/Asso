@@ -4,8 +4,10 @@
  * Funzione che ritorna gli interventi e i rapporti di intervento dell'utente attualmente collegato
  */
 function getRapporti() {
+    //invio richiesta httpxml
     let contrattiPromise = httpPost('php/ajax/get_rapporti.php');
 
+    //interpreto risposta
     contrattiPromise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
@@ -23,10 +25,12 @@ function getRapporti() {
 
                         $.each(rapporti, function (lastKey, lastValue) {
 
-                            content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '.pdf\');" class="ui-btn margin-top-12 box-shadow-bottom border-radius-10">Intervento del ' + lastValue.anno + '</a>';
+                            content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '.pdf\');" class="ui-btn margin-top-12 ' +
+                                'box-shadow-bottom border-radius-10">Intervento del ' + lastValue.anno + '</a>';
                             //controllo se si tratta di un registro o meno
                             if(lastValue.registro === 'si')
-                                content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '-Registro.pdf\');" class="ui-btn gray-text margin-top-12 border-radius-10 width-85 margin-auto border-1-gray">Registro del ' + lastValue.anno + '</a>';
+                                content += '<a href="#" onclick="app.openPdf(\'' + lastValue.path + '-Registro.pdf\');" class="ui-btn ' +
+                                    'gray-text margin-top-12 border-radius-10 width-85 margin-auto border-1-gray">Registro del ' + lastValue.anno + '</a>';
                         });
 
                         content += '</div>';

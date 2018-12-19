@@ -4,8 +4,10 @@
  * Funzione che reccupera l'anagrafica relativa all'utente attualmente connesso
  */
 function getAnagrafica() {
+    //invio richiesta httpxml
     let anagraficaPromise = httpPost('php/ajax/get_anagrafica.php');
 
+    //interpreto risposta
     anagraficaPromise.then(
         function (data) {
             //controllo se ci sono stati errori nella chiamato
@@ -13,6 +15,7 @@ function getAnagrafica() {
                 //creo una lista per visualizzare i dati
                 let anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
 
+                //cambio l'ordine di visualizzazione delle voci
                 let anagraficaOrder = {
                     RAGIONE_SOCIALE: data[0].RAGIONE_SOCIALE,
                     INDIRIZZO_FATTURAZIONE: data[0].INDIRIZZO_FATTURAZIONE,

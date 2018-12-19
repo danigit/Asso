@@ -99,8 +99,11 @@ abstract class cs_interaction{
 
 
     function validate_string($name, $default = false){
-        if(isset($_POST[$name]))
+        if(isset($_POST[$name])) {
+            if($name === 'blob')
+                $this->json_error('post setato');
             return trim($_POST[$name]);
+        }
         return $default;
     }
 }

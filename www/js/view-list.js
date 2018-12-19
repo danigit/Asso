@@ -6,17 +6,22 @@
  * @param contratto
  */
 function viewList(elem, contratto) {
+    //nascondo su mobile il pulsante di salvataggio in file csv
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         $('#salvaCsv').hide();
     }
+
     //preparo i dati da spedire
     let viewForm = new FormData();
     viewForm.append('lista', elem);
     viewForm.append('contratto', contratto);
+
     $('#viewListCollapsible').html('');
 
+    //invio richiesta httpxml
     let attrezzaturePromise = httpPost('php/ajax/get_viewlist.php', viewForm);
 
+    //interpreto la risposta
     attrezzaturePromise.then(
         function (data) {
             //controllo se non ci sono stati errori nella risposta
@@ -30,19 +35,9 @@ function viewList(elem, contratto) {
                     $('#viewListCollapsible').append(label);
 
                     let i = 1;
-                    console.log('value');
-                    console.log(value);
                     let boccOrder = {};
 
                     $.each(value, function (innerKey, innerValue) {
-                        if($.isPlainObject(innerValue) && $.isEmptyObject(boccOrder)){
-                            $.each(innerValue.BOCCHELLO, function (lastKey, lastValue) {
-                                boccOrder = {
-
-                                }
-                            })
-                        }
-                            console.log(innerValue);
                         let elemOrder;
 
                         if (elem === 'LISTA_ESTINTORI') {
@@ -91,7 +86,7 @@ function viewList(elem, contratto) {
                                 VALVOLA_INTERCETTAZIONE: innerValue.VALVOLA_INTERCETTAZIONE,
                                 UBICAZIONE: innerValue.UBICAZIONE,
                                 UBICAZIONE_ATTACCO_MOTOPOMPA: innerValue.UBICAZIONE_ATTACCO_MOTOPOMPA
-                            },
+                            };
 
                             $.each(innerValue.BOCCHELLO, function (lastKey, lastValue) {
                                 boccOrder = {
@@ -107,7 +102,7 @@ function viewList(elem, contratto) {
                         }else if(elem === 'LISTA_SPRINKLER'){
                             elemOrder = {
                                 DESCRIZIONE: innerValue.DESCRIZIONE,
-                                TIPOLOGIA: innerValue.TIPOLOGIA,
+                                TIPOLOGIA: innerValue.TIPO,
                                 MARCA: innerValue.MARCA,
                                 MODELLO: innerValue.MODELLO,
                                 TARATURA_VALVOLE: innerValue.TARATURA_VALVOLE,
@@ -178,13 +173,11 @@ function viewList(elem, contratto) {
 
                 $('#salvaCsv').removeClass('ui-disabled');
                 $('#salvaCsv').on('click', function () {
-                    console.log('saving csv');
                     downloadCsv({filename: elem.split('_')[1] + '.csv'}, {data: data[0], columnDelimiter: "\t", lineDelimiter: '\n'});
-                })
+                });
 
                 $('#salvaPdf').removeClass('ui-disabled');
                 $('#salvaPdf').on('click', function () {
-                    console.log('saving pdf');
                     let nowDate = new Date($.now());
                     let month = nowDate.getMonth()+1;
                     let day = nowDate.getDate();

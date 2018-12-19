@@ -5,9 +5,14 @@ let loginForm = document.querySelector('#loginForm');
 loginForm.onsubmit = function (event) {
 
     event.preventDefault();
+
+    //recupero i dati da inviare al server
     let logingFormInput = new FormData(loginForm);
+
+    //invio richiesta httpxml
     let promise = httpPost('php/ajax/login.php', logingFormInput);
 
+    //interpreto risposta
     promise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata

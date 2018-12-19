@@ -5,9 +5,10 @@
  * Le visualizza dividendole per anno
  */
 function getFatture(){
-
+    //invio richiesta httpxml
     let promise = httpPost('php/ajax/get_fatture.php');
 
+    //interpreto risposta
     promise.then(
         function (data) {
             //controllo se ci sono stati degli errori nella chiamata
@@ -23,7 +24,6 @@ function getFatture(){
                 let collapsibleSet;
 
                 $.each(fatture, function (key, value) {
-                    console.log(value);
 
                     //divido le fatture per anni
                     if (isFirst) {

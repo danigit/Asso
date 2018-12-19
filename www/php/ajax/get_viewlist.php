@@ -14,11 +14,11 @@ class get_viewlist extends cs_interaction {
 
     protected function input_elaboration(){
         $this->lista = $this->validate_string('lista');
-        if(!$this->lista)
+        if($this->lista === false)
             $this->json_error('Impossibile recuperare la lista');
 
         $this->contratto = $this->validate_string('contratto');
-        if(!$this->contratto)
+        if($this->contratto === false)
             $this->json_error('Impossibile recuperare la lista');
     }
 

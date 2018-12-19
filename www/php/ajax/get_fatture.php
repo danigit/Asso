@@ -5,6 +5,7 @@
  * Date: 8/24/2018
  * Time: 9:43 AM
  */
+
 require_once 'helper.php';
 require_once 'cs_interaction.php';
 
@@ -13,7 +14,6 @@ class get_fatture extends cs_interaction {
     protected $result = array();
 
     protected function input_elaboration(){
-        // TODO: Implement input_elaboration() method.
     }
 
     protected function get_informations(){

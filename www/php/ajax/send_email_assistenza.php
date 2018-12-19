@@ -10,9 +10,6 @@ require_once "../mailer/PHPMailerAutoload.php";
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 class send_email_assistenza extends cs_interaction{
     private $assistenza, $email_string, $tecnico_email;
 
@@ -44,7 +41,7 @@ class send_email_assistenza extends cs_interaction{
 
     protected function get_informations(){
         $connection = $this->get_connection();
-        $result = $connection->insertAssistenza($this->assistenza);
+        $connection->insertAssistenza($this->assistenza);
 
         $mail = new PHPMailer;
         $mail->isSMTP();

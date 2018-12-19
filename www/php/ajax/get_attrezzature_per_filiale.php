@@ -14,7 +14,12 @@ class get_attrezzature_per_filiale extends cs_interaction {
 
     protected function input_elaboration(){
         $this->contratto = $this->validate_string('contratto');
+        if ($this->contratto === false)
+            $this->json_error('Nessun contratto ricevuto');
+
         $this->filiale = $this->validate_string('filiale');
+        if ($this->filiale === false)
+            $this->json_error('Nessuna filiale ricevuta');
     }
 
     protected function get_informations(){
@@ -54,7 +59,6 @@ class get_attrezzature_per_filiale extends cs_interaction {
 
     protected function get_returned_data(){
         return array($this->result);
-//        return array($this->test);
     }
 }
 $get_attrezzature_per_filiale = new get_attrezzature_per_filiale();

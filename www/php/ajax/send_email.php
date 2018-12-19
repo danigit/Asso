@@ -4,14 +4,10 @@ require_once "../mailer/PHPMailerAutoload.php";
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-
 class send_email extends cs_interaction{
     private $count, $fields = "";
 
     protected function input_elaboration(){
-        //TODO constrolare se funziona ancora con register
         $this->count = $this->validate_string("count");
 
         if ($this->count == 0)

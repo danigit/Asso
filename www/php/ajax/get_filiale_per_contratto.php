@@ -14,7 +14,8 @@ class get_filiale_per_contratto extends cs_interaction {
 
     protected function input_elaboration(){
         $this->contratto = $this->validate_string('contratto');
-//        $this->contratto = 'AUTORIMESSA CEPOLLINA 10 R';
+        if ($this->contratto === false)
+            $this->json_error('Nessun contratto ricevuto');
     }
 
     protected function get_informations(){

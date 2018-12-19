@@ -9,17 +9,13 @@
 require_once 'cs_interaction.php';
 require_once 'helper.php';
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-
 class insert_motiv extends cs_interaction{
     private $motiv, $result;
 
     protected function input_elaboration(){
-        //TODO constrolare se funziona ancora con register
         $this->motiv = $this->validate_string("motiv");
-        $this->motiv = false;
-//
+//        $this->motiv = false;
+
         if ($this->motiv === false)
             $this->json_error("Inserire un motivo");
     }

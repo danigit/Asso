@@ -8,9 +8,13 @@ function register() {
     registerForm.onsubmit = function (event) {
 
         event.preventDefault();
+        //recupero i dati da inserire al server
         let registerFormInput = new FormData(registerForm);
+
+        //invio richiesta httpcml
         let promise           = httpPost('php/ajax/register.php', registerFormInput);
 
+        //interpreto la risposta
         promise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
@@ -18,7 +22,7 @@ function register() {
                     //reindirizzamento sulla pagina di login
                     window.location.replace('index.php');
                 } else {
-                    var message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+                    let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                     if ($('.error-message').length !== 0)
                         $('#register-fielset').find('.error-message').remove();
                     $('#register-fielset').prepend(message);
