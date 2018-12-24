@@ -20,7 +20,7 @@ let doc = new jsPDF('p', 'pt', 'a4');
 function createPdf(data) {
 
     //inizio animazione spedizione email
-    sendEmail($('#error-sorveglianza-popup'), 'start');
+    sendEmail($('#error-sorveglianza-popup'), 'start', 'Sto inviando email con pdf in allegato...');
 
     doc.setFillColor(255, 255, 255);
     doc.rect(20, 20, 555, 802, 'FD');

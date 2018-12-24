@@ -11,13 +11,13 @@ require_once 'cs_interaction.php';
 require_once 'helper.php';
 
 class send_email_assistenza extends cs_interaction{
-    private $assistenza, $email_string, $tecnico_email;
+    private $assistenza, $email_string, $tecnico_email, $array_val;
 
     protected function input_elaboration(){
         $this->assistenza = $this->validate_string("assistenza");
-        $array_val = json_decode($this->assistenza, true);
+        $this->array_val = json_decode($this->assistenza, true);
 
-        while ($elem = current($array_val)){
+        while ($elem = current($this->array_val)){
             if(is_array($elem)){
                 while ($el = current($elem)){
                     $this->email_string .= "<br><b>" . key($elem) . ":</b> " . "<br>";
@@ -30,13 +30,13 @@ class send_email_assistenza extends cs_interaction{
                     next($elem);
                 }
             }else{
-                if (key($array_val) !== 'Email') {
-                    $this->email_string .= "<b>" . key($array_val) . ":</b> &thinsp;" . $elem . "<br>";
+                if (key($this->array_val) !== 'Email') {
+                    $this->email_string .= "<b>" . key($this->array_val) . ":</b> &thinsp;" . $elem . "<br>";
                 }
             }
-            next($array_val);
+            next($this->array_val);
         }
-        $this->tecnico_email = $array_val['Email'];
+        $this->tecnico_email = $this->array_val['Email'];
     }
 
     protected function get_informations(){
@@ -49,14 +49,18 @@ class send_email_assistenza extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "clienti.assoantincendio@gmail.com";
-        $mail->Password = "clientiasso";
-        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("clienti.assoantincendio@gmail.com");
-        $mail->addCC($this->tecnico_email);
+        $mail->Username = "ds.acconto@gmail.com";
+        $mail->Password = "!ds.acconto!88";
+        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
+        $mail->addAddress("ds.acconto@gmail.com");
+//        $mail->Username = "clienti.assoantincendio@gmail.com";
+//        $mail->Password = "clientiasso";
+//        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+//        $mail->addAddress("clienti.assoantincendio@gmail.com");
+//        $mail->addCC($this->tecnico_email);
         $mail->Subject = "Richiesta assistenza";
-        $mail->msgHTML("Sei stata contattato da <b style='color: #0099FF;'> " . $_SESSION['username'] . "</b> per una richiesta di assistenza.<br><br><br> 
-                L'assistenza riguarda:: <br><br><br>" . $this->email_string);
+        $mail->msgHTML("Sei stato contattato da <b style='color: #0099FF;'> " . $this->array_val['raggione'] . "</b>, sito in <b style='color: #0099FF'> " . $this->array_val['indirizzo'] . "</b>, email <b style='color: #0099FF;'>" . $this->array_val['email'] . "</b> per una richiesta di assistenza.<br><br><br> 
+                L'assistenza riguarda: <br><br><br>" . $this->email_string);
         if(!$mail->send()) //telnet smtp.aruba.it 587
             $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo );
     }

@@ -102,8 +102,9 @@ function showError(errorPopup, title, content, type) {
  * Funzione che visualizza l'animazione della spedizione mail
  * @param errorPopup -il lmessaggio da mostrare
  * @param state - se deve iniziare o finire
+ * @param text
  */
-function sendEmail(errorPopup, state) {
+function sendEmail(errorPopup, state, text) {
     let elem = errorPopup;
 
     if(state === 'start') {
@@ -115,7 +116,7 @@ function sendEmail(errorPopup, state) {
         elem.addClass('email-popup');
         elem.find('.title').addClass('email-title');
         elem.find('.content').addClass('email-content');
-        $('.email-title').text('Sto inviando richiesta di cambio anagrafica...');
+        $('.email-title').text(text);
         $('.email-content').text('');
         elem.find('img').remove();
         elem.append($('<img src="../Asso/img/email-5-64.ico" id="send-email-image">'));

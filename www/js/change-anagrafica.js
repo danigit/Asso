@@ -52,7 +52,7 @@ $('#inviaCambioAnagraficaDati').on('click', function () {
     let jsonKey;
     let jsonValue;
 
-    sendEmail($('#error-change-anagrafica-popup'), 'start');
+    sendEmail($('#error-change-anagrafica-popup'), 'start', 'Sto inviando richiesta di cambio anagrafica...');
 
     //prendo tutti i valori da mandare
     $('#cambioAnagraficaForm').children().each(function (key, value) {
