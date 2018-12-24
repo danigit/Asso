@@ -151,6 +151,7 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                                     content += '<input type="checkbox" name="' + lastValue.DESCRIZIONE + '" id="' + lastValue.DESCRIZIONE + '"><label for="' + lastValue.DESCRIZIONE + '">Descrizione: ' + lastValue.DESCRIZIONE + '</label>';
                             });
                         } else {
+                            console.log(innerValue);
                             if (innerValue.MATRICOLA !== undefined) {
                                 if ($.isArray(innerValue.MATRICOLA))
                                     content += '<label><input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '">Matricola: - / Nr: ' + innerValue.PROGRESSIVO + '</label>';

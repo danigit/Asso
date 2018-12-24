@@ -1,5 +1,6 @@
 'use strict';
 
+let undefinedSymbol = ' - ';
 /**
  * Funzione che visualizza la lista degli elementi presenti nella reccuperata attraverso elem
  * @param elem - nome della lista degli elementi da visualizzare
@@ -43,87 +44,87 @@ function viewList(elem, contratto) {
                         if (elem === 'LISTA_ESTINTORI') {
                             elemOrder = {
                                 PROGRESSIVO: innerValue.PROGRESSIVO,
-                                TIPOLOGIA: innerValue.DESCRIZIONE,
-                                MATRICOLA: innerValue.MATRICOLA,
-                                CLASSE_FUOCO: innerValue.CLASSE_FUOCO,
-                                ANNO_COSTRUZIONE: innerValue.ANNO_COSTRUZIONE,
-                                SCADENZA_REVISIONE: innerValue.SCADENZA_REVISIONE,
-                                SCADENZA_COLLAUDO: innerValue.SCADENZA_COLLAUDO,
-                                ANNO_SOSTITUZIONE: innerValue.ANNO_SOSTITUZIONE,
-                                UBICAZIONE: innerValue.UBICAZIONE
+                                TIPOLOGIA: controlUndefined(innerValue.DESCRIZIONE),
+                                MATRICOLA: controlUndefined(innerValue.MATRICOLA),
+                                CLASSE_FUOCO: controlUndefined(innerValue.CLASSE_FUOCO),
+                                ANNO_COSTRUZIONE: controlUndefined(innerValue.ANNO_COSTRUZIONE),
+                                SCADENZA_REVISIONE: controlUndefined(innerValue.SCADENZA_REVISIONE),
+                                SCADENZA_COLLAUDO: controlUndefined(innerValue.SCADENZA_COLLAUDO),
+                                ANNO_SOSTITUZIONE: controlUndefined(innerValue.ANNO_SOSTITUZIONE),
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
                             };
                         }else if(elem === 'LISTA_PORTE'){
                             elemOrder = {
-                                PROGRESSIVO: innerValue.PROGRESSIVO,
-                                MATRICOLA: innerValue.MATRICOLA,
-                                ANNO_COSTRUZIONE: innerValue.ANNO_COSTRUZIONE,
-                                TIPOLOGIA: innerValue.TIPO_PORTA,
-                                MARCA: innerValue.MARCA,
-                                MARCA_MANIGLIONE: innerValue.MARCA_MANIGLIONE,
-                                MANIGLIONE: innerValue.TIPO_MANIGLIONE,
-                                GUARNIZIONE: innerValue.TIPO_GUARNIZIONE / 100,
-                                MANIGLIA_ESTERNA: innerValue.TIPO_MANIGLIA_ESTERNA,
-                                DIMENSIONE: innerValue.DIMENSIONE,
-                                INSTALLAZIONE: innerValue.TIPO_INSTALLAZIONE,
-                                SERATURA_PRINC: innerValue.TIPO_SERATURA_ANTA_PRINCIPALE,
-                                SERATURA_SEC: innerValue.TIPO_SERATURA_ANTA_SECONDARIA,
-                                ANTE: innerValue.ANTE,
-                                UBICAZIONE: innerValue.UBICAZIONE,
+                                PROGRESSIVO: controlUndefined(innerValue.PROGRESSIVO),
+                                MATRICOLA: controlUndefined(innerValue.MATRICOLA),
+                                ANNO_COSTRUZIONE: controlUndefined(innerValue.ANNO_COSTRUZIONE),
+                                TIPOLOGIA: controlUndefined(innerValue.TIPO_PORTA),
+                                MARCA: controlUndefined(innerValue.MARCA),
+                                MARCA_MANIGLIONE: controlUndefined(innerValue.MARCA_MANIGLIONE),
+                                MANIGLIONE: controlUndefined(innerValue.TIPO_MANIGLIONE),
+                                GUARNIZIONE: controlUndefined(innerValue.TIPO_GUARNIZIONE) / 100,
+                                MANIGLIA_ESTERNA: controlUndefined(innerValue.TIPO_MANIGLIA_ESTERNA),
+                                DIMENSIONE: controlUndefined(innerValue.DIMENSIONE),
+                                INSTALLAZIONE: controlUndefined(innerValue.TIPO_INSTALLAZIONE),
+                                SERATURA_PRINC: controlUndefined(innerValue.TIPO_SERATURA_ANTA_PRINCIPALE),
+                                SERATURA_SEC: controlUndefined(innerValue.TIPO_SERATURA_ANTA_SECONDARIA),
+                                ANTE: controlUndefined(innerValue.ANTE),
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
                             };
                         }else if (elem === 'LISTA_LUCI'){
                             elemOrder = {
-                                PROGRESSIVO: innerValue.PROGRESSIVO,
-                                TIPOLOGIA: innerValue.TIPO_LUCE,
-                                MARCA: innerValue.MARCA_LUCE,
-                                MODELLO: innerValue.MODELLO,
-                                AUTONOMIA: innerValue.AUTONOMIA,
-                                UBICAZIONE: innerValue.UBICAZIONE
+                                PROGRESSIVO: controlUndefined(innerValue.PROGRESSIVO),
+                                TIPOLOGIA: controlUndefined(innerValue.TIPO_LUCE),
+                                MARCA: controlUndefined(innerValue.MARCA_LUCE),
+                                MODELLO: controlUndefined(innerValue.MODELLO),
+                                AUTONOMIA: controlUndefined(innerValue.AUTONOMIA),
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
                             };
                         }else if(elem === 'LISTA_IDRANTI'){
                             elemOrder = {
-                                DESCRIZIONE: innerValue.DESCRIZIONE,
-                                TIPO: innerValue.TIPO_IMPIANTO,
-                                VALVOLA_INTERCETTAZIONE: innerValue.VALVOLA_INTERCETTAZIONE,
-                                UBICAZIONE: innerValue.UBICAZIONE,
-                                UBICAZIONE_ATTACCO_MOTOPOMPA: innerValue.UBICAZIONE_ATTACCO_MOTOPOMPA
+                                DESCRIZIONE: controlUndefined(innerValue.DESCRIZIONE),
+                                TIPO: controlUndefined(innerValue.TIPO_IMPIANTO),
+                                VALVOLA_INTERCETTAZIONE: controlUndefined(innerValue.VALVOLA_INTERCETTAZIONE),
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
+                                UBICAZIONE_ATTACCO_MOTOPOMPA: controlUndefined(innerValue.UBICAZIONE_ATTACCO_MOTOPOMPA)
                             };
 
                             $.each(innerValue.BOCCHELLO, function (lastKey, lastValue) {
                                 boccOrder = {
-                                    ID: lastValue.ID_BOCCHELLO,
-                                    TIPOLOGIA: lastValue.TIPO_BOCCHELLO,
-                                    LUNGHEZZA_MANICHETTA: lastValue.LUNGHEZZA_MANICHETTA / 10,
-                                    LANCIA: lastValue.TIPO_LANCIA,
-                                    ANNO_COSTRUZIONE: lastValue.ANNO_COSTRUZIONE,
-                                    PROX_COLLAUDO: lastValue.PROX_COLLAUDO,
-                                    UBICAZIONE: lastValue.UBICAZIONE,
+                                    ID: controlUndefined(lastValue.ID_BOCCHELLO),
+                                    TIPOLOGIA: controlUndefined(lastValue.TIPO_BOCCHELLO),
+                                    LUNGHEZZA_MANICHETTA: controlUndefined(lastValue.LUNGHEZZA_MANICHETTA) / 10,
+                                    LANCIA: controlUndefined(lastValue.TIPO_LANCIA),
+                                    ANNO_COSTRUZIONE: controlUndefined(lastValue.ANNO_COSTRUZIONE),
+                                    PROX_COLLAUDO: controlUndefined(lastValue.PROX_COLLAUDO),
+                                    UBICAZIONE: controlUndefined(lastValue.UBICAZIONE),
                                 }
                             })
                         }else if(elem === 'LISTA_SPRINKLER'){
                             elemOrder = {
-                                DESCRIZIONE: innerValue.DESCRIZIONE,
-                                TIPOLOGIA: innerValue.TIPO,
-                                MARCA: innerValue.MARCA,
-                                MODELLO: innerValue.MODELLO,
-                                TARATURA_VALVOLE: innerValue.TARATURA_VALVOLE,
-                                VALVOLE_RICAMBIO: innerValue.VALVOLE_RICAMBIO,
-                                COMPRESSORE: innerValue.COMPRESSORE,
-                                QTA_VALVOLE: innerValue.QUANTITA_VALVOLE,
-                                UBICAZIONE: innerValue.UBICAZIONE,
+                                DESCRIZIONE: controlUndefined(innerValue.DESCRIZIONE),
+                                TIPOLOGIA: controlUndefined(innerValue.TIPO),
+                                MARCA: controlUndefined(innerValue.MARCA),
+                                MODELLO: controlUndefined(innerValue.MODELLO),
+                                TARATURA_VALVOLE: controlUndefined(innerValue.TARATURA_VALVOLE),
+                                VALVOLE_RICAMBIO: controlUndefined(innerValue.VALVOLE_RICAMBIO),
+                                COMPRESSORE: controlUndefined(innerValue.COMPRESSORE),
+                                QTA_VALVOLE: controlUndefined(innerValue.QUANTITA_VALVOLE),
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
                             }
                         }else if(elem === 'LISTA_RILEVATORI_FUMI'){
                             elemOrder = {
-                                UBICAZIONE: innerValue.UBICAZIONE,
-                                DESCRIZIONE: innerValue.DESCRIZIONE,
-                                MARCA_CENTRALE: innerValue.MARCA_CENTRALE,
-                                TIPO_CENTRALE: innerValue.TIPO_CENTRALE,
-                                QTA_BATTRIE: innerValue.QUANTITA_BATTRIE,
-                                QTA_RILEVATORI: innerValue.QUANTITA_RILEVATORI,
-                                TIPO_RILEVATORI: innerValue.TIPO_RILEVATORI,
-                                QTA_RIL_LINEARI: innerValue.QUANTITA_RIL_LINEARI,
-                                QTA_PULSANTI: innerValue.QUANTITA_PULSANTI,
-                                QTA_TOA: innerValue.QUANTITA_PANELLI_OTT_ACUST,
-                                TIPO_BATTERIE: innerValue.TIPO_BATTERIE,
+                                UBICAZIONE: controlUndefined(innerValue.UBICAZIONE),
+                                DESCRIZIONE: controlUndefined(innerValue.DESCRIZIONE),
+                                MARCA_CENTRALE: controlUndefined(innerValue.MARCA_CENTRALE),
+                                TIPO_CENTRALE: controlUndefined(innerValue.TIPO_CENTRALE),
+                                QTA_BATTRIE: controlUndefined(innerValue.QUANTITA_BATTRIE),
+                                QTA_RILEVATORI: controlUndefined(innerValue.QUANTITA_RILEVATORI),
+                                TIPO_RILEVATORI: controlUndefined(innerValue.TIPO_RILEVATORI),
+                                QTA_RIL_LINEARI: controlUndefined(innerValue.QUANTITA_RIL_LINEARI),
+                                QTA_PULSANTI: controlUndefined(innerValue.QUANTITA_PULSANTI),
+                                QTA_TOA: controlUndefined(innerValue.QUANTITA_PANELLI_OTT_ACUST),
+                                TIPO_BATTERIE: controlUndefined(innerValue.TIPO_BATTERIE),
                                 // FILIALE: innerValue.FILIALE
                             }
                         }
@@ -191,3 +192,6 @@ function viewList(elem, contratto) {
     );
 }
 
+function controlUndefined(value) {
+    return (value === undefined) ? undefinedSymbol : value
+}
