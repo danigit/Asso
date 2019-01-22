@@ -40,7 +40,7 @@ class send_email_pdf extends cs_interaction{
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
         $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.acconto!88";
+        $mail->Password = "!ds!acconto88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress($this->email);
         $mail->Subject = "Asso Antincendio Sorveglianza";

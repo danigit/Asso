@@ -175,8 +175,10 @@ input{
 }
 
 #login-content > a{
-    margin-top: 0!important;
-    background: #FD5562!important;
+    width: 35%!important;
+    padding: 7px;
+    margin: 0 auto auto auto!important;
+    background: #007E4D!important;
     text-shadow: none!important;
     color: #ffffff;
 }
@@ -201,6 +203,11 @@ input{
     color: #000000!important;
     border-radius: 12px!important;
     border: 1px solid #007E4D!important;
+}
+
+#recover-pass-fielset div:nth-child(3){
+    background-color: #007E4D!important;
+    color: #ffffff!important;
 }
 
 .privacy-div > h5 > a{
@@ -724,13 +731,13 @@ input{
 
 .si-checkbox{
     float: left;
-    width: 45%;
+    width: 15%;
     margin-right: 6%;
     margin-left: 2%;
 }
 
 .no-checkbox{
-    width: 45%;
+    width: 15%;
     float: left;
     margin-right: 2%;
 }
@@ -745,7 +752,7 @@ input{
 
 .sorveglianza-note{
     width: 96%!important;
-    margin: auto!important;
+    margin: auto auto 10px 0!important;
     padding: 5px!important;
     border-radius: 10px!important;
 }
@@ -871,7 +878,31 @@ input{
 }
 
 .ui-radio-off{
-    background: #FD5562!important;
+    background: #FFFFFF!important;
     border: none!important;
-    color: #ffffff!important;
+    color: #000000!important;
+}
+
+#sorveglianzaRadioFieldset .ui-radio{
+    margin: 0 1% 0 1%;
+    border: 1px solid #000000;
+    border-radius: 0;
+    width: 30%;
+}
+
+#questionarioSorveglianza .ui-radio{
+    border: 1px solid #000000;
+}
+
+.sorveglianza-collapsible{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.red-background{
+    background: #FD5562!important;
+}
+
+.margin-left-none{
+    margin-left: 0!important;
 }

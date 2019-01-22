@@ -32,7 +32,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
+<html lang="it">
     <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
@@ -62,7 +62,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     <body>
         <div data-role="page" id="login">
             <div data-role="content" id="login-content">
-                <img src="img/logo.jpg" class="login-image">
+                <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
@@ -73,13 +73,29 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>
                 <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
+                <h5 class="center-text login-separator">- oppure - </h5>
+                <a href="#recover-password" id="recover-pass" class="ui-btn ui-corner-all register-button">Recupera password</a>
+            </div>
+        </div>
+
+        <div data-role="page" id="recover-password">
+            <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
+            <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
+            <h1 class="login-header">Recupera password</h1>
+            <div data-role="content">
+                <form data-ajax="false" id="recover-pass-form">
+                    <fieldset id="recover-pass-fielset">
+                        <input type="text" name="username" id="change-pass-username" value="" data-clear-btn="true" placeholder="Inserisci username">
+                        <br><input type="submit" id="recover-pass-submit" data-inline="true" value="Invia">
+                    </fieldset>
+                </form>
             </div>
         </div>
 
         <div data-role="page" id="register">
             <div data-role="content">
                 <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
-                <img src="img/logo.jpg" class="login-image">
+                <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header">Registrati</h1>
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">

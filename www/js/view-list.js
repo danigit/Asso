@@ -131,7 +131,7 @@ function viewList(elem, contratto) {
 
                         //controllo se l'articolo contiene una matricola e lo inserisco
                         if(innerValue.MATRICOLA)
-                            content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Matricola: " + innerValue.MATRICOLA + " / Nr: " + innerValue.PROGRESSIVO + "</h3>";
+                            content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Nr: " + innerValue.PROGRESSIVO + " / Matricola: " + innerValue.MATRICOLA + "</h3>";
                         else if(innerValue.PROGRESSIVO)
                             content += "<div data-role='collapsible' class='viewlist-collapsible'><h3>Progressivo: " + innerValue.PROGRESSIVO + " / Ubicazione: " + innerValue.UBICAZIONE + "</h3>";
                         else

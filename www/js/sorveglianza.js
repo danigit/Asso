@@ -135,22 +135,24 @@ function selectFiliale(filiale) {
                                             $.each(dom.domande, function (lastKey, lastValue) {
                                                 if (label.toLowerCase() === lastValue['type']) {
                                                     let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
-                                                    let question = $('<p class="center-text margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
+                                                    let question = $('<p class="margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
                                                     let answer = $('<div></div>');
                                                     let siDiv = $('<div class="si-checkbox"></div>');
                                                     let siLabel = $('<label class="font-small">SI</label>');
                                                     let si = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
-                                                        $('#sorveglianza-note-' + label + '-' + lastValue['number']).remove();
+                                                        $(this).parent().parent().next().find('input[name="radio-' + label + '-' + lastValue['number'] + '"]').prev().removeClass('red-background');
+                                                        $('#sorveglianza-note-' + label + '-' + lastValue['number']).parent().remove();
                                                     });
                                                     siLabel.append(si);
                                                     siDiv.append(siLabel);
                                                     let noDiv = $('<div class="no-checkbox"></div>');
                                                     let noLabel = $('<label class="font-small">NO</label>');
                                                     let no = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {
-                                                        let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + label + '-' + lastValue['number'] + '" rows="2" placeholder="Inserire nota"></textarea></div>');
+                                                        $(this).prev().addClass('red-background');
+                                                        let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + label + '-' + lastValue['number'] + '" rows="2" placeholder="Inserire nota anomalia"></textarea></div>');
                                                         if($('#sorveglianza-note-' + label + '-' + lastValue['number']).length === 0)
                                                             div.append(note).trigger('create');
-                                                        $('.sorveglianza-note').parent().addClass('margin-auto-lr width-95 margin-bottom-none border-radius-bottom-none');
+                                                        $('.sorveglianza-note').parent().addClass('width-95 margin-bottom-none border-radius-bottom-none');
                                                     });
                                                     noLabel.append(no);
                                                     noDiv.append(noLabel);
@@ -199,6 +201,7 @@ function saveTemp(){
     if ($('#sorveglianzaContrattoSelect').val() !== "Seleziona un contratto..." && $('#sorveglianzaFilialeSelect').val() !== 'Seleziona una filiale....') {
         let snapShot = getData(true);
 
+        console.log(snapShot);
         let sorveglianzaTempSaveForm = new FormData();
 
         //recupero i dati da salvare
@@ -215,7 +218,7 @@ function saveTemp(){
                     //notifico l'avvenuto salvatagio dei dati
                     showError($('#error-sorveglianza-popup'), 'Sorveglianza', 'I dati sono stati salvati', 'success');
                     setTimeout(function () {
-                        window.location.href = 'content.php';
+                        // window.location.href = 'content.php';
                     }, 1500)
                 }
             }
@@ -255,6 +258,7 @@ function getData(temp) {
                     i = 1;
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
                         let radio = $(lastValue).find('input[type="radio"]');
+                        console.log(radio);
                         let question = $(lastValue).find('p').text();
 
                         //controllo se ci sono delle caselle chekcbox attive
@@ -263,6 +267,7 @@ function getData(temp) {
                             if($(radio).first().is(':checked'))
                                 snapShot[tipoAttrezzatura][i++] = {question: question, checked: '1'};
                             else{
+                                console.log($(lastValue).children().eq(2).find('textarea'));
                                 if ($(lastValue).children().eq(2).length !== 0) {
                                     let noteValue = $(lastValue).children().eq(2).find('textarea').val();
                                     if( noteValue !== "") {
@@ -345,14 +350,15 @@ function caricaModifiche() {
                             content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
 
                         let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
-                        let question = $('<p class="center-text margin-top-20">' + value.number + ') ' + value.question + '</p>');
+                        let question = $('<p class="margin-top-20">' + value.number + ') ' + value.question + '</p>');
                         let gotAnswer = $('<div></div>');
 
                         if (value.answer === '-1'){
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                                $(this).parent().parent().next().find('input[name="radio-' + value.type() + '-' + value.number + '"]').prev().removeClass('red-background');
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).parent().remove();
                             });
                             siLabel.append(si);
                             siDiv.append(siLabel);
@@ -361,10 +367,10 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota"></textarea></div>');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota anomalia"></textarea></div>');
                                     div.ar('create');
                             });
-
+                            $(no).prev().addClass('red-background');
                             noLabel.append(no);
                             noDiv.append(noLabel);
                             gotAnswer.append(noDiv);
@@ -374,16 +380,18 @@ function caricaModifiche() {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                                $(this).parent().parent().next().find('input[name="radio-' + value.type + '-' + value.number + '"]').prev().removeClass('red-background');
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).parent().remove();
                             });
                             siLabel.append(si);
                             siDiv.append(siLabel);
                             gotAnswer.append(siDiv);
 
                             let noDiv = $('<div class="no-checkbox"></div>');
-                            let noLabel = $('<label class="font-small">NO</label>');
+                            let noLabel = $('<label class="font-small red-background">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota"></textarea></div>');
+                                $(this).prev().addClass('red-background');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota anomalia"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                     div.append(note).trigger('create');
                             });
@@ -399,19 +407,22 @@ function caricaModifiche() {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                                $(this).parent().parent().next().find('input[name="radio-' + value.type + '-' + value.number + '"]').prev().removeClass('red-background');
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).parent().remove();
                             });
                             siLabel.append(si);
                             siDiv.append(siLabel);
                             gotAnswer.append(siDiv);
 
                             let noDiv = $('<div class="no-checkbox"></div>');
-                            let noLabel = $('<label class="font-small">NO</label>');
+                            let noLabel = $('<label class="font-small red-background">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota"></textarea></div>');
+                                $(this).prev().addClass('red-background');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota anomalia"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                     div.append(note).trigger('create');
                             });
+                            $(no).prev().addClass('red-background');
                             noLabel.append(no);
                             noDiv.append(noLabel);
                             gotAnswer.append(noDiv);
@@ -421,7 +432,8 @@ function caricaModifiche() {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '" checked="checked">').on('click', function () {
-                                $('#sorveglianza-note-' + value.type + '-' + value.number).remove();
+                                $(this).parent().parent().next().find('input[name="radio-' + value.type + '-' + value.number + '"]').prev().removeClass('red-background');
+                                $('#sorveglianza-note-' + value.type + '-' + value.number).parent().remove();
                             });
                             siLabel.append(si);
                             siDiv.append(siLabel);
@@ -430,11 +442,12 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota"></textarea></div>');
+                                $(this).prev().addClass('red-background');
+                                let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" maxlength="10" placeholder="Inserire nota anomalia"></textarea></div>');
                                 if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
                                         div.append(note).trigger('create');
                             });
-
+                            $(no).prev().addClass('red-background');
                             noLabel.append(no);
                             noDiv.append(noLabel);
                             gotAnswer.append(noDiv);

@@ -36,6 +36,7 @@ class send_email_assistenza extends cs_interaction{
             }
             next($this->array_val);
         }
+
         $this->tecnico_email = $this->array_val['Email'];
     }
 
@@ -50,7 +51,7 @@ class send_email_assistenza extends cs_interaction{
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
         $mail->Username = "ds.acconto@gmail.com";
-        $mail->Password = "!ds.acconto!88";
+        $mail->Password = "!ds!acconto88";
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress("ds.acconto@gmail.com");
 //        $mail->Username = "clienti.assoantincendio@gmail.com";
@@ -59,8 +60,8 @@ class send_email_assistenza extends cs_interaction{
 //        $mail->addAddress("clienti.assoantincendio@gmail.com");
 //        $mail->addCC($this->tecnico_email);
         $mail->Subject = "Richiesta assistenza";
-        $mail->msgHTML("Sei stato contattato da <b style='color: #0099FF;'> " . $this->array_val['raggione'] . "</b>, sito in <b style='color: #0099FF'> " . $this->array_val['indirizzo'] . "</b>, email <b style='color: #0099FF;'>" . $this->array_val['email'] . "</b> per una richiesta di assistenza.<br><br><br> 
-                L'assistenza riguarda: <br><br><br>" . $this->email_string);
+        $mail->msgHTML("Sei stato contattato da <b style='color: #0099FF;'> " . $this->array_val['raggione'] . "</b>, sito in <b style='color: #0099FF'> " . $this->array_val['indirizzo'] . "</b>, partita iva <b style='color: #0099FF;'> ". $this->array_val['iva'] . "</b>, email <b style='color: #0099FF;'>" . $this->array_val['email'] . "</b>, telefono <b style='color: #0099FF'>" . $this->array_val['telefono'] . "</b> per una richiesta di assistenza.<br><br><br> 
+                Motivo della richiesta: <br><br><br>" . $this->email_string);
         if(!$mail->send()) //telnet smtp.aruba.it 587
             $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo );
     }

@@ -93,7 +93,7 @@ function getFilialePerContratto(selectedContratto) {
                     if (key === 'tecnico') {
                         $('.info-tecnico').append('<p class="center-text"><span class="float-left margin-left-20px"><b class="red-text font-large">Tecnico:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>');
                     } else if (key === 'telefono_tecnico') {
-                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"> ' + value + '</span></p>')
+                        $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Cellulare:</b></span><span class="float-right margin-right-10px"><a class="" href="tel://' + value + '">' + value + '</a></span></p>')
                     } else if (key === 'email_tecnico') {
                         $('.info-tecnico').append('<br> <p><span class="float-left margin-left-20px"><b class="red-text font-large">Email:</b></span><span class="float-right margin-right-10px email"> ' + value + '</span></p>')
                     } else {
@@ -142,25 +142,24 @@ $('#richiestaAssistenzaFilialeSelect').on('change', function (e) {
                                 //controllo se l'elemento ha una matricola
                                 if (lastValue.MATRICOLA !== undefined) {
                                     if ($.isArray(lastValue.MATRICOLA)) {
-                                        content += '<label><input type="checkbox" name="' + lastValue.PROGRESSIVO + '" id="' + lastValue.PROGRESSIVO + '">Matricola: - / Nr: ' + lastValue.PROGRESSIVO + '</label>';
+                                        content += '<label><input type="checkbox" name="' + lastValue.PROGRESSIVO + '" id="' + lastValue.PROGRESSIVO + '">Nr: ' + lastValue.PROGRESSIVO + ' / Matricola: - </label>';
                                     }else
-                                        content += '<input type="checkbox" name="' + lastValue.MATRICOLA + '" id="' + lastValue.MATRICOLA + '"><label for="' + lastValue.MATRICOLA + '">Matricola: ' + lastValue.MATRICOLA + ' / Nr: ' + lastValue.PROGRESSIVO + '</label>';
+                                        content += '<label><input type="checkbox" name="' + lastValue.MATRICOLA + '" id="' + lastValue.MATRICOLA + '">Nr: ' + lastValue.PROGRESSIVO + ' / Matricola: ' + lastValue.MATRICOLA + '</label>';
                                 }else if (lastValue.PROGRESSIVO !== undefined)
-                                    content += '<input type="checkbox" name="' + lastValue.PROGRESSIVO + '" id="' + lastValue.PROGRESSIVO + '"><label for="' + lastValue.PROGRESSIVO + '">Progressivo: ' + lastValue.PROGRESSIVO + '</label>';
+                                    content += '<label><input type="checkbox" name="' + lastValue.PROGRESSIVO + '" id="' + lastValue.PROGRESSIVO + '">Progressivo: ' + lastValue.PROGRESSIVO + '</label>';
                                 else if (lastValue.CHIAVE !== undefined)
-                                    content += '<input type="checkbox" name="' + lastValue.DESCRIZIONE + '" id="' + lastValue.DESCRIZIONE + '"><label for="' + lastValue.DESCRIZIONE + '">Descrizione: ' + lastValue.DESCRIZIONE + '</label>';
+                                    content += '<label><input type="checkbox" name="' + lastValue.DESCRIZIONE + '" id="' + lastValue.DESCRIZIONE + '">Descrizione: ' + lastValue.DESCRIZIONE + '</label>';
                             });
                         } else {
-                            console.log(innerValue);
                             if (innerValue.MATRICOLA !== undefined) {
                                 if ($.isArray(innerValue.MATRICOLA))
-                                    content += '<label><input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '">Matricola: - / Nr: ' + innerValue.PROGRESSIVO + '</label>';
+                                    content += '<label><input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '">Nr: ' + innerValue.PROGRESSIVO + ' / Matricola: - </label>';
                                 else
-                                    content += '<input type="checkbox" name="' + innerValue.MATRICOLA + '" id="' + innerValue.MATRICOLA + '"><label for="' + innerValue.MATRICOLA + '">Matricola: ' + innerValue.MATRICOLA + ' / Nr: ' + innerValue.PROGRESSIVO + '</label>';
+                                    content += '<label><input type="checkbox" name="' + innerValue.MATRICOLA + '" id="' + innerValue.MATRICOLA + '">Nr: ' + innerValue.PROGRESSIVO + ' / Matricola: ' + innerValue.MATRICOLA +  '</label>';
                             }else if (innerValue.PROGRESSIVO !== undefined)
-                                content += '<input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '"><label for="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue.PROGRESSIVO + '</label>';
+                                content += '<label><input type="checkbox" name="' + innerValue.PROGRESSIVO + '" id="' + innerValue.PROGRESSIVO + '">Progressivo: ' + innerValue.PROGRESSIVO + '</label>';
                             else if (innerValue.DESCRIZIONE !== undefined)
-                                content += '<input type="checkbox" name="' + innerValue.DESCRIZIONE + '" id="' + innerValue.DESCRIZIONE + '"><label for="' + innerValue.DESCRIZIONE + '">Descrizione: ' + innerValue.DESCRIZIONE + '</label>';
+                                content += '<label><input type="checkbox" name="' + innerValue.DESCRIZIONE + '" id="' + innerValue.DESCRIZIONE + '">Descrizione: ' + innerValue.DESCRIZIONE + '</label>';
                         }
                         content += '</div>';
                     })
@@ -217,9 +216,12 @@ $('#inviaRichiestaAssistenzaDati').on('click', function () {
                         "Note aggiuntive": noteAggiuntive,
                         'raggione': data[0].RAGIONE_SOCIALE,
                         'indirizzo': data[0].INDIRIZZO_SPEDIZIONE,
-                        'email': data[0].EMAIL
+                        'email': data[0].EMAIL,
+                        'telefono': data[0].TELEFONO1,
+                        'iva': data[0].PARTITA_IVA
                     };
                     console.log(checked);
+                    console.log(checked.telefono);
                     let assistenzaFormData = new FormData();
 
                     $.each($('#resultForCheck').children(), function (key, value) {

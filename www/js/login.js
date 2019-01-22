@@ -29,3 +29,26 @@ loginForm.onsubmit = function (event) {
         }
     );
 };
+
+let recoverPassForm = document.querySelector('#recover-pass-form');
+
+recoverPassForm.onsubmit = function (event) {
+  event.preventDefault();
+
+  let recoverPassFormInput = new FormData(recoverPassForm);
+
+  let promise = httpPost('php/ajax/recover_password.php', recoverPassFormInput);
+
+  promise.then(
+      function (data) {
+          if (data.result){
+
+          }else{
+              let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
+              if ($('.error-message').length !== 0)
+                  $('#recover-pass-fielset').find('.error-message').remove();
+              $('#recover-pass-fielset').prepend(message);
+          }
+      }
+  )
+};

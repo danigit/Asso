@@ -32,7 +32,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
+<html lang="it">
     <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
@@ -64,7 +64,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
     </head>
     <body>
         <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
-            <img src="img/logo.png" class="menu-title">
+            <img src="img/logo.png" class="menu-title" alt="Asso Antincendio" title="Asso Antincendio">
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
                 <li><a href="#anagrafica">Anagrafica</a></li>
@@ -81,10 +81,10 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
         </div>
         <div data-role="page" id="home">
             <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-green">
-                <a href="#menu" class="menu-icon border-radius-none border-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-radius-none border-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
             </div>
             <div data-role="content">
-                <img src="img/logo.jpg" id="benvenuto-image">
+                <img src="img/logo.jpg" id="benvenuto-image" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header home-phrase">BENVENUTO NELLA TUA AREA PERSONALE</h1>
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
@@ -101,16 +101,16 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                     </a>
                 </div>
                 <div id="facebook">
-                    <a href="https://www.linkedin.com/in/gorla-christian-04265b78/"><img src="img/linkedin-5-64.jpg" class="social" style="float: right"></a>
-                    <a href="https://www.facebook.com/assoantincendio/" ><img src="img/facebook-5-64.jpg" class="social"></a>
+                    <a href="https://www.linkedin.com/in/gorla-christian-04265b78/"><img src="img/icona_linkedin.png" class="social" style="float: right" alt="Visista pagina LinkedIn" title="Visita pagina LinkedIn"></a>
+                    <a href="https://www.facebook.com/assoantincendio/" ><img src="img/icona_fb.png" class="social" alt="Visita pagina Facebook" title="Visita pagina Facebook"></a>
                 </div>
             </div>
         </div>
 
         <div data-role="page" id="anagrafica">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
 
             <div data-role="content" class="anagrafica-padding margin-bottom-30 background-white">
@@ -119,14 +119,14 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             </div>
 
             <div data-role="footer" data-position="fixed" data-fullscreen="false">
-                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">CAMBIA ANAGRAFICA</a></div>
+                <div><a href="#cambioAnagrafica" id="cambia-anagrafica-button" class="ui-btn ui-shadow ui-corner-all visualizza-button-anagrafica margin-auto font-large">RICHIEDI MODIFICA ANAGRAFICA</a></div>
             </div>
         </div>
 
         <div data-role="page" id="cambioAnagrafica">
             <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
 
             <div data-role="content" class="anagrafica-padding">
@@ -159,8 +159,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="contratti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">CONTRATTI</h1>
@@ -171,8 +171,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="fatture">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">FATTURE</h1>
@@ -183,8 +183,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="rapporti">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content">
                 <h1 class="red-text philosopher-font header-page-title">RAPPORTI</h1>
@@ -195,8 +195,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="attrezzature">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content" id="attrezzature-container">
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">ATTREZZATURE</h1>
@@ -207,8 +207,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="richiestaAssistenza">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title margin-bottom-30">RICHIESTA ASSISTENZA</h1>
@@ -252,8 +252,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="sorveglianza">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content" class="anagrafica-padding">
                 <h1 class="red-text philosopher-font header-page-title">SORVEGLIANZA</h1>
@@ -294,6 +294,15 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <div id="questionarioSorveglianza" class="margin-top-20"></div>
             </div>
 
+            <div data-role="popup" id="open-assistenza-confirm" class="padding-20-40" data-history="false" data-overlay-theme="a">
+                <div data-role="content">
+                    <h3 class="open-assistenza-confirm-header center-text blue-color margin-bottom-30 font-x-large"></h3>
+                    <p class="delete-object-confirm-text center-text margin-bottom-30"></p>
+                    <a href="#richiestaAssistenza" id="open-assistenza-confirm-button" class="background-green white-text" data-role="button">Apri Richiesta</a>
+                    <a href="#" id="open-assistenza-cancel-button" class="red-background white-text" data-role="button" data-rel="back">Anulla</a>
+                </div>
+            </div>
+
             <div id="sorveglianzaMessaggioErrore"></div>
 
             <div data-role="footer" data-position="fixed" class="background-white" data-fullscreen="false">
@@ -319,8 +328,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="modificaPassword">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content">
                 <img src="img/logo.png" class="menu-title">
@@ -338,8 +347,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
         <div data-role="page" id="viewList">
             <div data-theme="" data-role="header" data-position="fixed" data-id="mainHeader" data-fullscreen="false" class="background-green">
-                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green"></a>
-                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green"></a>
+                <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
+                <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
             <div data-role="content" id="viewListContent">
                 <h1 class="red-text philosopher-font header-page-title">Lista Attrezzature</h1>
@@ -348,7 +357,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
 
                 <div data-role="footer" id="viewListFooter" data-position="fixed" class="background-white" data-fullscreen="false">
                     <a href="#" id="salvaCsv" class="sorveglianzaInviaDati font-medium ui-disabled padding-lr-zero-tb-9px" data-role="button" data-inline="true">SALVA CSV</a>
-                    <a href="#" id="salvaPdf" class="sorveglianzaInviaDati font-medium ui-disabled padding-lr-zero-tb-9px" data-role="button" data-inline="true">SALVA PDF</a>
+                    <a href="#" id="salvaPdf" class="sorveglianzaInviaDati font-medium ui-disabled padding-lr-zero-tb-9px" data-role="button" data-inline="true">ESPORTA LISTA IN PDF</a>
                 </div>
             </div>
         </div>

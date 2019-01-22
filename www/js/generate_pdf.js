@@ -92,11 +92,17 @@ function createPdf(data) {
                 sendEmail($('#error-sorveglianza-popup'), 'stop');
 
                 //notifico l'invio della mail
-                showError($('#error-sorveglianza-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata ' +
-                    'innoltrata con successo', 'success');
+                // showError($('#error-sorveglianza-popup'), 'Email spedita', 'La richiesta di cambio anagrafica è stata ' +
+                //     'innoltrata con successo', 'success');
 
+                let confirDialog = $('#open-assistenza-confirm');
+                console.log(confirDialog);
+
+                confirDialog.find('h3').text('Richiesta assistenza');
+                confirDialog.find('p').text('Vuoi aprire la richiesta assistenza?');
+                confirDialog.popup('open');
                 setTimeout(function () {
-                    window.location.href = 'content.php';
+                    // window.location.href = 'content.php';
                 }, 1700);
             }
         }
