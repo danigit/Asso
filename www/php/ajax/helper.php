@@ -58,7 +58,7 @@ function createRandomPassword($length){
  * @return array[]|false|null|string[]
  */
 function getUserInformations($username){
-    //var_dump(PHOENIX_FOLDER );
+//    var_dump(PHOENIX_FOLDER );
     $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
     if($fileClientsList) {
         while (($line = fgets($fileClientsList)) !== false) {

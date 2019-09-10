@@ -50,15 +50,11 @@ class send_email_assistenza extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "ds.acconto@gmail.com";
-        $mail->Password = "!ds!acconto88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
-//        $mail->Username = "clienti.assoantincendio@gmail.com";
-//        $mail->Password = "clientiasso";
-//        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
-//        $mail->addAddress("clienti.assoantincendio@gmail.com");
-//        $mail->addCC($this->tecnico_email);
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+        $mail->addAddress($this->tecnico_email);
+        $mail->addAddress('documenti.tecnici@assoantincendio.com');
         $mail->Subject = "Richiesta assistenza";
         $mail->msgHTML("Sei stato contattato da <b style='color: #0099FF;'> " . $this->array_val['raggione'] . "</b>, sito in <b style='color: #0099FF'> " . $this->array_val['indirizzo'] . "</b>, partita iva <b style='color: #0099FF;'> ". $this->array_val['iva'] . "</b>, email <b style='color: #0099FF;'>" . $this->array_val['email'] . "</b>, telefono <b style='color: #0099FF'>" . $this->array_val['telefono'] . "</b> per una richiesta di assistenza.<br><br><br> 
                 Motivo della richiesta: <br><br><br>" . $this->email_string);

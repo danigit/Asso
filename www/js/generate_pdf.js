@@ -109,7 +109,7 @@ function createPdf(data) {
     );
 
     //salvo il documento sul computer
-    doc.save('test.pdf');
+    doc.save('Sorveglianza.pdf');
 }
 
 /**

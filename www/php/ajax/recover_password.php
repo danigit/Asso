@@ -51,13 +51,19 @@ class recover_password extends cs_interaction {
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "ds.acconto@gmail.com";
-        $mail->Password = "!ds!acconto88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+        $mail->addAddress($this->email);
         $mail->Subject = "Recupero password";
-        $mail->msgHTML("Sei stata contattata da <b>Asso Antincendio</b> per il recupero della password.<br> La tua password è: "
-            . $this->new_password);
+        $mail->msgHTML("Gentile cliente, <br> questa e-mail Le viene inviata automatica all'indirizzo specificato in seguito alla richesta di recupero
+                                dei dati di accesso all'area personale <b>Asso Antincendio</b><br><br>I codici per accedere all'Area Personale sono: <br>PASSWORD: <b>"
+            . $this->new_password . "</b><br><br><b>ATTENZIONE:</b> Le consigliamo l'utilizzo di questa password solo per il primo accesso e di provedere alla sostituzione
+                                andando nella sezione CAMBIO PASSWORD.<br><br>Le ricordiamo che in qualsiasi momento potra contattare i nostri assistenti al numero <b>010 6018258</b>
+                                <br><br>-----------------------------------------------<br><br>
+                                NB: a completa tutela della sicurezza del Suo account, La invitiamo a procedere con la modifica della password provisoria come sopra 
+                                indicato. La ringraziamo per la collaborazione e Le garantiamo che il Suo account e ancora protetto e i Suoi dati non sono stati communicati 
+                                a nessuno fuorche Lei.");
         try {
             if (!$mail->send()) //telnet smtp.aruba.it 587
                 $this->json_error("Mail non spedita per motivo sconosciuto" . $mail->ErrorInfo);

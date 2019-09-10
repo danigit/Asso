@@ -11,7 +11,7 @@ require_once 'cs_interaction.php';
 require_once 'helper.php';
 
 class send_email_cambio_anagrafica extends cs_interaction{
-    private $count, $fields = "", $db_json, $test;
+    private $count, $fields = "", $db_json;
 
     protected function input_elaboration(){
         $this->count = $this->validate_string("count");
@@ -21,7 +21,6 @@ class send_email_cambio_anagrafica extends cs_interaction{
 
         for($i = 0; $i < $this->count; $i++){
             $this->fields .= $this->validate_string($i) . "<br>";
-            $this->test[] = $this->fields;
         }
 
         $this->db_json = $this->validate_string('dbJson');

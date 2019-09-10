@@ -66,9 +66,10 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
-                        <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci nome utente">
-                        <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
-                        <br><input type="submit" id="login-submit" data-inline="true" value="Login">
+                        <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci email">
+                        <div id="contractsContainer"></div>
+<!--                        <input type="hidden" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">-->
+                        <br><input type="submit" id="login-submit" data-inline="true" value="Recupera contratti">
                     </fieldset>
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>
@@ -89,6 +90,12 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                         <br><input type="submit" id="recover-pass-submit" data-inline="true" value="Invia">
                     </fieldset>
                 </form>
+
+                <div id="error-recover-password-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+                    <p class="box-shadow-bottom center-text title"></p>
+                    <p class="margin-top-20 content"></p>
+                </div>
+
             </div>
         </div>
 
@@ -100,7 +107,7 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
-<!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
+                        <input type="text" name="registerEmail" id="registerEmail" value="" data-clear-btn="true" placeholder="Inserisci email">
                         <br><input type="submit" id="register-submit" data-inline="true" value="Registrati">
                         <label class="checkbox-register" data-inset="false">
                             <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>

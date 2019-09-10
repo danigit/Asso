@@ -19,7 +19,52 @@ loginForm.onsubmit = function (event) {
             if (data.result) {
                 //l'utente e' logato quindi entro nell'area protetta
                 // window.location.replace('../content.php');
-                window.location.replace('../Asso/content.php');
+                // window.location.replace('../Asso/content.php');
+                $('#login-content').find('.register-button').remove();
+                $('#login-content').find('.login-separator').remove();
+                $('#login-content').find('#username').remove();
+                $('#login-fielset').find('.ui-input-btn').addClass('hidden');
+
+                let contracts = $('<ul data-role="listview" data-inset="true" class="margin-anagrafica-list"></ul>');
+                $.each(data.contratti, function (key, value) {
+                    console.log(value.piva);
+                    let listElem = $('<a href="#" class="ui-btn fatture-item">' +
+                        '<p class="green-text font-small margin-bottom-none center-text"><b>' + value.nome + '</b></p></a>').on('click', function () {
+
+                            $('#login-fielset').find('.ui-input-btn').removeClass('hidden');
+                            $('#login-fielset').find('.ui-input-btn').text('Entra');
+                            $('#login-fielset').find('#login-submit').val('Entra');
+                            $('#login-fielset > div:nth-child(1)').after('<input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">');
+                            $('#login-fielset').enhanceWithin();
+                            $('#login-content').find('#contractsContainer').remove();
+                            loginForm.submit = false;
+                            let contractForm = document.querySelector('#loginForm');
+                            contractForm.onsubmit = function (event) {
+                                event.preventDefault();;
+
+                                let pass = $('#password').val();
+
+                                let contractForm = new FormData();
+                                contractForm.append('piva', value.piva);
+                                contractForm.append('password', pass);
+
+                                let contractPromise = httpPost('php/ajax/login_contract.php', contractForm);
+
+                                contractPromise.then(
+                                    function (data) {
+                                    if (data.result){
+
+                                    }
+                                });
+                            }
+
+                    });
+                    contracts.append(listElem);
+                });
+                $('#contractsContainer').append(contracts).trigger('create');
+
+                // $('#login-fielset > div:nth-child(1)').after('<input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">');
+                // $('#login-fielset').enhanceWithin();
             } else {
                 let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                 if ($('.error-message').length !== 0)
@@ -39,10 +84,13 @@ recoverPassForm.onsubmit = function (event) {
 
   let promise = httpPost('php/ajax/recover_password.php', recoverPassFormInput);
 
+  sendEmail($('#error-recover-password-popup'), 'start', 'Sto inviando email per il recupero password...');
+
   promise.then(
       function (data) {
           if (data.result){
-
+              sendEmail($('#error-recover-password-popup'), 'stop');
+              // window.location.replace('../Asso/index.php');
           }else{
               let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
               if ($('.error-message').length !== 0)

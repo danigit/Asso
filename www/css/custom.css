@@ -9,7 +9,7 @@
 
 .ui-input-btn{
     display: block!important;
-    width: 35% !important;
+    width: 60% !important;
     margin: auto!important;
     padding: 7px!important;
     font-size: medium!important;
@@ -175,7 +175,7 @@ input{
 }
 
 #login-content > a{
-    width: 35%!important;
+    width: 60%!important;
     padding: 7px;
     margin: 0 auto auto auto!important;
     background: #007E4D!important;
@@ -189,9 +189,10 @@ input{
 }
 
 #register-fielset div:nth-child(3){
-    background: #007E4D!important;
-    color: #ffffff!important;
+    /*background: #007E4D!important;*/
+    /*color: #ffffff!important;*/
 }
+
 
 .login-icon{
     position: absolute!important;
@@ -905,4 +906,20 @@ input{
 
 .margin-left-none{
     margin-left: 0!important;
+}
+
+.margin-anagrafica-list{
+    margin: 10% 5% auto 5% !important;
+}
+
+.left-text{
+    text-align: left!important;
+}
+
+.hidden{
+    display: none!important;
+}
+
+.border-none{
+    border: none!important;
 }

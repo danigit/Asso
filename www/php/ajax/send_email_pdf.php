@@ -39,9 +39,9 @@ class send_email_pdf extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds!acconto88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
         $mail->addAddress($this->email);
         $mail->Subject = "Asso Antincendio Sorveglianza";
         $mail->msgHTML("Come richiesto ti è stato inviato in allegato la sorveglianza relativa alle attrezzature di Asso Antincendio.");

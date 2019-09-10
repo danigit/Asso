@@ -43,6 +43,13 @@ abstract class cs_interaction{
     }
 
     /**
+     * Funzione che ellabora la richiesta in tre step: ellabora input, reccupera dati, ritorna dati
+     */
+    function execute_confirm_registration(){
+        $this->get_informations();
+    }
+
+    /**
      * Funzione che ritorna il risultato codificato in json
      * @param $result - il valore da mandare come json
      */
