@@ -5,6 +5,7 @@
 
 <?php
 
+require_once 'helper.php';
 require_once '../mailer/PHPMailerAutoload.php';
 require_once 'cs_interaction.php';
 
@@ -15,37 +16,16 @@ class confirm_registration extends cs_interaction {
     }
 
     protected function get_informations(){
-
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->Host = 'tls://smtp.gmail.com';
-        $mail->Port = 587; //587; // 465;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.!acconto88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
-        $mail->Subject = "Richiesta conferma registrazione";
-        $mail->msgHTML("La sua registrazioine e' stata confermata.<br><br>Puo' accedere alla sua area riservata con le seguenti credenziali. <br><br>
-                <b>Username</b>: " . $_GET['email'] . "<br><b>Password</b>: la stessa usata in precedenza per questa email");
-
-        if(!$mail->send()) //telnet smtp.aruba.it 587
-            echo "<p>Impossibile inviare email al cliente</p>";
-        else{
-            $connection = $this->get_connection();
-            $autentication_result = $connection->control_autentication($_GET['email']);
-            if (!$autentication_result['auth']) {
-                $result = $connection->insertRegistration($_GET['piva'], $_GET['email'], $_GET['password'], 1);
-                if ($result instanceof db_error)
-                    echo "<p>Impossibile aggiornare il database</p>";
-            } else {
-                var_dump('writing file ' . $_GET['pswFile']);
-                var_dump($_GET['password']);
-                $passwordFile = fopen($_GET['pswFile'], 'w');
-                fputs($passwordFile, $_GET['password']);
-                fclose($passwordFile);
-            }
+        $pass = createRandomPassword(6);
+        $connection = $this->get_connection();
+        $result = $connection->insertRegistration($_GET['piva'], $_GET['name'], $_GET['email'], md5($pass), 1);
+        if (!empty($result))
+            $this->json_error('Impossibilie savare i dati nel database');
+        else {
+            send_email('ds.acconto@gmail.ocm', $_GET['email'], 'Asso Antincendio', 'Registrazione Asso Antincendio',
+                "Le comunichiamo l'avvenuta registrazione al sito <b style='color: #007139'>ASSO ANTINCENDIO</b>.<br><br>Di seguito le inviamo le
+                                               credenziali per accedere alla sua area personale.<br><br><b>Username</b>: " . $_GET['email'] . "<br><b>Password</b>: " . $pass,
+                "Registrazione avvenuta! Impossibile inviare emai");
         }
     }
 

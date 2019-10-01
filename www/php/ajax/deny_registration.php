@@ -5,8 +5,8 @@
 
 <?php
 
-require_once '../mailer/PHPMailerAutoload.php';
 require_once 'cs_interaction.php';
+require_once '../mailer/PHPMailerAutoload.php';
 
 class deny_registration extends cs_interaction {
 
@@ -28,19 +28,10 @@ class deny_registration extends cs_interaction {
         $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
         $mail->addAddress("ds.acconto@gmail.com");
         $mail->Subject = "Richiesta conferma registrazione";
-        $mail->msgHTML("La sua registrazioine e' stata negata.<br><br>Contattare l'assistenza per ricevere le credenziali di accesso");
+        $mail->msgHTML("La sua registrazioine e' stata negata.<br><br>Contattare l'assistenza per ulteriori informazioni");
 
         if(!$mail->send()) //telnet smtp.aruba.it 587
             echo "<p>Impossibile inviare email al cliente</p>";
-        else{
-            $connection = $this->get_connection();
-            $autentication_result = $connection->control_autentication($_GET['email']);
-            if (!$autentication_result['auth']) {
-                $result = $connection->insertRegistration($_GET['piva'], $_GET['email'], $_GET['password'], 0);
-                if ($result instanceof db_error)
-                    echo "<p>Impossibile aggiornare il database</p>";
-            }
-        }
     }
 
     protected function get_returned_data()
@@ -51,4 +42,4 @@ class deny_registration extends cs_interaction {
 
 
 $register = new deny_registration();
-$register->execute_confirm_registration();
+$register->execute();

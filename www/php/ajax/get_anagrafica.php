@@ -21,7 +21,6 @@ class get_anagrafica extends cs_interaction {
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
             $folderName = getFolderName($info[1]);
-            echo $folderName;
             $anagraficaPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAnagrafica.xml';
             $xml_file = simplexml_load_file($anagraficaPath);
             $json_file = json_encode($xml_file);

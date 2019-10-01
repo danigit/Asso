@@ -67,9 +67,8 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
                         <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci email">
-                        <div id="contractsContainer"></div>
-<!--                        <input type="hidden" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">-->
-                        <br><input type="submit" id="login-submit" data-inline="true" value="Recupera contratti">
+                        <div id="contractsContainer"></div><br>
+                        <input type="submit" id="login-submit" data-inline="true" value="Recupera contratti">
                     </fieldset>
                 </form>
                 <h5 class="center-text login-separator">- oppure - </h5>

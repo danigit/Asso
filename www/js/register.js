@@ -18,9 +18,11 @@ function register() {
         promise.then(
             function (data) {
                 //controllo se ci sono stati degli errori nella chiamata
+                console.log(data.result);
                 if (data.result) {
+                    console.log(data.result);
                     //reindirizzamento sulla pagina di login
-                    window.location.replace('index.php');
+                    // window.location.replace('index.php');
                 } else {
                     let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');
                     if ($('.error-message').length !== 0)

