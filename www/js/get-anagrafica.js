@@ -13,7 +13,7 @@ function getAnagrafica() {
             //controllo se ci sono stati errori nella chiamato
             if (data.result) {
                 //creo una lista per visualizzare i dati
-                let anagrafica = '<ul data-role="listview" data-inset="true" class="anagrafica-list-margin">';
+                let anagrafica = '<ul data-role="listview" data-inset="true" class="margin-anagrafica-list">';
 
                 //cambio l'ordine di visualizzazione delle voci
                 let anagraficaOrder = {
@@ -32,11 +32,14 @@ function getAnagrafica() {
                 $.each(anagraficaOrder, function (key, value) {
                     if(value !== undefined && value !== ""){
                         let parsedKey = key.replace("_", " ");
-                        anagrafica += '<li class="border-none">' +
-                            '<p class="float-left font-x-small border-bottom-1-gray full-width center-text margin-bottom-none border-radius-10 padding-tb-10px background-green ' +
-                            'box-shadow-bottom paddint-bottom-5px"><b class="white-text font-small">' + parsedKey + '</b></p>' +
-                            '<p class="font-large center-text float-left full-width margin-zero padding-lr-zero-tb-9px ' +
-                            'border-radius-top-30">' + value + '</p></li>';
+                        anagrafica += '<a href="#" class="ui-btn fatture-item">' +
+                            '<p class="green-text font-small margin-bottom-none left-text"><b>' + parsedKey + '</b></p>' +
+                            '<p class="line-wrap font-large margin-top-2px margin-bottom-10 left-text">' + value + '</p> </a>';
+                        // '<li class="border-none">' +
+                        //     '<p class="float-left font-x-small border-bottom-1-gray full-width center-text margin-bottom-none border-radius-10 padding-tb-10px background-green ' +
+                        //     'box-shadow-bottom paddint-bottom-5px"><b class="white-text font-small">' + parsedKey + '</b></p>' +
+                        //     '<p class="font-large center-text float-left full-width margin-zero padding-lr-zero-tb-9px ' +
+                        //     'border-radius-top-30">' + value + '</p></li>';
                         select += '<option>' + parsedKey + '</option>';
                     }
                 });

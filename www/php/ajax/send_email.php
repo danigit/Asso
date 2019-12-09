@@ -25,10 +25,10 @@ class send_email extends cs_interaction{
         $mail->Port = 587; //587; // 465;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.acconto!88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
+        $mail->Username = "clienti.assoantincendio@gmail.com";
+        $mail->Password = "clientiasso";
+        $mail->setFrom('clienti.assoantincendio@gmail.com', 'Asso Antincendio');
+        $mail->addAddress("clienti.assoantincendio@gmail.com");
         $mail->Subject = "Cambio Anagrafica";
         $mail->msgHTML("Sei stata contattata da: <br><br> Nome: " . $_SESSION['username'] . "<br>Email: ds.acconto@gmail.com<br><br><br><br>Contenuto email: <br>"
             . $this->fields);

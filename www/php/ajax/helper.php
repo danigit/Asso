@@ -58,7 +58,7 @@ function createRandomPassword($length){
  * @return array[]|false|null|string[]
  */
 function getUserInformations($username){
-    //var_dump(PHOENIX_FOLDER );
+//    var_dump(PHOENIX_FOLDER );
     $fileClientsList = fopen(PHOENIX_FOLDER . 'PhoenixListaClienti.phx', 'r');
     if($fileClientsList) {
         while (($line = fgets($fileClientsList)) !== false) {
@@ -96,4 +96,25 @@ function sendMail($xml_file, $password){
  */
 function is_error($value){
     return is_a($value, "db_error");
+}
+
+function send_email($sender, $receiver, $title, $subject, $message, $error){
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->Host = 'tls://smtp.gmail.com';
+    $mail->Port = 587; //587; // 465;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "ds.acconto@gmail.com";
+    $mail->Password = "!ds!acconto!88";
+    $mail->setFrom($sender, $title);
+    $mail->addAddress($receiver);
+    $mail->Subject = $subject;
+    $mail->msgHTML($message . "<br><br><br><img src='http://www.assoantincendio.com/areaclienti/Asso/img/logo.png'>");
+    if(!$mail->send()){ //telnet smtp.aruba.it 587
+        $this->json_error($error . $mail->ErrorInfo );
+        return false;
+    }
+
+    return true;
 }

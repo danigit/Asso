@@ -62,45 +62,58 @@ if (isset($_SESSION['secure'], $_SESSION['username']))
     <body>
         <div data-role="page" id="login">
             <div data-role="content" id="login-content">
-                <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
+                <img src="img/AsspCopertinaFacebook.jpg" id="login-image" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
+                <img src="img/assoscritta1.jpeg" id="login-image" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header">Login</h1>
                 <form data-ajax="false" id="loginForm">
                     <fieldset id="login-fielset">
-                        <input type="text" name="username" id="username" value="" data-clear-btn="true" placeholder="Inserisci nome utente">
+                        <input type="text" name="email" id="email" value="" data-clear-btn="true" placeholder="Inserisci email">
                         <input type="password" name="password" id="password" value="" data-clear-btn="true" placeholder="Inserisci password">
-                        <br><input type="submit" id="login-submit" data-inline="true" value="Login">
+                        <div id="contractsContainer"></div><br>
+                        <input type="submit" id="login-submit" data-inline="true" value="Login">
                     </fieldset>
                 </form>
-                <h5 class="center-text login-separator">- oppure - </h5>
+<!--                <h5 class="center-text login-separator">- oppure - </h5>-->
                 <a href="#register" class="ui-btn ui-corner-all register-button">Registrati</a>
-                <h5 class="center-text login-separator">- oppure - </h5>
-                <a href="#recover-password" id="recover-pass" class="ui-btn ui-corner-all register-button">Recupera password</a>
+<!--                <h5 class="center-text login-separator">- oppure - </h5>-->
             </div>
+            <a href="#recover-password" id="recover-pass" class="recover-password">Password dimenticata?</a>
         </div>
 
         <div data-role="page" id="recover-password">
-            <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
-            <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
-            <h1 class="login-header">Recupera password</h1>
-            <div data-role="content">
-                <form data-ajax="false" id="recover-pass-form">
-                    <fieldset id="recover-pass-fielset">
-                        <input type="text" name="username" id="change-pass-username" value="" data-clear-btn="true" placeholder="Inserisci username">
-                        <br><input type="submit" id="recover-pass-submit" data-inline="true" value="Invia">
-                    </fieldset>
-                </form>
+            <div data-role="content" id="recover-content">
+                <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
+                <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
+                <h1 class="login-header">Recupera password</h1>
+                <div data-role="content">
+                    <form data-ajax="false" id="recover-pass-form">
+                        <fieldset id="recover-pass-fielset">
+                            <input type="text" name="username" id="change-pass-username" value="" data-clear-btn="true" placeholder="Inserisci username">
+                            <br><input type="submit" id="recover-pass-submit" data-inline="true" value="Invia">
+                        </fieldset>
+                    </form>
+
+                    <div id="error-recover-password-popup" data-role="popup" data-overlay-theme="a" class="ui-content error-popup" data-history="false">
+                        <p class="box-shadow-bottom center-text title"></p>
+                        <p class="margin-top-20 content"></p>
+                    </div>
+
+                </div>
             </div>
         </div>
 
         <div data-role="page" id="register">
-            <div data-role="content">
+            <div data-role="content" id="register-content">
                 <a href="#login" class="ui-btn ui-shadow ui-corner-all login-icon font-large green-text">Login</a>
-                <img src="img/logo.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
+                <img src="img/AsspCopertinaFacebook.jpg" class="login-image" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header">Registrati</h1>
                 <form data-ajax="false" id="registerForm">
                     <fieldset id="register-fielset">
                         <input type="text" name="registerUsername" id="registerUsername" value="" data-clear-btn="true" placeholder="Inserisci partita iva">
-<!--                        <input type="text" name="registerPassword" id="registerPassword" value="" data-clear-btn="true" placeholder="Inserisci password">-->
+                        <input type="text" name="registerEmail" id="registerEmail" value="" data-clear-btn="true" placeholder="Inserisci email">
+                        <input type="text" name="registerName" id="registerName" value="" data-clear-btn="true" placeholder="Inserisci nome">
+                        <input type="text" name="registerSurname" id="registerSurname" value="" data-clear-btn="true" placeholder="Inserisci cognome">
+                        <input type="text" name="registerPhone" id="registerPhone" value="" data-clear-btn="true" placeholder="Inserisci telefono fisso">
                         <br><input type="submit" id="register-submit" data-inline="true" value="Registrati">
                         <label class="checkbox-register" data-inset="false">
                             <input type="checkbox" name="checkbox-register" ><span class="text-transfor-none">Clicca per accettare l'informativa</span>

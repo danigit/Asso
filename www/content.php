@@ -64,7 +64,7 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
     </head>
     <body>
         <div data-role="panel" id="menu" data-position="left" data-display="overlay" data-theme="a">
-            <img src="img/logo.png" class="menu-title" alt="Asso Antincendio" title="Asso Antincendio">
+            <img src="img/logo.png" class="menu-title logo" alt="Asso Antincendio" title="Asso Antincendio">
             <ul data-role="listview">
                 <li data-role="list-divider">Documenti</li>
                 <li><a href="#anagrafica">Anagrafica</a></li>
@@ -83,8 +83,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
             <div data-theme="" data-role="header" data-position="fixed" data-fullscreen="false" data-id="mainHeader" class="background-green">
                 <a href="#menu" class="menu-icon border-radius-none border-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
             </div>
-            <div data-role="content">
-                <img src="img/logo.jpg" id="benvenuto-image" alt="Asso Antincendio" title="Asso Antincendio">
+            <div data-role="content" id="home-content">
+                <img src="img/logo.jpg" id="benvenuto-image" class="logo" alt="Asso Antincendio" title="Asso Antincendio">
                 <h1 class="login-header home-phrase">BENVENUTO NELLA TUA AREA PERSONALE</h1>
                 <p class="center-text"></p>
                 <div data-role="collapsible" class="contratti-collapsible">
@@ -331,8 +331,8 @@ if (!isset($_SESSION['secure'], $_SESSION['username']))
                 <a href="#menu" class="menu-icon border-none border-radius-none"><img src="img/menu-icon1.png" class="menu-icon-image background-green" alt="Menu" title="Menu"></a>
                 <a href="#home" class="menu-icon border-none border-radius-none"><img src="img/home-icon.png" class="menu-icon-image background-green" alt="Asso Antincendio" title="Asso Antincendio"></a>
             </div>
-            <div data-role="content">
-                <img src="img/logo.png" class="menu-title">
+            <div data-role="content" id="modificaPassword-content">
+                <img src="img/logo.png" class="menu-title logo">
                 <h1 class="login-header">Cambia password</h1>
                 <form data-ajax="false" id="changePassForm">
                     <fieldset id="change-pass-fielset">

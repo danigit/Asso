@@ -136,7 +136,7 @@ function selectFiliale(filiale) {
                                                 if (label.toLowerCase() === lastValue['type']) {
                                                     let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
                                                     let question = $('<p class="margin-top-20">' + lastValue['number'] + ') ' + lastValue['question'] + '</p>');
-                                                    let answer = $('<div></div>');
+                                                    let answer = $('<div class="flex-display"></div>');
                                                     let siDiv = $('<div class="si-checkbox"></div>');
                                                     let siLabel = $('<label class="font-small">SI</label>');
                                                     let si = $('<input type="radio" name="radio-' + label + '-' + lastValue['number'] + '">').on('click', function () {

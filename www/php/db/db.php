@@ -11,7 +11,7 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 
 class DatabaseConnection{
     const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
-//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'root', DATABASE = 'asso';
+//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'dani', DATABASE = 'asso';
 //    const PATH = '89.46.111.27', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
@@ -253,6 +253,212 @@ class DatabaseConnection{
         return $this->connection->insert_id;
     }
 
+    function insertRegistration($piva, $nome, $email, $password, $confirmed){
+        $this->connection->autocommit(false);
+
+        $errors = array();
+
+        $query = "SELECT email FROM autorizations WHERE email = ?";
+
+        $result = $this->parse_and_execute_select($query, 's', $email);
+
+        if ($result === false || $result instanceof db_error){
+            array_push($errors, 'db_error_authorizations');
+        }
+
+        $result->bind_result($res_email);
+        $fetch = $result->fetch();
+
+        $result->close();
+
+        if (!$fetch) {
+
+            $query = "INSERT INTO autorizations (email, password, authorized) VALUES (?, ?, ?)";
+            $result = $this->parse_and_execute_insert($query, 'ssi', $email, $password, $confirmed);
+
+            if ($result === false || $result instanceof db_error) {
+                array_push($errors, 'db_error_authorizations');
+            }
+
+            $auth_id = $this->connection->insert_id;
+
+            $query = "INSERT INTO contracts (auth_id, piva, name) VALUES (?, ?, ?)";
+            $result = $this->parse_and_execute_insert($query, 'iss', $auth_id, $piva, $nome);
+
+            if ($result === false || $result instanceof db_error) {
+                array_push($errors, 'db_error_contracts');
+            }
+        }
+
+        if (!empty($errors)) {
+            $this->connection->rollback();
+        }
+
+        $this->connection->commit();
+
+        return $errors;
+    }
+
+    function insertSecondRegistration($email, $piva, $nome){
+        $this->connection->autocommit(false);
+
+        $errors = array();
+
+        $query = "SELECT id FROM autorizations WHERE email = ?";
+        $result = $this->parse_and_execute_select($query, 's', $email);
+
+        if ($result === false || $result instanceof db_error){
+            array_push($errors, 'db_error_authorizations');
+        }
+
+        $result->bind_result($res_id);
+        $fetch = $result->fetch();
+
+        $result->close();
+
+        if ($fetch){
+            $query = "INSERT INTO contracts (auth_id, piva, name) VALUES (?, ?, ?)";
+            $result = $this->parse_and_execute_insert($query, 'iss', $res_id, $piva, $nome);
+
+            if ($result === false || $result instanceof db_error){
+                array_push($errors, 'db_error_contracts');
+            }
+        }
+
+        if (!empty($errors)) {
+            $this->connection->rollback();
+        }
+
+        $this->connection->commit();
+
+        return empty($errors);
+    }
+
+    function control_autentication($email){
+
+        $query = "SELECT password, authorized FROM autorizations WHERE email = ?";
+        $statement = $this->parse_and_execute_select($query, 's', $email);
+
+        if ($statement === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $result = $statement->get_result();
+        $result_array = array();
+
+        while ($row = mysqli_fetch_assoc($result)){
+            $result_array[] = array('password'=> $row['password'], 'authorized' => $row['authorized']);
+        }
+
+        $result->close();
+
+        $response['new_user'] = false;
+        $response['auth'] = false;
+
+        if (!empty($result_array)) {
+
+            foreach ($result_array as $val) {
+                if ($val['authorized'] === 1) {
+                    $response['new_user'] = false;
+                    $response['auth'] = true;
+                }
+            }
+        } else{
+            $response['new_user'] = true;
+            $response['auth'] = false;
+        }
+
+        return $response;
+    }
+
+    function control_contract($email, $contract){
+
+        $query = "SELECT name FROM autorizations JOIN contracts ON id = auth_id WHERE email = ? AND piva = ?";
+        $statement = $this->parse_and_execute_select($query, 'ss', $email, $contract);
+
+        if ($statement === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $result = $statement->get_result();
+        $result_array = array();
+
+        while ($row = mysqli_fetch_assoc($result)){
+            $result_array[] = array('name'=> $row['name']);
+        }
+
+        return empty($result_array);
+    }
+
+    function get_contracts($email){
+        $query = "SELECT piva, name, email FROM autorizations JOIN contracts ON id = auth_id WHERE email = ?";
+        $statement = $this->parse_and_execute_select($query, 's', $email);
+
+        if ($statement === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $result = $statement->get_result();
+        $result_array = array();
+
+        while ($row = mysqli_fetch_assoc($result)){
+            $result_array[] = array('piva'=> $row['piva'], 'nome' => $row['name'], 'email' => $row['email']);
+        }
+
+        return $result_array;
+    }
+
+    function get_email($username){
+        $query = "SELECT email FROM autorizations JOIN contracts ON id = auth_id WHERE piva = ?";
+        $statement = $this->parse_and_execute_select($query, 's', $username);
+
+        if ($statement === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $statement->bind_result($res_email);
+        $fetch = $statement->fetch();
+
+        if ($fetch) {
+            return $res_email;
+        }
+
+        return null;
+    }
+
+    function get_password($email){
+        $query = "SELECT password, piva FROM autorizations JOIN contracts ON id = auth_id WHERE email = ?";
+        $statement = $this->parse_and_execute_select($query, 's', $email);
+
+        if ($statement === false){
+            return new db_error(db_error::$ERROR_ON_SELECTING_MOTIV);
+        }
+
+        $statement->bind_result($res_pass, $res_piva);
+        $fetch = $statement->fetch();
+
+        if ($fetch) {
+            $result['pass'] = $res_pass;
+            $result['piva'] = $res_piva;
+            return $result;
+        }
+
+        return null;
+    }
+
+    function change_password($username, $password){
+        $query = "UPDATE autorizations INNER JOIN contracts ON id = auth_id SET password = ? WHERE piva = ?";
+        $statement = $this->parse_and_execute_select($query, "ss", $password, $username);
+
+        if ($statement instanceof db_error)
+            return $statement;
+
+        if($statement === false){
+            return new db_error(db_error::$ERROR_ON_UPDATE_MOTIV);
+        }
+
+        return $this->connection->affected_rows;
+    }
     /**
      * Metodo che seleziona l'errore da ritornare in funzione dell'array passato come parametro
      * @param string $errors - array contenente gli ultimi errori generati
@@ -349,3 +555,6 @@ class DatabaseConnection{
         return $statement;
     }
 }
+
+//$conn = new DatabaseConnection();
+//var_dump($conn->get_questions());

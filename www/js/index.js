@@ -7,9 +7,44 @@ var app = {
 
     bind: function(){
         document.addEventListener('deviceready', this.deviceready, false);
+        window.onload = () => {
+            if(!mobilecheck()){
+                let index = document.getElementById('login-content');
+                if(index !== null) {
+                    index.style.width = '65%';
+                    index.style.margin = 'auto';
+                }
+                $('#login-fielset:first-child').css('width', '65%');
+                $('#login-fielset:first-child').css('margin', 'auto');
+
+                let home = document.getElementById('home-content');
+                if(home !== null) {
+                    home.style.width  = '65%';
+                    home.style.margin = 'auto';
+                }
+            }
+        }
+
+        $('#recover-password').on('pageinit', function () {
+            if(!mobilecheck()){
+                document.getElementById('recover-content').style.width = '50%';
+                document.getElementById('recover-content').style.margin = 'auto';
+            }
+        });
+
+        $('#modificaPassword').on('pageinit', function () {
+            if(!mobilecheck()){
+                document.getElementById('modificaPassword-content').style.width = '50%';
+                document.getElementById('modificaPassword-content').style.margin = 'auto';
+            }
+        });
 
         //pagina di registrazione
         $('#register').on('pagebeforeshow', function () {
+            if(!mobilecheck()){
+                document.getElementById('register-content').style.width = '50%';
+                document.getElementById('register-content').style.margin = 'auto';
+            }
             register();
         });
 

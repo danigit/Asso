@@ -9,7 +9,7 @@
 
 .ui-input-btn{
     display: block!important;
-    width: 35% !important;
+    width: 60% !important;
     margin: auto!important;
     padding: 7px!important;
     font-size: medium!important;
@@ -171,13 +171,13 @@ input{
 .login-image{
     display: block;
     width: 100%;
-    margin: auto auto 50px;
+    margin: auto auto;
 }
 
 #login-content > a{
-    width: 35%!important;
+    width: 39%!important;
     padding: 7px;
-    margin: 0 auto auto auto!important;
+    margin: 10px auto auto auto!important;
     background: #007E4D!important;
     text-shadow: none!important;
     color: #ffffff;
@@ -189,9 +189,10 @@ input{
 }
 
 #register-fielset div:nth-child(3){
-    background: #007E4D!important;
-    color: #ffffff!important;
+    /*background: #007E4D!important;*/
+    /*color: #ffffff!important;*/
 }
+
 
 .login-icon{
     position: absolute!important;
@@ -208,6 +209,14 @@ input{
 #recover-pass-fielset div:nth-child(3){
     background-color: #007E4D!important;
     color: #ffffff!important;
+}
+
+.recover-password{
+    display: block;
+    width: 100%!important;
+    color: black!important;
+    text-decoration: none;
+    text-align: center;
 }
 
 .privacy-div > h5 > a{
@@ -729,15 +738,19 @@ input{
     }
 }
 
+.flex-display{
+    display: flex;
+}
+
 .si-checkbox{
     float: left;
-    width: 15%;
+    width: 25%;
     margin-right: 6%;
     margin-left: 2%;
 }
 
 .no-checkbox{
-    width: 15%;
+    width: 25%;
     float: left;
     margin-right: 2%;
 }
@@ -825,6 +838,9 @@ input{
     100% {left:78%;top: 100px;}
 }
 
+.logo{
+
+}
 
 #cambioAnagraficaForm .ui-input-text{
     width: 95% !important;
@@ -905,4 +921,20 @@ input{
 
 .margin-left-none{
     margin-left: 0!important;
+}
+
+.margin-anagrafica-list{
+    margin: 10% 5% auto 5% !important;
+}
+
+.left-text{
+    text-align: left!important;
+}
+
+.hidden{
+    display: none!important;
+}
+
+.border-none{
+    border: none!important;
 }
