@@ -6,12 +6,18 @@
  * Time: 11:39 AM
  */
 
-
 //define('FORWARDSLASH', '\\');
 define('FORWARDSLASH', '/');
 //define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . '..' . FORWARDSLASH .'PhoenixData' . FORWARDSLASH);
 define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . 'PhoenixData' . FORWARDSLASH);
 define('LINK_FOR_PDF_FILES', 'http://www.assoantincendio.com/areaclienti/PhoenixData/');
+
+
+//define('FORWARDSLASH', '\\');
+//define('FORWARDSLASH', '/');
+//define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . '..' . FORWARDSLASH .'PhoenixData' . FORWARDSLASH);
+//define('PHOENIX_FOLDER', '..' . FORWARDSLASH . '..' . FORWARDSLASH . 'PhoenixData' . FORWARDSLASH);
+//define('LINK_FOR_PDF_FILES', 'http://www.assoantincendio.com/areaclienti/PhoenixData/');
 
 /**
  * Funzione che imposta le variabili di sessione
@@ -98,16 +104,16 @@ function is_error($value){
     return is_a($value, "db_error");
 }
 
-function send_email($sender, $receiver, $title, $subject, $message, $error){
+function send_email($receiver, $title, $subject, $message, $error){
     $mail = new PHPMailer;
     $mail->isSMTP();
     $mail->Host = 'tls://smtp.gmail.com';
     $mail->Port = 587; //587; // 465;
     $mail->SMTPSecure = 'tls';
     $mail->SMTPAuth = true;
-    $mail->Username = "ds.acconto@gmail.com";
-    $mail->Password = "!ds!acconto!88";
-    $mail->setFrom($sender, $title);
+    $mail->Username = "clienti.assoantincendio@gmail.com";
+    $mail->Password = "clientiasso";
+    $mail->setFrom('clienti.assoantincendio@gmail.com', $title);
     $mail->addAddress($receiver);
     $mail->Subject = $subject;
     $mail->msgHTML($message . "<br><br><br><img src='http://www.assoantincendio.com/areaclienti/Asso/img/logo.png'>");

@@ -61,7 +61,7 @@ class register extends is_not_logged {
                 $connection = $this->get_connection();
                 $response = $connection->control_autentication($this->email);
                 if($response['auth']){
-                    send_email('ds.acconto@gmail.com', $this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
+                    send_email($this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
                         "L'email ". $this->email . " e' gia' registrata e confermata.",
                         "Registrazione avvenuta! Impossibile inviare email con le credenziali, contattare l'assistenza per avere la pssword!");
                 }else {
@@ -70,7 +70,7 @@ class register extends is_not_logged {
                     if ($result instanceof db_error)
                         $this->json_error('Impossibilie savare i dati nel database');
                     else {
-                        send_email('ds.acconto@gmail.com', $this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
+                        send_email($this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
                             "Le comunichiamo l'avvenuta registrazione al sito <b style='color: #007139'>ASSO ANTINCENDIO</b>.<br><br>Di seguito le inviamo le
                                                credenziali per accedere alla sua area personale.<br><br><b>Username</b>: " . $email . "<br><b>Password</b>: " . $pass,
                             "Registrazione avvenuta! Impossibile inviare email con le credenziali, contattare l'assistenza per avere la pssword!");
@@ -81,19 +81,19 @@ class register extends is_not_logged {
                 $response = $connection->control_autentication($this->email);
 
                 if ($response['auth']) {
-                    send_email('ds.acconto@gmail.com', $this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
+                    send_email($this->email, 'Asso Antincendio', 'Registrazione Asso Antincendio',
                         "L'email ". $this->email . " e' gia' registrata e confermata.",
                         "Registrazione avvenuta! Impossibile inviare email con le credenziali, contattare l'assistenza per avere la pssword!");
                 }else if ($response['new_user']){
                     $pass = createRandomPassword(6);
 
-                    if (send_email('ds.acconto@gmail.com', $this->email, 'Asso Antincendio', "Registrazione Asso Antincendio",
+                    if (send_email($this->email, 'Asso Antincendio', "Registrazione Asso Antincendio",
                             "La sua registrazione deve essere confermata, a breve ricevera' una risposta da parte del nostro team",
                             "Impossibile inviare email di conferma, contattare l'assistenza per avere ulteriori informazioni!")) {
-                            send_email("", $this->email, "Asso Antincendio", "Richiesta conferma registrazione",
+                            send_email('clienti.assoantincendio@gmail.com', "Asso Antincendio", "Richiesta conferma registrazione",
                                 "Il cliente ". $this->name . " " . $this->surname . " con telefono " . $this->phone . " e email " . $this->email . " associata all'account <b style='color: #007139;'>" . $array_file['Anagrafica']['RAGIONE_SOCIALE'] . "</b> sta cercando di registrarsi al sito.<br><br>Cliccare su uno dei seguenti pulsanti per confermare o negare 
-                                        la registrazione. <br><br><a href='http://localhost/DanielSurpanu_Asso/www/php/ajax/confirm_registration.php?piva=" . $this->username . "&email=" . $this->email . "&name=" . $nome . "&password=" . $pass . "&new=1'><button style='background: #007139; color: #ffffff; border: none; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; padding: 10px;'>CONFERMA REGISTRAZIONE</button></a>
-                                        <a href='http://localhost/sites/DanielSurpanu_Asso/www/php/ajax/deny_registration.php?piva=" . $this->username . "&email=" . $this->email . "&name=" . $nome . "'><button style='background: #E52612; color: #ffffff; border: none; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; padding: 10px;'>NEGA REGISTRAZIONE</button></a>",
+                                        la registrazione. <br><br><a href='http://assoantincendio.com/areaclienti/Asso/php/ajax/confirm_registration.php?piva=" . $this->username . "&email=" . $this->email . "&name=" . $nome . "&password=" . $pass . "&new=1'><button style='background: #007139; color: #ffffff; border: none; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; padding: 10px;'>CONFERMA REGISTRAZIONE</button></a>
+                                        <a href='http://assoantincendio.com/areaclienti/Asso/php/ajax/deny_registration.php?piva=" . $this->username . "&email=" . $this->email . "&name=" . $nome . "'><button style='background: #E52612; color: #ffffff; border: none; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; padding: 10px;'>NEGA REGISTRAZIONE</button></a>",
                                 "Impossibile inviare email di conferma, contattare l'assistenza per avere ulteriori informazioni!");
                     }
                 }else{

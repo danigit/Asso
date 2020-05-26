@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+
 /**
  * Created by PhpStorm.
  * User: surpa
@@ -10,15 +12,14 @@ require_once 'db_error.php';
 mysqli_report(MYSQLI_REPORT_STRICT);
 
 class DatabaseConnection{
-    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
 //    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'dani', DATABASE = 'asso';
-//    const PATH = '89.46.111.27', USERNAME = 'Sql1009904', PASSWORD = 'k0271c40q0', DATABASE = 'Sql1009904_2';
+//    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'dani', DATABASE = 'asso';
+    const PATH = 'localhost', USERNAME = 'root', PASSWORD = 'password', DATABASE = 'asso';
 //    const PATH = 'localhost', USERNAME = 'danielfotografo', PASSWORD = 'gacdicibpi67', DATABASE = 'my_danielfotografo';
     private $connection;
 
     public function __construct(){
         $this->connection = new mysqli(self::PATH, self::USERNAME, self::PASSWORD, self::DATABASE);
-
         if (!$this->connection->set_charset('utf8')) {
             printf("Errore nel carricare UTF8: %s\n", $this->connection->error);
         }
@@ -447,7 +448,7 @@ class DatabaseConnection{
     }
 
     function change_password($username, $password){
-        $query = "UPDATE autorizations INNER JOIN contracts ON id = auth_id SET password = ? WHERE piva = ?";
+        $query = "UPDATE autorizations SET password = ? WHERE email = ?";
         $statement = $this->parse_and_execute_select($query, "ss", $password, $username);
 
         if ($statement instanceof db_error)

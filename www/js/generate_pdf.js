@@ -136,7 +136,8 @@ function insertHeader(header) {
  * @param value - i valori da inserire nella righe
  */
 function insertElementType(value) {
-    
+
+    console.log(value)
     $.each(value, function (innerKey, innerValue) {
         //controllo lo stato della domanda ( se e' si oppure no )
         if (innerValue.checked === '1') {
@@ -162,6 +163,7 @@ function insertElementType(value) {
             doc.addImage(checkImg, 'JPEG', 540, nextRowPosH + 2, 16, 16);
             currentH += 20;
         }else{
+            console.log(innerValue)
             text = 'Note: ' + innerValue.checked;
             if (innerKey === '1')
                 splitedText = doc.splitTextToSize(text, 670);

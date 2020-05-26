@@ -31,21 +31,24 @@ class change_password extends is_logged {
     }
 
     protected function get_informations(){
-        $connection = $this->get_connection();
-
         $info = getUserInformations($_SESSION['username']);
         if($info != null){
-
             $folderName = getFolderName($info[1]);
-
-            $anagraficaPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'PhoenixAnagrafica.xml';
-            $xml_file = simplexml_load_file($anagraficaPath);
-            $json_file = json_encode($xml_file);
-            $array_file = json_decode($json_file, true);
-            $partita_iva = $array_file['Anagrafica']['PARTITA_IVA'];
-
-            $connection->change_password($partita_iva, md5($this->password));
-        } else{
+            $passwordPath = PHOENIX_FOLDER . $folderName . FORWARDSLASH . 'Pwd.phx';
+            if(file_exists($passwordPath)) {
+                $passwordFile = fopen($passwordPath, 'r');
+                $oldPassword = fgets($passwordFile);
+                fclose($passwordFile);
+                $emptyFile = fopen($passwordPath, 'w');
+                if(md5($this->oldPassword) != $oldPassword)
+                    $this->json_error('Password sbagliata');
+                else {
+                    fputs($emptyFile, md5($this->password));
+                    fclose($passwordFile);
+                }
+            }else
+                $this->json_error("Impossibile impostare la password");
+        }else{
             $this->json_error("Momentaneamente il servizio non è disponibile");
         }
     }

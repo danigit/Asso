@@ -17,7 +17,7 @@ changePassForm.onsubmit = function (event) {
             //controllo se ci sono stati errori nella chiamata
             if(data.result){
                 //ritorno alla pagina iniziale
-                // window.location.replace('../Asso/index.php');
+                window.location.replace('../Asso/index.php');
             }else {
                 //mostro messaggio di errore
                 let message = $('<div class="center-text error-message"><span>' + data.message + '</span></div>');

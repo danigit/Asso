@@ -1,6 +1,7 @@
 <?php
 
 require_once 'cs_interaction.php';
+require_once 'helper.php';
 
 class insert_in_database extends cs_interaction{
 
@@ -8,13 +9,13 @@ class insert_in_database extends cs_interaction{
 
     protected function input_elaboration()
     {
-        if ($handle = opendir("../../PhoenixData")) {
+        if ($handle = opendir(PHOENIX_FOLDER)) {
             while ($entry = readdir($handle)) {
                 $dirList = array();
-                if ($entry != "." && $entry != ".." && $entry != 'PhoenixListaClienti.phx' && $entry != 'Attrezzature.pdf' && $handleDir = opendir("../../PhoenixData/" . $entry)){
+                if ($entry != "." && $entry != ".." && $entry != 'PhoenixListaClienti.phx' && $entry != 'Attrezzature.pdf' && $handleDir = opendir(PHOENIX_FOLDER . $entry)){
                     while ($entryDir = readdir($handleDir)){
                         if ($entryDir === 'PhoenixAnagrafica.xml'){
-                            $xml_file = simplexml_load_file("../../PhoenixData/" . $entry . "/" . $entryDir);
+                            $xml_file = simplexml_load_file(PHOENIX_FOLDER . $entry . "/" . $entryDir);
                             $json_file = json_encode($xml_file);
                             $array_file = json_decode($json_file, true);
                             $anagrafica = $array_file['Anagrafica'];
@@ -23,7 +24,7 @@ class insert_in_database extends cs_interaction{
                             $dirList['name'] = $anagrafica['RAGIONE_SOCIALE'];
                         }
                         if ($entryDir === 'Pwd.phx') {
-                            $pass = file_get_contents("../../PhoenixData/" . $entry . "/" . $entryDir, 'r');
+                            $pass = file_get_contents(PHOENIX_FOLDER . $entry . "/" . $entryDir, 'r');
                             $dirList['password'] = $pass;
                         } else{
                             $dirList['password'] = '';

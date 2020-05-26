@@ -258,7 +258,6 @@ function getData(temp) {
                     i = 1;
                     $.each($(innerValue).children(), function (lastKey, lastValue) {
                         let radio = $(lastValue).find('input[type="radio"]');
-                        console.log(radio);
                         let question = $(lastValue).find('p').text();
 
                         //controllo se ci sono delle caselle chekcbox attive
@@ -275,7 +274,7 @@ function getData(temp) {
                                     }else
                                         snapShot[tipoAttrezzatura][i++] = {question: question, checked: '0'};
                                 }else
-                                    snapShot[tipoAttrezzatura][i++] = '0'
+                                    snapShot[tipoAttrezzatura][i++] = {question: question, checked: '0'}
                             }
                         }else {
                             if(temp) {
@@ -346,6 +345,8 @@ function caricaModifiche() {
                     //inserisco i dati nella pagina
                     $.each(risposte[0], function (key, value) {
 
+                        console.log(key)
+                        console.log(value)
                         if (value.type !== lastValue)
                             content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
 
@@ -357,7 +358,7 @@ function caricaModifiche() {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
-                                $(this).parent().parent().next().find('input[name="radio-' + value.type() + '-' + value.number + '"]').prev().removeClass('red-background');
+                                $(this).parent().parent().next().find('input[name="radio-' + value.type + '-' + value.number + '"]').prev().removeClass('red-background');
                                 $('#sorveglianza-note-' + value.type + '-' + value.number).parent().remove();
                             });
                             siLabel.append(si);
@@ -367,8 +368,10 @@ function caricaModifiche() {
                             let noDiv = $('<div class="no-checkbox"></div>');
                             let noLabel = $('<label class="font-small">NO</label>');
                             let no = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
+                                $(this).prev().addClass('red-background');
                                 let note = $('<div class="clear-float-left"><textarea name="note" class="sorveglianza-note" id="sorveglianza-note-' + value.type + '-' + value.number + '" rows="2" placeholder="Inserire nota anomalia"></textarea></div>');
-                                    div.ar('create');
+                                if ($('#sorveglianza-note-' + value.type + '-' + value.number).length === 0)
+                                    div.append(note).trigger('create');
                             });
                             $(no).prev().addClass('red-background');
                             noLabel.append(no);
@@ -404,6 +407,7 @@ function caricaModifiche() {
                             div.append(gotAnswer);
                             div.append(recoveredNote);
                         } else if (value.answer === "0"){
+                            console.log('one answer is no')
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
                             let si = $('<input type="radio" name="radio-' + value.type + '-' + value.number + '">').on('click', function () {
@@ -428,6 +432,7 @@ function caricaModifiche() {
                             gotAnswer.append(noDiv);
                             div.append(question);
                             div.append(gotAnswer);
+                            console.log(div.html())
                         }else {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');

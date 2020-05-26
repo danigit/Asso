@@ -17,21 +17,24 @@ class deny_registration extends cs_interaction {
 
     protected function get_informations(){
 
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->Host = 'tls://smtp.gmail.com';
-        $mail->Port = 587; //587; // 465;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = "dsacconto@gmail.com";
-        $mail->Password = "!ds.!acconto88";
-        $mail->setFrom('ds.acconto@gmail.com', 'Asso Antincendio');
-        $mail->addAddress("ds.acconto@gmail.com");
-        $mail->Subject = "Richiesta conferma registrazione";
-        $mail->msgHTML("La sua registrazioine e' stata negata.<br><br>Contattare l'assistenza per ulteriori informazioni");
-
-        if(!$mail->send()) //telnet smtp.aruba.it 587
-            echo "<p>Impossibile inviare email al cliente</p>";
+//        $mail = new PHPMailer;
+//        $mail->isSMTP();
+//        $mail->Host = 'tls://smtp.gmail.com';
+//        $mail->Port = 587; //587; // 465;
+//        $mail->SMTPSecure = 'tls';
+//        $mail->SMTPAuth = true;
+//        $mail->Username = "";
+//        $mail->Password = "";
+//        $mail->setFrom('', 'Asso Antincendio');
+//        $mail->addAddress("");
+//        $mail->Subject = "Richiesta conferma registrazione";
+//        $mail->msgHTML("La sua registrazioine e' stata negata.<br><br>Contattare l'assistenza per ulteriori informazioni");
+//
+//        if(!$mail->send()) //telnet smtp.aruba.it 587
+//            echo "<p>Impossibile inviare email al cliente</p>";
+        send_email($_GET['email'], 'Asso Antincendio',
+            'Registrazione negata', "La sua registrazioine e\' stata negata.<br><br>Contattare l\'assistenza per ulteriori informazioni",
+                    'Impossibile inviare email');
     }
 
     protected function get_returned_data()
