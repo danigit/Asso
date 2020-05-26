@@ -345,14 +345,12 @@ function caricaModifiche() {
                     //inserisco i dati nella pagina
                     $.each(risposte[0], function (key, value) {
 
-                        console.log(key)
-                        console.log(value)
                         if (value.type !== lastValue)
                             content = $("<div id='" + value.type + "' data-role='collapsible' data-inset='true' class='sorveglianza-collapsible'><h3>" + value.type + "</h3></div>");
 
                         let div = $('<div class="clear-float-left padding-top-5px border-top-2-green"></div>');
                         let question = $('<p class="margin-top-20">' + value.number + ') ' + value.question + '</p>');
-                        let gotAnswer = $('<div></div>');
+                        let gotAnswer = $('<div class="flex-display"></div>');
 
                         if (value.answer === '-1'){
                             let siDiv = $('<div class="si-checkbox"></div>');
@@ -432,7 +430,6 @@ function caricaModifiche() {
                             gotAnswer.append(noDiv);
                             div.append(question);
                             div.append(gotAnswer);
-                            console.log(div.html())
                         }else {
                             let siDiv = $('<div class="si-checkbox"></div>');
                             let siLabel = $('<label class="font-small">SI</label>');
