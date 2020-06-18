@@ -1,0 +1,25 @@
+[11-Mar-2020 12:58:48 Europe/Berlin] $result
+[11-Mar-2020 12:59:30 Europe/Berlin] 0c88028bf3aa6a6a143ed846f2be1ea4
+[11-Mar-2020 13:01:01 Europe/Berlin] 0c88028bf3aa6a6a143ed846f2be1ea4
+[11-Mar-2020 13:01:01 Europe/Berlin] 0c88028bf3aa6a6a143ed846f2be1ea4
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP Warning:  array_unique() expects parameter 1 to be array, null given in D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php on line 74
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP Stack trace:
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP   1. {main}() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:0
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP   2. cs_interaction->execute() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:78
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP   3. cs_interaction->json_success() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\cs_interaction.php:48
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP   4. get_filiale_per_contratto->get_returned_data() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\cs_interaction.php:94
+[11-Mar-2020 15:00:41 Europe/Berlin] PHP   5. array_unique() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:74
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP Notice:  Undefined offset: 0 in D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php on line 32
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP Stack trace:
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   1. {main}() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:0
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   2. cs_interaction->execute() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:78
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   3. get_filiale_per_contratto->get_informations() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\cs_interaction.php:46
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP Notice:  Undefined offset: 0 in D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php on line 32
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP Stack trace:
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   1. {main}() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:0
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   2. cs_interaction->execute() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\get_filiale_per_contratto.php:78
+[11-Mar-2020 15:00:48 Europe/Berlin] PHP   3. get_filiale_per_contratto->get_informations() D:\GoogleDrive\Lavoro\Progetti\Asso\Phoenix\SW\PhoenixApp\Server\php\ajax\cs_interaction.php:46
+[14-Jun-2020 23:02:26 Europe/Rome] PHP Notice:  Undefined offset: 0 in D:\inetpub\webs\assoantincendiocom\areaclienti\Asso\php\ajax\get_filiale_per_contratto.php on line 32
+[14-Jun-2020 23:02:33 Europe/Rome] PHP Notice:  Undefined offset: 0 in D:\inetpub\webs\assoantincendiocom\areaclienti\Asso\php\ajax\get_filiale_per_contratto.php on line 32
+[14-Jun-2020 23:02:33 Europe/Rome] PHP Notice:  Undefined offset: 0 in D:\inetpub\webs\assoantincendiocom\areaclienti\Asso\php\ajax\get_filiale_per_contratto.php on line 32
+[14-Jun-2020 23:02:36 Europe/Rome] PHP Warning:  array_unique() expects parameter 1 to be array, null given in D:\inetpub\webs\assoantincendiocom\areaclienti\Asso\php\ajax\get_filiale_per_contratto.php on line 74

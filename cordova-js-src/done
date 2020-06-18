@@ -1,0 +1,6 @@
+- image that not seen in emails
+- inserita la scritta per i campi che non ci sono in anagrafica
+- aggiustato richiesta anagrafica mancava l'email 
+- la pagina rapporti non si resetava quando uscivi e rientravi
+- sistemata la richiesta assistenza che non andava a buon fine (problemi con il campo mail latto client e server)
+- sistemata la sorveglianza che si vedeva male dopo che la sospendevi
